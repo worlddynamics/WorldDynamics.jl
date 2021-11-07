@@ -5,6 +5,7 @@ include("tablespop.jl")
 
 @parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest
 @parameters lt lt2 cio cso cfood
+
 @variables t pop(t) br(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) 
 @variables lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) cbr(t) tf(t) 
 @variables mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t)
@@ -67,30 +68,30 @@ eqs = [
     dtf ~ dcfs * cmple, # line 37 page 168
     cmple ~ interpolate(ple, cmplet, cmplets), # line 38 page 168
     D(ple) ~ 3 * (ple2 - ple) / lpd, # line 40 page 168
-    D(ple2) ~ 3 * (ple1 - ple2) / lpd, # line 40 page 168
-    D(ple1) ~ 3 * (le - ple1) / lpd, # line 40 page 168
     ple ~ le, # line 40 page 168
-    # ple2 ~ le, # line 40 page 168
-    # ple1 ~ le, # line 40 page 168
+    D(ple2) ~ 3 * (ple1 - ple2) / lpd, # line 40 page 168
+    ple2 ~ le, # line 40 page 168
+    D(ple1) ~ 3 * (le - ple1) / lpd, # line 40 page 168
+    ple1 ~ le, # line 40 page 168
     dcfs ~ clip(2, dcfsn * frsn * sfsn, t, zpgt), # line 42 page 168
     sfsn ~ interpolate(diopc, sfsnt, sfsnts), # line 45 page 168
     D(diopc) ~ 3 * (diopc2 - diopc) / sad, # line 47 page 168
-    D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 47 page 168
-    D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 47 page 168
     diopc ~ iopc, # line 47 page 168
-    # diopc2 ~ iopc, # line 47 page 168
-    # diopc1 ~ iopc, # line 47 page 168
+    D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 47 page 168
+    diopc2 ~ iopc, # line 47 page 168
+    D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 47 page 168
+    diopc1 ~ iopc, # line 47 page 168
     frsn ~ interpolate(fie, frsnt, frsnts), # line 49 page 168
     fie ~ (iopc - aiopc) / aiopc, # line 52 page 168
     D(aiopc) ~ (iopc - aiopc) / ieat, # line 53 page 168
     nfc ~ (mtf / dtf) - 1, # line 55 page 168
     fce ~ clip(1.0, interpolate(fcfpc, fcet, fcets), t, fcest), # line 56 page 168
     D(fcfpc) ~ 3 * (fcfpc2 - fcfpc) / hsid, # line 59 page 168
-    D(fcfpc2) ~ 3 * (fcfpc1 - fcfpc2) / hsid, # line 59 page 168
-    D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid, # line 59 page 168
     fcfpc ~ fcapc, # line 59 page 168
-    # fcfpc2 ~ fcapc, # line 59 page 168
-    # fcfpc1 ~ fcapc, # line 59 page 168
+    D(fcfpc2) ~ 3 * (fcfpc1 - fcfpc2) / hsid, # line 59 page 168
+    fcfpc2 ~ fcapc, # line 59 page 168
+    D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid, # line 59 page 168
+    fcfpc1 ~ fcapc, # line 59 page 168
     fcapc ~ fsafc * sopc, # line 60 page 168
     fsafc ~ interpolate(nfc, fsafct, fsafcts), # line 61 page 168
     # EXOGENOUS INPUTS TO THE POPULATION SECTOR
