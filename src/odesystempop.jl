@@ -3,28 +3,23 @@ using Plots
 
 include("tablespop.jl")
 
-@parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest
-@parameters lt lt2 cio cso cfood
+@parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest lt lt2 cio cso cfood
 
-@variables t pop(t) br(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) 
-@variables lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) cbr(t) tf(t) 
-@variables mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t)
-@variables diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t)
-@variables fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t)
+@variables t pop(t) br(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t) diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t) iopc(t) ppolx(t) sopc(t) fpc(t)
 # @variables io(t) io1(t) io11(t) io12(t) io2(t) iopc(t)
-@variables iopc(t)
-@variables ppolx(t)
+# @variables iopc(t)
+# @variables ppolx(t)
 # @variables so(t) so1(t) so11(t) so12(t) so2(t) sopc(t)
-@variables sopc(t)
+# @variables sopc(t)
 # @variables f(t) f1(t) f11(t) f12(t) f2(t) fpc(t)
-@variables fpc(t)
+# @variables fpc(t)
 D = Differential(t)
 
 function interpolate(x, y, xs)
-    li = LinearInterpolation(y, xs)
+    li = LinearInterpolation(xs, y)
     return li(x)
 end
-@register interpolate(x, y::AbstractVector, xs::AbstractVector)
+@register interpolate(x, xs::AbstractVector, y::AbstractVector)
 function clip(f1, f2, va, th)
     if (va >= th)
         return f1
@@ -68,30 +63,30 @@ eqs = [
     dtf ~ dcfs * cmple, # line 37 page 168
     cmple ~ interpolate(ple, cmplet, cmplets), # line 38 page 168
     D(ple) ~ 3 * (ple2 - ple) / lpd, # line 40 page 168
-    ple ~ le, # line 40 page 168
+    # ple ~ le, # line 40 page 168
     D(ple2) ~ 3 * (ple1 - ple2) / lpd, # line 40 page 168
-    ple2 ~ le, # line 40 page 168
+    # ple2 ~ le, # line 40 page 168
     D(ple1) ~ 3 * (le - ple1) / lpd, # line 40 page 168
-    ple1 ~ le, # line 40 page 168
+    # ple1 ~ le, # line 40 page 168
     dcfs ~ clip(2, dcfsn * frsn * sfsn, t, zpgt), # line 42 page 168
     sfsn ~ interpolate(diopc, sfsnt, sfsnts), # line 45 page 168
     D(diopc) ~ 3 * (diopc2 - diopc) / sad, # line 47 page 168
-    diopc ~ iopc, # line 47 page 168
+    # diopc ~ iopc, # line 47 page 168
     D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 47 page 168
-    diopc2 ~ iopc, # line 47 page 168
+    # diopc2 ~ iopc, # line 47 page 168
     D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 47 page 168
-    diopc1 ~ iopc, # line 47 page 168
+    # diopc1 ~ iopc, # line 47 page 168
     frsn ~ interpolate(fie, frsnt, frsnts), # line 49 page 168
     fie ~ (iopc - aiopc) / aiopc, # line 52 page 168
     D(aiopc) ~ (iopc - aiopc) / ieat, # line 53 page 168
     nfc ~ (mtf / dtf) - 1, # line 55 page 168
     fce ~ clip(1.0, interpolate(fcfpc, fcet, fcets), t, fcest), # line 56 page 168
     D(fcfpc) ~ 3 * (fcfpc2 - fcfpc) / hsid, # line 59 page 168
-    fcfpc ~ fcapc, # line 59 page 168
+    # fcfpc ~ fcapc, # line 59 page 168
     D(fcfpc2) ~ 3 * (fcfpc1 - fcfpc2) / hsid, # line 59 page 168
-    fcfpc2 ~ fcapc, # line 59 page 168
+    # fcfpc2 ~ fcapc, # line 59 page 168
     D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid, # line 59 page 168
-    fcfpc1 ~ fcapc, # line 59 page 168
+    # fcfpc1 ~ fcapc, # line 59 page 168
     fcapc ~ fsafc * sopc, # line 60 page 168
     fsafc ~ interpolate(nfc, fsafct, fsafcts), # line 61 page 168
     # EXOGENOUS INPUTS TO THE POPULATION SECTOR
@@ -124,7 +119,17 @@ eqs = [
 sys = structural_simplify(sys)
     
 u0 = [pop => 1.61e9, # line 3 page 167
-frsn => 0.82] # line 51 page 168
+frsn => 0.82,
+diopc => iopc,
+diopc1 => iopc,
+diopc2 => iopc,
+fcfpc => fcapc,
+fcfpc1 => fcapc,
+fcfpc2 => fcapc,
+ple => le,
+ple1 => le,
+ple2 => le
+] # line 51 page 168
 
 p = [len => 28.0, sfpc => 230.0, hsid => 20.0, iphst => 40.0, # line 7,10,13,15 page 167
 ffw => 0.21, rlt => 30, pet => 4000, mtfn => 12, lpd => 20, # line 28,29,30,34,41 page 168
