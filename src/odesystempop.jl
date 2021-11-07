@@ -1,7 +1,7 @@
 using Interpolations, ModelingToolkit, OrdinaryDiffEq
 using Plots
 
-include("tables.jl")
+include("tablespop.jl")
 
 @parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest
 @parameters lt lt2 cio cso cfood
@@ -10,10 +10,13 @@ include("tables.jl")
 @variables mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t)
 @variables diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t)
 @variables fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t)
-@variables io(t) io1(t) io11(t) io12(t) io2(t) iopc(t)
+# @variables io(t) io1(t) io11(t) io12(t) io2(t) iopc(t)
+@variables iopc(t)
 @variables ppolx(t)
-@variables so(t) so1(t) so11(t) so12(t) so2(t) sopc(t)
-@variables f(t) f1(t) f11(t) f12(t) f2(t) fpc(t)
+# @variables so(t) so1(t) so11(t) so12(t) so2(t) sopc(t)
+@variables sopc(t)
+# @variables f(t) f1(t) f11(t) f12(t) f2(t) fpc(t)
+@variables fpc(t)
 D = Differential(t)
 
 function interpolate(x, y, xs)
@@ -92,28 +95,28 @@ eqs = [
     fsafc ~ interpolate(nfc, fsafct, fsafcts), # line 61 page 168
     # EXOGENOUS INPUTS TO THE POPULATION SECTOR
     # INDUSTRIAL OUTPUT
-    io ~ clip(io2, io1, t, lt), # line 63 page 168
-    io1 ~ clip(io12, io11, t, lt2), # line 65 page 168
-    io11 ~ 0.7e11 * exp(t * 0.037), # line 67 page 168
-    io12 ~ pop * cio, # line 68 page 168
-    io2 ~ 0.7e11 * exp(lt * 0.037), # line 70 page 168
-    iopc ~ io / pop, # line 71 page 168
+    # io ~ clip(io2, io1, t, lt), # line 63 page 168
+    # io1 ~ clip(io12, io11, t, lt2), # line 65 page 168
+    # io11 ~ 0.7e11 * exp(t * 0.037), # line 67 page 168
+    # io12 ~ pop * cio, # line 68 page 168
+    # io2 ~ 0.7e11 * exp(lt * 0.037), # line 70 page 168
+    iopc ~ (0.7e11 * exp(lt * 0.037)) / pop, # line 71 page 168
     # INDEX OF PERSISTENT POLLUTION
     ppolx ~ t / t, # line 72,73,74 page 168
     # SERVICE OUTPUT
-    so ~ clip(so2, so1, t, lt), # line 75 page 168
-    so1 ~ clip(so12, so11, t, lt2), # line 76 page 168
-    so11 ~ 1.5e11 * exp(t * 0.030), # line 77 page 168
-    so12 ~ pop * cso, # line 78 page 168
-    so2 ~ 1.5e11 * exp(lt * 0.030), # line 80 page 168
-    sopc ~ so / pop, # line 81 page 168
+    # so ~ clip(so2, so1, t, lt), # line 75 page 168
+    # so1 ~ clip(so12, so11, t, lt2), # line 76 page 168
+    # so11 ~ 1.5e11 * exp(t * 0.030), # line 77 page 168
+    # so12 ~ pop * cso, # line 78 page 168
+    # so2 ~ 1.5e11 * exp(lt * 0.030), # line 80 page 168
+    sopc ~ (1.5e11 * exp(lt * 0.030)) / pop, # line 81 page 168
     # FOOD
-    f ~ clip(f2, f1, t, lt), # line 85 page 168
-    f1 ~ clip(f12, f11, t, lt2), # line 86 page 168
-    f11 ~ 4e11 * exp(t * 0.020), # line 87 page 168
-    f12 ~ pop * cfood, # line 88 page 168
-    f2 ~ 4e11 * exp(lt * 0.020), # line 90 page 168
-    fpc ~ f / pop # line 91 page 168
+    # f ~ clip(f2, f1, t, lt), # line 85 page 168
+    # f1 ~ clip(f12, f11, t, lt2), # line 86 page 168
+    # f11 ~ 4e11 * exp(t * 0.020), # line 87 page 168
+    # f12 ~ pop * cfood, # line 88 page 168
+    # f2 ~ 4e11 * exp(lt * 0.020), # line 90 page 168
+    fpc ~ (4e11 * exp(lt * 0.020)) / pop # line 91 page 168
     ]
 
 @named sys = ODESystem(eqs)
