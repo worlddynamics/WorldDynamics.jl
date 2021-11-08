@@ -119,16 +119,18 @@ eqs = [
 sys = structural_simplify(sys)
     
 u0 = [pop => 1.61e9, # line 3 page 167
-frsn => 0.82,
-diopc => iopc,
-diopc1 => iopc,
-diopc2 => iopc,
-fcfpc => fcapc,
-fcfpc1 => fcapc,
-fcfpc2 => fcapc,
-ple => le,
-ple1 => le,
-ple2 => le
+ehspc => hsapc, # smooth at line 12 page 167
+ple => le, # dlinf3 at line 40 page 168
+ple1 => le, # dlinf3 at line 40 page 168
+ple2 => le, # dlinf3 at line 40 page 168
+diopc => iopc, # dlinf3 at line 47 page 168
+diopc1 => iopc, # dlinf3 at line 47 page 168
+diopc2 => iopc, # dlinf3 at line 47 page 168
+frsn => 0.82, # line 51 page 168
+aiopc => iopc, # smooth at line 53 page 168
+fcfpc => fcapc, # dlinf3 at line 59 page 168
+fcfpc1 => fcapc, # dlinf3 at line 59 page 168
+fcfpc2 => fcapc # dlinf3 at line 59 page 168
 ] # line 51 page 168
 
 p = [len => 28.0, sfpc => 230.0, hsid => 20.0, iphst => 40.0, # line 7,10,13,15 page 167
