@@ -1,7 +1,9 @@
 using Interpolations, ModelingToolkit, OrdinaryDiffEq
 using Plots
 
+include("functions.jl")
 include("tablespop.jl")
+include("parameters.jl")
 include("initialisations.jl")
 
 # Parameter declarations
@@ -10,26 +12,8 @@ include("initialisations.jl")
 @variables t pop(t) br(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t) diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t) iopc(t) ppolx(t) sopc(t) fpc(t)
 D = Differential(t)
 # Registered functions used in equations
-function interpolate(x, y, xs)
-    li = LinearInterpolation(xs, y)
-    return li(x)
-end
 @register interpolate(x, xs::AbstractVector, y::AbstractVector)
-function clip(f1, f2, va, th)
-    if (va >= th)
-        return f1
-    else
-        return f2
-    end
-end
 @register clip(f1, f2, va, th)
-function min(v1, v2)
-    if (v1 < v2)
-        return v1
-    else
-        return v2
-    end
-end
 @register min(v1, v2)
 # Equations
 eqs = [
@@ -104,28 +88,29 @@ eqs = [
 @named sys = ODESystem(eqs)
 sys = structural_simplify(sys)
 # Initialisations
-u0 = [pop => pop0,
-ehspc => hsapc, # smooth at line 13 page 167
-ple => le, # dlinf3 at line 41 page 168
-ple1 => le, # dlinf3 at line 41 page 168
-ple2 => le, # dlinf3 at line 41 page 168
-diopc => iopc, # dlinf3 at line 48 page 168
-diopc1 => iopc, # dlinf3 at line 48 page 168
-diopc2 => iopc, # dlinf3 at line 48 page 168
+u0 = [pop => pop0, # lines 2-3 page 167
+ehspc => ehspc0, # smooth at lines 13-14 page 167
+ple => le0, # dlinf3 at line 41 page 168
+ple1 => le0, # dlinf3 at line 41 page 168
+ple2 => le0, # dlinf3 at line 41 page 168
+diopc => iopc0, # dlinf3 at line 48 page 168
+diopc1 => iopc0, # dlinf3 at line 48 page 168
+diopc2 => iopc0, # dlinf3 at line 48 page 168
 frsn => 0.82, # line 52 page 168
-aiopc => iopc, # smooth at line 54 page 168
-fcfpc => fcapc, # dlinf3 at line 60 page 168
-fcfpc1 => fcapc, # dlinf3 at line 60 page 168
-fcfpc2 => fcapc # dlinf3 at line 60 page 168
+aiopc => iopc0, # smooth at line 54 page 168
+fcfpc => fcapc0, # dlinf3 at line 60 page 168
+fcfpc1 => fcapc0, # dlinf3 at line 60 page 168
+fcfpc2 => fcapc0 # dlinf3 at line 60 page 168
 ]
 # Parameters
-p = [len => 28.0, sfpc => 230.0, hsid => 20.0, iphst => 40.0, # line 7,10,14,16 page 167
-ffw => 0.21, rlt => 30, pet => 4000, mtfn => 12, lpd => 20, # line 29,30,31,35,42 page 168
-zpgt => 4000, dcfsn => 4, sad => 20, ieat => 3, fcest => 4000, # line 44,45,49,55,58 page 168
-lt => 500, lt2 => 500, cio => 100, cso => 150, cfood => 250] # line 65,67,70,80,90 page 168
+p = [len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,16 page 167
+ffw => ffwv, rlt => rltv, pet => petv, mtfn => mtfnv, lpd => lpdv, # line 29,30,31,35,42 page 168
+zpgt => zpgtv, dcfsn => dcfsnv, sad => sadv, ieat => ieatv, fcest => fcestv, # line 44,45,49,55,58 page 168
+lt => ltv, lt2 => lt2v, cio => ciov, cso => csov, cfood => cfoodv] # line 65,67,70,80,90 page 168
 # Time interval
 tspan = (1930.0, 1975.0)
 # ODE solution
-prob = ODEProblem(sys, u0, tspan, p, jac=true)
-sol = solve(prob, Tsit5())
-plot(sol,vars=[(0, pop), (0, cdr), (0, cbr)])
+# prob = ODEProblem(sys, u0, tspan, p, jac=true)
+# sol = solve(prob, Tsit5())
+# plot(sol, vars=[(0, pop), (0, cdr), (0, cbr)])
+    

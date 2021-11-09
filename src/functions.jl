@@ -1,27 +1,24 @@
-function fpu(t::Float64)
-    return tabhl(fput, pop(t), 0.0, 16.0e9, 2.0e9)
+function interpolate(x, y, xs)
+    if (x < xs[1])
+        return xs[1]
+    end
+    if (x > xs[length(xs)])
+        return xs[length(xs)]
+    end
+    li = LinearInterpolation(xs, y)
+    return li(x)
 end
-
-function hsapc(t::Float64)
-    return tabhl(hsapct, sopc(t), 0.0, 2000.0, 250.0)
-end
-
-function lmf(t::Float64)
-    return tabhl(lmft, fpc(t) / sfpc(t), 0.0, 5.0, 1.0)
-end
-
-function lmhs(t::Float64)
-    if (t < 1940)
-        return lmhs1(t)
+function clip(f1, f2, va, th)
+    if (va >= th)
+        return f1
     else
-        return lmhs2(t)
+        return f2
     end
 end
-
-function lmhs1(t::Float64)
-    return tabhl(lmhs1t, ehspc(t), 0.0, 100.0, 20.0)
-end
-
-function lmhs2(t::Float64)
-    return tabhl(lmhs2t, ehspc(t), 0.0, 100.0, 20.0)
+function min(v1, v2)
+    if (v1 < v2)
+        return v1
+    else
+        return v2
+    end
 end
