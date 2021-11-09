@@ -110,7 +110,7 @@ lt => ltv, lt2 => lt2v, cio => ciov, cso => csov, cfood => cfoodv] # line 65,67,
 # Time interval
 tspan = (1930.0, 1975.0)
 # ODE solution
-# prob = ODEProblem(sys, u0, tspan, p, jac=true)
-# sol = solve(prob, Tsit5())
-# plot(sol, vars=[(0, pop), (0, cdr), (0, cbr)])
+prob = ODEProblem(sys, u0, tspan, p, jac=true)
+sol = solve(prob, Tsit5())
+plot(sol, vars=[(0, pop), (0, cdr), (0, cbr)])
     
