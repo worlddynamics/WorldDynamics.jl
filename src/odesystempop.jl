@@ -2,12 +2,14 @@ using Interpolations, ModelingToolkit, OrdinaryDiffEq
 using Plots
 
 include("tablespop.jl")
+include("initialisations.jl")
 
+# Parameter declarations
 @parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest lt lt2 cio cso cfood
-
+# Function declarations
 @variables t pop(t) br(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t) diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t) iopc(t) ppolx(t) sopc(t) fpc(t)
 D = Differential(t)
-
+# Registered functions used in equations
 function interpolate(x, y, xs)
     li = LinearInterpolation(xs, y)
     return li(x)
@@ -29,7 +31,7 @@ function min(v1, v2)
     end
 end
 @register min(v1, v2)
-
+# Equations
 eqs = [
     # POPULATION LEVEL EQUATIONS
     D(pop) ~ br - dr, # line 1 page 167
@@ -98,11 +100,11 @@ eqs = [
     # f2 ~ 4e11 * exp(lt * 0.020), # line 91 page 168
     fpc ~ (4e11 * exp(lt * 0.020)) / pop # line 92 page 168
     ]
-
+# ODE system creation and simplification
 @named sys = ODESystem(eqs)
 sys = structural_simplify(sys)
-    
-u0 = [pop => 1.61e9, # line 3 page 167
+# Initialisations
+u0 = [pop => pop0,
 ehspc => hsapc, # smooth at line 13 page 167
 ple => le, # dlinf3 at line 41 page 168
 ple1 => le, # dlinf3 at line 41 page 168
@@ -116,13 +118,14 @@ fcfpc => fcapc, # dlinf3 at line 60 page 168
 fcfpc1 => fcapc, # dlinf3 at line 60 page 168
 fcfpc2 => fcapc # dlinf3 at line 60 page 168
 ]
-
+# Parameters
 p = [len => 28.0, sfpc => 230.0, hsid => 20.0, iphst => 40.0, # line 7,10,14,16 page 167
 ffw => 0.21, rlt => 30, pet => 4000, mtfn => 12, lpd => 20, # line 29,30,31,35,42 page 168
 zpgt => 4000, dcfsn => 4, sad => 20, ieat => 3, fcest => 4000, # line 44,45,49,55,58 page 168
 lt => 500, lt2 => 500, cio => 100, cso => 150, cfood => 250] # line 65,67,70,80,90 page 168
-
+# Time interval
 tspan = (1930.0, 1975.0)
+# ODE solution
 prob = ODEProblem(sys, u0, tspan, p, jac=true)
 sol = solve(prob, Tsit5())
 plot(sol,vars=[(0, pop), (0, cdr), (0, cbr)])
