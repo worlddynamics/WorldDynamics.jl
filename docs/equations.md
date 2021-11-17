@@ -73,6 +73,8 @@ For the definitions, see *Appendix B: Definition File* at page 587 of [*Dynamics
 
 ## Constants
 
+To be copied from `parameters.jl`.
+
 | Name 	| Acronym 	| Initialisation 	| Reference	|
 | --- 	| ---	| ---	| ---	|
 |	|	|	|	|
