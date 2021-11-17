@@ -1,9 +1,9 @@
 function interpolate(x, y, xs)
     if (x < xs[1])
-        return xs[1]
+        return y[1]
     end
     if (x > xs[length(xs)])
-        return xs[length(xs)]
+        return y[length(xs)]
     end
     li = LinearInterpolation(xs, y)
     return li(x)

@@ -33,6 +33,7 @@ eqs = [
     cmi ~ interpolate(iopc, cmit, cmits), # line 23 page 167
     lmc ~ 1 - (cmi * fpu),  # line 25 page 167
     lmp ~ interpolate(ppolx, lmpt, lmpts), # line 26 page 167
+
     # BIRTH RATE EQUATIONS
     br ~ clip(dr, lmhs1, tf * pop * ffw / rlt, pet), # line 28 page 168
     cbr ~ 1000.0 * br / pop, # line 32 page 168
@@ -47,7 +48,7 @@ eqs = [
     dcfs ~ clip(2, dcfsn * frsn * sfsn, t, zpgt), # line 43 page 168
     sfsn ~ interpolate(diopc, sfsnt, sfsnts), # line 46 page 168
     D(diopc) ~ 3 * (diopc2 - diopc) / sad, # line 48 page 168
-     D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 48 page 168
+    D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 48 page 168
     D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 48 page 168
     frsn ~ interpolate(fie, frsnt, frsnts), # line 50 page 168
     fie ~ (iopc - aiopc) / aiopc, # line 53 page 168
@@ -59,6 +60,7 @@ eqs = [
     D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid, # line 60 page 168
     fcapc ~ fsafc * sopc, # line 61 page 168
     fsafc ~ interpolate(nfc, fsafct, fsafcts), # line 62 page 168
+
     # EXOGENOUS INPUTS TO THE POPULATION SECTOR
     # INDUSTRIAL OUTPUT
     # io ~ clip(io2, io1, t, lt), # line 64 page 168
@@ -83,34 +85,49 @@ eqs = [
     # f12 ~ pop * cfood, # line 89 page 168
     # f2 ~ 4e11 * exp(lt * 0.020), # line 91 page 168
     fpc ~ (4e11 * exp(lt * 0.020)) / pop # line 92 page 168
-    ]
+]
 # ODE system creation and simplification
 @named sys = ODESystem(eqs)
 sys = structural_simplify(sys)
 # Initialisations
 u0 = [pop => pop0, # lines 2-3 page 167
-ehspc => ehspc0, # smooth at lines 13-14 page 167
-ple => le0, # dlinf3 at line 41 page 168
-ple1 => le0, # dlinf3 at line 41 page 168
-ple2 => le0, # dlinf3 at line 41 page 168
-diopc => iopc0, # dlinf3 at line 48 page 168
-diopc1 => iopc0, # dlinf3 at line 48 page 168
-diopc2 => iopc0, # dlinf3 at line 48 page 168
-frsn => 0.82, # line 52 page 168
-aiopc => iopc0, # smooth at line 54 page 168
-fcfpc => fcapc0, # dlinf3 at line 60 page 168
-fcfpc1 => fcapc0, # dlinf3 at line 60 page 168
-fcfpc2 => fcapc0 # dlinf3 at line 60 page 168
+    ehspc => ehspc0, # smooth at lines 13-14 page 167
+    ple => le0, # dlinf3 at line 41 page 168
+    ple1 => le0, # dlinf3 at line 41 page 168
+    ple2 => le0, # dlinf3 at line 41 page 168
+    diopc => iopc0, # dlinf3 at line 48 page 168
+    diopc1 => iopc0, # dlinf3 at line 48 page 168
+    diopc2 => iopc0, # dlinf3 at line 48 page 168
+    frsn => 0.82, # line 52 page 168
+    aiopc => iopc0, # smooth at line 54 page 168
+    fcfpc => fcapc0, # dlinf3 at line 60 page 168
+    fcfpc1 => fcapc0, # dlinf3 at line 60 page 168
+    fcfpc2 => fcapc0 # dlinf3 at line 60 page 168
 ]
 # Parameters
 p = [len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,16 page 167
-ffw => ffwv, rlt => rltv, pet => petv, mtfn => mtfnv, lpd => lpdv, # line 29,30,31,35,42 page 168
-zpgt => zpgtv, dcfsn => dcfsnv, sad => sadv, ieat => ieatv, fcest => fcestv, # line 44,45,49,55,58 page 168
-lt => ltv, lt2 => lt2v, cio => ciov, cso => csov, cfood => cfoodv] # line 65,67,70,80,90 page 168
+    ffw => ffwv, rlt => rltv, pet => petv, mtfn => mtfnv, lpd => lpdv, # line 29,30,31,35,42 page 168
+    zpgt => zpgtv, dcfsn => dcfsnv, sad => sadv, ieat => ieatv, fcest => fcestv, # line 44,45,49,55,58 page 168
+    lt => ltv, lt2 => lt2v, cio => ciov, cso => csov, cfood => cfoodv] # line 65,67,70,80,90 page 168
 # Time interval
 tspan = (1930.0, 1975.0)
 # ODE solution
-prob = ODEProblem(sys, u0, tspan, p, jac=true)
+prob = ODEProblem(sys, u0, tspan, p, jac = true)
+# println("iopc(0)=", iopc0)
+# println("sfsn(0)=", sfsn0)
+# println("cmple(0)=", cmple0)
+# println("ple(0)=", ple0)
+# println("dtf(0)=", dtf0)
+# println("mtf(0)=", mtf0)
+# println("nfc(0)=", nfc0)
+# println("fm(0)=", fm0)
+# println("le(0)=", le0)
+# println("lmf(0)=", lmf0)
+# println("lmhs(0)=", lmhs0)
+# println("lmp(0)=", lmp0)
+# println("lmc(0)=", lmc0)
+# println("cmi(0)=", cmi0)
 sol = solve(prob, Tsit5())
-plot(sol, vars=[(0, pop), (0, cdr), (0, cbr)])
-    
+plot(sol, vars = [(0, pop)])
+#plot(sol, vars = [(0, cdr), (0, cbr)])
+plot(sol, vars = [(0, cdr), (0, cbr)])
