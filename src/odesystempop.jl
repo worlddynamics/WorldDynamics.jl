@@ -35,7 +35,7 @@ eqs = [
     lmp ~ interpolate(ppolx, lmpt, lmpts), # line 26 page 167
 
     # BIRTH RATE EQUATIONS
-    br ~ clip(dr, lmhs1, tf * pop * ffw / rlt, pet), # line 28 page 168
+    br ~ clip(dr, tf * pop * ffw / rlt, t, pet), # line 28 page 168
     cbr ~ 1000.0 * br / pop, # line 32 page 168
     tf ~ min(mtf, mtf * (1 - fce) + dtf * fce), # line 33 page 168
     mtf ~ mtfn * fm, # line 34 page 168
@@ -128,6 +128,6 @@ prob = ODEProblem(sys, u0, tspan, p, jac = true)
 # println("lmc(0)=", lmc0)
 # println("cmi(0)=", cmi0)
 sol = solve(prob, Tsit5())
-plot(sol, vars = [(0, pop)])
+# plot(sol, vars = [(0, pop)])
 #plot(sol, vars = [(0, cdr), (0, cbr)])
 plot(sol, vars = [(0, cdr), (0, cbr)])
