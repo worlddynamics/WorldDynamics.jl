@@ -1,13 +1,13 @@
 # World 3 Constants and Equations 
 
 The pdf page is given by the book page + 16.  
-For the definitions, see *Appendix B: Definition File* at page 587 of DGFW. 
+For the definitions, see *Appendix B: Definition File* at page 587 of [*Dynamics of growth in a finite world*][DGFW]. 
 
 ## Equations
 
-| Name 				| Definition 	| Reference	| Notes |
-| --- 			| ---			| ---		| --- 	|
-| Population  		| $\frac{d\mathtt{pop}}{dt}=\mathtt{b}-\mathtt{d}$ | lines 1-3, page 167 |
+| Name 	| Definition 	| Reference	| Notes |
+| --- 	| ---	| ---	| --- 	|
+| Population  	| $\frac{d\mathtt{pop}}{dt}=\mathtt{b}-\mathtt{d}$ | lines 1-3, page 167 |
 | Deaths per year	| $\mathtt{d}=\frac{\mathtt{pop}}{\mathtt{le}}$ | line 4, page 167 | $\mathtt{dr}$ in our code |
 | Crude death rate  | $\mathtt{cdr}=1000\times\frac{\mathtt{d}}{\mathtt{pop}}$ | line 5, page 167 |
 | Life expectancy  | $\mathtt{le}=\mathtt{len}\times\mathtt{lmf}\times\mathtt{lmhs}\times\mathtt{lmp}\times\mathtt{lmc}$ | lines 6-7, page 167 |
@@ -53,23 +53,32 @@ For the definitions, see *Appendix B: Definition File* at page 587 of DGFW.
 
 ### Initializations
 
-$\mathtt{pop}(0)=1.61e9$
-$\mathtt{ehspc}(0)=\mathtt{hsapc}(0)$
- $\mathtt{ple}(0) = \mathtt{le}(0)$ 
- $\mathtt{ple2}(0) = \mathtt{le}(0)$ 
- $\mathtt{ple1}(0) = \mathtt{le}(0)$ 
- $\mathtt{diopc}(0) = \mathtt{iopc}(0)$ 
- $\mathtt{diopc2}(0) = \mathtt{iopc}(0)$ 
- $\mathtt{diopc1}(0) = \mathtt{iopc}(0)$ 
- $\mathtt{frsn}(0)=0.82$ 
- $\mathtt{aiopc}(0) = \mathtt{iopc}(0)$ 
- $\mathtt{fcfpc}(0) = \mathtt{fcapc}(0)$ 
- $\mathtt{fcfpc2}(0) = \mathtt{fcapc}(0)$ 
- $\mathtt{fcfpc1}(0) = \mathtt{fcapc}(0)$ 
+| Name 	| Initialization 	|
+| ---	| --- 	|
+| Population	| $\mathtt{pop}(0)=1.61e9$ |
+| Effective health services per capita	| $\mathtt{ehspc}(0)=\mathtt{hsapc}(0)$ |
+| Perceived life expectancy	| $\mathtt{ple}(0) = \mathtt{le}(0)$  |
+|	| $\mathtt{ple1}(0) = \mathtt{le}(0)$  |
+|	| $\mathtt{ple2}(0) = \mathtt{le}(0)$  |
+| Delayed industrial out	| $\mathtt{diopc}(0) = \mathtt{iopc}(0)$  |
+|	| $\mathtt{diopc2}(0) = \mathtt{iopc}(0)$  |
+|	| $\mathtt{diopc1}(0) = \mathtt{iopc}(0)$  |
+|	| $\mathtt{frsn}(0)=0.82$  |
+|	| $\mathtt{aiopc}(0) = \mathtt{iopc}(0)$  |
+|	| $\mathtt{fcfpc}(0) = \mathtt{fcapc}(0)$  |
+|	| $\mathtt{fcfpc2}(0) = \mathtt{fcapc}(0)$  |
+|	| $\mathtt{fcfpc1}(0) = \mathtt{fcapc}(0)$  |
+
+### Remark on time $t$
+Time is assumed to start at $0$ unless specified otherwise. See Sec 2.3.6 (pag 26) of the [Dynamo User's Manual][DUM].
 
 
 ## Constants
 
 | Name 	| Acronym 	| Initialisation 	| Reference	|
-| --- 	| ---		| ---				| ---		|
-|		|			|					|			|
+| --- 	| ---	| ---	| ---	|
+|	|	|	|	|
+
+<!-- References -->
+[DUM]: http://archive.org/details/dynamousersmanua00pugh "A. L. Pugh, DYNAMO user’s manual. 1963. Accessed: Nov. 17, 2021."
+[DGFW]: http://archive.org/details/dynamicsofgrowth0000unse "Dynamics of growth in a finite world. Cambridge, Mass. : Wright-Allen Press, 1974. Accessed: Nov. 17, 2021."
