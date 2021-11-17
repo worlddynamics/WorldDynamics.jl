@@ -2,15 +2,14 @@
 
 The pdf page is given by the book page + 16.  
 For the definitions, see *Appendix B: Definition File* at page 587 of DGFW. 
-For the parameters, see ** 
 
 ## Equations
 
-| Name | Acronym 	| Initialisation 	| Reference	|
-| --- | ---		| ---				| ---		|
-|1  |  $\frac{d\mathtt{pop}}{dt}=\mathtt{br}-\mathtt{dr}$ | $\mathtt{pop}(0)=1.61e9$ | lines 1-3, page 167 |
-|2  | $\mathtt{dr}=\frac{\mathtt{pop}}{\mathtt{le}}$ |  | line 4, page 167 |
-|3  | $\mathtt{cdr}=1000\times\frac{\mathtt{dr}}{\mathtt{pop}}$ |  | line 5, page 167 |
+| Name 				| Definition 	| Initialisation 	| Reference	| Notes |
+| --- 			| ---			| ---				| ---		| --- 	|
+| Population  		| $\frac{d\mathtt{pop}}{dt}=\mathtt{br}-\mathtt{dr}$ | $\mathtt{pop}(0)=1.61e9$ | lines 1-3, page 167 |
+| Death rate	| $\mathtt{d}=\frac{\mathtt{pop}}{\mathtt{le}}$ |  | line 4, page 167 | $\mathtt{dr}$ in our code |
+| Crude death rate  | $\mathtt{cdr}=1000\times\frac{\mathtt{d}}{\mathtt{pop}}$ |  | line 5, page 167 |
 |4  | $\mathtt{le}=\mathtt{len}\times\mathtt{lmf}\times\mathtt{lmhs}\times\mathtt{lmp}\times\mathtt{lmc}$ |  | lines 6-7, page 167 |
 |5  | $\mathtt{lmf}=\mathit{interpolate}\left(\frac{\mathtt{fpc}}{\mathtt{sfpc}}\right)$ |  | lines 8-10, page 167 |
 |6  | $\mathtt{hsapc}=\mathit{interpolate}\left(\mathtt{sopc}\right)$ |  | lines 11-12, page 167 |
@@ -52,3 +51,8 @@ For the parameters, see **
 |36 | $\mathtt{sopc}=1.5e11\times e^{\mathtt{lt}\times0.030}/\mathtt{pop}$ |  | lines 76-82, page 168 |
 |37 | $\mathtt{fpc}=4e11\times e^{\mathtt{lt}\times0.020}/\mathtt{pop}$ |  | lines 83-89, page 168 |
 
+## Constants
+
+| Name 	| Acronym 	| Initialisation 	| Reference	|
+| --- 	| ---		| ---				| ---		|
+|		|			|					|			|
