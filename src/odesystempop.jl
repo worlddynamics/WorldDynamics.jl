@@ -68,7 +68,8 @@ eqs = [
     # io11 ~ 0.7e11 * exp(t * 0.037), # line 68 page 168
     # io12 ~ pop * cio, # line 69 page 168
     # io2 ~ 0.7e11 * exp(lt * 0.037), # line 71 page 168
-    iopc ~ (0.7e11 * exp(lt * 0.037)) / pop, # line 72 page 168
+    # iopc ~ (0.7e11 * exp(lt * 0.037)) / pop, # line 72 page 168
+    iopc ~ 0.7e11 * exp((t - 1940) * 0.037) / pop,
     # INDEX OF PERSISTENT POLLUTION
     ppolx ~ t / t, # line 73,74,75 page 168
     # SERVICE OUTPUT
@@ -77,14 +78,14 @@ eqs = [
     # so11 ~ 1.5e11 * exp(t * 0.030), # line 78 page 168
     # so12 ~ pop * cso, # line 79 page 168
     # so2 ~ 1.5e11 * exp(lt * 0.030), # line 81 page 168
-    sopc ~ (1.5e11 * exp(lt * 0.030)) / pop, # line 82 page 168
+    sopc ~ (1.5e11 * exp((t - 1940) * 0.030)) / pop, # line 82 page 168
     # FOOD
     # f ~ clip(f2, f1, t, lt), # line 86 page 168
     # f1 ~ clip(f12, f11, t, lt2), # line 87 page 168
     # f11 ~ 4e11 * exp(t * 0.020), # line 88 page 168
     # f12 ~ pop * cfood, # line 89 page 168
     # f2 ~ 4e11 * exp(lt * 0.020), # line 91 page 168
-    fpc ~ (4e11 * exp(lt * 0.020)) / pop # line 92 page 168
+    fpc ~ (4e11 * exp((t - 1940) * 0.020)) / pop # line 92 page 168
 ]
 # ODE system creation and simplification
 @named sys = ODESystem(eqs)
@@ -110,10 +111,12 @@ p = [len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,
     zpgt => zpgtv, dcfsn => dcfsnv, sad => sadv, ieat => ieatv, fcest => fcestv, # line 44,45,49,55,58 page 168
     lt => ltv, lt2 => lt2v, cio => ciov, cso => csov, cfood => cfoodv] # line 65,67,70,80,90 page 168
 # Time interval
-tspan = (1930.0, 1975.0)
+tspan = (1900.0, 1975.0)
 # ODE solution
 prob = ODEProblem(sys, u0, tspan, p, jac = true)
+println("cdr(0)=", 1000 / le0)
 # println("iopc(0)=", iopc0)
+# println("fpc(0)=", fpc0)
 # println("sfsn(0)=", sfsn0)
 # println("cmple(0)=", cmple0)
 # println("ple(0)=", ple0)
@@ -127,7 +130,13 @@ prob = ODEProblem(sys, u0, tspan, p, jac = true)
 # println("lmp(0)=", lmp0)
 # println("lmc(0)=", lmc0)
 # println("cmi(0)=", cmi0)
+# println("ehspc(0)=", ehspc0)
+# println("hsapc(0)=", hsapc0)
 sol = solve(prob, Tsit5())
 # plot(sol, vars = [(0, pop)])
-#plot(sol, vars = [(0, cdr), (0, cbr)])
 plot(sol, vars = [(0, cdr), (0, cbr)])
+# plot(sol, vars = [(0, ppolx)])
+# plot(sol, vars = [(0, lmf)])
+# plot(sol, vars = [(0, fpc / 230)])
+# plot(sol, vars = [(0, lmhs)])
+
