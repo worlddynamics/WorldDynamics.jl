@@ -1,5 +1,5 @@
-| Equation 	| Initialisation 	| Parameter	| Reference	| 
-| ---		| ---				| ---		| ---		|
+| Nr. | Equation 	| Initialisation 	| Parameter	| Reference	| 
+| --- | ---		| ---				| ---		| ---		|
 |1  |  $\frac{d\mathtt{pop}}{dt}=\mathtt{br}-\mathtt{dr}$ | $\mathtt{pop}(0)=1.61e9$ |  | lines 1-3, page 167\\|
 |2  | $\mathtt{dr}=\frac{\mathtt{pop}}{\mathtt{le}}$ |  |  | line 4, page 167\\|
 |3  | $\mathtt{cdr}=1000\times\frac{\mathtt{dr}}{\mathtt{pop}}$ |  |  | line 5, page 167\\|
