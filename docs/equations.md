@@ -29,8 +29,8 @@ For the definitions, see *Appendix B: Definition File* at page 587 of [*Dynamics
 |20  | $\mathtt{dtf}=\mathtt{dcfs}\times\mathtt{cmple}$ | lines 38, page 168 |
 |21  | $\mathtt{cmple}=\mathit{interpolate}(\mathtt{ple})$ | lines 39-40, page 168 |
 |22.1  | $\frac{d\mathtt{ple}}{dt}=3\times\frac{\mathtt{ple2}-\mathtt{ple}}{\mathtt{lpd}}$ | lines 41-42, page 168 |
-|22.2  | $\frac{d\mathtt{ple2}}{dt}=3\times\frac{\mathtt{ple1}-\mathtt{ple2}}{\mathtt{lpd}}$ | lines 41-42, page 168 |
-|22.3  | $\frac{d\mathtt{ple1}}{dt}=3\times\frac{\mathtt{le}-\mathtt{ple1}}{\mathtt{lpd}}$ | lines 41-42, page 168 |
+| 2nd lev. delay eq. for $\mathtt{ple}$   | $\frac{d\mathtt{ple1}}{dt}=3\times\frac{\mathtt{le}-\mathtt{ple1}}{\mathtt{lpd}}$ | lines 41-42, page 168 |
+| 2nd lev. delay eq. for $\mathtt{ple}$  | $\frac{d\mathtt{ple2}}{dt}=3\times\frac{\mathtt{ple1}-\mathtt{ple2}}{\mathtt{lpd}}$ | lines 41-42, page 168 |
 |23  | $ \mathtt{dcfs}=clip(2,\mathtt{dcfsn}\times\mathtt{frsn}\times\mathtt{sfsn},t,\mathtt{zpgt}) $ | lines 43-45, page 168 |
 |24  | $\mathtt{sfsn}=\mathit{interpolate}(\mathtt{diopc})$ | lines 46-47, page 168 |
 |25.1  | $\frac{d\mathtt{diopc}}{dt}=3\times\frac{\mathtt{diopc2}-\mathtt{diopc}}{\mathtt{sad}}$ | lines 48-49, page 168 |
