@@ -69,7 +69,8 @@ eqs = [
     # io12 ~ pop * cio, # line 69 page 168
     # io2 ~ 0.7e11 * exp(lt * 0.037), # line 71 page 168
     # iopc ~ (0.7e11 * exp(lt * 0.037)) / pop, # line 72 page 168
-    iopc ~ 0.7e11 * exp((t - 1940) * 0.037) / pop,
+    iopc ~ 0.7e11 * exp((t - 1900) * 0.037) / pop,
+
     # INDEX OF PERSISTENT POLLUTION
     ppolx ~ t / t, # line 73,74,75 page 168
     # SERVICE OUTPUT
@@ -78,14 +79,15 @@ eqs = [
     # so11 ~ 1.5e11 * exp(t * 0.030), # line 78 page 168
     # so12 ~ pop * cso, # line 79 page 168
     # so2 ~ 1.5e11 * exp(lt * 0.030), # line 81 page 168
-    sopc ~ (1.5e11 * exp((t - 1940) * 0.030)) / pop, # line 82 page 168
+    sopc ~ (1.5e11 * exp((t - 1900) * 0.030)) / pop, # line 82 page 168
+
     # FOOD
     # f ~ clip(f2, f1, t, lt), # line 86 page 168
     # f1 ~ clip(f12, f11, t, lt2), # line 87 page 168
     # f11 ~ 4e11 * exp(t * 0.020), # line 88 page 168
     # f12 ~ pop * cfood, # line 89 page 168
     # f2 ~ 4e11 * exp(lt * 0.020), # line 91 page 168
-    fpc ~ (4e11 * exp((t - 1940) * 0.020)) / pop # line 92 page 168
+    fpc ~ (4e11 * exp((t - 1900) * 0.020)) / pop # line 92 page 168
 ]
 # ODE system creation and simplification
 @named sys = ODESystem(eqs)
@@ -103,7 +105,8 @@ u0 = [pop => pop0, # lines 2-3 page 167
     aiopc => iopc0, # smooth at line 54 page 168
     fcfpc => fcapc0, # dlinf3 at line 60 page 168
     fcfpc1 => fcapc0, # dlinf3 at line 60 page 168
-    fcfpc2 => fcapc0 # dlinf3 at line 60 page 168
+    fcfpc2 => fcapc0, # dlinf3 at line 60 page 168
+    fpc => fpc0
 ]
 # Parameters
 p = [len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,16 page 167
@@ -139,4 +142,5 @@ plot(sol, vars = [(0, cdr), (0, cbr)])
 # plot(sol, vars = [(0, lmf)])
 # plot(sol, vars = [(0, fpc / 230)])
 # plot(sol, vars = [(0, lmhs)])
+# plot(sol, vars = [(0, fpc), (0, iopc), (0, sopc)])
 

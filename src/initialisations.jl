@@ -23,6 +23,6 @@ global dcfs0 = dcfsnv * frsn0 * sfsn0 # lines 43-45 page 168
 global ple0 = le0 # lines 41-42 page 168
 global cmple0 = interpolate(ple0, cmplet, cmplets) # lines 39-40 page 168
 global dtf0 = dcfs0 * cmple0 # line 38 page 168
-global nfc0 = 0.0 # mtf0 / dtf0 - 1.0 # line 56 page 168
+global nfc0 = mtf0 / dtf0 - 1.0 # line 56 page 168
 global fsafc0 = interpolate(nfc0, fsafct, fsafcts) # lines 62-63 page 168
 global fcapc0 = fsafc0 * sopc0 # line 61 page 168
