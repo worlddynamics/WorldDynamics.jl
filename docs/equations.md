@@ -7,10 +7,10 @@ For the definitions, see *Appendix B: Definition File* at page 587 of DGFW.
 
 | Name 				| Definition 	| Initialisation 	| Reference	| Notes |
 | --- 			| ---			| ---				| ---		| --- 	|
-| Population  		| $\frac{d\mathtt{pop}}{dt}=\mathtt{br}-\mathtt{dr}$ | $\mathtt{pop}(0)=1.61e9$ | lines 1-3, page 167 |
-| Death rate	| $\mathtt{d}=\frac{\mathtt{pop}}{\mathtt{le}}$ |  | line 4, page 167 | $\mathtt{dr}$ in our code |
+| Population  		| $\frac{d\mathtt{pop}}{dt}=\mathtt{b}-\mathtt{d}$ | $\mathtt{pop}(0)=1.61e9$ | lines 1-3, page 167 |
+| Deaths per year	| $\mathtt{d}=\frac{\mathtt{pop}}{\mathtt{le}}$ |  | line 4, page 167 | $\mathtt{dr}$ in our code |
 | Crude death rate  | $\mathtt{cdr}=1000\times\frac{\mathtt{d}}{\mathtt{pop}}$ |  | line 5, page 167 |
-|4  | $\mathtt{le}=\mathtt{len}\times\mathtt{lmf}\times\mathtt{lmhs}\times\mathtt{lmp}\times\mathtt{lmc}$ |  | lines 6-7, page 167 |
+| Life expectancy  | $\mathtt{le}=\mathtt{len}\times\mathtt{lmf}\times\mathtt{lmhs}\times\mathtt{lmp}\times\mathtt{lmc}$ |  | lines 6-7, page 167 |
 |5  | $\mathtt{lmf}=\mathit{interpolate}\left(\frac{\mathtt{fpc}}{\mathtt{sfpc}}\right)$ |  | lines 8-10, page 167 |
 |6  | $\mathtt{hsapc}=\mathit{interpolate}\left(\mathtt{sopc}\right)$ |  | lines 11-12, page 167 |
 |7  | $\frac{d\mathtt{ehspc}}{dt}=\frac{\mathtt{hsapc}-\mathtt{ehspc}}{\mathtt{hsid}}$ | $\mathtt{ehspc}(0)=\mathtt{hsapc}(0)$ | lines 13-14, page 167 |
@@ -21,8 +21,8 @@ For the definitions, see *Appendix B: Definition File* at page 587 of DGFW.
 |12  | $\mathtt{cmi}=\mathit{interpolate}(\mathtt{iopc})$ |  | lines 23-24, page 167 |
 |13  | $\mathtt{lmc}=1-\mathtt{cmi}\times\mathtt{fpu}$ |  | line 25, page 167 |
 |14  | $\mathtt{lmp}=\mathit{interpolate}(\mathtt{ppolx})$ |  | lines 26-27, page 167 |
-|15  | $ \mathtt{br}=clip(\mathtt{dr},\mathtt{tf}\times\mathtt{pop}\times\mathtt{ffw}/\mathtt{rlt},t,\mathtt{pet}) $ |  | lines 28-31, page 168 |
-|16  | $\mathtt{cbr}=1000\times\frac{\mathtt{br}}{\mathtt{pop}}$ |  | line 32, page 168 |
+| Births per year  | $ \mathtt{b}=clip(\mathtt{d},\mathtt{tf}\times\mathtt{pop}\times\mathtt{ffw}/\mathtt{rlt},t,\mathtt{pet}) $ |  | lines 28-31, page 168 | $\mathtt{br}$ in our code |
+|16  | $\mathtt{cbr}=1000\times\frac{\mathtt{b}}{\mathtt{pop}}$ |  | line 32, page 168 |
 |17  | $\mathtt{lmp}=\mathit{min}(\mathtt{mtf}, \mathtt{mtf}\times(1-\mathtt{fce})+\mathtt{dtf}\times\mathtt{fce})$ |  | line 33, page 168 |
 |18  | $\mathtt{mtf}=\mathtt{mtfn}\times\mathtt{fm}$ |  | lines 34-35, page 168 |
 |19  | $\mathtt{fm}=\mathit{interpolate}(\mathtt{le})$ |  | lines 36-37, page 168 |
