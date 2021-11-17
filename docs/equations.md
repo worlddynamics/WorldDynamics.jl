@@ -69,8 +69,6 @@ For the definitions, see *Appendix B: Definition File* at page 587 of [*Dynamics
 |	| $\mathtt{fcfpc2}(0) = \mathtt{fcapc}(0)$  |
 |	| $\mathtt{fcfpc1}(0) = \mathtt{fcapc}(0)$  |
 
-### Remark on time $t$
-Time is assumed to start at $0$ unless specified otherwise. See Sec 2.3.6 (pag 26) of the [Dynamo User's Manual][DUM].
 
 
 ## Constants
