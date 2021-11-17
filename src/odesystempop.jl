@@ -14,6 +14,7 @@ D = Differential(t)
 # Registered functions used in equations
 @register interpolate(x, xs::AbstractVector, y::AbstractVector)
 @register clip(f1, f2, va, th)
+@register clipequal(f1, f2, va, th)
 @register min(v1, v2)
 # Equations
 eqs = [
@@ -50,7 +51,7 @@ eqs = [
     D(diopc) ~ 3 * (diopc2 - diopc) / sad, # line 48 page 168
     D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 48 page 168
     D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 48 page 168
-    frsn ~ interpolate(fie, frsnt, frsnts), # line 50 page 168
+    frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 1905), # line 50 page 168
     fie ~ (iopc - aiopc) / aiopc, # line 53 page 168
     D(aiopc) ~ (iopc - aiopc) / ieat, # line 54 page 168
     nfc ~ (mtf / dtf) - 1, # line 56 page 168
@@ -101,12 +102,13 @@ u0 = [pop => pop0, # lines 2-3 page 167
     diopc => iopc0, # dlinf3 at line 48 page 168
     diopc1 => iopc0, # dlinf3 at line 48 page 168
     diopc2 => iopc0, # dlinf3 at line 48 page 168
-    frsn => 0.82, # line 52 page 168
+    # frsn => 0.82, # line 52 page 168
     aiopc => iopc0, # smooth at line 54 page 168
     fcfpc => fcapc0, # dlinf3 at line 60 page 168
     fcfpc1 => fcapc0, # dlinf3 at line 60 page 168
-    fcfpc2 => fcapc0, # dlinf3 at line 60 page 168
-    fpc => fpc0
+    fcfpc2 => fcapc0 # dlinf3 at line 60 page 168
+    # fpc => fpc0,
+    # br => br0
 ]
 # Parameters
 p = [len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,16 page 167
@@ -117,7 +119,10 @@ p = [len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,
 tspan = (1900.0, 1975.0)
 # ODE solution
 prob = ODEProblem(sys, u0, tspan, p, jac = true)
-println("cdr(0)=", 1000 / le0)
+# println("cdr(0)=", 1000 / le0)
+# println("tf(0)=", tf0)
+# println("frsn(0)=", frsn0)
+println("cbr(0)=", cbr0)
 # println("iopc(0)=", iopc0)
 # println("fpc(0)=", fpc0)
 # println("sfsn(0)=", sfsn0)
@@ -143,4 +148,8 @@ plot(sol, vars = [(0, cdr), (0, cbr)])
 # plot(sol, vars = [(0, fpc / 230)])
 # plot(sol, vars = [(0, lmhs)])
 # plot(sol, vars = [(0, fpc), (0, iopc), (0, sopc)])
+
+# println("tf(0)=", sol[tf][1])
+# println("mtf(0)=", sol[mtf][1])
+# println("frsn(0)=", sol[frsn][1])
 
