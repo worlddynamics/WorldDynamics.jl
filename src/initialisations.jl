@@ -26,6 +26,22 @@ global dtf0 = dcfs0 * cmple0 # line 38 page 168
 global nfc0 = mtf0 / dtf0 - 1.0 # line 56 page 168
 global fsafc0 = interpolate(nfc0, fsafct, fsafcts) # lines 62-63 page 168
 global fcapc0 = fsafc0 * sopc0 # line 61 page 168
+
+# given in u0
+#global pop = pop0, # lines 2-3 page 167
+#global ehspc = ehspc0, # smooth at lines 13-14 page 167
+#global ple = le0, # dlinf3 at line 41 page 168
+#global ple1 = le0, # dlinf3 at line 41 page 168
+#global ple2 = le0, # dlinf3 at line 41 page 168
+#global diopc = iopc0, # dlinf3 at line 48 page 168
+#global diopc1 = iopc0, # dlinf3 at line 48 page 168
+#global diopc2 = iopc0, # dlinf3 at line 48 page 168
+#global frsn = 0.82, # line 52 page 168
+#global aiopc = iopc0, # smooth at line 54 page 168
+#global fcfpc = fcapc0, # dlinf3 at line 60 page 168
+#global fcfpc1 = fcapc0, # dlinf3 at line 60 page 168
+#global fcfpc2 = fcapc0 # dlinf3 at line 60 page 168
+# TODO: see which ones of the following are necessary
 global fcfpc0 = fcapc0 # line 60 page 168
 global fce0 = interpolate(fcfpc0, fcet, fcets) # lines 57-59 page 168
 global tf0 = min(mtf0, mtf0 * (1 - fce0) + dtf0 * fce0) # line 33 page 168
