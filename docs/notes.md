@@ -14,6 +14,11 @@ Values are calculated every 5 years.
 It appears that DYNAMO is not able to infer certain variable initializations from the system equations (this should be further investigated in [DUM]).  
 E.g. $\mathtt{frsn}$ is initialized to $0.82$ but its definining equation already provide a different value at time $0$. 
 
+### On DYNAMO's syntax
+The type `X` means that the previous line is continuing on this line. 
+
+
+
 <!-- References -->
 [DUM]: http://archive.org/details/dynamousersmanua00pugh "A. L. Pugh, DYNAMO user’s manual. 1963. Accessed: Nov. 17, 2021."
 [DGFW]: http://archive.org/details/dynamicsofgrowth0000unse "Dynamics of growth in a finite world. Cambridge, Mass. : Wright-Allen Press, 1974. Accessed: Nov. 17, 2021."
