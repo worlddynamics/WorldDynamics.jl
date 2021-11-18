@@ -9,7 +9,7 @@ include("initialisations.jl")
 # Parameter declarations
 @parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest lt lt2 cio cso cfood
 # Function declarations
-@variables t pop(t) br(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t) diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t) iopc(t) ppolx(t) sopc(t) fpc(t)
+@variables t pop(t) br(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t) diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t) io(t) io1(t) io2(t) io11(t) io12(t) iopc(t) ppolx(t) so(t) so1(t) so2(t) so11(t) so12(t) sopc(t) f(t) f1(t) f2(t) f11(t) f12(t) fpc(t)
 D = Differential(t)
 # Registered functions used in equations
 @register interpolate(x, xs::AbstractVector, y::AbstractVector)
@@ -51,7 +51,8 @@ eqs = [
     D(diopc) ~ 3 * (diopc2 - diopc) / sad, # line 48 page 168
     D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 48 page 168
     D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 48 page 168
-    frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 1905), # line 50 page 168
+    # frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 1905), # line 50 page 168
+    frsn ~ interpolate(fie, frsnt, frsnts), # line 50 page 168
     fie ~ (iopc - aiopc) / aiopc, # line 53 page 168
     D(aiopc) ~ (iopc - aiopc) / ieat, # line 54 page 168
     nfc ~ (mtf / dtf) - 1, # line 56 page 168
@@ -64,31 +65,30 @@ eqs = [
 
     # EXOGENOUS INPUTS TO THE POPULATION SECTOR
     # INDUSTRIAL OUTPUT
-    # io ~ clip(io2, io1, t, lt), # line 64 page 168
-    # io1 ~ clip(io12, io11, t, lt2), # line 66 page 168
-    # io11 ~ 0.7e11 * exp(t * 0.037), # line 68 page 168
-    # io12 ~ pop * cio, # line 69 page 168
-    # io2 ~ 0.7e11 * exp(lt * 0.037), # line 71 page 168
-    # iopc ~ (0.7e11 * exp(lt * 0.037)) / pop, # line 72 page 168
-    iopc ~ 0.7e11 * exp((t - 1900) * 0.037) / pop,
+    io ~ clip(io2, io1, t, lt), # line 64 page 168
+    io1 ~ clip(io12, io11, t, lt2), # line 66 page 168
+    io11 ~ 0.7e11 * exp(t * 0.037), # line 68 page 168
+    io12 ~ pop * cio, # line 69 page 168
+    io2 ~ 0.7e11 * exp(lt * 0.037), # line 71 page 168
+    iopc ~ io / pop,
 
     # INDEX OF PERSISTENT POLLUTION
-    ppolx ~ t / t, # line 73,74,75 page 168
+    ppolx ~ 1.0, # line 73,74,75 page 168
     # SERVICE OUTPUT
-    # so ~ clip(so2, so1, t, lt), # line 76 page 168
-    # so1 ~ clip(so12, so11, t, lt2), # line 77 page 168
-    # so11 ~ 1.5e11 * exp(t * 0.030), # line 78 page 168
-    # so12 ~ pop * cso, # line 79 page 168
-    # so2 ~ 1.5e11 * exp(lt * 0.030), # line 81 page 168
-    sopc ~ (1.5e11 * exp((t - 1900) * 0.030)) / pop, # line 82 page 168
+    so ~ clip(so2, so1, t, lt), # line 76 page 168
+    so1 ~ clip(so12, so11, t, lt2), # line 77 page 168
+    so11 ~ 1.5e11 * exp(t * 0.030), # line 78 page 168
+    so12 ~ pop * cso, # line 79 page 168
+    so2 ~ 1.5e11 * exp(lt * 0.030), # line 81 page 168
+    sopc ~ so / pop,
 
     # FOOD
-    # f ~ clip(f2, f1, t, lt), # line 86 page 168
-    # f1 ~ clip(f12, f11, t, lt2), # line 87 page 168
-    # f11 ~ 4e11 * exp(t * 0.020), # line 88 page 168
-    # f12 ~ pop * cfood, # line 89 page 168
-    # f2 ~ 4e11 * exp(lt * 0.020), # line 91 page 168
-    fpc ~ (4e11 * exp((t - 1900) * 0.020)) / pop # line 92 page 168
+    f ~ clip(f2, f1, t, lt), # line 86 page 168
+    f1 ~ clip(f12, f11, t, lt2), # line 87 page 168
+    f11 ~ 4e11 * exp(t * 0.020), # line 88 page 168
+    f12 ~ pop * cfood, # line 89 page 168
+    f2 ~ 4e11 * exp(lt * 0.020), # line 91 page 168
+    fpc ~ f / pop
 ]
 # ODE system creation and simplification
 @named sys = ODESystem(eqs)
@@ -116,13 +116,13 @@ p = [len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,
     zpgt => zpgtv, dcfsn => dcfsnv, sad => sadv, ieat => ieatv, fcest => fcestv, # line 44,45,49,55,58 page 168
     lt => ltv, lt2 => lt2v, cio => ciov, cso => csov, cfood => cfoodv] # line 65,67,70,80,90 page 168
 # Time interval
-tspan = (1900.0, 1975.0)
+tspan = (0.0, 75.0)
 # ODE solution
 prob = ODEProblem(sys, u0, tspan, p, jac = true)
 # println("cdr(0)=", 1000 / le0)
 # println("tf(0)=", tf0)
 # println("frsn(0)=", frsn0)
-println("cbr(0)=", cbr0)
+# println("cbr(0)=", cbr0)
 # println("iopc(0)=", iopc0)
 # println("fpc(0)=", fpc0)
 # println("sfsn(0)=", sfsn0)
@@ -141,15 +141,9 @@ println("cbr(0)=", cbr0)
 # println("ehspc(0)=", ehspc0)
 # println("hsapc(0)=", hsapc0)
 sol = solve(prob, Tsit5())
-# plot(sol, vars = [(0, pop)])
-plot(sol, vars = [(0, cdr), (0, cbr)])
-# plot(sol, vars = [(0, ppolx)])
-# plot(sol, vars = [(0, lmf)])
-# plot(sol, vars = [(0, fpc / 230)])
-# plot(sol, vars = [(0, lmhs)])
-# plot(sol, vars = [(0, fpc), (0, iopc), (0, sopc)])
-
-# println("tf(0)=", sol[tf][1])
-# println("mtf(0)=", sol[mtf][1])
-# println("frsn(0)=", sol[frsn][1])
-
+display(plot(sol, vars = [(0, sopc), (0, iopc), (0, fpc)]))
+display(plot(sol, vars = [(0, pop)]))
+display(plot(sol, vars = [(0, cbr), (0, cdr)]))
+display(plot(sol, vars = [(0, le)]))
+display(plot(sol, vars = [(0, fpu)]))
+display(plot(sol, vars = [(0, fce)]))
