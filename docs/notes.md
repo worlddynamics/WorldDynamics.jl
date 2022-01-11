@@ -1,3 +1,7 @@
+## TODO
+
+RAMP function (currently used in ppolx (not used, but will be used...)): 
+How does it work?
 # Implementation details
 
 In the following [DUM] is the [Dynamo User's Manual][DUM], and [DGFW] is the book [Dynamics of growth in a finite world][DGFW].
