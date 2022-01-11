@@ -1,5 +1,5 @@
 using Interpolations, ModelingToolkit, OrdinaryDiffEq
-using Plots
+using PlotlyJS
 
 include("functions.jl")
 include("tablespop.jl")
@@ -141,9 +141,21 @@ prob = ODEProblem(sys, u0, tspan, p, jac = true)
 # println("ehspc(0)=", ehspc0)
 # println("hsapc(0)=", hsapc0)
 sol = solve(prob, Tsit5())
-display(plot(sol, vars = [(0, sopc), (0, iopc), (0, fpc)]))
-display(plot(sol, vars = [(0, pop)]))
-display(plot(sol, vars = [(0, cbr), (0, cdr)]))
-display(plot(sol, vars = [(0, le)]))
-display(plot(sol, vars = [(0, fpu)]))
-display(plot(sol, vars = [(0, fce)]))
+# display(plot(sol, vars = [(0, sopc), (0, iopc), (0, fpc)]))
+# display(plot(sol, vars = [(0, pop)]))
+# display(plot(sol, vars = [(0, cbr), (0, cdr)]))
+# display(plot(sol, vars = [(0, br), (0, dr)]))
+# display(plot(sol, vars = [(0, le)]))
+# display(plot(sol, vars = [(0, fpu)]))
+# display(plot(sol, vars = [(0, fce)]))
+traces = GenericTrace[]
+push!(traces, scatter(x = sol[t], y = sol[pop], name = "pop", yaxis = "y1"))
+push!(traces, scatter(x = sol[t], y = sol[cbr], name = "cbr", yaxis = "y2"))
+push!(traces, scatter(x = sol[t], y = sol[cdr], name = "cdr", yaxis = "y3"))
+plot(traces,
+    Layout(xaxis_domain = [0.3, 0.7],
+        yaxis = attr(title = "pop"),
+        yaxis2 = attr(title = "cbr", overlaying = "y", side = "right", position = 0.71),
+        yaxis3 = attr(title = "cdr", overlaying = "y", side = "right", position = 0.75)
+    )
+)
