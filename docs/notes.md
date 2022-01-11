@@ -1,7 +1,16 @@
-## TODO
+## RAMP function 
 
-RAMP function (currently used in ppolx (not used, but will be used...)): 
-How does it work?
+It implements $\text{RAMP}_{S, X}(t) = S(t-X)\mathbf 1 (t 
+\geq X)$. 
+In the Dynamo manual `RAMP.k = RAMP.j + DT * STEP(S.j, X)` with 
+$$
+	\text{STEP}(A,B) = 
+		\begin{cases}
+			A & \geq B, \\
+			0 & \text{o/w}.
+		\end{cases}
+$$
+
 # Implementation details
 
 In the following [DUM] is the [Dynamo User's Manual][DUM], and [DGFW] is the book [Dynamics of growth in a finite world][DGFW].
