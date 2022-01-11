@@ -52,7 +52,7 @@ eqs = [
     D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 48 page 168
     D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 48 page 168
     # frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 1905), # line 50 page 168
-    frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 1905), # line 50 page 168
+    frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 5), # line 50 page 168
     fie ~ (iopc - aiopc) / aiopc, # line 53 page 168
     D(aiopc) ~ (iopc - aiopc) / ieat, # line 54 page 168
     nfc ~ (mtf / dtf) - 1, # line 56 page 168
@@ -71,7 +71,7 @@ eqs = [
     #io12 ~ pop * cio, # line 69 page 168
     #io2 ~ 0.7e11 * exp(lt * 0.037), # line 71 page 168
     #iopc ~ io / pop,
-    iopc ~ 0.7e11 * exp((t - 1900) * 0.037) / pop,
+    iopc ~ 0.7e11 * exp(t * 0.037) / pop,
 
     # INDEX OF PERSISTENT POLLUTION
     ppolx ~ 1.0, # line 73,74,75 page 168
@@ -82,7 +82,7 @@ eqs = [
     #so12 ~ pop * cso, # line 79 page 168
     #so2 ~ 1.5e11 * exp(lt * 0.030), # line 81 page 168
     #sopc ~ so / pop,
-    sopc ~ (1.5e11 * exp((t - 1900) * 0.030)) / pop, # line 82 page 168
+    sopc ~ (1.5e11 * exp(t * 0.030)) / pop, # line 82 page 168
 
     # FOOD
     #f ~ clip(f2, f1, t, lt), # line 86 page 168
@@ -91,7 +91,7 @@ eqs = [
     #f12 ~ pop * cfood, # line 89 page 168
     #f2 ~ 4e11 * exp(lt * 0.020), # line 91 page 168
     #fpc ~ f / pop
-    fpc ~ (4e11 * exp((t - 1900) * 0.020)) / pop # line 92 page 168
+    fpc ~ (4e11 * exp(t * 0.020)) / pop # line 92 page 168
 ]
 # ODE system creation and simplification
 @named sys = ODESystem(eqs)
@@ -119,7 +119,7 @@ p = [len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,
     zpgt => zpgtv, dcfsn => dcfsnv, sad => sadv, ieat => ieatv, fcest => fcestv, # line 44,45,49,55,58 page 168
     lt => ltv, lt2 => lt2v, cio => ciov, cso => csov, cfood => cfoodv] # line 65,67,70,80,90 page 168
 # Time interval
-tspan = (1900.0, 1975.0)
+tspan = (0.0, 75.0)
 # ODE solution
 prob = ODEProblem(sys, u0, tspan, p, jac = true)
 # println("cdr(0)=", 1000 / le0)
@@ -158,9 +158,9 @@ push!(traces, scatter(x = sol[t], y = sol[cbr], name = "cbr", yaxis = "y2"))
 push!(traces, scatter(x = sol[t], y = sol[cdr], name = "cdr", yaxis = "y3"))
 plot(traces,
     Layout(xaxis_domain = [0.3, 0.7],
-        yaxis = attr(title = "pop", range=[0, 1.6e10]),
-        yaxis2 = attr(title = "cbr", overlaying = "y", side = "right", position = 0.71, range=[0, 50]),
-        yaxis3 = attr(title = "cdr", overlaying = "y", side = "right", position = 0.75, range=[0, 50])
+        yaxis = attr(title = "pop", range = [0, 1.6e10]),
+        yaxis2 = attr(title = "cbr", overlaying = "y", side = "right", position = 0.71, range = [0, 50]),
+        yaxis3 = attr(title = "cdr", overlaying = "y", side = "right", position = 0.75, range = [0, 50])
         #yaxis2_range=[],
         #yaxis3_range=[]
     )
