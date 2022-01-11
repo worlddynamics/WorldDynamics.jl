@@ -152,6 +152,7 @@ sol = solve(prob, Tsit5())
 # display(plot(sol, vars = [(0, fpu)]))
 # display(plot(sol, vars = [(0, fce)]))
 traces = GenericTrace[]
+
 push!(traces, scatter(x = sol[t], y = sol[pop], name = "pop", yaxis = "y1"))
 push!(traces, scatter(x = sol[t], y = sol[cbr], name = "cbr", yaxis = "y2"))
 push!(traces, scatter(x = sol[t], y = sol[cdr], name = "cdr", yaxis = "y3"))
