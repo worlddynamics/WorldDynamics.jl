@@ -15,5 +15,7 @@ global fcestv = 4000
 global ltv = 500
 global lt2v = 500
 global ciov = 100
+global psv = 0
+global ptv = 10
 global csov = 150
 global cfoodv = 250

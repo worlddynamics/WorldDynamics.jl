@@ -22,3 +22,10 @@ function min(v1, v2)
         return v2
     end
 end
+function step(t, hght, sttm)
+    if (t < sttm)
+        return 0
+    else
+        return hght
+    end
+end

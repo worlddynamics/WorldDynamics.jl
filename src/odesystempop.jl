@@ -7,15 +7,15 @@ include("parameters.jl")
 include("initialisations.jl")
 
 # Parameter declarations
-@parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest lt lt2 cio cso cfood
+@parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest lt lt2 cio ps pt cso cfood
 # Function declarations
 @variables t pop(t) br(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t) diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t) io(t) io1(t) io2(t) io11(t) io12(t) iopc(t) ppolx(t) so(t) so1(t) so2(t) so11(t) so12(t) sopc(t) f(t) f1(t) f2(t) f11(t) f12(t) fpc(t)
 D = Differential(t)
 # Registered functions used in equations
 @register interpolate(x, xs::AbstractVector, y::AbstractVector)
 @register clip(f1, f2, va, th)
-@register clipequal(f1, f2, va, th)
 @register min(v1, v2)
+@register step(t, hght, sttm)
 # Equations
 eqs = [
     # POPULATION LEVEL EQUATIONS
@@ -74,7 +74,8 @@ eqs = [
     # iopc ~ 0.7e11 * exp(t * 0.037) / pop,
 
     # INDEX OF PERSISTENT POLLUTION
-    ppolx ~ 1.0, # line 73,74,75 page 168
+    D(ppolx) ~ step(t, ps, pt),
+    # ppolx ~ 1.0, # line 73,74,75 page 168
     # SERVICE OUTPUT
     so ~ clip(so2, so1, t, lt), # line 76 page 168
     so1 ~ clip(so12, so11, t, lt2), # line 77 page 168
@@ -109,15 +110,18 @@ u0 = [pop => pop0, # lines 2-3 page 167
     aiopc => iopc0, # smooth at line 54 page 168
     fcfpc => fcapc0, # dlinf3 at line 60 page 168
     fcfpc1 => fcapc0, # dlinf3 at line 60 page 168
-    fcfpc2 => fcapc0 # dlinf3 at line 60 page 168
+    fcfpc2 => fcapc0, # dlinf3 at line 60 page 168
+    ppolx => ppolx0
     # fpc => fpc0,
     # br => br0
 ]
 # Parameters
-p = [len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,16 page 167
+p = [
+    len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,16 page 167
     ffw => ffwv, rlt => rltv, pet => petv, mtfn => mtfnv, lpd => lpdv, # line 29,30,31,35,42 page 168
     zpgt => zpgtv, dcfsn => dcfsnv, sad => sadv, ieat => ieatv, fcest => fcestv, # line 44,45,49,55,58 page 168
-    lt => ltv, lt2 => lt2v, cio => ciov, cso => csov, cfood => cfoodv] # line 65,67,70,80,90 page 168
+    lt => ltv, lt2 => lt2v, cio => ciov, ps => psv, pt => ptv, cso => csov, cfood => cfoodv, # line 65,67,70,74,75,80,90 page 168
+]
 # Time interval
 tspan = (0.0, 75.0)
 # ODE solution
