@@ -52,7 +52,7 @@ eqs = [
     D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 48 page 168
     D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 48 page 168
     # frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 1905), # line 50 page 168
-    frsn ~ interpolate(fie, frsnt, frsnts), # line 50 page 168
+    frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 1905), # line 50 page 168
     fie ~ (iopc - aiopc) / aiopc, # line 53 page 168
     D(aiopc) ~ (iopc - aiopc) / ieat, # line 54 page 168
     nfc ~ (mtf / dtf) - 1, # line 56 page 168
@@ -65,30 +65,33 @@ eqs = [
 
     # EXOGENOUS INPUTS TO THE POPULATION SECTOR
     # INDUSTRIAL OUTPUT
-    io ~ clip(io2, io1, t, lt), # line 64 page 168
-    io1 ~ clip(io12, io11, t, lt2), # line 66 page 168
-    io11 ~ 0.7e11 * exp(t * 0.037), # line 68 page 168
-    io12 ~ pop * cio, # line 69 page 168
-    io2 ~ 0.7e11 * exp(lt * 0.037), # line 71 page 168
-    iopc ~ io / pop,
+    #io ~ clip(io2, io1, t, lt), # line 64 page 168
+    #io1 ~ clip(io12, io11, t, lt2), # line 66 page 168
+    #io11 ~ 0.7e11 * exp(t * 0.037), # line 68 page 168
+    #io12 ~ pop * cio, # line 69 page 168
+    #io2 ~ 0.7e11 * exp(lt * 0.037), # line 71 page 168
+    #iopc ~ io / pop,
+    iopc ~ 0.7e11 * exp((t - 1900) * 0.037) / pop,
 
     # INDEX OF PERSISTENT POLLUTION
     ppolx ~ 1.0, # line 73,74,75 page 168
     # SERVICE OUTPUT
-    so ~ clip(so2, so1, t, lt), # line 76 page 168
-    so1 ~ clip(so12, so11, t, lt2), # line 77 page 168
-    so11 ~ 1.5e11 * exp(t * 0.030), # line 78 page 168
-    so12 ~ pop * cso, # line 79 page 168
-    so2 ~ 1.5e11 * exp(lt * 0.030), # line 81 page 168
-    sopc ~ so / pop,
+    #so ~ clip(so2, so1, t, lt), # line 76 page 168
+    #so1 ~ clip(so12, so11, t, lt2), # line 77 page 168
+    #so11 ~ 1.5e11 * exp(t * 0.030), # line 78 page 168
+    #so12 ~ pop * cso, # line 79 page 168
+    #so2 ~ 1.5e11 * exp(lt * 0.030), # line 81 page 168
+    #sopc ~ so / pop,
+    sopc ~ (1.5e11 * exp((t - 1900) * 0.030)) / pop, # line 82 page 168
 
     # FOOD
-    f ~ clip(f2, f1, t, lt), # line 86 page 168
-    f1 ~ clip(f12, f11, t, lt2), # line 87 page 168
-    f11 ~ 4e11 * exp(t * 0.020), # line 88 page 168
-    f12 ~ pop * cfood, # line 89 page 168
-    f2 ~ 4e11 * exp(lt * 0.020), # line 91 page 168
-    fpc ~ f / pop
+    #f ~ clip(f2, f1, t, lt), # line 86 page 168
+    #f1 ~ clip(f12, f11, t, lt2), # line 87 page 168
+    #f11 ~ 4e11 * exp(t * 0.020), # line 88 page 168
+    #f12 ~ pop * cfood, # line 89 page 168
+    #f2 ~ 4e11 * exp(lt * 0.020), # line 91 page 168
+    #fpc ~ f / pop
+    fpc ~ (4e11 * exp((t - 1900) * 0.020)) / pop # line 92 page 168
 ]
 # ODE system creation and simplification
 @named sys = ODESystem(eqs)
@@ -116,7 +119,7 @@ p = [len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,
     zpgt => zpgtv, dcfsn => dcfsnv, sad => sadv, ieat => ieatv, fcest => fcestv, # line 44,45,49,55,58 page 168
     lt => ltv, lt2 => lt2v, cio => ciov, cso => csov, cfood => cfoodv] # line 65,67,70,80,90 page 168
 # Time interval
-tspan = (0.0, 75.0)
+tspan = (1900.0, 1975.0)
 # ODE solution
 prob = ODEProblem(sys, u0, tspan, p, jac = true)
 # println("cdr(0)=", 1000 / le0)
