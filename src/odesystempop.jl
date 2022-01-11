@@ -157,8 +157,10 @@ push!(traces, scatter(x = sol[t], y = sol[cbr], name = "cbr", yaxis = "y2"))
 push!(traces, scatter(x = sol[t], y = sol[cdr], name = "cdr", yaxis = "y3"))
 plot(traces,
     Layout(xaxis_domain = [0.3, 0.7],
-        yaxis = attr(title = "pop"),
-        yaxis2 = attr(title = "cbr", overlaying = "y", side = "right", position = 0.71),
-        yaxis3 = attr(title = "cdr", overlaying = "y", side = "right", position = 0.75)
+        yaxis = attr(title = "pop", range=[0, 1.6e10]),
+        yaxis2 = attr(title = "cbr", overlaying = "y", side = "right", position = 0.71, range=[0, 50]),
+        yaxis3 = attr(title = "cdr", overlaying = "y", side = "right", position = 0.75, range=[0, 50])
+        #yaxis2_range=[],
+        #yaxis3_range=[]
     )
 )
