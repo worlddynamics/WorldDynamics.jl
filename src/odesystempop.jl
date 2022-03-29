@@ -1,4 +1,4 @@
-using Interpolations, ModelingToolkit, OrdinaryDiffEq
+using Interpolations, ModelingToolkit
 using PlotlyJS
 
 include("functions.jl")
@@ -83,7 +83,7 @@ eqs = [
     so12 ~ pop * cso, # line 79 page 168
     so2 ~ 1.5e11 * exp(lt * 0.030), # line 81 page 168
     sopc ~ so / pop,
-    # sopc ~ (1.5e11 * exp(t * 0.030)) / pop, # line 82 page 168
+    # sopc ~ (1.5e11 * exp(t * 0.0>30)) / pop, # line 82 page 168
 
     # FOOD
     f ~ clip(f2, f1, t, lt), # line 86 page 168

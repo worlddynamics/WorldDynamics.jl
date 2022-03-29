@@ -1,4 +1,4 @@
-using Interpolations, ModelingToolkit, OrdinaryDiffEq
+using Interpolations, ModelingToolkit
 using Plots
 
 include("functions.jl")
@@ -7,7 +7,7 @@ include("parameters.jl")
 include("initialisations.jl")
 
 # Parameter declarations
-@parameters hsid
+@parameters hsid 
 # Function declarations
 @variables hsapc(t) ehspc(t)
 D = Differential(t)
