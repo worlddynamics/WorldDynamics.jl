@@ -126,58 +126,9 @@ p = [
 tspan = (0.0, 75.0)
 # ODE solution
 prob = ODEProblem(sys, u0, tspan, p, jac = true)
-# println("cdr(0)=", 1000 / le0)
-# println("tf(0)=", tf0)
-# println("frsn(0)=", frsn0)
-# println("cbr(0)=", cbr0)
-# println("iopc(0)=", iopc0)
-# println("fpc(0)=", fpc0)
-# println("sfsn(0)=", sfsn0)
-# println("cmple(0)=", cmple0)
-# println("ple(0)=", ple0)
-# println("dtf(0)=", dtf0)
-# println("mtf(0)=", mtf0)
-# println("nfc(0)=", nfc0)
-# println("fm(0)=", fm0)
-# println("le(0)=", le0)
-# println("lmf(0)=", lmf0)
-# println("lmhs(0)=", lmhs0)
-# println("lmp(0)=", lmp0)
-# println("lmc(0)=", lmc0)
-# println("cmi(0)=", cmi0)
-# println("ehspc(0)=", ehspc0)
-# println("hsapc(0)=", hsapc0)
-sol = solve(prob, Tsit5())
-# display(plot(sol, vars = [(0, sopc), (0, iopc), (0, fpc)]))
-# display(plot(sol, vars = [(0, pop)]))
-# display(plot(sol, vars = [(0, cbr), (0, cdr)]))
-# display(plot(sol, vars = [(0, br), (0, dr)]))
-# display(plot(sol, vars = [(0, le)]))
-# display(plot(sol, vars = [(0, fpu)]))
-# display(plot(sol, vars = [(0, fce)]))
-traces = GenericTrace[]
 
-push!(traces, scatter(x = sol[t], y = sol[pop], name = "pop", yaxis = "y1"))
-push!(traces, scatter(x = sol[t], y = sol[cbr], name = "cbr", yaxis = "y2"))
-push!(traces, scatter(x = sol[t], y = sol[cdr], name = "cdr", yaxis = "y3"))
-push!(traces, scatter(x = sol[t], y = sol[sopc], name = "sopc", yaxis = "y4"))
-push!(traces, scatter(x = sol[t], y = sol[fpu], name = "fpu", yaxis = "y5"))
-push!(traces, scatter(x = sol[t], y = sol[fpc], name = "fpc", yaxis = "y6"))
-push!(traces, scatter(x = sol[t], y = sol[le], name = "le", yaxis = "y7"))
-push!(traces, scatter(x = sol[t], y = sol[fce], name = "fce", yaxis = "y8"))
-push!(traces, scatter(x = sol[t], y = sol[iopc], name = "iopc", yaxis = "y9"))
-plot(traces,
-    Layout(xaxis_domain = [0.3, 0.7],
-        yaxis = attr(title = "pop", range = [0, 1.6e10]),
-        yaxis2 = attr(title = "cbr", overlaying = "y", side = "right", position = 0.70, range = [0, 50]),
-        yaxis3 = attr(title = "cdr", overlaying = "y", side = "right", position = 0.74, range = [0, 50]),
-        yaxis4 = attr(title = "sopc", overlaying = "y", side = "right", position = 0.78, range = [0, 1000]),
-        yaxis5 = attr(title = "fpu", overlaying = "y", side = "right", position = 0.82, range = [0, 1]),
-        yaxis6 = attr(title = "fpc", overlaying = "y", side = "right", position = 0.86, range = [0, 1000]),
-        yaxis7 = attr(title = "le", overlaying = "y", side = "right", position = 0.9, range = [0, 80]),
-        yaxis8 = attr(title = "fce", overlaying = "y", side = "right", position = 0.94, range = [0.5, 1]),
-        yaxis9 = attr(title = "iopc", overlaying = "y", side = "right", position = 0.98, range = [0, 1000])
-        #yaxis2_range=[],
-        #yaxis3_range=[]
-    )
-)
+sol = solve(prob, Tsit5())
+
+
+
+println("systempop works")
