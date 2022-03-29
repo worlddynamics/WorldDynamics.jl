@@ -1,4 +1,4 @@
-using Interpolations, ModelingToolkit
+using Interpolations, ModelingToolkit, OrdinaryDiffEq
 using PlotlyJS
 
 include("functions.jl")
