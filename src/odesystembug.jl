@@ -42,7 +42,19 @@ p = [a => av]
 # Time interval
 tspan = (0.0, 75.0)
 # ODE solution
-prob = ODEProblem(sys, u0, tspan, p, jac=true)
+# prob = ODEProblem(sys, u0, tspan, p, jac=true)
+prob = ODEProblem(sys, u0, tspan, p)
 println("odesystempop problem created")
 sol = solve(prob, Tsit5())
 println("odesystempop solved")
+traces = GenericTrace[]
+push!(traces, scatter(x=sol[t], y=sol[f], name="f", yaxis="y1"))
+push!(traces, scatter(x=sol[t], y=sol[g], name="g", yaxis="y2"))
+push!(traces, scatter(x=sol[t], y=sol[h], name="h", yaxis="y3"))
+plot(traces,
+    Layout(xaxis_domain=[0.3, 0.7],
+        yaxis=attr(title="f", range=[0, 1.6e10]),
+        yaxis2=attr(title="g", overlaying="y", side="right", position=0.70, range=[0, 50]),
+        yaxis3=attr(title="h", overlaying="y", side="right", position=0.74, range=[0, 50])
+    )
+)
