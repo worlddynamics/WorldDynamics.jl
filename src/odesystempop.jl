@@ -1,4 +1,4 @@
-using Interpolations, ModelingToolkit, OrdinaryDiffEq
+using Interpolations, ModelingToolkit, DifferentialEquations
 using PlotlyJS
 
 include("functions.jl")
@@ -125,11 +125,10 @@ p = [
 # Time interval
 tspan = (0.0, 75.0)
 # ODE solution
-# prob = ODEProblem(sys, u0, tspan, p, jac = true)
-prob = ODEProblem(sys, u0, tspan, p)
-
-sol = solve(prob, Tsit5())
-println("systempop works")
+prob = ODEProblem(sys, u0, tspan, p, jac=true)
+println("odesystempop created")
+sol = solve(prob)
+println("odesystempop solved")
 traces = GenericTrace[]
 push!(traces, scatter(x=sol[t], y=sol[pop], name="pop", yaxis="y1"))
 push!(traces, scatter(x=sol[t], y=sol[cbr], name="cbr", yaxis="y2"))
