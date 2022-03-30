@@ -5,10 +5,10 @@ function interpolate(x, y, xs)
     if (x > xs[length(xs)])
         return y[length(xs)]
     end
-    # li = LinearInterpolation(xs, y)
-    # return li(x)
-    return 1
+    li = LinearInterpolation(xs, y)
+    return li(x)
 end
+
 function clip(f1, f2, va, th)
     if (va >= th)
         return f1

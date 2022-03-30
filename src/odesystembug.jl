@@ -10,18 +10,22 @@ function interpolate(x, y, xs)
     li = LinearInterpolation(xs, y)
     return li(x)
 end
-f(x) = interpolate(x, ht, hts)
-# Registered functions used in equations
-@register interpolate(x, xs::AbstractVector, y::AbstractVector)
 
-ht = [0.0, 1.0, 1.2, 1.3, 1.35, 1.4]
-hts = LinRange(0.0, 5.0, 6)
+function interpol_h(x)
+    ht = [0.0, 1.0, 1.2, 1.3, 1.35, 1.4]
+    hts = LinRange(0.0, 5.0, 6)
+    return interpolate(x, ht, hts)
+end
+
+# Registered functions used in equations
+@register interpol_h(x)
+
 # Function declarations
 @variables t h(t) k(t)
 D = Differential(t)
 # Equations
 eqs = [
-    D(h) ~ f(k)
+    D(h) ~ interpol_h(k)
     D(k) ~ 1
 ]
 # ODE system creation and simplification
