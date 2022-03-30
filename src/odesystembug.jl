@@ -1,4 +1,4 @@
-using Interpolations, ModelingToolkit, OrdinaryDiffEq
+using Interpolations, ModelingToolkit, OrdinaryDiffEq, PlotlyJS
 
 function interpolate(x, y, xs)
     if (x < xs[1])
