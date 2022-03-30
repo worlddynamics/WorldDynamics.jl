@@ -12,7 +12,7 @@ include("initialisations.jl")
 @variables t pop(t) br(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t) diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t) io(t) io1(t) io2(t) io11(t) io12(t) iopc(t) ppolx(t) so(t) so1(t) so2(t) so11(t) so12(t) sopc(t) f(t) f1(t) f2(t) f11(t) f12(t) fpc(t)
 D = Differential(t)
 # Registered functions used in equations
-@register interpolate(x, xs::AbstractVector, y::AbstractVector)
+@register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
 @register min(v1, v2)
 @register step(t, hght, sttm)

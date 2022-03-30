@@ -1,11 +1,12 @@
 function interpolate(x, y, xs)
+    xs = LinRange(xs[1], xs[2], xs[3])
     if (x < xs[1])
         return y[1]
     end
     if (x > xs[length(xs)])
         return y[length(xs)]
     end
-    li = LinearInterpolation(xs, y)
+    li = LinearInterpolation(xs, collect(y))
     return li(x)
 end
 
