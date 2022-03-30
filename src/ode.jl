@@ -1,15 +1,14 @@
-using Interpolations, ModelingToolkit, OrdinaryDiffEq 
-using Plots
+using Interpolations, ModelingToolkit, OrdinaryDiffEq
 
-include("functions.jl")
-include("tablespop.jl")
+ßinclude("functions.jl")
+# include("tablespop.jl")
 include("parameters.jl")
-include("initialisations.jl")
+# include("initialisations.jl")
 
 # Parameter declarations
-@parameters hsid 
+@parameters hsid
 # Function declarations
-@variables hsapc(t) ehspc(t)
+@variables t hsapc(t) ehspc(t)
 D = Differential(t)
 # Registered functions used in equations
 @register interpolate(x, xs::AbstractVector, y::AbstractVector)
@@ -45,11 +44,9 @@ p = [hsid => hsidv]
 # Time interval
 tspan = (0.0, 200.0)
 # ODE solution
-prob = ODEProblem(sys, u0, tspan, p, jac = true)
+prob = ODEProblem(sys, u0, tspan, p, jac=true)
 # println("iopc(0)=", iopc0)
 sol = solve(prob, Tsit5())
 # plot(sol, vars = [(0, ehspc), (0, hsapc)])
-function f(t)
-    return interpolate(t, lmft, lmfts)
-end
-plot(f, 0, 5.00, legend = :bottomright)
+# plot(f, 0, 5.00, legend = :bottomright)
+println("ode works")

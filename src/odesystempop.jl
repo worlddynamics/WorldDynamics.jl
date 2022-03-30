@@ -125,7 +125,8 @@ p = [
 # Time interval
 tspan = (0.0, 75.0)
 # ODE solution
-prob = ODEProblem(sys, u0, tspan, p, jac = true)
+# prob = ODEProblem(sys, u0, tspan, p, jac = true)
+prob = ODEProblem(sys, u0, tspan, p)
 
 sol = solve(prob, Tsit5())
 
