@@ -1,7 +1,3 @@
-using Interpolations, ModelingToolkit, DifferentialEquations
-using PlotlyJS
-
-include("functions.jl")
 include("tablespop.jl")
 include("parameters.jl")
 include("initialisations.jl")
