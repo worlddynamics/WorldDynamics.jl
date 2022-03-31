@@ -17,6 +17,7 @@ function clip(f1, f2, va, th)
         return f2
     end
 end
+
 function min(v1, v2)
     if (v1 < v2)
         return v1
