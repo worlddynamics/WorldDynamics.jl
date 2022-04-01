@@ -19,5 +19,5 @@ println("odesystempop created")
 # Solve ODE problem
 sol = solve(prob)
 println("odesystempop solved")
-plot_sol(sol)
+plot_sol_2_85(sol)
 

@@ -49,7 +49,7 @@ global p = [
 ]
 p = vcat(p, common_p)
 # ODE solution plot
-function plot_sol(sol)
+function plot_sol_2_84(sol)
     traces = GenericTrace[]
     push!(traces, scatter(x=sol[t], y=sol[pop], name="pop", yaxis="y1"))
     push!(traces, scatter(x=sol[t], y=sol[cbr], name="cbr", yaxis="y2"))
@@ -71,6 +71,23 @@ function plot_sol(sol)
             yaxis7=attr(title="le", overlaying="y", side="right", position=0.9, range=[0, 80]),
             yaxis8=attr(title="fce", overlaying="y", side="right", position=0.94, range=[0.5, 1]),
             yaxis9=attr(title="iopc", overlaying="y", side="right", position=0.98, range=[0, 1000])
+        )
+    )
+end
+
+function plot_sol_2_85(sol)
+    pop = sol[p1] + sol[p2] + sol[p3] + sol[p4]
+    traces = GenericTrace[]
+    push!(traces, scatter(x=sol[t], y=sol[p1] ./ pop, name="p1", yaxis="y1"))
+    push!(traces, scatter(x=sol[t], y=sol[p2] ./ pop, name="p2", yaxis="y2"))
+    push!(traces, scatter(x=sol[t], y=sol[p3] ./ pop, name="p3", yaxis="y3"))
+    push!(traces, scatter(x=sol[t], y=sol[p4] ./ pop, name="p4", yaxis="y4"))
+    plot(traces,
+        Layout(xaxis_domain=[0.3, 0.7],
+            yaxis=attr(title="p1", range=[0, 1]),
+            yaxis2=attr(title="p2", overlaying="y", side="right", position=0.70, range=[0, 1]),
+            yaxis3=attr(title="p3", overlaying="y", side="right", position=0.74, range=[0, 1]),
+            yaxis4=attr(title="p4", overlaying="y", side="right", position=0.78, range=[0, 1])
         )
     )
 end
