@@ -187,7 +187,7 @@ function plot_sol_2_85(sol)
     push!(traces, scatter(x=sol[t], y=sol[pw], name="pw", yaxis="y3"))
     push!(traces, scatter(x=sol[t], y=sol[pe], name="pe", yaxis="y4"))
     plot(traces,
-        Layout(xaxis_domain=[0.3, 0.7],
+        Layout(xaxis_domain=[0.3, 0.5],
             yaxis=attr(title="pc", range=[0, 1]),
             yaxis2=attr(title="pf", overlaying="y", side="right", position=0.70, range=[0, 1]),
             yaxis3=attr(title="pw", overlaying="y", side="right", position=0.74, range=[0, 1]),
