@@ -30,7 +30,9 @@ global eqs = [
     d4 ~ p4 * m4,
     m4 ~ interpolate(le, m4t, m4ts),
     # DEATH RATE EQUATIONS
-    dr ~ d1 + d2 + d3 + d4
+    dr ~ d1 + d2 + d3 + d4,
+    # BIRTH RATE EQUATIONS
+    br ~ clip(dr, tf * p2 * 0.5 / rlt, t, pet)
 ]
 eqs = vcat(eqs, common_eqs)
 # Initialisations

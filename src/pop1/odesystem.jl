@@ -7,7 +7,9 @@ global eqs = [
     # POPULATION LEVEL EQUATIONS
     D(pop) ~ br - dr, # line 1 page 167
     # DEATH RATE EQUATIONS
-    dr ~ pop / le # line 4 page 167
+    dr ~ pop / le, # line 4 page 167
+    # BIRTH RATE EQUATIONS
+    br ~ clip(dr, tf * pop * ffw / rlt, t, pet) # line 28 page 168
 ]
 eqs = vcat(eqs, common_eqs)
 # Initialisations

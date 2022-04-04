@@ -1,7 +1,16 @@
 # Parameter declarations
 @parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest lt lt2 cio ps pt cso cfood
 # Function declarations
-@variables t pop(t) br(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t) diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t) io(t) io1(t) io2(t) io11(t) io12(t) iopc(t) ppolx(t) so(t) so1(t) so2(t) so11(t) so12(t) sopc(t) f(t) f1(t) f2(t) f11(t) f12(t) fpc(t)
+@variables t pop(t) br(t) dr(t)
+@variables cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t)
+@variables lmc(t) lmp(t)
+@variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t)
+@variables sfsn(t) diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t)
+@variables aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t)
+@variables io(t) io1(t) io2(t) io11(t) io12(t) iopc(t)
+@variables ppolx(t)
+@variables so(t) so1(t) so2(t) so11(t) so12(t) sopc(t)
+@variables f(t) f1(t) f2(t) f11(t) f12(t) fpc(t)
 D = Differential(t)
 # Registered functions used in equations
 @register interpolate(x, y::NTuple, xs::Tuple)
@@ -24,7 +33,7 @@ global common_eqs = [
     lmc ~ 1 - (cmi * fpu),  # line 25 page 167
     lmp ~ interpolate(ppolx, lmpt, lmpts), # line 26 page 167
     # BIRTH RATE EQUATIONS
-    br ~ clip(dr, tf * pop * ffw / rlt, t, pet), # line 28 page 168
+    # br ~ clip(dr, tf * pop * ffw / rlt, t, pet), # line 28 page 168
     cbr ~ 1000.0 * br / pop, # line 32 page 168
     tf ~ min(mtf, mtf * (1 - fce) + dtf * fce), # line 33 page 168
     mtf ~ mtfn * fm, # line 34 page 168

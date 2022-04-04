@@ -4,7 +4,8 @@ include("initialisations.jl")
 
 # Parameter declarations
 # Function declarations
-@variables p1(t) p2(t) p3(t) p4(t) p5(t) p6(t) p7(t) p8(t) p9(t) p10(t) p11(t) p12(t) p13(t) p14(t) p15(t)
+@variables p1(t) p2(t) p3(t) p4(t) p5(t) p6(t) p7(t) p8(t)
+@variables p9(t) p10(t) p11(t) p12(t) p13(t) p14(t) p15(t)
 @variables d1(t) mat1(t) m1(t) d1a(t)
 @variables d2(t) mat2(t) m2(t) d2a(t)
 @variables d3(t) mat3(t) m3(t) d3a(t)
@@ -20,6 +21,8 @@ include("initialisations.jl")
 @variables d13(t) mat13(t) m13(t) d13a(t)
 @variables d14(t) mat14(t) m14(t) d14a(t)
 @variables d15(t) m15(t)
+@variables pc(t) pf(t) pw(t) pe(t)
+@variables extra(t)
 # Registered functions used in equations
 # Equations
 global eqs = [
@@ -112,17 +115,34 @@ global eqs = [
     d15 ~ p15 * m15,
     m15 ~ interpolate(le, m15t, m15ts),
     # AUXILIARY EQUATIONS
-    d ~ d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9 + d10 + d11 + d12 + d13 + d14 + d15,
+    dr ~ d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9 + d10 + d11 + d12 + d13 + d14 + d15,
     pop ~ p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9 + p10 + p11 + p12 + p13 + p14 + p15,
+    pc ~ (p1 + p2 + p3 + p4) / pop,
+    pf ~ (p5 + p6 + p7 + p8 + p9 + p10) / pop,
+    pw ~ (p11 + p12 + p13 + p14) / pop,
+    pe ~ p15 / pop,
     # DEATH RATE EQUATIONS
-    dr ~ d1 + d2 + d3 + d4
+    # BIRTH RATE EQUATIONS
+    extra ~ p5 * 0.06 + p6 * 0.25 + p7 * 0.28 + p8 * 0.21 + p9 * 0.13 + p10 * 0.07,
+    br ~ clip(dr, (tf / 10) * extra, t, pet)
 ]
 eqs = vcat(eqs, common_eqs)
 # Initialisations
 global u0 = [p1 => p10,
     p2 => p20, #
     p3 => p30, #
-    p4 => p40
+    p4 => p40, #
+    p5 => p50, #
+    p6 => p60, #
+    p7 => p70, #
+    p8 => p80, #
+    p9 => p90, #
+    p10 => p100, #
+    p11 => p110, #
+    p12 => p120, #
+    p13 => p130, #
+    p14 => p140, #
+    p15 => p150, #
 ]
 u0 = vcat(u0, common_u0)
 # Parameters
@@ -161,18 +181,17 @@ function plot_sol_2_84(sol)
 end
 
 function plot_sol_2_85(sol)
-    pop = sol[p1] + sol[p2] + sol[p3] + sol[p4]
     traces = GenericTrace[]
-    push!(traces, scatter(x=sol[t], y=sol[p1] ./ pop, name="p1", yaxis="y1"))
-    push!(traces, scatter(x=sol[t], y=sol[p2] ./ pop, name="p2", yaxis="y2"))
-    push!(traces, scatter(x=sol[t], y=sol[p3] ./ pop, name="p3", yaxis="y3"))
-    push!(traces, scatter(x=sol[t], y=sol[p4] ./ pop, name="p4", yaxis="y4"))
+    push!(traces, scatter(x=sol[t], y=sol[pc], name="pc", yaxis="y1"))
+    push!(traces, scatter(x=sol[t], y=sol[pf], name="pf", yaxis="y2"))
+    push!(traces, scatter(x=sol[t], y=sol[pw], name="pw", yaxis="y3"))
+    push!(traces, scatter(x=sol[t], y=sol[pe], name="pe", yaxis="y4"))
     plot(traces,
         Layout(xaxis_domain=[0.3, 0.7],
-            yaxis=attr(title="p1", range=[0, 1]),
-            yaxis2=attr(title="p2", overlaying="y", side="right", position=0.70, range=[0, 1]),
-            yaxis3=attr(title="p3", overlaying="y", side="right", position=0.74, range=[0, 1]),
-            yaxis4=attr(title="p4", overlaying="y", side="right", position=0.78, range=[0, 1])
+            yaxis=attr(title="pc", range=[0, 1]),
+            yaxis2=attr(title="pf", overlaying="y", side="right", position=0.70, range=[0, 1]),
+            yaxis3=attr(title="pw", overlaying="y", side="right", position=0.74, range=[0, 1]),
+            yaxis4=attr(title="pe", overlaying="y", side="right", position=0.78, range=[0, 1])
         )
     )
 end

@@ -6,7 +6,7 @@ include("common/parameters.jl")
 include("common/tablespop.jl")
 include("common/initialisations.jl")
 include("common/odesystem.jl")
-include("pop4/odesystem.jl")
+include("pop15/odesystem.jl")
 
 # ODE system creation and simplification
 @named sys = ODESystem(eqs)
