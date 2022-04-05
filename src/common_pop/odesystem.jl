@@ -1,7 +1,7 @@
 # Parameter declarations
 @parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest lt lt2 cio ps pt cso cfood
 # Function declarations
-@variables t pop(t) br(t) dr(t)
+@variables t pop(t) br(t) dr(t) fk(t)
 @variables cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t)
 @variables lmc(t) lmp(t)
 @variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t)
