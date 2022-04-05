@@ -1,3 +1,7 @@
 *.code-workspace
 gitignored
 .vscode/settings.json
+
+JuliaSysimage*.dylib
+JuliaSysimage*.so
+JuliaSysimage*.dll
