@@ -26,6 +26,14 @@ function min(v1, v2)
     end
 end
 
+function max(v1, v2)
+    if (v1 > v2)
+        return v1
+    else
+        return v2
+    end
+end
+
 function step(t, hght, sttm)
     if (t < sttm)
         return 0
