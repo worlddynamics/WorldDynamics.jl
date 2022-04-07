@@ -1,11 +1,13 @@
 using Interpolations, ModelingToolkit, DifferentialEquations
 using PlotlyJS
 
+global t0 = 1900
+
 include("functions.jl")
-include("pollution/parameters.jl")
-include("pollution/tablespop.jl")
-include("pollution/initialisations.jl")
-include("pollution/odesystem.jl")
+include("agriculture/parameters.jl")
+include("agriculture/tablespop.jl")
+include("agriculture/initialisations.jl")
+include("agriculture/odesystem.jl")
 
 # ODE system creation and simplification
 @named sys = ODESystem(eqs)
@@ -14,10 +16,9 @@ sys = structural_simplify(sys)
 tspan = (t0, 1970.0)
 # Define ODE problem
 prob = ODEProblem(sys, u0, tspan, p, jac=true)
-println("odesystemcapital created")
+println("odesystem created")
 # Solve ODE problem
 sol = solve(prob)
-println("odesystemcapital solved")
-#plot_sol_6_28(sol)
-plot_sol_6_29(sol)
+println("odesystem solved")
+# plot_sol_3_36(sol)
 

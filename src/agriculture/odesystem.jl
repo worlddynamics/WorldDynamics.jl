@@ -2,6 +2,7 @@
 @parameters palt, lfh, pl, alai1, alai2, lyf1, lyf2, io70
 @parameters sd, alln, uildt, ilf, sfpc
 @parameters fspd, eyear, popi, ioi, ppolxi, pyear
+@parameters exppop
 @variables t
 @variables lfc(t) al(t) pal(t) f(t) fpc(t) ifpc(t) ifpc1(t) ifpc2(t)
 @variables tai(t) fioaa(t) fioaa1(t) fioaa2(t) ldr(t) dcph(t)
@@ -76,8 +77,8 @@ global eqs = [
     pop ~ clip(pop2, pop1, t, eyear),
     # TODO: if we put the correct value of 0.012, the code breaks
     #  I have to investigate more
-    pop1 ~ popi * exp(0.013 * (t - 1900.0)),
-    pop2 ~ popi * exp(0.012 * (eyear - 1900.0)),
+    pop1 ~ popi * exp(exppop * (t - 1900)),
+    pop2 ~ popi * exp(exppop * (eyear - 1900.0)),
     # INDUSTRIAL OUTPUT GROWS EXPONENTIALLY AT 3.6% PER YEAR
     io ~ clip(io2, io1, t, eyear),
     io1 ~ ioi * exp(0.036 * (t - 1900.0)),
@@ -94,7 +95,8 @@ global p = [
     alai1 => alai1v, alai2 => alai2v, lyf1 => lyf1v, lyf2 => lyf2v, io70 => io70v,
     sd => sdv, alln => allnv, uildt => uildtv, ilf => ilfv, sfpc => sfpcv,
     fspd => fspdv, eyear => eyearv, popi => popiv, ioi => ioiv,
-    ppolxi => ppolxiv, pyear => pyearv
+    ppolxi => ppolxiv, pyear => pyearv,
+    exppop => exppopv
 ]
 # Initializations
 global u0 = [
