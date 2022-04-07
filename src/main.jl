@@ -4,10 +4,18 @@ using PlotlyJS
 global t0 = 1900
 
 include("functions.jl")
-include("agriculture/parameters.jl")
-include("agriculture/tablespop.jl")
-include("agriculture/initialisations.jl")
-include("agriculture/odesystem.jl")
+include("parameters.jl")
+include("tables.jl")
+include("initialisations.jl")
+include("odesystem.jl")
+
+# Registered functions used in equations
+@register interpolate(x, y::NTuple, xs::Tuple)
+@register clip(f1, f2, va, th)
+@register min(v1, v2)
+@register max(v1, v2)
+@register step(t, hght, sttm)
+@register switch(v1, v2, z)
 
 # ODE system creation and simplification
 @named sys = ODESystem(eqs)
