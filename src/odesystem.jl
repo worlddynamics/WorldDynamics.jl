@@ -4,8 +4,8 @@
 @parameters iet, iopcd, fioac1, fioac2, alsc1, alsc2, scor1, scor2, lfpf, lufdt, palt
 @parameters lfh, pl, alai1, alai2, lyf1, lyf2, io70, sd, alln, uildt, ilf, sfpc, fspd
 @parameters eyear, popi, ioi, ppolxi, pyear, exppop, nri, nruf1, nruf2, popi, gc, pop2
-@parameters zpgt, fioaa, fioas, fioac, alic, icor, pyear, ppgf1, ppgf21, frpm, imef, imti
-@parameters fipm, amti, pptd1, pptd2, ppol70, ahl70, swat, tdd, pcti, pd, pyear
+@parameters zpgt, pyear, ppgf1, ppgf2, frpm, imef, imti
+@parameters fipm, amti, pptd, ppol70, ahl70, swat, tdd, pcti, pd, pyear
 ## FUNCTION DECLARATIONS
 @variables t
 D = Differential(t)
@@ -14,8 +14,8 @@ D = Differential(t)
 @variables lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) br(t) cbr(t) tf(t) mtf(t) fm(t)
 @variables dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t) sfsn(t) diopc(t) diopc2(t)
 @variables diopc1(t) frsn(t) fie(t) aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t)
-@variables fcapc(t) fsafc(t) iopc(t) io(t) fcaor(t) icor(t) ic(t) icdr(t) alic(t) icir(t)
-@variables fioai(t) fioaa(t) fioas(t) fioas1(t) fioas2(t) isopc(t) isopc1(t) isopc2(t)
+@variables fcapc(t) fsafc(t) iopc(t) io(t) icor(t) ic(t) icdr(t) alic(t) icir(t)
+@variables fioai(t) fioas(t) fioas1(t) fioas2(t) isopc(t) isopc1(t) isopc2(t)
 @variables fioac(t) fioacv(t) fioacc(t) scir(t) sc(t) scdr(t) alsc(t) sopc(t) so(t) cuf(t)
 @variables scor(t) j(t) pjis(t) jpicu(t) pjas(t) jph(t) pjss(t) jpscu(t) lf(t) luf(t)
 @variables lufd(t) lfc(t) al(t) pal(t) f(t) fpc(t) ifpc(t) ifpc1(t) ifpc2(t) tai(t)
@@ -24,7 +24,7 @@ D = Differential(t)
 @variables mlymc(t) all(t) llmy(t) llmy1(t) llmy2(t) ler(t) uilpc(t) uilr(t) lrui(t)
 @variables uil(t) lfert(t) lfdr(t) lfd(t) lfr(t) lfrt(t) falm(t) fr(t) pfr(t) nr(t)
 @variables nrur(t) nruf(t) pcrum(t) nrfr(t) fcaor(t) fcaor1(t) fcaor2(t) ppgr(t) ppgf(t)
-@variables ppgf2(t) ppgio(t) ppgao(t) ppapr(t) ppapr3(t) ppapr2(t) ppapr1(t) pptd(t)
+@variables ppgio(t) ppgao(t) ppapr(t) ppapr3(t) ppapr2(t) ppapr1(t)
 @variables ppol(t) ppolx(t) ppasr(t) ahlm(t) ahl(t) foa(t) foi(t) fos(t)
 # ODEs
 global eqs = [
@@ -60,7 +60,7 @@ global eqs = [
     lmc ~ 1 - (cmi * fpu),  # line 25 page 167
     lmp ~ interpolate(ppolx, lmpt, lmpts), # line 26 page 167
     # BIRTH RATE EQUATIONS
-    br ~ clip(dr, tf * p2 * 0.5 / rlt, t, pet)
+    br ~ clip(dr, tf * p2 * 0.5 / rlt, t, pet),
     cbr ~ 1000.0 * br / pop, # line 32 page 168
     tf ~ min(mtf, mtf * (1 - fce) + dtf * fce), # line 33 page 168
     mtf ~ mtfn * fm, # line 34 page 168
@@ -90,28 +90,26 @@ global eqs = [
     # INDUSTRIAL SUBSECTOR
     iopc ~ io / pop,
     io ~ ic * (1 - fcaor) * cuf / icor,
-    fcaor ~ interpolate(t, fcaort, fcaorts),
     icor ~ clip(icor2, icor1, t, pyear),
     D(ic) ~ icir - icdr,
     icdr ~ ic / alic,
     alic ~ clip(alic2, alic1, t, pyear),
     icir ~ io * fioai,
     fioai ~ 1 - fioaa - fioas - fioac,
-    fioaa ~ interpolate(t, fioaat, fioaats),
-    fioas ~ clip(fioas2, fioas1, t, pyear),
-    fioas1 ~ interpolate(sopc / isopc, fioas1t, fioas1ts),
-    fioas2 ~ interpolate(sopc / isopc, fioas2t, fioas2ts),
+    fioac ~ clip(fioacv, fioacc, t, iet),
+    fioacc ~ clip(fioac2, fioac1, t, pyear),
+    fioacv ~ interpolate(iopc / iopcd, fioacvt, fioacvts),
+    # SERVICE SUBSECTOR
     isopc ~ clip(isopc2, isopc1, t, pyear),
     isopc1 ~ interpolate(iopc, isopc1t, isopc1ts),
     isopc2 ~ interpolate(iopc, isopc2t, isopc2ts),
-    fioac ~ clip(fioacv, fioacc, t, iet),
-    fioacv ~ interpolate(iopc / iopcd, fioacvt, fioacvts),
-    fioacc ~ clip(fioac2, fioac1, t, pyear),
+    fioas ~ clip(fioas2, fioas1, t, pyear),
+    fioas1 ~ interpolate(sopc / isopc, fioas1t, fioas1ts),
+    fioas2 ~ interpolate(sopc / isopc, fioas2t, fioas2ts),
     scir ~ io * fioas,
     D(sc) ~ scir - scdr,
     scdr ~ sc / alsc,
     alsc ~ clip(alsc2, alsc1, t, pyear),
-    # SERVICE SUBSECTOR
     sopc ~ so / pop,
     so ~ sc * cuf / scor,
     cuf ~ interpolate(lufd, cuft, cufts),
@@ -192,19 +190,18 @@ global eqs = [
     # POLLUTION SECTOR
     ppgr ~ (ppgio + ppgao) * ppgf,
     ppgf ~ clip(ppgf2, ppgf1, t, pyear),
-    ppgf2 ~ switch(ppgf21, ppgf22, swat),
     ppgio ~ pcrum * pop * frpm * imef * imti,
     ppgao ~ aiph * al * fipm * amti,
     ppapr ~ 3 * ppapr3 / pptd,
     D(ppapr3) ~ (3 * ppapr2 / pptd) - ppapr,
     D(ppapr2) ~ 3 * (ppapr1 - ppapr2) / pptd,
     D(ppapr1) ~ ppgr - (3 * ppapr1 / pptd),
-    pptd ~ clip(pptd2, pptd1, t, pyear),
     D(ppol) ~ ppapr - ppasr,
     ppolx ~ ppol / ppol70,
     ppasr ~ ppol / (1.4 * ahl),
     ahlm ~ interpolate(ppolx, ahlmt, ahlmts),
     ahl ~ ahl70 * ahlm,
+    # SUPPLEMENTARY EQUATIONS
     foa ~ (0.22) * f / (0.22 * f + so + io),
     foi ~ io / (0.22 * f + so + io),
     fos ~ so / (0.22 * f + so + io),
@@ -274,14 +271,13 @@ global p = [
     icor => icorv,
     pyear => pyearv,
     ppgf1 => ppgf1v,
-    ppgf21 => ppgf21v,
+    ppgf2 => ppgf2v,
     frpm => frpmv,
     imef => imefv,
     imti => imtiv,
     fipm => fipmv,
     amti => amtiv,
-    pptd1 => pptd1v,
-    pptd2 => pptd2v,
+    pptd => pptdv,
     ppol70 => ppol70v,
     ahl70 => ahl70v,
     swat => swatv,
@@ -311,12 +307,20 @@ global u0 = [
     sfsn => sfsn0,
     dcfs => dcfs0,
     ple => ple0,
+    ple1 => ple10,
+    ple2 => ple20,
+    diopc => diopc0,
+    diopc1 => diopc10,
+    diopc2 => diopc20,
+    aiopc => aiopc0,
     cmple => cmple0,
     dtf => dtf0,
     nfc => nfc0,
     fsafc => fsafc0,
     fcapc => fcapc0,
     fcfpc => fcfpc0,
+    fcfpc1 => fcfpc10,
+    fcfpc2 => fcfpc20,
     fce => fce0,
     tf => tf0,
     br => br0,
@@ -338,21 +342,16 @@ global u0 = [
     nr => nr0,
     ic => ic0,
     pcrum => pcrum0,
-    pop => pop0,
     ppgio => ppgio0,
     aiph => aiph0,
     al => al0,
     ppgao => ppgao0,
     ppgr => ppgr0,
-    pptd => pptd0,
     ppapr3 => ppapr30,
+    ppapr2 => ppapr20,
+    ppapr1 => ppapr10,
     ppol => ppol0,
     pcti => pcti0,
-    ppgf22 => ppgf220,
-    ppolx => ppolx0,
-    lmp1 => lmp10,
-    lmp2 => lmp20,
-    lmp => lmp0,
-    plmp => plmp0
+    ppolx => ppolx0
 ]
 

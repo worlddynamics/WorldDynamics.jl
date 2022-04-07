@@ -1,3 +1,9 @@
+# FOUR-LEVEL POPULATION
+global p10 = 65e7
+global p20 = 70e7
+global p30 = 19e7
+global p40 = 6e7
+global pop0 = p10 + p20 + p30 + p40
 # POPULATION SECTOR
 global sopc0 = 1.5e11 / pop0 # lines 76-82 page 168
 global hsapc0 = interpolate(sopc0, hsapct, hsapcts) # lines 11-12 page 167
@@ -18,6 +24,12 @@ global frsn0 = 0.82 # lines 50-52 page 168
 global sfsn0 = interpolate(iopc0, sfsnt, sfsnts)  # lines 46-49 page 168
 global dcfs0 = dcfsnv * frsn0 * sfsn0 # lines 43-45 page 168
 global ple0 = le0 # lines 41-42 page 168
+global ple10 = le0
+global ple20 = le0
+global diopc0 = iopc0
+global diopc10 = iopc0
+global diopc20 = iopc0
+global aiopc0 = iopc0
 global cmple0 = interpolate(ple0, cmplet, cmplets) # lines 39-40 page 168
 global dtf0 = dcfs0 * cmple0 # line 38 page 168
 global nfc0 = mtf0 / dtf0 - 1.0 # line 56 page 168
@@ -25,15 +37,12 @@ global fsafc0 = interpolate(nfc0, fsafct, fsafcts) # lines 62-63 page 168
 global fcapc0 = fsafc0 * sopc0 # line 61 page 168
 # TODO: see which ones of the following are necessary 
 global fcfpc0 = fcapc0 # line 60 page 168
+global fcfpc10 = fcapc0
+global fcfpc20 = fcapc0
 global fce0 = interpolate(fcfpc0, fcet, fcets) # lines 57-59 page 168
 global tf0 = min(mtf0, mtf0 * (1 - fce0) + dtf0 * fce0) # line 33 page 168
 global br0 = tf0 * pop0 * ffwv / rltv # lines 28-31 page 168
 global cbr0 = 1000 * br0 / pop0 # line 32 page 168
-# FOUR-LEVEL POPULATION
-global p10 = 65e7
-global p20 = 70e7
-global p30 = 19e7
-global p40 = 6e7
 # CAPITAL SECTOR
 global ic0 = 2.1e11
 global sc0 = 1.44e11
@@ -59,6 +68,8 @@ global ppgao0 = aiph0 * al0 * fipmv * amtiv
 global ppgr0 = (ppgio0 + ppgao0) * ppgf1v
 global pptd0 = clip(pptd2v, pptd1v, t0, pyearv)
 global ppapr30 = pptd0 * ppgr0 / 3
+global ppapr20 = ppapr30
+global ppapr10 = ppapr30
 global ppol0 = 2.5e7
 global pcti0 = 1
 global ppgf220 = pcti0
