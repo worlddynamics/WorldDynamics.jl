@@ -2,7 +2,10 @@ using Interpolations, ModelingToolkit, DifferentialEquations
 using PlotlyJS
 
 global t0 = 1900
-global t1 = 2100
+global t1 = 1975
+#global t1 = 1970 # agriculture
+#global t1 = 2000 # capital
+#global t1 = 2100 # nonrenewable, pollution, world
 
 include("functions.jl")
 # Registered functions used in equations
@@ -13,10 +16,10 @@ include("functions.jl")
 @register step(t, hght, sttm)
 @register switch(v1, v2, z)
 
-include("parameters.jl")
-include("tables.jl")
-include("initialisations.jl")
-include("odesystem.jl")
+include("pop4/parameters.jl")
+include("pop4/tables.jl")
+include("pop4/initialisations.jl")
+include("pop4/odesystem.jl")
 
 # ODE system creation and simplification
 @named sys = ODESystem(eqs)
@@ -31,5 +34,4 @@ println("odesystem created")
 # sol = solve(prob)
 sol = solve(prob, Tsit5())
 println("odesystem solved")
-plot_sol_7_7(sol)
-
+plot_sol_2_84(sol)
