@@ -1,6 +1,7 @@
-include("parameters.jl")
-include("tablespop.jl")
-include("initialisations.jl")
+include("../common_pop/parameters.jl")
+include("../common_pop/tables.jl")
+include("../common_pop/initialisations.jl")
+include("../common_pop/odesystem.jl")
 
 # Equations
 global eqs = [

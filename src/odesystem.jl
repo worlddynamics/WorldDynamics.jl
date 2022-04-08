@@ -8,7 +8,6 @@
 @parameters fipm, amti, pptd, ppol70, ahl70, swat, tdd, pcti, pd, pyear
 ## FUNCTION DECLARATIONS
 @variables t
-D = Differential(t)
 @variables pop(t) p1(t) d1(t) m1(t) mat1(t) p2(t) d2(t) m2(t) mat2(t) p3(t) d3(t) m3(t)
 @variables mat3(t) p4(t) d4(t) m4(t) dr(t) cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t)
 @variables lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t) br(t) cbr(t) tf(t) mtf(t) fm(t)
@@ -26,66 +25,66 @@ D = Differential(t)
 @variables nrur(t) nruf(t) pcrum(t) nrfr(t) fcaor(t) fcaor1(t) fcaor2(t) ppgr(t) ppgf(t)
 @variables ppgio(t) ppgao(t) ppapr(t) ppapr3(t) ppapr2(t) ppapr1(t)
 @variables ppol(t) ppolx(t) ppasr(t) ahlm(t) ahl(t) foa(t) foi(t) fos(t)
+D = Differential(t)
 # ODEs
 global eqs = [
     # POPULATION SECTOR
-    pop ~ p1 + p2 + p3 + p4,
-    D(p1) ~ br - d1 - mat1,
-    d1 ~ p1 * m1,
-    m1 ~ interpolate(le, m1t, m1ts),
-    mat1 ~ p1 * (1 - m1) / 15,
-    D(p2) ~ mat1 - d2 - mat2,
-    d2 ~ p2 * m2,
-    m2 ~ interpolate(le, m2t, m2ts),
-    mat2 ~ p2 * (1 - m2) / 30,
-    D(p3) ~ mat2 - d3 - mat3,
-    d3 ~ p3 * m3,
-    m3 ~ interpolate(le, m3t, m3ts),
-    mat3 ~ p3 * (1 - m3) / 20,
-    D(p4) ~ mat3 - d4,
-    d4 ~ p4 * m4,
-    m4 ~ interpolate(le, m4t, m4ts),
-    # DEATH RATE EQUATIONS
-    dr ~ d1 + d2 + d3 + d4,
-    cdr ~ 1000.0 * dr / pop, # line 5 page 167
-    le ~ len * lmf * lmhs * lmp * lmc, # line 6 page 167
-    lmf ~ interpolate(fpc / sfpc, lmft, lmfts), # line 8 page 167
-    hsapc ~ interpolate(sopc, hsapct, hsapcts), # line 11 page 167
-    D(ehspc) ~ (hsapc - ehspc) / hsid, # line 13 page 167
-    lmhs ~ clip(lmhs2, lmhs1, t, iphst), # line 15 page 167
-    lmhs1 ~ interpolate(ehspc, lmhs1t, lmhs1ts), # line 17 page 167
-    lmhs2 ~ interpolate(ehspc, lmhs2t, lmhs2ts), # line 19 page 167
-    fpu ~ interpolate(pop, fput, fputs), # line 21 page 167
-    cmi ~ interpolate(iopc, cmit, cmits), # line 23 page 167
-    lmc ~ 1 - (cmi * fpu),  # line 25 page 167
-    lmp ~ interpolate(ppolx, lmpt, lmpts), # line 26 page 167
+    pop ~ p1 + p2 + p3 + p4, # Line 1
+    D(p1) ~ br - d1 - mat1, # Line 2
+    d1 ~ p1 * m1, # Line 3
+    m1 ~ interpolate(le, m1t, m1ts), # Line 4
+    mat1 ~ p1 * (1 - m1) / 15, # Line 5
+    D(p2) ~ mat1 - d2 - mat2, # Line 6
+    d2 ~ p2 * m2, # Line 7
+    m2 ~ interpolate(le, m2t, m2ts), # Line 8
+    mat2 ~ p2 * (1 - m2) / 30, # Line 9
+    D(p3) ~ mat2 - d3 - mat3,  # Line 10
+    d3 ~ p3 * m3,  # Line 11
+    m3 ~ interpolate(le, m3t, m3ts), # Line 12
+    mat3 ~ p3 * (1 - m3) / 20,  # Line 13
+    D(p4) ~ mat3 - d4, # Line 14
+    d4 ~ p4 * m4, # Line 15
+    m4 ~ interpolate(le, m4t, m4ts), # Line 16
+    # DEATH RATE SUBSECTOR
+    dr ~ d1 + d2 + d3 + d4, # Line 17
+    cdr ~ 1000.0 * dr / pop, # Line 18
+    le ~ len * lmf * lmhs * lmp * lmc, # Line 19
+    lmf ~ interpolate(fpc / sfpc, lmft, lmfts), # Line 20
+    hsapc ~ interpolate(sopc, hsapct, hsapcts), # Line 21
+    D(ehspc) ~ (hsapc - ehspc) / hsid,
+    lmhs ~ clip(lmhs2, lmhs1, t, iphst),
+    lmhs1 ~ interpolate(ehspc, lmhs1t, lmhs1ts),
+    lmhs2 ~ interpolate(ehspc, lmhs2t, lmhs2ts),
+    fpu ~ interpolate(pop, fput, fputs),
+    cmi ~ interpolate(iopc, cmit, cmits),
+    lmc ~ 1 - (cmi * fpu),
+    lmp ~ interpolate(ppolx, lmpt, lmpts),
     # BIRTH RATE EQUATIONS
     br ~ clip(dr, tf * p2 * 0.5 / rlt, t, pet),
-    cbr ~ 1000.0 * br / pop, # line 32 page 168
-    tf ~ min(mtf, mtf * (1 - fce) + dtf * fce), # line 33 page 168
-    mtf ~ mtfn * fm, # line 34 page 168
-    fm ~ interpolate(le, fmt, fmts), # line 36 page 168
-    dtf ~ dcfs * cmple, # line 38 page 168
-    cmple ~ interpolate(ple, cmplet, cmplets), # line 39 page 168
-    D(ple) ~ 3 * (ple2 - ple) / lpd, # line 41 page 168
-    D(ple2) ~ 3 * (ple1 - ple2) / lpd, # line 41 page 168
-    D(ple1) ~ 3 * (le - ple1) / lpd, # line 41 page 168
-    dcfs ~ clip(2, dcfsn * frsn * sfsn, t, zpgt), # line 43 page 168
-    sfsn ~ interpolate(diopc, sfsnt, sfsnts), # line 46 page 168
-    D(diopc) ~ 3 * (diopc2 - diopc) / sad, # line 48 page 168
-    D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 48 page 168
-    D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 48 page 168
-    frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 1905), # line 50 page 168
-    # frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 5), # line 50 page 168
-    fie ~ (iopc - aiopc) / aiopc, # line 53 page 168
-    D(aiopc) ~ (iopc - aiopc) / ieat, # line 54 page 168
-    nfc ~ (mtf / dtf) - 1, # line 56 page 168
-    fce ~ clip(1.0, interpolate(fcfpc, fcet, fcets), t, fcest), # line 57 page 168
-    D(fcfpc) ~ 3 * (fcfpc2 - fcfpc) / hsid, # line 60 page 168
-    D(fcfpc2) ~ 3 * (fcfpc1 - fcfpc2) / hsid, # line 60 page 168
-    D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid, # line 60 page 168
-    fcapc ~ fsafc * sopc, # line 61 page 168
-    fsafc ~ interpolate(nfc, fsafct, fsafcts), # line 62 page 168
+    cbr ~ 1000.0 * br / pop,
+    tf ~ min(mtf, mtf * (1 - fce) + dtf * fce),
+    mtf ~ mtfn * fm,
+    fm ~ interpolate(le, fmt, fmts),
+    dtf ~ dcfs * cmple,
+    cmple ~ interpolate(ple, cmplet, cmplets),
+    D(ple) ~ 3 * (ple2 - ple) / lpd,
+    D(ple2) ~ 3 * (ple1 - ple2) / lpd,
+    D(ple1) ~ 3 * (le - ple1) / lpd,
+    dcfs ~ clip(2, dcfsn * frsn * sfsn, t, zpgt),
+    sfsn ~ interpolate(diopc, sfsnt, sfsnts),
+    D(diopc) ~ 3 * (diopc2 - diopc) / sad,
+    D(diopc2) ~ 3 * (diopc1 - diopc2) / sad,
+    D(diopc1) ~ 3 * (iopc - diopc1) / sad,
+    frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, t0 + 1),
+    fie ~ (iopc - aiopc) / aiopc,
+    D(aiopc) ~ (iopc - aiopc) / ieat,
+    nfc ~ (mtf / dtf) - 1,
+    fce ~ clip(1.0, interpolate(fcfpc, fcet, fcets), t, fcest),
+    D(fcfpc) ~ 3 * (fcfpc2 - fcfpc) / hsid,
+    D(fcfpc2) ~ 3 * (fcfpc1 - fcfpc2) / hsid,
+    D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid,
+    fcapc ~ fsafc * sopc,
+    fsafc ~ interpolate(nfc, fsafct, fsafcts),
     # CAPITAL SECTOR
     # INDUSTRIAL SUBSECTOR
     iopc ~ io / pop,
@@ -358,21 +357,21 @@ global u0 = [
 function plot_sol_7_7(sol)
     traces = GenericTrace[]
     push!(traces, scatter(x=sol[t], y=sol[nrfr], name="nrfr", yaxis="y1"))
-    # push!(traces, scatter(x=sol[t], y=sol[iopc], name="iopc", yaxis="y2"))
-    # push!(traces, scatter(x=sol[t], y=sol[fpc], name="fpc", yaxis="y3"))
-    # push!(traces, scatter(x=sol[t], y=sol[pop], name="pop", yaxis="y4"))
-    # push!(traces, scatter(x=sol[t], y=sol[ppolx], name="ppolx", yaxis="y5"))
-    # push!(traces, scatter(x=sol[t], y=sol[cbr], name="cbr", yaxis="y6"))
-    # push!(traces, scatter(x=sol[t], y=sol[cdr], name="cdr", yaxis="y7"))
+    push!(traces, scatter(x=sol[t], y=sol[iopc], name="iopc", yaxis="y2"))
+    push!(traces, scatter(x=sol[t], y=sol[fpc], name="fpc", yaxis="y3"))
+    push!(traces, scatter(x=sol[t], y=sol[pop], name="pop", yaxis="y4"))
+    push!(traces, scatter(x=sol[t], y=sol[ppolx], name="ppolx", yaxis="y5"))
+    push!(traces, scatter(x=sol[t], y=sol[cbr], name="cbr", yaxis="y6"))
+    push!(traces, scatter(x=sol[t], y=sol[cdr], name="cdr", yaxis="y7"))
     plot(traces,
         Layout(xaxis_domain=[0.1, 0.7],
             yaxis=attr(title="nrfr", range=[0, 1]),
-            # yaxis2=attr(title="iopc", overlaying="y", side="right", position=0.70, range=[0, 1000]),
-            # yaxis3=attr(title="fpc", overlaying="y", side="right", position=0.74, range=[0, 1000]),
-            # yaxis4=attr(title="pop", overlaying="y", side="right", position=0.78, range=[0, 16e9]),
-            # yaxis5=attr(title="ppolx", overlaying="y", side="right", position=0.82, range=[0, 32]),
-            # yaxis6=attr(title="cbr", overlaying="y", side="right", position=0.86, range=[0, 50]),
-            # yaxis7=attr(title="cdr", overlaying="y", side="right", position=0.90, range=[0, 50]),
+            yaxis2=attr(title="iopc", overlaying="y", side="right", position=0.70, range=[0, 1000]),
+            yaxis3=attr(title="fpc", overlaying="y", side="right", position=0.74, range=[0, 1000]),
+            yaxis4=attr(title="pop", overlaying="y", side="right", position=0.78, range=[0, 16e9]),
+            yaxis5=attr(title="ppolx", overlaying="y", side="right", position=0.82, range=[0, 32]),
+            yaxis6=attr(title="cbr", overlaying="y", side="right", position=0.86, range=[0, 50]),
+            yaxis7=attr(title="cdr", overlaying="y", side="right", position=0.90, range=[0, 50]),
         )
     )
 end
