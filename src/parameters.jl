@@ -1,9 +1,8 @@
+
+global pyearv = 1975
 # POPULATION SECTOR
 global lenv = 28
-global sfpcv = 230
 global hsidv = 20
-global iphstv = 1940
-global ffwv = 0.21
 global rltv = 30
 global petv = 4000
 global mtfnv = 12
@@ -14,15 +13,14 @@ global sadv = 20
 global ieatv = 3
 global fcestv = 4000
 # CAPITAL SECTOR
-global pyearv = 1975
 global icor1v = 3
 global icor2v = 3
 global alic1v = 14
 global alic2v = 14
 global ietv = 4000
-global iopcdv = 400
 global fioac1v = 0.43
 global fioac2v = 0.43
+global iopcdv = 400
 global alsc1v = 20
 global alsc2v = 20
 global scor1v = 1
@@ -44,25 +42,10 @@ global uildtv = 10
 global ilfv = 600
 global sfpcv = 230
 global fspdv = 2
-global eyearv = 2500
-global popiv = 1.65e9
-global ioiv = 0.67e11
-global ppolxiv = 0.12
-global pyearv = 1975
-global exppopv = 0.013
 # NONRENEWABLE SECTOR
 global nriv = 1e12
 global nruf1v = 1
 global nruf2v = 1
-global popiv = 1.65e9
-global gcv = 0.012
-global pop2v = 4e9
-global zpgtv = 2500
-global fioaav = 0.12
-global fioasv = 0.12
-global fioacv = 0.43
-global alicv = 14
-global icorv = 3
 # POLLUTION SECTOR
 global ppgf1v = 1
 global ppgf2v = 1

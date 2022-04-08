@@ -49,7 +49,7 @@ global common_eqs = [
     D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 48 page 168
     D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 48 page 168
     # frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 1905), # line 50 page 168
-    frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 5), # line 50 page 168
+    frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, t0 + 1), # line 50 page 168
     fie ~ (iopc - aiopc) / aiopc, # line 53 page 168
     D(aiopc) ~ (iopc - aiopc) / ieat, # line 54 page 168
     nfc ~ (mtf / dtf) - 1, # line 56 page 168

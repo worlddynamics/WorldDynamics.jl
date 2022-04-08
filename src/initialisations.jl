@@ -35,18 +35,12 @@ global dtf0 = dcfs0 * cmple0 # line 38 page 168
 global nfc0 = mtf0 / dtf0 - 1.0 # line 56 page 168
 global fsafc0 = interpolate(nfc0, fsafct, fsafcts) # lines 62-63 page 168
 global fcapc0 = fsafc0 * sopc0 # line 61 page 168
-# TODO: see which ones of the following are necessary 
 global fcfpc0 = fcapc0 # line 60 page 168
 global fcfpc10 = fcapc0
 global fcfpc20 = fcapc0
-global fce0 = interpolate(fcfpc0, fcet, fcets) # lines 57-59 page 168
-global tf0 = min(mtf0, mtf0 * (1 - fce0) + dtf0 * fce0) # line 33 page 168
-global br0 = tf0 * pop0 * ffwv / rltv # lines 28-31 page 168
-global cbr0 = 1000 * br0 / pop0 # line 32 page 168
 # CAPITAL SECTOR
 global ic0 = 2.1e11
 global sc0 = 1.44e11
-global cuf0 = 1
 global lufd0 = 1.0
 # AGRICULTURAL SECTOR
 global al0 = 9e8
@@ -57,17 +51,14 @@ global lfert0 = 600
 global pfr0 = 1
 # NONRENEWABLE SECTOR
 global nr0 = 1e12
-global ic0 = 2.1e11
 # POLLUTION SECTOR
-global pcrum0 = interpolate(t0, pcrumt, pcrumts) * 1e-2
-global pop0 = interpolate(t0, popt, popts) * 1e8
+global pcrum0 = interpolate(iopc0, pcrumt, pcrumts) * 1e-2
 global ppgio0 = pcrum0 * pop0 * frpmv * imefv * imtiv
-global aiph0 = interpolate(t0, aipht, aiphts)
-global al0 = interpolate(t0, alt, alts) * 1e8
+global falm0 = interpolate(pfr0, falmt, falmts)
+global aiph0 = ai0 * (1 - falm0) / al0
 global ppgao0 = aiph0 * al0 * fipmv * amtiv
 global ppgr0 = (ppgio0 + ppgao0) * ppgf1v
 global ppapr30 = pptdv * ppgr0 / 3
 global ppapr20 = ppapr30
 global ppapr10 = ppapr30
 global ppol0 = 2.5e7
-global pcti0 = 1

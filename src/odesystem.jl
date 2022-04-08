@@ -1,11 +1,8 @@
 ## PARAMETER DECLARATIONS
-@parameters len, sfpc, hsid, iphst, ffw, rlt, pet, mtfn, lpd, zpgt, dcfsn, sad, ieat
-@parameters fcest, pyear, icor1, icor2, alic1, alic2
-@parameters iet, iopcd, fioac1, fioac2, alsc1, alsc2, scor1, scor2, lfpf, lufdt, palt
-@parameters lfh, pl, alai1, alai2, lyf1, lyf2, io70, sd, alln, uildt, ilf, sfpc, fspd
-@parameters eyear, popi, ioi, ppolxi, pyear, exppop, nri, nruf1, nruf2, popi, gc, pop2
-@parameters zpgt, pyear, ppgf1, ppgf2, frpm, imef, imti
-@parameters fipm, amti, pptd, ppol70, ahl70, swat, tdd, pcti, pd, pyear
+@parameters pyear len hsid rlt pet mtfn lpd zpgt dcfsn sad ieat fcest
+@parameters icor1 icor2 alic1 alic2 iet fioac1 fioac2 iopcd alsc1 alsc2 scor1 scor2 lfpf lufdt
+@parameters palt lfh pl alai1 alai2 lyf1 lyf2 io70 sd alln uildt ilf sfpc fspd
+@parameters nri nruf1 nruf2 ppgf1 ppgf2 frpm imef imti fipm amti pptd ppol70 ahl70
 ## FUNCTION DECLARATIONS
 @variables t
 @variables pop(t) p1(t) d1(t) m1(t) mat1(t) p2(t) d2(t) m2(t) mat2(t) p3(t) d3(t) m3(t)
@@ -52,14 +49,14 @@ global eqs = [
     lmf ~ interpolate(fpc / sfpc, lmft, lmfts), # Line 20
     hsapc ~ interpolate(sopc, hsapct, hsapcts), # Line 21
     D(ehspc) ~ (hsapc - ehspc) / hsid,
-    lmhs ~ clip(lmhs2, lmhs1, t, iphst),
+    lmhs ~ clip(lmhs2, lmhs1, t, 1940),
     lmhs1 ~ interpolate(ehspc, lmhs1t, lmhs1ts),
     lmhs2 ~ interpolate(ehspc, lmhs2t, lmhs2ts),
     fpu ~ interpolate(pop, fput, fputs),
     cmi ~ interpolate(iopc, cmit, cmits),
     lmc ~ 1 - (cmi * fpu),
     lmp ~ interpolate(ppolx, lmpt, lmpts),
-    # BIRTH RATE EQUATIONS
+    # BIRTH RATE SUBSECTOR
     br ~ clip(dr, tf * p2 * 0.5 / rlt, t, pet),
     cbr ~ 1000.0 * br / pop,
     tf ~ min(mtf, mtf * (1 - fce) + dtf * fce),
@@ -111,7 +108,7 @@ global eqs = [
     alsc ~ clip(alsc2, alsc1, t, pyear),
     sopc ~ so / pop,
     so ~ sc * cuf / scor,
-    cuf ~ interpolate(lufd, cuft, cufts),
+    cuf ~ clip(interpolate(lufd, cuft, cufts), 1, t, t0 + 1),
     scor ~ clip(scor2, scor1, t, pyear),
     # JOB SUBSECTOR
     j ~ pjis + pjas + pjss,
@@ -124,7 +121,7 @@ global eqs = [
     lf ~ (p2 + p3) * lfpf,
     luf ~ j / lf,
     D(lufd) ~ (luf - lufd) / lufdt,
-    # AGRICULTURE SECTOR
+    # AGRICULTURAL SECTOR
     # LOOP 1: FOOD FROM INVESTMENT IN LAND DEVELOPMENT
     lfc ~ al / palt,
     D(al) ~ ldr - ler - lrui,
@@ -207,11 +204,10 @@ global eqs = [
 ]
 # Parameters
 global p = [
+    # POPULATION SECTOR
+    pyear => pyearv,
     len => lenv,
-    sfpc => sfpcv,
     hsid => hsidv,
-    iphst => iphstv,
-    ffw => ffwv,
     rlt => rltv,
     pet => petv,
     mtfn => mtfnv,
@@ -221,21 +217,22 @@ global p = [
     sad => sadv,
     ieat => ieatv,
     fcest => fcestv,
-    pyear => pyearv,
+    # CAPITAL SECTOR
     icor1 => icor1v,
     icor2 => icor2v,
     alic1 => alic1v,
     alic2 => alic2v,
     iet => ietv,
-    iopcd => iopcdv,
     fioac1 => fioac1v,
     fioac2 => fioac2v,
+    iopcd => iopcdv,
     alsc1 => alsc1v,
     alsc2 => alsc2v,
     scor1 => scor1v,
     scor2 => scor2v,
     lfpf => lfpfv,
     lufdt => lufdtv,
+    # AGRICULTURAL SECTOR
     palt => paltv,
     lfh => lfhv,
     pl => plv,
@@ -250,25 +247,11 @@ global p = [
     ilf => ilfv,
     sfpc => sfpcv,
     fspd => fspdv,
-    eyear => eyearv,
-    popi => popiv,
-    ioi => ioiv,
-    ppolxi => ppolxiv,
-    pyear => pyearv,
-    exppop => exppopv,
+    # NONRENEWABLE SECTOR
     nri => nriv,
     nruf1 => nruf1v,
     nruf2 => nruf2v,
-    popi => popiv,
-    gc => gcv,
-    pop2 => pop2v,
-    zpgt => zpgtv,
-    fioaa => fioaav,
-    fioas => fioasv,
-    fioac => fioacv,
-    alic => alicv,
-    icor => icorv,
-    pyear => pyearv,
+    # POLLUTION SECTOR
     ppgf1 => ppgf1v,
     ppgf2 => ppgf2v,
     frpm => frpmv,
@@ -278,33 +261,17 @@ global p = [
     amti => amtiv,
     pptd => pptdv,
     ppol70 => ppol70v,
-    ahl70 => ahl70v,
-    swat => swatv,
-    tdd => tddv,
-    pcti => pctiv,
-    pd => pdv,
-    pyear => pyearv
+    ahl70 => ahl70v
 ]
 # Initialisations
 global u0 = [
-    sopc => sopc0,
-    hsapc => hsapc0,
+    # POPULATION SECTOR
+    p1 => p10,
+    p2 => p20,
+    p3 => p30,
+    p4 => p40,
     ehspc => ehspc0,
-    fpc => fpc0,
-    lmf => lmf0,
-    lmhs => lmhs0,
-    ppolx => ppolx0,
-    lmp => lmp0,
-    iopc => iopc0,
-    cmi => cmi0,
-    fpu => fpu0,
-    lmc => lmc0,
     le => le0,
-    fm => fm0,
-    mtf => mtf0,
-    frsn => frsn0,
-    sfsn => sfsn0,
-    dcfs => dcfs0,
     ple => ple0,
     ple1 => ple10,
     ple2 => ple20,
@@ -312,46 +279,27 @@ global u0 = [
     diopc1 => diopc10,
     diopc2 => diopc20,
     aiopc => aiopc0,
-    cmple => cmple0,
-    dtf => dtf0,
-    nfc => nfc0,
-    fsafc => fsafc0,
-    fcapc => fcapc0,
     fcfpc => fcfpc0,
     fcfpc1 => fcfpc10,
     fcfpc2 => fcfpc20,
-    fce => fce0,
-    tf => tf0,
-    br => br0,
-    cbr => cbr0,
-    p1 => p10,
-    p2 => p20,
-    p3 => p30,
-    p4 => p40,
+    # CAPITAL SECTOR
     ic => ic0,
     sc => sc0,
-    cuf => cuf0,
     lufd => lufd0,
+    # AGRICULTURAL SECTOR
     al => al0,
     pal => pal0,
     ai => ai0,
     uil => uil0,
     lfert => lfert0,
     pfr => pfr0,
+    # NONRENEWABLE SECTOR
     nr => nr0,
-    ic => ic0,
-    pcrum => pcrum0,
-    ppgio => ppgio0,
-    aiph => aiph0,
-    al => al0,
-    ppgao => ppgao0,
-    ppgr => ppgr0,
+    # POLLUTION SECTOR
     ppapr3 => ppapr30,
     ppapr2 => ppapr20,
     ppapr1 => ppapr10,
-    ppol => ppol0,
-    pcti => pcti0,
-    ppolx => ppolx0
+    ppol => ppol0
 ]
 
 function plot_sol_7_7(sol)
