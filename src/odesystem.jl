@@ -358,21 +358,21 @@ global u0 = [
 function plot_sol_7_7(sol)
     traces = GenericTrace[]
     push!(traces, scatter(x=sol[t], y=sol[nrfr], name="nrfr", yaxis="y1"))
-    push!(traces, scatter(x=sol[t], y=sol[iopc], name="iopc", yaxis="y2"))
-    push!(traces, scatter(x=sol[t], y=sol[fpc], name="fpc", yaxis="y3"))
-    push!(traces, scatter(x=sol[t], y=sol[pop], name="pop", yaxis="y4"))
-    push!(traces, scatter(x=sol[t], y=sol[ppolx], name="ppolx", yaxis="y5"))
-    push!(traces, scatter(x=sol[t], y=sol[cbr], name="cbr", yaxis="y6"))
-    push!(traces, scatter(x=sol[t], y=sol[cdr], name="cdr", yaxis="y7"))
+    # push!(traces, scatter(x=sol[t], y=sol[iopc], name="iopc", yaxis="y2"))
+    # push!(traces, scatter(x=sol[t], y=sol[fpc], name="fpc", yaxis="y3"))
+    # push!(traces, scatter(x=sol[t], y=sol[pop], name="pop", yaxis="y4"))
+    # push!(traces, scatter(x=sol[t], y=sol[ppolx], name="ppolx", yaxis="y5"))
+    # push!(traces, scatter(x=sol[t], y=sol[cbr], name="cbr", yaxis="y6"))
+    # push!(traces, scatter(x=sol[t], y=sol[cdr], name="cdr", yaxis="y7"))
     plot(traces,
         Layout(xaxis_domain=[0.1, 0.7],
             yaxis=attr(title="nrfr", range=[0, 1]),
-            yaxis2=attr(title="iopc", overlaying="y", side="right", position=0.70, range=[0, 1000]),
-            yaxis3=attr(title="fpc", overlaying="y", side="right", position=0.74, range=[0, 1000]),
-            yaxis4=attr(title="pop", overlaying="y", side="right", position=0.78, range=[0, 16e9]),
-            yaxis5=attr(title="ppolx", overlaying="y", side="right", position=0.82, range=[0, 32]),
-            yaxis6=attr(title="cbr", overlaying="y", side="right", position=0.86, range=[0, 50]),
-            yaxis7=attr(title="cdr", overlaying="y", side="right", position=0.90, range=[0, 50]),
+            # yaxis2=attr(title="iopc", overlaying="y", side="right", position=0.70, range=[0, 1000]),
+            # yaxis3=attr(title="fpc", overlaying="y", side="right", position=0.74, range=[0, 1000]),
+            # yaxis4=attr(title="pop", overlaying="y", side="right", position=0.78, range=[0, 16e9]),
+            # yaxis5=attr(title="ppolx", overlaying="y", side="right", position=0.82, range=[0, 32]),
+            # yaxis6=attr(title="cbr", overlaying="y", side="right", position=0.86, range=[0, 50]),
+            # yaxis7=attr(title="cdr", overlaying="y", side="right", position=0.90, range=[0, 50]),
         )
     )
 end
