@@ -104,19 +104,20 @@ function plot_sol_3_36(sol)
     )
 end
 
-function plot_sol_2_85(sol)
-    pop = sol[p1] + sol[p2] + sol[p3] + sol[p4]
+function plot_sol_3_37(sol)
     traces = GenericTrace[]
-    push!(traces, scatter(x=sol[t], y=sol[p1] ./ pop, name="p1", yaxis="y1"))
-    push!(traces, scatter(x=sol[t], y=sol[p2] ./ pop, name="p2", yaxis="y2"))
-    push!(traces, scatter(x=sol[t], y=sol[p3] ./ pop, name="p3", yaxis="y3"))
-    push!(traces, scatter(x=sol[t], y=sol[p4] ./ pop, name="p4", yaxis="y4"))
+    push!(traces, scatter(x=sol[t], y=sol[iopc], name="iopc", yaxis="y1"))
+    push!(traces, scatter(x=sol[t], y=sol[sopc], name="sopc", yaxis="y2"))
+    push!(traces, scatter(x=sol[t], y=sol[io], name="io", yaxis="y3"))
+    push!(traces, scatter(x=sol[t], y=sol[fioas], name="fioas", yaxis="y4"))
+    push!(traces, scatter(x=sol[t], y=sol[cuf], name="cuf", yaxis="y5"))
     plot(traces,
         Layout(xaxis_domain=[0.3, 0.7],
-            yaxis=attr(title="p1", range=[0, 1]),
-            yaxis2=attr(title="p2", overlaying="y", side="right", position=0.70, range=[0, 1]),
-            yaxis3=attr(title="p3", overlaying="y", side="right", position=0.74, range=[0, 1]),
-            yaxis4=attr(title="p4", overlaying="y", side="right", position=0.78, range=[0, 1])
+            yaxis=attr(title="iopc", range=[0, 1000]),
+            yaxis2=attr(title="sopc", overlaying="y", side="right", position=0.70, range=[0, 1000]),
+            yaxis3=attr(title="io", overlaying="y", side="right", position=0.74, range=[0, 4e12]),
+            yaxis4=attr(title="fioas", overlaying="y", side="right", position=0.78, range=[0, 0.4]),
+            yaxis5=attr(title="cuf", overlaying="y", side="right", position=0.82, range=[0, 1])
         )
     )
 end
