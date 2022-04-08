@@ -28,5 +28,5 @@ println("odesystem created")
 # Solve ODE problem
 sol = solve(prob)
 println("odesystem solved")
-# plot_sol_3_36(sol)
+plot_sol_7_7(sol)
 
