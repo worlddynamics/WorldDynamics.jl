@@ -82,33 +82,6 @@ connection_eqs = [
 
 nr_sys = structural_simplify(nr_model)
 
-# u0 = [
-# # nr.nr => nr0, ic.ic => ic0
-# ]
-
-# p_nr = [
-# nr.nri => nriv,
-# nr.nruf1 => nruf1v,
-# nr.nruf2 => nruf2v,
-# nr.pyear => pyearv,
-# ]
-# p_pop = [
-#     pop.popi => popiv,
-#     pop.gc => gcv,
-#     pop.pop2 => pop2v,
-#     pop.zpgt => zpgtv,
-# ]
-# p_io = [
-#     io.icor => icorv
-# ]
-# p_ic = [
-#     ic.fioaa => fioaav,
-#     ic.fioas => fioasv,
-#     ic.fioac => fioacv,
-#     ic.alic => alicv,
-# ]
-# p = [p_pop..., p_io..., p_ic...]
-
 prob = ODEProblem(nr_sys, [], (1900, 2100.0))
 sol = solve(prob, Tsit5())
 
