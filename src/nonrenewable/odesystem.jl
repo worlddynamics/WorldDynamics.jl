@@ -6,6 +6,8 @@ D = Differential(t)
 #include("src/functions.jl")
 include("src/functions.jl")
 include("src/nonrenewable/tables.jl")
+include("src/nonrenewable/initialisations.jl")
+include("src/nonrenewable/parameters.jl")
 
 # Registered functions used in equations
 @register interpolate(x, y::NTuple, xs::Tuple)
@@ -26,7 +28,7 @@ end
 
 function Industrial_Output(; name)
     @parameters icor
-    @variables io(t) iopc(t) fcaor(t) pop(t) ic(t)
+    @variables ic(t) io(t) iopc(t) fcaor(t) pop(t)
     eqs = [
         io ~ ic * (1 - fcaor) / icor
         iopc ~ io / pop
@@ -45,7 +47,7 @@ function Industrial_Capital(; name)
     ODESystem(eqs; name)
 end
 
-function Non_Renewable(; name, pcrumt=pcrumt)
+function Non_Renewable(; name)
     @parameters nri, nruf1, nruf2, pyear
     @variables fcaor(t) fcaor1(t) fcaor2(t) iopc(t) nr(t) nrur(t) nruf(t) nrfr(t) pop(t) pcrum(t)
     eqs = [
@@ -69,13 +71,14 @@ end
 connection_eqs = [
     nr.pop ~ pop.pop,
     nr.iopc ~ io.iopc,
-    io.fcaor ~ nr.fcaor,
-    ic.io ~ io.io,
-    ic.ic ~ io.ic
+    nr.fcaor ~ io.fcaor,
+    io.ic ~ ic.ic,
+    io.pop ~ pop.pop,
+    ic.io ~ io.io
 ]
 
 @named _nr_model = ODESystem(connection_eqs, t)
-@named nr_model = compose(_nr_model, [nr, pop, io, nr, ic])
+@named nr_model = compose(_nr_model, [nr, pop, io, ic])
 
 nr_sys = structural_simplify(nr_model)
 
@@ -86,7 +89,7 @@ u0 = [
 p_nr = [
     nr.nri => nriv,
     nr.nruf1 => nruf1v,
-    nr.nruf2 => nr.nruf2v,
+    nr.nruf2 => nruf2v,
     nr.pyear => pyearv,
 ]
 p_pop = [
@@ -106,25 +109,25 @@ p_ic = [
 ]
 p = [p_nr..., p_pop..., p_io..., p_ic...]
 
-prob = ODEProblem(nr_sys, u0, (0, 10.0))
+prob = ODEProblem(nr_sys, u0, (1900, 2100.0), p)
 sol = solve(prob, Tsit5())
 
-
+using PlotlyJS
 # ODE solution plot
-# function plot_sol_5_25(sol)
-#     traces = GenericTrace[]
-#     push!(traces, scatter(x=sol[t], y=sol[nrfr], name="nrfr", yaxis="y1"))
-#     push!(traces, scatter(x=sol[t], y=sol[fcaor], name="fcaor", yaxis="y2"))
-#     push!(traces, scatter(x=sol[t], y=sol[ic], name="ic", yaxis="y3"))
-#     push!(traces, scatter(x=sol[t], y=sol[io], name="io", yaxis="y4"))
-#     push!(traces, scatter(x=sol[t], y=sol[pop], name="pop", yaxis="y5"))
-#     plot(traces,
-#         Layout(xaxis_domain=[0.3, 0.7],
-#             yaxis=attr(title="nrfr", range=[0, 1]),
-#             yaxis2=attr(title="fcaor", overlaying="y", side="right", position=0.70, range=[0, 1]),
-#             yaxis3=attr(title="ic", overlaying="y", side="right", position=0.74, range=[0, 40e12]),
-#             yaxis4=attr(title="io", overlaying="y", side="right", position=0.78, range=[0, 10e12]),
-#             yaxis5=attr(title="pop", overlaying="y", side="right", position=0.82, range=[0, 16e9]),
-#         )
-#     )
-# end
+function plot_sol_5_25(sol)
+    traces = GenericTrace[]
+    push!(traces, scatter(x=sol[t], y=sol[nr.nrfr], name="nrfr", yaxis="y1"))
+    push!(traces, scatter(x=sol[t], y=sol[nr.fcaor], name="fcaor", yaxis="y2"))
+    push!(traces, scatter(x=sol[t], y=sol[ic.ic], name="ic", yaxis="y3"))
+    push!(traces, scatter(x=sol[t], y=sol[io.io], name="io", yaxis="y4"))
+    push!(traces, scatter(x=sol[t], y=sol[pop.pop], name="pop", yaxis="y5"))
+    plot(traces,
+        Layout(xaxis_domain=[0.3, 0.7],
+            yaxis=attr(title="nrfr", range=[0, 1]),
+            yaxis2=attr(title="fcaor", overlaying="y", side="right", position=0.70, range=[0, 1]),
+            yaxis3=attr(title="ic", overlaying="y", side="right", position=0.74, range=[0, 40e12]),
+            yaxis4=attr(title="io", overlaying="y", side="right", position=0.78, range=[0, 10e12]),
+            yaxis5=attr(title="pop", overlaying="y", side="right", position=0.82, range=[0, 16e9]),
+        )
+    )
+end
