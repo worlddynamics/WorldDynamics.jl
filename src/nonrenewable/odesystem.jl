@@ -4,10 +4,10 @@ using Interpolations, ModelingToolkit, DifferentialEquations
 D = Differential(t)
 
 #include("src/functions.jl")
-include("src/functions.jl")
-include("src/nonrenewable/tables.jl")
-include("src/nonrenewable/initialisations.jl")
-include("src/nonrenewable/parameters.jl")
+include("../functions.jl")
+include("tables.jl")
+include("initialisations.jl")
+include("parameters.jl")
 
 # Registered functions used in equations
 @register interpolate(x, y::NTuple, xs::Tuple)
@@ -17,7 +17,7 @@ include("src/nonrenewable/parameters.jl")
 @register step(t, hght, sttm)
 
 function Population(; name)
-    @parameters gc, pop2, popi, zpgt
+    @parameters gc = gcv pop2 = pop2v popi = popiv zpgt = zpgtv
     @variables pop(t), pop1(t)
     eqs = [
         pop ~ clip(pop2, pop1, t, zpgt)
@@ -27,7 +27,7 @@ function Population(; name)
 end
 
 function Industrial_Output(; name)
-    @parameters icor
+    @parameters icor = icorv
     @variables ic(t) io(t) iopc(t) fcaor(t) pop(t)
     eqs = [
         io ~ ic * (1 - fcaor) / icor
@@ -37,8 +37,8 @@ function Industrial_Output(; name)
 end
 
 function Industrial_Capital(; name)
-    @parameters fioaa, fioas, fioac, alic
-    @variables ic(t) icir(t) icdr(t) io(t)
+    @parameters fioaa = fioaav fioas = fioasv fioac = fioacv alic = alicv
+    @variables ic(t) = ic0 icir(t) icdr(t) io(t)
     eqs = [
         D(ic) ~ icir - icdr
         icir ~ io * (1 - fioaa - fioas - fioac)
@@ -48,8 +48,8 @@ function Industrial_Capital(; name)
 end
 
 function Non_Renewable(; name)
-    @parameters nri, nruf1, nruf2, pyear
-    @variables fcaor(t) fcaor1(t) fcaor2(t) iopc(t) nr(t) nrur(t) nruf(t) nrfr(t) pop(t) pcrum(t)
+    @parameters nri = nriv nruf1 = nruf1v nruf2 = nruf2v pyear = pyearv
+    @variables fcaor(t) fcaor1(t) fcaor2(t) iopc(t) nr(t) = nr0 nrur(t) nruf(t) nrfr(t) pop(t) pcrum(t)
     eqs = [
         D(nr) ~ -nrur
         nrur ~ pop * pcrum * nruf
@@ -82,34 +82,34 @@ connection_eqs = [
 
 nr_sys = structural_simplify(nr_model)
 
-u0 = [
-    nr.nr => nr0, ic.ic => ic0
-]
+# u0 = [
+# # nr.nr => nr0, ic.ic => ic0
+# ]
 
-p_nr = [
-    nr.nri => nriv,
-    nr.nruf1 => nruf1v,
-    nr.nruf2 => nruf2v,
-    nr.pyear => pyearv,
-]
-p_pop = [
-    pop.popi => popiv,
-    pop.gc => gcv,
-    pop.pop2 => pop2v,
-    pop.zpgt => zpgtv,
-]
-p_io = [
-    io.icor => icorv
-]
-p_ic = [
-    ic.fioaa => fioaav,
-    ic.fioas => fioasv,
-    ic.fioac => fioacv,
-    ic.alic => alicv,
-]
-p = [p_nr..., p_pop..., p_io..., p_ic...]
+# p_nr = [
+# nr.nri => nriv,
+# nr.nruf1 => nruf1v,
+# nr.nruf2 => nruf2v,
+# nr.pyear => pyearv,
+# ]
+# p_pop = [
+#     pop.popi => popiv,
+#     pop.gc => gcv,
+#     pop.pop2 => pop2v,
+#     pop.zpgt => zpgtv,
+# ]
+# p_io = [
+#     io.icor => icorv
+# ]
+# p_ic = [
+#     ic.fioaa => fioaav,
+#     ic.fioas => fioasv,
+#     ic.fioac => fioacv,
+#     ic.alic => alicv,
+# ]
+# p = [p_pop..., p_io..., p_ic...]
 
-prob = ODEProblem(nr_sys, u0, (1900, 2100.0), p)
+prob = ODEProblem(nr_sys, [], (1900, 2100.0))
 sol = solve(prob, Tsit5())
 
 using PlotlyJS
