@@ -5,3 +5,9 @@ gitignored
 JuliaSysimage*.dylib
 JuliaSysimage*.so
 JuliaSysimage*.dll
+
+# ignore latex files
+*.fdb_latexmk
+*.fls
+*.log
+*.aux
