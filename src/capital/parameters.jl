@@ -1,25 +1,3 @@
-# global lenv = 28
-# global sfpcv = 230
-# global hsidv = 20
-# global iphstv = 40
-# global ffwv = 0.21
-# global rltv = 30
-# global petv = 4000
-# global mtfnv = 12
-# global lpdv = 20
-# global zpgtv = 4000
-# global dcfsnv = 4
-# global sadv = 20
-# global ieatv = 3
-# global fcestv = 4000
-# global ltv = 500
-# global lt2v = 500
-# global ciov = 100
-# global psv = 0
-# global ptv = 10
-# global csov = 150
-# global cfoodv = 250
-# CAPITAL SECTOR
 global pyearv = 4000
 global icor1v = 3
 global icor2v = 3
