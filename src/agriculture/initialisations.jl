@@ -1,4 +1,3 @@
-# AGRICULTURAL SECTOR
 global al0 = 9e8
 global pal0 = 2.3e9
 global ai0 = 5e9
