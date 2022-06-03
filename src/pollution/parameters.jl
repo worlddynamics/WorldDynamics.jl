@@ -1,4 +1,3 @@
-# NONRENEWABLE SECTOR
 global ppgf1v = 1
 global ppgf21v = 1
 global frpmv = 0.02
