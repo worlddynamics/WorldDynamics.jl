@@ -1,4 +1,3 @@
-# AGRICULTURAL SECTOR
 global paltv = 3.2e9
 global lfhv = 0.7
 global plv = 0.1
