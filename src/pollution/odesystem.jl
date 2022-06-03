@@ -9,7 +9,6 @@ include("parameters.jl")
 include("initialisations.jl")
 
 
-# Registered functions used in equations
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
 @register min(v1, v2)
@@ -74,7 +73,8 @@ function Adaptive_Technological_Control_Cards(; name)
     @parameters pyear = pyearv tdd = tddv pd = pdv
 
     @variables lmp(t)
-    @variables ppgf22(t) = ppgf220 ppgf222(t) = ppgf220 ppgf221(t) = ppgf220 pcti(t) = pcti0 pctir(t) pctcm(t) plmp(t) = plmp0 plmp2(t) = plmp0 plmp1(t) = plmp0
+    @variables ppgf22(t) = ppgf220 ppgf222(t) = ppgf220 ppgf221(t) = ppgf220 pcti(t) = pcti0 plmp(t) = plmp0 plmp2(t) = plmp0 plmp1(t) = plmp0
+    @variables pctir(t) pctcm(t)
 
     eqs = [
         D(ppgf22) ~ 3 * (ppgf222 - ppgf22) / tdd
@@ -94,8 +94,9 @@ end
 function Persistent_Pollution(; name)
     @parameters pyear = pyearv ppgf1 = ppgf1v ppgf21 = ppgf21v swat = swatv frpm = frpmv imef = imefv imti = imtiv fipm = fipmv amti = amtiv pptd1 = pptd1v pptd2 = pptd2v ppol70 = ppol70v ahl70 = ahl70v
 
-    @variables ppgf22(t) pcrum(t) pop(t) aiph(t) al(t) 
-    @variables ppgr(t) = ppgr0 ppgf(t) ppgf2(t) ppgio(t) = ppgio0 ppgao(t) = ppgao0 ppapr(t) ppapr3(t) = ppapr30 ppapr2(t) = ppapr30 ppapr1(t) = ppapr30 pptd(t) = pptd0 ppol(t) = ppol0 ppolx(t) = ppolx0 ppasr(t) ahlm(t) ahl(t)
+    @variables ppgf22(t) pcrum(t) pop(t) aiph(t) al(t)
+    @variables ppapr3(t) = ppapr30 ppapr2(t) = ppapr30 ppapr1(t) = ppapr30 ppol(t) = ppol0
+    @variables ppgr(t) = ppgr0 ppgf(t) ppgf2(t) ppgio(t) = ppgio0 ppgao(t) = ppgao0 ppapr(t) pptd(t) = pptd0 ppolx(t) = ppolx0 ppasr(t) ahlm(t) ahl(t)
 
     eqs = [
         ppgr ~ (ppgio + ppgao) * ppgf
@@ -147,7 +148,6 @@ sol = solve(prob, Tsit5())
 
 using PlotlyJS
 
-# ODE solution plot
 function plot_sol_6_28(sol)
     traces = GenericTrace[]
     push!(traces, scatter(x=sol[t], y=sol[nr.pcrum], name="pcrum", yaxis="y1"))
