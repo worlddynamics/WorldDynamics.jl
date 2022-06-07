@@ -42,23 +42,18 @@ connection_eqs = [
     f.pop ~ pop.pop
 ]
 
-
 connection_eqs = vcat(connection_eqs, common_connection_eqs)
-# u0 = vcat(u0, common_u0)
-# global p = common_p
-
-# @named _cpop_model = ODESystem(cpop.connection_eqs, t)
-# @named cpop_model = compose(_cpop_model, [cpop.dr, cpop.br, cpop.io, cpop.so, cpop.pp, cpop.f])
 
 @named _pop_model = ODESystem(connection_eqs, t)
 @named pop_model = compose(_pop_model, [pop, dr, br, io, so, pp, f])
 
 pop_sys = structural_simplify(pop_model)
 
-prob = ODEProblem(pop_sys, [], (1900, 2100.0))
+prob = ODEProblem(pop_sys, [], (1900, 1970.0))
 sol = solve(prob, Tsit5())
 
 
+using PlotlyJS
 
 function plot_sol_2_84(sol)
     traces = GenericTrace[]
