@@ -1,21 +1,18 @@
-using Interpolations, ModelingToolkit, DifferentialEquations
+using ModelingToolkit, DifferentialEquations
 
 include("odesystem.jl")
-using .Agriculture
 
 
 @named pop = Agriculture.population()
 @named io = Agriculture.industrial_output()
 @named pp = Agriculture.persistent_pollution()
-@named ld = land_development()
-@named ai = agricultural_inputs()
-@named iad = investment_allocation_decision()
-@named leuiu = land_erosion_urban_industrial_use()
-@named dlm = discontinung_land_maintenance()
-@named lfr = land_fertility_regeneration()
-@named lfd = land_fertility_degradation()
-
-t = Agriculture.t
+@named ld = Agriculture.land_development()
+@named ai = Agriculture.agricultural_inputs()
+@named iad = Agriculture.investment_allocation_decision()
+@named leuiu = Agriculture.land_erosion_urban_industrial_use()
+@named dlm = Agriculture.discontinung_land_maintenance()
+@named lfr = Agriculture.land_fertility_regeneration()
+@named lfd = Agriculture.land_fertility_degradation()
 
 
 connection_eqs = [
@@ -48,6 +45,9 @@ connection_eqs = [
     lfd.ppolx ~ pp.ppolx
     io.pop ~ pop.pop
 ]
+
+
+@variables t
 
 @named _ag_model = ODESystem(connection_eqs, t)
 @named ag_model = compose(_ag_model, [pop, io, pp, ld, ai, iad, leuiu, dlm, lfr, lfd])

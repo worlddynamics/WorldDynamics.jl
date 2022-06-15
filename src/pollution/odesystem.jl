@@ -1,7 +1,5 @@
 module Pollution
 
-export pollution_damage, adaptive_technological_control_cards, persistent_pollution
-
 
 using Interpolations, ModelingToolkit
 
@@ -13,9 +11,6 @@ include("initialisations.jl")
 
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
-@register min(v1, v2)
-@register max(v1, v2)
-@register step(t, hght, sttm)
 @register switch(v1, v2, z)
 
 @variables t

@@ -1,15 +1,12 @@
-using Interpolations, ModelingToolkit, DifferentialEquations
+using ModelingToolkit, DifferentialEquations
 
 include("odesystem.jl")
-using .NonRenewable
 
 
 @named pop = NonRenewable.population()
 @named io = NonRenewable.industrial_output()
 @named ic = NonRenewable.industrial_capital()
-@named nr = non_renewable()
-
-t = NonRenewable.t
+@named nr = NonRenewable.non_renewable()
 
 
 connection_eqs = [
@@ -20,6 +17,9 @@ connection_eqs = [
     io.pop ~ pop.pop
     ic.io ~ io.io
 ]
+
+
+@variables t
 
 @named _nr_model = ODESystem(connection_eqs, t)
 @named nr_model = compose(_nr_model, [nr, pop, io, ic])

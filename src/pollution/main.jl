@@ -1,17 +1,14 @@
 using ModelingToolkit, DifferentialEquations
 
 include("odesystem.jl")
-using .Pollution
 
 
 @named pop = Pollution.population()
 @named nr = Pollution.non_renewable()
 @named ag = Pollution.agriculture()
-@named pd = pollution_damage()
-@named atcc = adaptive_technological_control_cards()
-@named pp = persistent_pollution()
-
-t = Pollution.t
+@named pd = Pollution.pollution_damage()
+@named atcc = Pollution.adaptive_technological_control_cards()
+@named pp = Pollution.persistent_pollution()
 
 
 connection_eqs = [
@@ -23,6 +20,9 @@ connection_eqs = [
     pp.aiph ~ ag.aiph
     pp.al ~ ag.al
 ]
+
+
+@variables t
 
 @named _pp_model = ODESystem(connection_eqs, t)
 @named pp_model = compose(_pp_model, [pop, nr, ag, pd, atcc, pp])

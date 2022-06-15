@@ -1,15 +1,7 @@
 module Agriculture
 
-export land_development
-export agricultural_inputs
-export investment_allocation_decision
-export land_erosion_urban_industrial_use
-export discontinung_land_maintenance
-export land_fertility_regeneration
-export land_fertility_degradation
 
-
-using Interpolations, ModelingToolkit, DifferentialEquations
+using Interpolations, ModelingToolkit
 
 include("../functions.jl")
 include("tables.jl")
@@ -19,9 +11,7 @@ include("initialisations.jl")
 
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
-@register min(v1, v2)
 @register max(v1, v2)
-@register step(t, hght, sttm)
 
 @variables t
 D = Differential(t)

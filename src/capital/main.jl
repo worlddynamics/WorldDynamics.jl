@@ -1,17 +1,14 @@
-using Interpolations, ModelingToolkit, DifferentialEquations
+using ModelingToolkit, DifferentialEquations
 
 include("odesystem.jl")
-using .Capital
 
 
 @named pop = Capital.population()
 @named nr = Capital.non_renewable()
 @named ag = Capital.agriculture()
-@named is = industrial_subsector()
-@named ss = service_subsector()
-@named js = job_subsector()
-
-t = Capital.t
+@named is = Capital.industrial_subsector()
+@named ss = Capital.service_subsector()
+@named js = Capital.job_subsector()
 
 
 connection_eqs = [
@@ -33,6 +30,9 @@ connection_eqs = [
     js.p2 ~ pop.p2
     js.p3 ~ pop.p3
 ]
+
+
+@variables t
 
 @named _cap_model = ODESystem(connection_eqs, t)
 @named cap_model = compose(_cap_model, [pop, nr, ag, is, ss, js])
