@@ -1,7 +1,7 @@
-using Interpolations, ModelingToolkit, DifferentialEquations
+module Pollution
 
-# this was necessary because t0 is needed in initialisations.jl
-global t0 = 1900
+
+using Interpolations, ModelingToolkit
 
 include("../functions.jl")
 include("tables.jl")
@@ -11,16 +11,13 @@ include("initialisations.jl")
 
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
-@register min(v1, v2)
-@register max(v1, v2)
-@register step(t, hght, sttm)
 @register switch(v1, v2, z)
 
 @variables t
 D = Differential(t)
 
 
-function Population(; name)
+function population(; name)
     @variables pop(t) = pop0
     
     eqs = [
@@ -30,7 +27,7 @@ function Population(; name)
     ODESystem(eqs; name)
 end
 
-function Non_Renewable(; name)
+function non_renewable(; name)
     @variables pcrum(t) = pcrum0
     
     eqs = [
@@ -40,7 +37,7 @@ function Non_Renewable(; name)
     ODESystem(eqs; name)
 end
 
-function Agriculture(; name)
+function agriculture(; name)
     @variables aiph(t) = aiph0 al(t) = al0
     
     eqs = [
@@ -51,7 +48,7 @@ function Agriculture(; name)
     ODESystem(eqs; name)
 end
 
-function Pollution_Damage(; name)
+function pollution_damage(; name)
     @parameters pyear = pyearv
     
     @variables ppolx(t) 
@@ -69,7 +66,7 @@ function Pollution_Damage(; name)
     ODESystem(eqs; name)
 end
 
-function Adaptive_Technological_Control_Cards(; name)
+function adaptive_technological_control_cards(; name)
     @parameters pyear = pyearv tdd = tddv pd = pdv
 
     @variables lmp(t)
@@ -91,7 +88,7 @@ function Adaptive_Technological_Control_Cards(; name)
     ODESystem(eqs; name)
 end
 
-function Persistent_Pollution(; name)
+function persistent_pollution(; name)
     @parameters pyear = pyearv ppgf1 = ppgf1v ppgf21 = ppgf21v swat = swatv frpm = frpmv imef = imefv imti = imtiv fipm = fipmv amti = amtiv pptd1 = pptd1v pptd2 = pptd2v ppol70 = ppol70v ahl70 = ahl70v
 
     @variables ppgf22(t) pcrum(t) pop(t) aiph(t) al(t)
@@ -120,70 +117,4 @@ function Persistent_Pollution(; name)
 end
 
 
-@named pop = Population()
-@named nr = Non_Renewable()
-@named ag = Agriculture()
-@named pd = Pollution_Damage()
-@named atcc = Adaptive_Technological_Control_Cards()
-@named pp = Persistent_Pollution()
-
-connection_eqs = [
-    pd.ppolx ~ pp.ppolx
-    atcc.lmp ~ pd.lmp
-    pp.ppgf22 ~ atcc.ppgf22
-    pp.pcrum ~ nr.pcrum
-    pp.pop ~ pop.pop
-    pp.aiph ~ ag.aiph
-    pp.al ~ ag.al
-]
-
-@named _pp_model = ODESystem(connection_eqs, t)
-@named pp_model = compose(_pp_model, [pop, nr, ag, pd, atcc, pp])
-
-pp_sys = structural_simplify(pp_model)
-
-prob = ODEProblem(pp_sys, [], (t0, 1970.0))
-sol = solve(prob, Tsit5())
-
-
-using PlotlyJS
-
-function plot_sol_6_28(sol)
-    traces = GenericTrace[]
-    push!(traces, scatter(x=sol[t], y=sol[nr.pcrum], name="pcrum", yaxis="y1"))
-    push!(traces, scatter(x=sol[t], y=sol[pop.pop],  name="pop",   yaxis="y2"))
-    push!(traces, scatter(x=sol[t], y=sol[ag.al],    name="al",    yaxis="y3"))
-    push!(traces, scatter(x=sol[t], y=sol[ag.aiph],  name="aiph",  yaxis="y4"))
-    push!(traces, scatter(x=sol[t], y=sol[pp.ppgr],  name="ppgr",  yaxis="y5"))
-    plot(traces,
-        Layout(xaxis_domain=[0.1, 0.7],
-            yaxis  = attr(title="pcrum", range=[0, 1]),
-            yaxis2 = attr(title="pop",  overlaying="y", side="right", position=0.70, range=[0, 4e9]),
-            yaxis3 = attr(title="al",   overlaying="y", side="right", position=0.74, range=[0, 2e9]),
-            yaxis4 = attr(title="aiph", overlaying="y", side="right", position=0.78, range=[0, 50]),
-            yaxis5 = attr(title="ppgr", overlaying="y", side="right", position=0.82, range=[0, 2e8]),
-        )
-    )
-end
-
-function plot_sol_6_29(sol)
-    traces = GenericTrace[]
-    push!(traces, scatter(x=sol[t], y=sol[pp.ppgr],  name="ppgr",  yaxis="y1"))
-    push!(traces, scatter(x=sol[t], y=sol[pp.ppapr], name="ppapr", yaxis="y2"))
-    push!(traces, scatter(x=sol[t], y=sol[pp.ppasr], name="ppasr", yaxis="y3"))
-    push!(traces, scatter(x=sol[t], y=sol[pp.ppolx], name="ppolx", yaxis="y4"))
-    push!(traces, scatter(x=sol[t], y=sol[pp.ahl],   name="ahl",   yaxis="y5"))
-    push!(traces, scatter(x=sol[t], y=sol[pd.lmp],   name="lmp",   yaxis="y6"))
-    push!(traces, scatter(x=sol[t], y=sol[pd.lfdr],  name="lfdr",  yaxis="y7"))
-    plot(traces,
-        Layout(xaxis_domain=[0.1, 0.7],
-            yaxis  = attr(title="ppgr", range=[0, 2e8]),
-            yaxis2 = attr(title="ppapr", overlaying="y", side="right", position=0.70, range=[0, 2e8]),
-            yaxis3 = attr(title="ppasr", overlaying="y", side="right", position=0.74, range=[0, 2e8]),
-            yaxis4 = attr(title="ppolx", overlaying="y", side="right", position=0.78, range=[0, 1]),
-            yaxis5 = attr(title="ahl",   overlaying="y", side="right", position=0.82, range=[0, 2]),
-            yaxis6 = attr(title="lmp",   overlaying="y", side="right", position=0.86, range=[0, 1]),
-            yaxis7 = attr(title="lfdr",  overlaying="y", side="right", position=0.90, range=[0, 0.5]),
-        )
-    )
-end
+end # module

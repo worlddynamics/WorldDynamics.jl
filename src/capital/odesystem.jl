@@ -1,4 +1,7 @@
-using Interpolations, ModelingToolkit, DifferentialEquations
+module Capital
+
+
+using Interpolations, ModelingToolkit
 
 include("../functions.jl")
 include("tables.jl")
@@ -8,14 +11,12 @@ include("initialisations.jl")
 
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
-@register min(v1, v2)
-@register step(t, hght, sttm)
 
 @variables t
 D = Differential(t)
 
 
-function Population(; name)
+function population(; name)
     @variables pop(t) p2(t) p3(t)
 
     eqs = [
@@ -27,7 +28,7 @@ function Population(; name)
     ODESystem(eqs; name)
 end
 
-function Agriculture(; name)
+function agriculture(; name)
     @variables aiph(t) al(t) fioaa(t) 
 
     eqs = [
@@ -39,7 +40,7 @@ function Agriculture(; name)
     ODESystem(eqs; name)
 end
 
-function Non_Renewable(; name)
+function non_renewable(; name)
     @variables fcaor(t)
 
     eqs = [
@@ -49,7 +50,7 @@ function Non_Renewable(; name)
     ODESystem(eqs; name)
 end
 
-function Industrial_Subsector(; name)
+function industrial_subsector(; name)
     @parameters pyear = pyearv icor1 = icor1v icor2 = icor2v alic1 = alic1v alic2 = alic2v iet = ietv iopcd = iopcdv fioac1 = fioac1v fioac2 = fioac2v
 
     @variables pop(t) fcaor(t) cuf(t) fioaa(t) fioas(t)
@@ -73,7 +74,7 @@ function Industrial_Subsector(; name)
     ODESystem(eqs; name)
 end
 
-function Service_Subsector(; name)
+function service_subsector(; name)
     @parameters pyear = pyearv alsc1 = alsc1v alsc2 = alsc2v scor1 = scor1v scor2 = scor2v
 
     @variables iopc(t) io(t) cuf(t) pop(t) 
@@ -99,7 +100,7 @@ function Service_Subsector(; name)
     ODESystem(eqs; name)
 end
 
-function Job_Subsector(; name)
+function job_subsector(; name)
     @parameters lfpf = lfpfv lufdt = lufdtv
 
     @variables ic(t) iopc(t) sc(t) sopc(t) al(t) aiph(t) p2(t) p3(t)
@@ -124,76 +125,4 @@ function Job_Subsector(; name)
 end
 
 
-@named pop = Population()
-@named nr = Non_Renewable()
-@named ag = Agriculture()
-@named is = Industrial_Subsector()
-@named ss = Service_Subsector()
-@named js = Job_Subsector()
-
-connection_eqs = [
-    is.pop ~ pop.pop
-    is.fcaor ~ nr.fcaor
-    is.cuf ~ js.cuf
-    is.fioaa ~ ag.fioaa
-    is.fioas ~ ss.fioas
-    ss.iopc ~ is.iopc
-    ss.io ~ is.io
-    ss.cuf ~ js.cuf
-    ss.pop ~ pop.pop
-    js.ic ~ is.ic
-    js.iopc ~ is.iopc
-    js.sc ~ ss.sc
-    js.sopc ~ ss.sopc
-    js.al ~ ag.al
-    js.aiph ~ ag.aiph
-    js.p2 ~ pop.p2
-    js.p3 ~ pop.p3
-]
-
-@named _cap_model = ODESystem(connection_eqs, t)
-@named cap_model = compose(_cap_model, [pop, nr, ag, is, ss, js])
-
-cap_sys = structural_simplify(cap_model)
-
-prob = ODEProblem(cap_sys, [], (1900, 2000.0))
-sol = solve(prob, Tsit5())
-
-
-using PlotlyJS
-
-function plot_sol_3_36(sol)
-    traces = GenericTrace[]
-    push!(traces, scatter(x=sol[t], y=sol[pop.pop],  name="pop",   yaxis="y1"))
-    push!(traces, scatter(x=sol[t], y=sol[ag.al],    name="al",    yaxis="y2"))
-    push!(traces, scatter(x=sol[t], y=sol[ag.fioaa], name="fioaa", yaxis="y3"))
-    push!(traces, scatter(x=sol[t], y=sol[nr.fcaor], name="fcaor", yaxis="y4"))
-    push!(traces, scatter(x=sol[t], y=sol[ag.aiph],  name="aiph",  yaxis="y5"))
-    plot(traces,
-        Layout(xaxis_domain=[0.3, 0.7],
-            yaxis  = attr(title="pop", range=[0, 5e9]),
-            yaxis2 = attr(title="al",    overlaying="y", side="right", position=0.70, range=[0, 1.5e9]),
-            yaxis3 = attr(title="fioaa", overlaying="y", side="right", position=0.74, range=[0, 0.5]),
-            yaxis4 = attr(title="fcaor", overlaying="y", side="right", position=0.78, range=[0, 0.25]),
-            yaxis5 = attr(title="aiph",  overlaying="y", side="right", position=0.82, range=[0, 50])
-        )
-    )
-end
-
-function plot_sol_3_37(sol)
-    traces = GenericTrace[]
-    push!(traces, scatter(x=sol[t], y=sol[is.iopc],  name="iopc",  yaxis="y1"))
-    push!(traces, scatter(x=sol[t], y=sol[ss.sopc],  name="sopc",  yaxis="y2"))
-    push!(traces, scatter(x=sol[t], y=sol[is.io],    name="io",    yaxis="y3"))
-    push!(traces, scatter(x=sol[t], y=sol[ss.fioas], name="fioas", yaxis="y4"))
-    push!(traces, scatter(x=sol[t], y=sol[js.cuf],   name="cuf",   yaxis="y5"))
-    plot(traces,
-        Layout(xaxis_domain=[0.3, 0.7],
-            yaxis  = attr(title="iopc", range=[0, 1000]),
-            yaxis2 = attr(title="sopc",  overlaying="y", side="right", position=0.70, range=[0, 1000]),
-            yaxis3 = attr(title="io",    overlaying="y", side="right", position=0.74, range=[0, 4e12]),
-            yaxis4 = attr(title="fioas", overlaying="y", side="right", position=0.78, range=[0, 0.4]),
-            yaxis5 = attr(title="cuf",   overlaying="y", side="right", position=0.82, range=[0, 1])
-        )
-    )
-end
+end # module
