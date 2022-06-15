@@ -1,4 +1,3 @@
-# NONRENEWABLE SECTOR
 global nriv = 1e12
 global nruf1v = 1
 global nruf2v = 1

@@ -1,4 +1,4 @@
-# NONRENEWABLE SECTOR
+global t0 = 1900
 global pcrum0 = interpolate(t0, pcrumt, pcrumts) * 1e-2
 global pop0 = interpolate(t0, popt, popts) * 1e8
 global ppgio0 = pcrum0 * pop0 * frpmv * imefv * imtiv

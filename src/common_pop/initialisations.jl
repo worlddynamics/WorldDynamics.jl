@@ -1,3 +1,4 @@
+global t0 = 1900
 global pop0 = 1.61e9 # lines 1-3 page 167
 global sopc0 = 1.5e11 / pop0 # lines 76-82 page 168
 global hsapc0 = interpolate(sopc0, hsapct, hsapcts) # lines 11-12 page 167

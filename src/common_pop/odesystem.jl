@@ -1,116 +1,154 @@
-# Parameter declarations
-@parameters len sfpc hsid iphst ffw rlt pet mtfn lpd zpgt dcfsn sad ieat fcest lt lt2 cio ps pt cso cfood
-# Function declarations
-@variables t pop(t) br(t) dr(t) fk(t)
-@variables cdr(t) le(t) lmf(t) hsapc(t) ehspc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t)
-@variables lmc(t) lmp(t)
-@variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) ple(t) ple2(t) ple1(t) dcfs(t)
-@variables sfsn(t) diopc(t) diopc2(t) diopc1(t) frsn(t) fie(t)
-@variables aiopc(t) nfc(t) fce(t) fcfpc(t) fcfpc2(t) fcfpc1(t) fcapc(t) fsafc(t)
-@variables io(t) io1(t) io2(t) io11(t) io12(t) iopc(t)
-@variables ppolx(t)
-@variables so(t) so1(t) so2(t) so11(t) so12(t) sopc(t)
-@variables f(t) f1(t) f2(t) f11(t) f12(t) fpc(t)
-D = Differential(t)
-# Registered functions used in equations
+module CommonPop
+
+export death_rate, birth_rate
+
+
+using Interpolations, ModelingToolkit
+
+include("../functions.jl")
+include("tables.jl")
+include("parameters.jl")
+include("initialisations.jl")
+
+
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
 @register min(v1, v2)
 @register step(t, hght, sttm)
 
-global common_eqs = [
-    # DEATH RATE EQUATIONS
-    cdr ~ 1000.0 * dr / pop, # line 5 page 167
-    le ~ len * lmf * lmhs * lmp * lmc, # line 6 page 167
-    lmf ~ interpolate(fpc / sfpc, lmft, lmfts), # line 8 page 167
-    hsapc ~ interpolate(sopc, hsapct, hsapcts), # line 11 page 167
-    D(ehspc) ~ (hsapc - ehspc) / hsid, # line 13 page 167
-    lmhs ~ clip(lmhs2, lmhs1, t, iphst), # line 15 page 167
-    lmhs1 ~ interpolate(ehspc, lmhs1t, lmhs1ts), # line 17 page 167
-    lmhs2 ~ interpolate(ehspc, lmhs2t, lmhs2ts), # line 19 page 167
-    fpu ~ interpolate(pop, fput, fputs), # line 21 page 167
-    cmi ~ interpolate(iopc, cmit, cmits), # line 23 page 167
-    lmc ~ 1 - (cmi * fpu),  # line 25 page 167
-    lmp ~ interpolate(ppolx, lmpt, lmpts), # line 26 page 167
-    # BIRTH RATE EQUATIONS
-    # br ~ clip(dr, tf * pop * ffw / rlt, t, pet), # line 28 page 168
-    cbr ~ 1000.0 * br / pop, # line 32 page 168
-    tf ~ min(mtf, mtf * (1 - fce) + dtf * fce), # line 33 page 168
-    mtf ~ mtfn * fm, # line 34 page 168
-    fm ~ interpolate(le, fmt, fmts), # line 36 page 168
-    dtf ~ dcfs * cmple, # line 38 page 168
-    cmple ~ interpolate(ple, cmplet, cmplets), # line 39 page 168
-    D(ple) ~ 3 * (ple2 - ple) / lpd, # line 41 page 168
-    D(ple2) ~ 3 * (ple1 - ple2) / lpd, # line 41 page 168
-    D(ple1) ~ 3 * (le - ple1) / lpd, # line 41 page 168
-    dcfs ~ clip(2, dcfsn * frsn * sfsn, t, zpgt), # line 43 page 168
-    sfsn ~ interpolate(diopc, sfsnt, sfsnts), # line 46 page 168
-    D(diopc) ~ 3 * (diopc2 - diopc) / sad, # line 48 page 168
-    D(diopc2) ~ 3 * (diopc1 - diopc2) / sad, # line 48 page 168
-    D(diopc1) ~ 3 * (iopc - diopc1) / sad, # line 48 page 168
-    # frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, 1905), # line 50 page 168
-    frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, t0 + 1), # line 50 page 168
-    fie ~ (iopc - aiopc) / aiopc, # line 53 page 168
-    D(aiopc) ~ (iopc - aiopc) / ieat, # line 54 page 168
-    nfc ~ (mtf / dtf) - 1, # line 56 page 168
-    fce ~ clip(1.0, interpolate(fcfpc, fcet, fcets), t, fcest), # line 57 page 168
-    D(fcfpc) ~ 3 * (fcfpc2 - fcfpc) / hsid, # line 60 page 168
-    D(fcfpc2) ~ 3 * (fcfpc1 - fcfpc2) / hsid, # line 60 page 168
-    D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid, # line 60 page 168
-    fcapc ~ fsafc * sopc, # line 61 page 168
-    fsafc ~ interpolate(nfc, fsafct, fsafcts), # line 62 page 168
-    # EXOGENOUS INPUTS TO THE POPULATION SECTOR
-    # INDUSTRIAL OUTPUT
-    io ~ clip(io2, io1, t, lt), # line 64 page 168
-    io1 ~ clip(io12, io11, t, lt2), # line 66 page 168
-    io11 ~ 0.7e11 * exp((t - 1900) * 0.037), # line 68 page 168
-    io12 ~ pop * cio, # line 69 page 168
-    io2 ~ 0.7e11 * exp((lt - 1900) * 0.037), # line 71 page 168
-    iopc ~ io / pop,
-    # iopc ~ 0.7e11 * exp(t * 0.037) / pop,
-    # INDEX OF PERSISTENT POLLUTION
-    D(ppolx) ~ step(t, ps, pt),
-    # ppolx ~ 1.0, # line 73,74,75 page 168
-    # SERVICE OUTPUT
-    so ~ clip(so2, so1, t, lt), # line 76 page 168
-    so1 ~ clip(so12, so11, t, lt2), # line 77 page 168
-    so11 ~ 1.5e11 * exp((t - 1900) * 0.030), # line 78 page 168
-    so12 ~ pop * cso, # line 79 page 168
-    so2 ~ 1.5e11 * exp((lt - 1900) * 0.030), # line 81 page 168
-    sopc ~ so / pop,
-    # sopc ~ (1.5e11 * exp(t * 0.0>30)) / pop, # line 82 page 168
-    # FOOD
-    f ~ clip(f2, f1, t, lt), # line 86 page 168
-    f1 ~ clip(f12, f11, t, lt2), # line 87 page 168
-    f11 ~ 4e11 * exp((t - 1900) * 0.020), # line 88 page 168
-    f12 ~ pop * cfood, # line 89 page 168
-    f2 ~ 4e11 * exp((lt - 1900) * 0.020), # line 91 page 168
-    fpc ~ f / pop
-    # fpc ~ (4e11 * exp(t * 0.020)) / pop # line 92 page 168
-]
-# Parameter values
-global common_p = [
-    len => lenv, sfpc => sfpcv, hsid => hsidv, iphst => iphstv, # line 7,10,14,16 page 167
-    ffw => ffwv, rlt => rltv, pet => petv, mtfn => mtfnv, lpd => lpdv, # line 29,30,31,35,42 page 168
-    zpgt => zpgtv, dcfsn => dcfsnv, sad => sadv, ieat => ieatv, fcest => fcestv, # line 44,45,49,55,58 page 168
-    lt => ltv, lt2 => lt2v, cio => ciov, ps => psv, pt => ptv, cso => csov, cfood => cfoodv, # line 65,67,70,74,75,80,90 page 168
-]
-# Initializations
-global common_u0 = [
-    # pop => pop0, # lines 2-3 page 167
-    ehspc => ehspc0, # smooth at lines 13-14 page 167
-    ple => le0, # dlinf3 at line 41 page 168
-    ple1 => le0, # dlinf3 at line 41 page 168
-    ple2 => le0, # dlinf3 at line 41 page 168
-    diopc => iopc0, # dlinf3 at line 48 page 168
-    diopc1 => iopc0, # dlinf3 at line 48 page 168
-    diopc2 => iopc0, # dlinf3 at line 48 page 168
-    # frsn => 0.82, # line 52 page 168
-    aiopc => iopc0, # smooth at line 54 page 168
-    fcfpc => fcapc0, # dlinf3 at line 60 page 168
-    fcfpc1 => fcapc0, # dlinf3 at line 60 page 168
-    fcfpc2 => fcapc0, # dlinf3 at line 60 page 168
-    ppolx => ppolx0
-    # fpc => fpc0,
-    # br => br0
-]
+@variables t
+D = Differential(t)
+
+
+function death_rate(; name)
+    @parameters len = lenv sfpc = sfpcv hsid = hsidv iphst = iphstv
+
+    @variables dr(t) pop(t)
+    @variables fpc(t) sopc(t) iopc(t) ppolx(t)
+    @variables ehspc(t) = ehspc0
+    @variables cdr(t) le(t) lmf(t) hsapc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t)
+
+    eqs = [
+        cdr ~ 1000.0 * dr / pop
+        le ~ len * lmf * lmhs * lmp * lmc
+        lmf ~ interpolate(fpc / sfpc, lmft, lmfts)
+        hsapc ~ interpolate(sopc, hsapct, hsapcts)
+        D(ehspc) ~ (hsapc - ehspc) / hsid
+        lmhs ~ clip(lmhs2, lmhs1, t, iphst)
+        lmhs1 ~ interpolate(ehspc, lmhs1t, lmhs1ts)
+        lmhs2 ~ interpolate(ehspc, lmhs2t, lmhs2ts)
+        fpu ~ interpolate(pop, fput, fputs)
+        cmi ~ interpolate(iopc, cmit, cmits)
+        lmc ~ 1 - (cmi * fpu)
+        lmp ~ interpolate(ppolx, lmpt, lmpts)
+    ]
+
+    ODESystem(eqs; name)
+end
+
+function birth_rate(; name)
+    @parameters mtfn = mtfnv lpd = lpdv dcfsn = dcfsnv zpgt = zpgtv sad = sadv ieat = ieatv fcest = fcestv hsid = hsidv
+
+    @variables br(t) pop(t)
+    @variables le(t) iopc(t) sopc(t)
+    @variables ple(t) = le0 ple1(t) = le0 ple2(t) = le0 diopc(t) = iopc0 diopc1(t) = iopc0 diopc2(t) = iopc0 aiopc(t) = iopc0 fcfpc(t) = fcapc0 fcfpc2(t) = fcapc0 fcfpc1(t) = fcapc0 
+    @variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) dcfs(t) sfsn(t) frsn(t) fie(t) nfc(t) fce(t) fcapc(t) fsafc(t) 
+
+    eqs = [
+        cbr ~ 1000.0 * br / pop
+        tf ~ min(mtf, mtf * (1 - fce) + dtf * fce)
+        mtf ~ mtfn * fm
+        fm ~ interpolate(le, fmt, fmts)
+        dtf ~ dcfs * cmple
+        cmple ~ interpolate(ple, cmplet, cmplets)
+        D(ple) ~ 3 * (ple2 - ple) / lpd
+        D(ple2) ~ 3 * (ple1 - ple2) / lpd
+        D(ple1) ~ 3 * (le - ple1) / lpd
+        dcfs ~ clip(2, dcfsn * frsn * sfsn, t, zpgt)
+        sfsn ~ interpolate(diopc, sfsnt, sfsnts)
+        D(diopc) ~ 3 * (diopc2 - diopc) / sad
+        D(diopc2) ~ 3 * (diopc1 - diopc2) / sad
+        D(diopc1) ~ 3 * (iopc - diopc1) / sad
+        frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, t0 + 1)
+        fie ~ (iopc - aiopc) / aiopc
+        D(aiopc) ~ (iopc - aiopc) / ieat
+        nfc ~ (mtf / dtf) - 1
+        fce ~ clip(1.0, interpolate(fcfpc, fcet, fcets), t, fcest)
+        D(fcfpc) ~ 3 * (fcfpc2 - fcfpc) / hsid
+        D(fcfpc2) ~ 3 * (fcfpc1 - fcfpc2) / hsid
+        D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid
+        fcapc ~ fsafc * sopc
+        fsafc ~ interpolate(nfc, fsafct, fsafcts)
+    ]
+
+    ODESystem(eqs; name)
+end
+
+function industrial_output(; name)
+    @parameters lt = ltv lt2 = lt2v cio = ciov
+
+    @variables pop(t)
+    @variables io(t) io1(t) io11(t) io12(t) io2(t) iopc(t)
+
+    eqs = [
+        io ~ clip(io2, io1, t, lt)
+        io1 ~ clip(io12, io11, t, lt2)
+        io11 ~ 0.7e11 * exp((t - 1900) * 0.037)
+        io12 ~ pop * cio
+        io2 ~ 0.7e11 * exp((lt - 1900) * 0.037)
+        iopc ~ io / pop
+    ]
+
+    ODESystem(eqs; name)
+end
+
+function service_output(; name)
+    @parameters lt = ltv lt2 = lt2v cso = csov
+
+    @variables pop(t)
+    @variables so(t) so1(t) so11(t) so12(t) so2(t) sopc(t)
+
+    eqs = [
+        so ~ clip(so2, so1, t, lt)
+        so1 ~ clip(so12, so11, t, lt2)
+        so11 ~ 1.5e11 * exp((t - 1900) * 0.030)
+        so12 ~ pop * cso
+        so2 ~ 1.5e11 * exp((lt - 1900) * 0.030)
+        sopc ~ so / pop
+    ]
+
+    ODESystem(eqs; name)
+end
+
+function persistent_pollution(; name)
+    @parameters ps = psv pt = ptv
+
+    @variables ppolx(t) = ppolx0
+
+    eqs = [
+        D(ppolx) ~ step(t, ps, pt)
+    ]
+
+    ODESystem(eqs; name)
+end
+
+function food(; name)
+    @parameters lt = ltv lt2 = lt2v cfood = cfoodv
+
+    @variables pop(t) 
+    @variables f(t) f1(t) f11(t) f12(t) f2(t) fpc(t)
+
+    eqs = [
+        f ~ clip(f2, f1, t, lt)
+        f1 ~ clip(f12, f11, t, lt2)
+        f11 ~ 4e11 * exp((t - 1900) * 0.020)
+        f12 ~ pop * cfood
+        f2 ~ 4e11 * exp((lt - 1900) * 0.020)
+        fpc ~ f / pop
+    ]
+
+    ODESystem(eqs; name)
+end
+
+
+end # module
