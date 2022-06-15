@@ -10,7 +10,6 @@ include("../common_pop/parameters.jl")
 include("../common_pop/initialisations.jl")
 
 include("tables.jl")
-include("parameters.jl")
 include("initialisations.jl")
 
 
