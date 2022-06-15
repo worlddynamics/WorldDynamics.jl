@@ -1,4 +1,14 @@
-using Interpolations, ModelingToolkit, DifferentialEquations
+module CommonPop
+
+export death_rate, birth_rate
+
+
+using Interpolations, ModelingToolkit
+
+include("../functions.jl")
+include("tables.jl")
+include("parameters.jl")
+include("initialisations.jl")
 
 
 @register interpolate(x, y::NTuple, xs::Tuple)
@@ -10,7 +20,7 @@ using Interpolations, ModelingToolkit, DifferentialEquations
 D = Differential(t)
 
 
-function Death_Rate(; name)
+function death_rate(; name)
     @parameters len = lenv sfpc = sfpcv hsid = hsidv iphst = iphstv
 
     @variables dr(t) pop(t)
@@ -36,7 +46,7 @@ function Death_Rate(; name)
     ODESystem(eqs; name)
 end
 
-function Birth_Rate(; name)
+function birth_rate(; name)
     @parameters mtfn = mtfnv lpd = lpdv dcfsn = dcfsnv zpgt = zpgtv sad = sadv ieat = ieatv fcest = fcestv hsid = hsidv
 
     @variables br(t) pop(t)
@@ -74,7 +84,7 @@ function Birth_Rate(; name)
     ODESystem(eqs; name)
 end
 
-function Industrial_Output(; name)
+function industrial_output(; name)
     @parameters lt = ltv lt2 = lt2v cio = ciov
 
     @variables pop(t)
@@ -92,7 +102,7 @@ function Industrial_Output(; name)
     ODESystem(eqs; name)
 end
 
-function Service_Output(; name)
+function service_output(; name)
     @parameters lt = ltv lt2 = lt2v cso = csov
 
     @variables pop(t)
@@ -110,7 +120,7 @@ function Service_Output(; name)
     ODESystem(eqs; name)
 end
 
-function Persistent_Pollution(; name)
+function persistent_pollution(; name)
     @parameters ps = psv pt = ptv
 
     @variables ppolx(t) = ppolx0
@@ -122,7 +132,7 @@ function Persistent_Pollution(; name)
     ODESystem(eqs; name)
 end
 
-function Food(; name)
+function food(; name)
     @parameters lt = ltv lt2 = lt2v cfood = cfoodv
 
     @variables pop(t) 
@@ -141,19 +151,4 @@ function Food(; name)
 end
 
 
-@named dr = Death_Rate()
-@named br = Birth_Rate()
-@named io = Industrial_Output()
-@named so = Service_Output()
-@named pp = Persistent_Pollution()
-@named f = Food()
-
-common_connection_eqs = [
-    dr.fpc ~ f.fpc
-    dr.sopc ~ so.sopc
-    dr.iopc ~ io.iopc
-    dr.ppolx ~ pp.ppolx
-    br.le ~ dr.le
-    br.iopc ~ io.iopc
-    br.sopc ~ so.sopc
-]
+end # module
