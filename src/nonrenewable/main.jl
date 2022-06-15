@@ -12,8 +12,8 @@ include("odesystem.jl")
 connection_eqs = [
     nr.pop ~ pop.pop
     nr.iopc ~ io.iopc
-    nr.fcaor ~ io.fcaor
     io.ic ~ ic.ic
+    io.fcaor ~ nr.fcaor
     io.pop ~ pop.pop
     ic.io ~ io.io
 ]

@@ -62,7 +62,7 @@ end
 function non_renewable(; name)
     @parameters nri = nriv nruf1 = nruf1v nruf2 = nruf2v pyear = pyearv
 
-    @variables pop(t) pcrum(t) iopc(t)
+    @variables pop(t) iopc(t)
     @variables nr(t) = nr0
     @variables nrur(t) nruf(t) pcrum(t) nrfr(t) fcaor(t) fcaor1(t) fcaor2(t) 
     
