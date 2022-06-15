@@ -1,8 +1,5 @@
 using Interpolations, ModelingToolkit, DifferentialEquations
 
-# this was necessary because t0 is needed in initialisations.jl
-global t0 = 1900
-
 include("../functions.jl")
 
 include("../common_pop/tables.jl")

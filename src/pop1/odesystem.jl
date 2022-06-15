@@ -1,8 +1,5 @@
 using Interpolations, ModelingToolkit, DifferentialEquations
 
-# this was necessary because t0 is needed in initialisations.jl
-global t0 = 1900
-
 include("../functions.jl")
 include("../common_pop/tables.jl")
 include("../common_pop/parameters.jl")
@@ -49,7 +46,7 @@ connection_eqs = vcat(connection_eqs, common_connection_eqs)
 
 pop_sys = structural_simplify(pop_model)
 
-prob = ODEProblem(pop_sys, [], (1900, 1970.0))
+prob = ODEProblem(pop_sys, [], (1900.0, 1970.0))
 sol = solve(prob, Tsit5())
 
 
