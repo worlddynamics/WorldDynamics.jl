@@ -1,4 +1,5 @@
 using PlotlyJS
+using Colors
 using ColorSchemes
 
 
