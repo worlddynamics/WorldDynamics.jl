@@ -1,6 +1,6 @@
 using ModelingToolkit, DifferentialEquations
 
-include("odesystem.jl")
+include("Pollution.jl")
 
 
 @named pop = Pollution.population()

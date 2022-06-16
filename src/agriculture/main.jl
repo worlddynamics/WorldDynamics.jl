@@ -1,6 +1,6 @@
 using ModelingToolkit, DifferentialEquations
 
-include("odesystem.jl")
+include("Agriculture.jl")
 
 
 @named pop = Agriculture.population()

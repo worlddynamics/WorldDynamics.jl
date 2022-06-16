@@ -1,6 +1,6 @@
 using ModelingToolkit, DifferentialEquations
 
-include("odesystem.jl")
+include("NonRenewable.jl")
 
 
 @named pop = NonRenewable.population()

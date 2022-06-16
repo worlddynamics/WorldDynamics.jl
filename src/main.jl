@@ -1,13 +1,13 @@
 using ModelingToolkit, DifferentialEquations
 
 
-include("common_pop/odesystem.jl")
-include("pop4/odesystem.jl")
-include("capital/odesystem.jl")
-include("agriculture/odesystem.jl")
-include("nonrenewable/odesystem.jl")
-include("pollution/odesystem.jl")
-include("odesystem.jl")
+include("common_pop/CommonPop.jl")
+include("pop4/Pop4.jl")
+include("capital/Capital.jl")
+include("agriculture/Agriculture.jl")
+include("nonrenewable/NonRenewable.jl")
+include("pollution/Pollution.jl")
+include("World3.jl")
 
 
 @named pop = Pop4.population()

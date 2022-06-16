@@ -1,7 +1,7 @@
 using ModelingToolkit, DifferentialEquations
 
-include("../common_pop/odesystem.jl")
-include("odesystem.jl")
+include("../common_pop/CommonPop.jl")
+include("Pop4.jl")
 
 
 @named pop = Pop4.population()

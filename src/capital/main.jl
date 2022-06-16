@@ -1,6 +1,6 @@
 using ModelingToolkit, DifferentialEquations
 
-include("odesystem.jl")
+include("Capital.jl")
 
 
 @named pop = Capital.population()
