@@ -7,6 +7,7 @@ function plotvariables(solution, xvalue, variables; name="", showaxis=false, sho
     numvars = length(variables)
 
     @assert 1 ≤ numvars
+    @assert 4 == length(variables[1])
 
 
     colors = colored ? ColorSchemes.tab10.colors : fill(RGB(0.2, 0.2, 0.2), numvars)   
@@ -17,7 +18,7 @@ function plotvariables(solution, xvalue, variables; name="", showaxis=false, sho
 
     traces = GenericTrace[]
 
-    (var, min, max) = variables[1]
+    (var, min, max, varname) = variables[1]
 
     layout = Dict([
         ("title", attr(text=name, x=0.5)), 
@@ -39,13 +40,13 @@ function plotvariables(solution, xvalue, variables; name="", showaxis=false, sho
         x = solution[xvalue], 
         y = solution[var], 
         marker_color = colors[1], 
-        name = string(var), 
+        name = varname, 
         mode = linetype, yaxis="y1")
     )
 
 
     for i ∈ 2:numvars
-        (var, min, max) = variables[i]
+        (var, min, max, varname) = variables[i]
 
         layout[string("yaxis", i)] = attr(
             color = colors[i], 
@@ -61,7 +62,7 @@ function plotvariables(solution, xvalue, variables; name="", showaxis=false, sho
             x = solution[xvalue], 
             y = solution[var], 
             marker_color = colors[i], 
-            name = string(var), 
+            name = varname, 
             mode = linetype, 
             yaxis = string("y", i))
         )

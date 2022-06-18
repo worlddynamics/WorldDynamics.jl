@@ -14,11 +14,11 @@ sol = solvecapital()
 
 
 fig_3_36_variables = [
-    (pop.pop, 0, 5e9),
-    (ag.al, 0, 1.5e9),
-    (ag.fioaa, 0, 0.5),
-    (nr.fcaor, 0, 0.25),
-    (ag.aiph, 0, 50)
+    (pop.pop,  0, 5e9,   "pop"),
+    (ag.al,    0, 1.5e9, "al"),
+    (ag.fioaa, 0, 0.5,   "fioaa"),
+    (nr.fcaor, 0, 0.25,  "fcaor"),
+    (ag.aiph,  0, 50,    "aiph")
 ]
 
 plotvariables(sol, t, fig_3_36_variables, name="Fig. 3.36", showlegend=true, showaxis=true, colored=true)

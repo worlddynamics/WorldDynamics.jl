@@ -19,13 +19,13 @@ sol = solveworld3()
 
 
 fig_7_7_variables = [
-    (nr.nrfr, 0, 1),
-    (is.iopc, 0, 1000),
-    (ld.fpc, 0, 1000),
-    (pop.pop, 0, 16e9),
-    (pp.ppolx, 0, 32),
-    (br.cbr, 0, 50),
-    (dr.cdr, 0, 50)
+    (nr.nrfr,  0, 1,    "nrfr"),
+    (is.iopc,  0, 1000, "iopc"),
+    (ld.fpc,   0, 1000, "fpc"),
+    (pop.pop,  0, 16e9, "pop"),
+    (pp.ppolx, 0, 32,   "ppolx"),
+    (br.cbr,   0, 50,   "cbr"),
+    (dr.cdr,   0, 50,   "cdr")
 ]
 
 plotvariables(sol, t, fig_7_7_variables, name="Fig. 7.7", showlegend=true, showaxis=true, colored=true)

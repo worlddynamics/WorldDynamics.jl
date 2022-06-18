@@ -18,15 +18,15 @@ sol = solvepop1()
 
 
 fig_2_84_variables = [
-    (pop.pop, 0, 1.6e10),
-    (br.cbr, 0, 50),
-    (dr.cdr, 0, 50),
-    (so.sopc, 0, 1000),
-    (dr.fpu, 0, 1),
-    (f.fpc, 0, 1000),
-    (dr.le, 0, 80),
-    (br.fce, 0.5, 1),
-    (io.iopc, 0, 1000)
+    (pop.pop, 0,   1.6e10, "pop"),
+    (br.cbr,  0,   50,     "cbr"),
+    (dr.cdr,  0,   50,     "cdr"),
+    (so.sopc, 0,   1000,   "sopc"),
+    (dr.fpu,  0,   1,      "fpu"),
+    (f.fpc,   0,   1000,   "fpc"),
+    (dr.le,   0,   80,     "le"),
+    (br.fce,  0.5, 1,      "fce"),
+    (io.iopc, 0,   1000,   "iopc")
 ]
 
 plotvariables(sol, t, fig_2_84_variables, name="Fig. 2.84", showlegend=true, showaxis=true, colored=true)
