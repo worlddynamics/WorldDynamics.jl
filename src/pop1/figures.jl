@@ -30,3 +30,15 @@ fig_2_84_variables = [
 ]
 
 plotvariables(sol, t, fig_2_84_variables, name="Fig. 2.84", showlegend=true, showaxis=true, colored=true)
+
+
+fig_2_85_variables = [
+    (dr.lmf,   0, 2,   "lmf"),
+    (dr.lmhs,  0, 2,   "lmhs"),
+    (dr.lmp,   0, 2,   "lmp"),
+    (dr.lmc,   0, 2,   "lmc"),
+    (dr.hsapc, 0, 250, "hsapc"),
+    (dr.ehspc, 0, 250, "ehspc")
+]
+
+plotvariables(sol, t, fig_2_85_variables, name="Fig. 2.85", showlegend=true, showaxis=true, colored=true)
