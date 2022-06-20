@@ -1,5 +1,5 @@
 include("../../src/plotvariables.jl")
-include("../world3/solvenonrenewable.jl")
+include("../solutions/solvenonrenewable.jl")
 
 
 sol = solvenonrenewable()

@@ -1,5 +1,5 @@
 include("../../src/plotvariables.jl")
-include("../world3/solveworld3.jl")
+include("../solutions/solveworld3.jl")
 
 
 sol = solveworld3()
