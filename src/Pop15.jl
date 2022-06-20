@@ -3,15 +3,14 @@ module Pop15
 
 using Interpolations, ModelingToolkit
 
-include("../functions.jl")
+include("functions.jl")
 
-include("common_pop/tables.jl")
-include("common_pop/parameters.jl")
-include("common_pop/initialisations.jl")
-include("CommonPop.jl")
-
-include("pop15/tables.jl")
-include("pop15/initialisations.jl")
+include("population/common_pop/tables.jl")
+include("population/common_pop/parameters.jl")
+include("population/common_pop/initialisations.jl")
+include("population/CommonPop.jl")
+include("population/pop15/tables.jl")
+include("population/pop15/initialisations.jl")
 
 
 @register interpolate(x, y::NTuple, xs::Tuple)

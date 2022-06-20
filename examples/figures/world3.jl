@@ -5,9 +5,9 @@ include("../world3/solveworld3.jl")
 sol = solveworld3()
 
 
-@named pop = Population.population()
-@named br = Population.birth_rate()
-@named dr = Population.death_rate()
+@named pop = Pop4.population()
+@named br = Pop4.birth_rate()
+@named dr = Pop4.death_rate()
 @named is = Capital.industrial_subsector()
 @named ld = Agriculture.land_development()
 @named nr = NonRenewable.non_renewable()

@@ -3,12 +3,12 @@ module Pop1
 
 using Interpolations, ModelingToolkit
 
-include("../functions.jl")
+include("functions.jl")
 
-include("common_pop/tables.jl")
-include("common_pop/parameters.jl")
-include("common_pop/initialisations.jl")
-include("CommonPop.jl")
+include("population/common_pop/tables.jl")
+include("population/common_pop/parameters.jl")
+include("population/common_pop/initialisations.jl")
+include("population/CommonPop.jl")
 
 
 @register clip(f1, f2, va, th)

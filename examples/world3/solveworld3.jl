@@ -1,7 +1,7 @@
 using ModelingToolkit, DifferentialEquations
 
 
-include("../../src/Population.jl")
+include("../../src/Pop4.jl")
 include("../../src/Capital.jl")
 include("../../src/Agriculture.jl")
 include("../../src/NonRenewable.jl")
@@ -10,9 +10,9 @@ include("../../src/World3.jl")
 
 
 function solveworld3()
-    @named pop = Population.population()
-    @named dr = Population.death_rate()
-    @named br = Population.birth_rate()
+    @named pop = Pop4.population()
+    @named dr = Pop4.death_rate()
+    @named br = Pop4.birth_rate()
 
     @named is = Capital.industrial_subsector()
     @named ss = Capital.service_subsector()

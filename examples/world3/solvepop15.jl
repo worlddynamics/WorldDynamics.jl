@@ -1,6 +1,6 @@
 using ModelingToolkit, DifferentialEquations
 
-include("../../src/population/Pop15.jl")
+include("../../src/Pop15.jl")
 
 
 function solvepop15()
