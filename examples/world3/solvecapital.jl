@@ -1,6 +1,5 @@
-using ModelingToolkit, DifferentialEquations
-
 include("../../src/Capital.jl")
+include("../../src/solvesystems.jl")
 
 
 function solvecapital()
@@ -10,6 +9,8 @@ function solvecapital()
     @named is = Capital.industrial_subsector()
     @named ss = Capital.service_subsector()
     @named js = Capital.job_subsector()
+
+    systems = [pop, nr, ag, is, ss, js]
 
     connection_eqs = [
         is.pop ~ pop.pop
@@ -31,15 +32,5 @@ function solvecapital()
         js.p3 ~ pop.p3
     ]
 
-    @variables t
-
-    @named _cap_model = ODESystem(connection_eqs, t)
-    @named cap_model = compose(_cap_model, [pop, nr, ag, is, ss, js])
-
-    cap_sys = structural_simplify(cap_model)
-
-    prob = ODEProblem(cap_sys, [], (1900, 1970.0))
-    sol = solve(prob, Tsit5())
-
-    return sol
+    return solvesystems(systems, connection_eqs, (1900, 1970.0))
 end

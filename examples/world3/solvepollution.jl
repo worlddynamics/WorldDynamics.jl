@@ -1,6 +1,5 @@
-using ModelingToolkit, DifferentialEquations
-
 include("../../src/Pollution.jl")
+include("../../src/solvesystems.jl")
 
 
 function solvepollution()
@@ -10,6 +9,8 @@ function solvepollution()
     @named pd = Pollution.pollution_damage()
     @named atcc = Pollution.adaptive_technological_control_cards()
     @named pp = Pollution.persistent_pollution()
+
+    systems = [pop, nr, ag, pd, atcc, pp]
 
     connection_eqs = [
         pd.ppolx ~ pp.ppolx
@@ -21,15 +22,5 @@ function solvepollution()
         pp.al ~ ag.al
     ]
 
-    @variables t
-
-    @named _pp_model = ODESystem(connection_eqs, t)
-    @named pp_model = compose(_pp_model, [pop, nr, ag, pd, atcc, pp])
-
-    pp_sys = structural_simplify(pp_model)
-
-    prob = ODEProblem(pp_sys, [], (1900.0, 1970.0))
-    sol = solve(prob, Tsit5())
-
-    return sol
+    return solvesystems(systems, connection_eqs, (1900.0, 1970.0))
 end

@@ -1,6 +1,5 @@
-using ModelingToolkit, DifferentialEquations
-
 include("../../src/NonRenewable.jl")
+include("../../src/solvesystems.jl")
 
 
 function solvenonrenewable()
@@ -8,6 +7,8 @@ function solvenonrenewable()
     @named io = NonRenewable.industrial_output()
     @named ic = NonRenewable.industrial_capital()
     @named nr = NonRenewable.non_renewable()
+
+    systems = [pop, io, ic, nr]
 
     connection_eqs = [
         nr.pop ~ pop.pop
@@ -18,15 +19,5 @@ function solvenonrenewable()
         ic.io ~ io.io
     ]
 
-    @variables t
-
-    @named _nr_model = ODESystem(connection_eqs, t)
-    @named nr_model = compose(_nr_model, [nr, pop, io, ic])
-
-    nr_sys = structural_simplify(nr_model)
-
-    prob = ODEProblem(nr_sys, [], (1900, 2100.0))
-    sol = solve(prob, Tsit5())
-    
-    return sol
+    return solvesystems(systems, connection_eqs, (1900.0, 2100.0))
 end

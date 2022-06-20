@@ -1,6 +1,5 @@
-using ModelingToolkit, DifferentialEquations
-
 include("../../src/Agriculture.jl")
+include("../../src/solvesystems.jl")
 
 
 function solveagriculture()
@@ -14,6 +13,8 @@ function solveagriculture()
     @named dlm = Agriculture.discontinung_land_maintenance()
     @named lfr = Agriculture.land_fertility_regeneration()
     @named lfd = Agriculture.land_fertility_degradation()
+
+    systems = [pop, io, pp, ld, ai, iad, leuiu, dlm, lfr, lfd]
 
     connection_eqs = [
         ld.ler ~ leuiu.ler
@@ -46,15 +47,5 @@ function solveagriculture()
         io.pop ~ pop.pop
     ]
 
-    @variables t
-
-    @named _ag_model = ODESystem(connection_eqs, t)
-    @named ag_model = compose(_ag_model, [pop, io, pp, ld, ai, iad, leuiu, dlm, lfr, lfd])
-
-    ag_sys = structural_simplify(ag_model)
-
-    prob = ODEProblem(ag_sys, [], (1900.0, 1970.0))
-    sol = solve(prob, Tsit5())
-
-    return sol
+    return solvesystems(systems, connection_eqs, (1900.0, 1970.0))
 end

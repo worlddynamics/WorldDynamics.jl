@@ -1,12 +1,10 @@
-using ModelingToolkit, DifferentialEquations
-
-
 include("../../src/Pop4.jl")
 include("../../src/Capital.jl")
 include("../../src/Agriculture.jl")
 include("../../src/NonRenewable.jl")
 include("../../src/Pollution.jl")
 include("../../src/World3.jl")
+include("../../src/solvesystems.jl")
 
 
 function solveworld3()
@@ -33,6 +31,16 @@ function solveworld3()
     @named atcc = Pollution.adaptive_technological_control_cards()
 
     @named se = World3.supplementary_eqs()
+
+
+    systems = [
+        pop, dr, br, 
+        is, ss, js, 
+        ld, ai, iad, leuiu, dlm, lfr, lfd, 
+        nr, 
+        pp, pd, atcc, 
+        se
+    ]
 
 
     connection_eqs = [
@@ -113,16 +121,5 @@ function solveworld3()
         se.io ~ is.io
     ]
 
-
-    @variables t
-
-    @named _world3_model = ODESystem(connection_eqs, t)
-    @named world3_model = compose(_world3_model, [pop, dr, br, is, ss, js, ld, ai, iad, leuiu, dlm, lfr, lfd, nr, pp, pd, atcc, se])
-
-    world3_sys = structural_simplify(world3_model)
-
-    prob = ODEProblem(world3_sys, [], (1900, 2100.0))
-    sol = solve(prob, Tsit5())
-
-    return sol
+    return solvesystems(systems, connection_eqs, (1900.0, 2100.0))
 end
