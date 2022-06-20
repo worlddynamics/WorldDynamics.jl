@@ -5,7 +5,7 @@ export death_rate, birth_rate
 
 using Interpolations, ModelingToolkit
 
-include("../functions.jl")
+include("../../functions.jl")
 include("common_pop/tables.jl")
 include("common_pop/parameters.jl")
 include("common_pop/initialisations.jl")

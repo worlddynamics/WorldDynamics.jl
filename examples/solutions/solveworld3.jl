@@ -1,9 +1,10 @@
-include("../../src/Pop4.jl")
-include("../../src/Capital.jl")
-include("../../src/Agriculture.jl")
-include("../../src/NonRenewable.jl")
-include("../../src/Pollution.jl")
-include("../../src/World3.jl")
+include("../../src/World3/Pop4.jl")
+include("../../src/World3/Capital.jl")
+include("../../src/World3/Agriculture.jl")
+include("../../src/World3/NonRenewable.jl")
+include("../../src/World3/Pollution.jl")
+include("../../src/World3/World3.jl")
+
 include("../../src/solvesystems.jl")
 
 

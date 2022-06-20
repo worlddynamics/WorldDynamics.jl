@@ -3,7 +3,7 @@ module Pollution
 
 using Interpolations, ModelingToolkit
 
-include("functions.jl")
+include("../functions.jl")
 include("pollution/tables.jl")
 include("pollution/parameters.jl")
 include("pollution/initialisations.jl")

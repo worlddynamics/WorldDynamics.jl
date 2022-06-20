@@ -3,7 +3,7 @@ module Agriculture
 
 using Interpolations, ModelingToolkit
 
-include("functions.jl")
+include("../functions.jl")
 include("agriculture/tables.jl")
 include("agriculture/parameters.jl")
 include("agriculture/initialisations.jl")

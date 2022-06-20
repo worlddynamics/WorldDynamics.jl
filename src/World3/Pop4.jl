@@ -3,7 +3,7 @@ module Pop4
 
 using Interpolations, ModelingToolkit
 
-include("functions.jl")
+include("../functions.jl")
 
 include("population/common_pop/tables.jl")
 include("population/common_pop/parameters.jl")

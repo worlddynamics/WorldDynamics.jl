@@ -3,7 +3,7 @@ module Capital
 
 using Interpolations, ModelingToolkit
 
-include("functions.jl")
+include("../functions.jl")
 include("capital/tables.jl")
 include("capital/parameters.jl")
 include("capital/initialisations.jl")

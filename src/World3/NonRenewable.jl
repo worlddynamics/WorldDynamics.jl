@@ -3,7 +3,7 @@ module NonRenewable
 
 using Interpolations, ModelingToolkit
 
-include("functions.jl")
+include("../functions.jl")
 include("nonrenewable/tables.jl")
 include("nonrenewable/parameters.jl")
 include("nonrenewable/initialisations.jl")

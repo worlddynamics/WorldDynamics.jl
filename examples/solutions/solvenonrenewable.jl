@@ -1,4 +1,4 @@
-include("../../src/NonRenewable.jl")
+include("../../src/World3/NonRenewable.jl")
 include("../../src/solvesystems.jl")
 
 

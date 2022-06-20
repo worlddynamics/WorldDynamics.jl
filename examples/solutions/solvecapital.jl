@@ -1,4 +1,4 @@
-include("../../src/Capital.jl")
+include("../../src/World3/Capital.jl")
 include("../../src/solvesystems.jl")
 
 
