@@ -27,7 +27,7 @@ fig_2_84_variables = [
     (io.iopc, 0,   1000,   "iopc")
 ]
 
-plotvariables(sol, t, fig_2_84_variables, name="Fig. 2.84", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900.0, 1970.0), fig_2_84_variables, name="Fig. 2.84", showlegend=true, showaxis=true, colored=true)
 
 
 fig_2_85_variables = [
@@ -43,4 +43,4 @@ fig_2_85_variables = [
     (dr.ehspc, 0, 250, "ehspc")
 ]
 
-plotvariables(sol, t, fig_2_85_variables, name="Fig. 2.85", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900.0, 1970.0), fig_2_85_variables, name="Fig. 2.85", showlegend=true, showaxis=true, colored=true)

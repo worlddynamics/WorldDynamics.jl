@@ -27,4 +27,4 @@ fig_7_7_variables = [
     (dr.cdr,   0, 50,   "cdr")
 ]
 
-plotvariables(sol, t, fig_7_7_variables, name="Fig. 7.7", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.7", showlegend=true, showaxis=true, colored=true)

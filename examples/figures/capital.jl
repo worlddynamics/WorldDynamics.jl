@@ -20,4 +20,4 @@ fig_3_36_variables = [
     (ag.aiph,  0, 50,    "aiph")
 ]
 
-plotvariables(sol, t, fig_3_36_variables, name="Fig. 3.36", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900.0, 1970.0), fig_3_36_variables, name="Fig. 3.36", showlegend=true, showaxis=true, colored=true)

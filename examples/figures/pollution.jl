@@ -35,4 +35,4 @@ fig_6_29_variables = [
     (pd.lfdr,  0, 0.5, "lfdr"),
 ]
 
-plotvariables(sol, t, fig_6_29_variables, name="Fig. 6.29", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900.0, 1970.0), fig_6_29_variables, name="Fig. 6.29", showlegend=true, showaxis=true, colored=true)

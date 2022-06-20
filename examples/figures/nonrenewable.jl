@@ -21,4 +21,4 @@ fig_5_25_variables = [
     (pop.pop,  0, 16e9,  "pop")
 ]
 
-plotvariables(sol, t, fig_5_25_variables, name="Fig. 5.25", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900.0, 2100.0), fig_5_25_variables, name="Fig. 5.25", showlegend=true, showaxis=true, colored=true)

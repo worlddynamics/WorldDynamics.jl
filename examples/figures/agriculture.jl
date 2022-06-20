@@ -20,4 +20,4 @@ fig_4_69_variables = [
     (ld.dcph,    0, 10000, "dcph")
 ]
 
-plotvariables(sol, t, fig_4_69_variables, name="Fig. 4.69", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900.0, 1970.0), fig_4_69_variables, name="Fig. 4.69", showlegend=true, showaxis=true, colored=true)
