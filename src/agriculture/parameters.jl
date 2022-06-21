@@ -17,4 +17,4 @@ global popiv = 1.65e9
 global ioiv = 0.67e11
 global ppolxiv = 0.12
 global pyearv = 1975
-global exppopv = 0.011
+global exppopv = 0.012
