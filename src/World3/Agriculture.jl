@@ -1,7 +1,7 @@
 module Agriculture
 
 
-using Interpolations, ModelingToolkit
+using ModelingToolkit
 
 include("../functions.jl")
 include("agriculture/tables.jl")

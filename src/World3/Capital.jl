@@ -1,7 +1,7 @@
 module Capital
 
 
-using Interpolations, ModelingToolkit
+using ModelingToolkit
 
 include("../functions.jl")
 include("capital/tables.jl")

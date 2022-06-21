@@ -3,7 +3,7 @@ module CommonPop
 export death_rate, birth_rate
 
 
-using Interpolations, ModelingToolkit
+using ModelingToolkit
 
 include("../../functions.jl")
 include("common_pop/tables.jl")

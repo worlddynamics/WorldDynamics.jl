@@ -1,7 +1,7 @@
 module Pollution
 
 
-using Interpolations, ModelingToolkit
+using ModelingToolkit
 
 include("../functions.jl")
 include("pollution/tables.jl")

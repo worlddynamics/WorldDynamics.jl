@@ -1,7 +1,7 @@
 module World3
 
 
-using Interpolations, ModelingToolkit
+using ModelingToolkit
 
 
 @variables t

@@ -1,7 +1,7 @@
 module NonRenewable
 
 
-using Interpolations, ModelingToolkit
+using ModelingToolkit
 
 include("../functions.jl")
 include("nonrenewable/tables.jl")

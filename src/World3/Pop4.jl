@@ -1,7 +1,7 @@
 module Pop4
 
 
-using Interpolations, ModelingToolkit
+using ModelingToolkit
 
 include("../functions.jl")
 
