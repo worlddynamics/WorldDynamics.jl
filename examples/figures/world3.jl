@@ -9,9 +9,11 @@ sol = solveworld3()
 @named br = Pop4.birth_rate()
 @named dr = Pop4.death_rate()
 @named is = Capital.industrial_subsector()
+@named ss = Capital.service_subsector()
 @named ld = Agriculture.land_development()
 @named nr = NonRenewable.non_renewable()
 @named pp = Pollution.persistent_pollution()
+@named se = World3.supplementary_eqs()
 
 
 @variables t
@@ -31,6 +33,19 @@ fig_7_2_variables = [
 ]
 
 plotvariables(sol, (t, 1900.0, 1970.0), fig_7_2_variables, name="Fig. 7.2", showlegend=true, showaxis=true, colored=true)
+
+
+fig_7_3_variables = [
+    (is.ic,   0, 4e12, "ic"),
+    (is.io,   0, 4e12, "io"),
+    (is.iopc, 0, 400,  "iopc"),
+    (ss.sopc, 0, 400,  "sopc"),
+    (se.foa,  0, 1,    "foa"),
+    (se.foi,  0, 1,    "foi"),
+    (se.fos,  0, 1,    "fos")
+]
+
+plotvariables(sol, (t, 1900.0, 1970.0), fig_7_3_variables, name="Fig. 7.3", showlegend=true, showaxis=true, colored=true)
 
 
 fig_7_7_variables = [
