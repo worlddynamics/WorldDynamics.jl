@@ -17,6 +17,22 @@ sol = solveworld3()
 @variables t
 
 
+fig_7_2_variables = [
+    (pop.pop, 0,    4e9,  "pop"),
+    (br.cbr,  0,    50,   "cbr"),
+    (dr.cdr,  0,    50,   "cdr"),
+    (dr.le,   0,    60,   "le"),
+    (dr.lmf,  0.75, 1.75, "lmf"),
+    (dr.lmp,  0.75, 1.75, "lmp"),
+    (dr.lmhs, 0.75, 1.75, "lmhs"),
+    (dr.lmc,  0.75, 1.75, "lmc"),
+    (br.tf,   0,    8,    "tf"),
+    (br.dtf,  0,    8,    "dtf"),
+]
+
+plotvariables(sol, (t, 1900.0, 1970.0), fig_7_2_variables, name="Fig. 7.2", showlegend=true, showaxis=true, colored=true)
+
+
 fig_7_7_variables = [
     (nr.nrfr,  0, 1,    "nrfr"),
     (is.iopc,  0, 1000, "iopc"),
