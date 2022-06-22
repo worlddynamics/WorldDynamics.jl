@@ -1,12 +1,7 @@
-*.code-workspace
-gitignored
-.vscode/settings.json
+# Julia
+Manifest.toml
 
-JuliaSysimage*.dylib
-JuliaSysimage*.so
-JuliaSysimage*.dll
-
-# ignore latex files
+# Latex
 *.fdb_latexmk
 *.fls
 *.log
