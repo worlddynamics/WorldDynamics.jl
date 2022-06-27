@@ -17,4 +17,4 @@ popiv = 1.65e9
 ioiv = 0.67e11
 ppolxiv = 0.12
 pyearv = 1975
-exppopv = 0.011
+exppopv = 0.012
