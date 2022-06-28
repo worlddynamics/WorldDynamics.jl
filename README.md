@@ -1,3 +1,3 @@
-# world4
+# WorldDynamics.jl
 
-World4 in Julia
+An open-source framework written in Julia for world dynamics modeling and simulation.
