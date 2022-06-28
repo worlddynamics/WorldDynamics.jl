@@ -13,7 +13,7 @@ sol = solveworld3()
 @named ld = Agriculture.land_development()
 @named nr = NonRenewable.non_renewable()
 @named pp = Pollution.persistent_pollution()
-@named se = World3.supplementary_eqs()
+@named se = SupplementaryEquations.supplementary_equations()
 
 
 @variables t

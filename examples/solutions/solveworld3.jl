@@ -31,7 +31,7 @@ function solveworld3()
     @named pd = Pollution.pollution_damage()
     @named atcc = Pollution.adaptive_technological_control_cards()
 
-    @named se = World3.supplementary_eqs()
+    @named se = SupplementaryEquations.supplementary_equations()
 
 
     systems = [

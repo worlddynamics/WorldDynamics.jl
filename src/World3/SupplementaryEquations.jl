@@ -1,4 +1,4 @@
-module World3
+module SupplementaryEquations
 
 
 using ModelingToolkit
@@ -7,7 +7,7 @@ using ModelingToolkit
 @variables t
 D = Differential(t)
 
-function supplementary_eqs(; name)
+function supplementary_equations(; name)
     @variables f(t) so(t) io(t)
     @variables foa(t) foi(t) fos(t)
 
