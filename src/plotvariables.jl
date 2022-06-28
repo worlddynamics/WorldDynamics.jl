@@ -3,7 +3,23 @@ using ColorTypes
 using ColorSchemes
 
 
-function plotvariables(solution, xrange, variables; name="", showaxis=false, showlegend=true, linetype="lines", colored=false)
+function plotvariables(solution, xrange, variables::Vector{<:Number}; kwargs...)
+    plotvariables(solution, xrange, tuple.(variables, -Inf, Inf, ""); kwargs...)
+end
+
+function plotvariables(solution, xrange, variables::Vector{<:NTuple{1, Any}}; kwargs...)
+    plotvariables(solution, xrange, map(t -> tuple(t[1], -Inf, Inf, ""), variables); kwargs...)
+end
+
+function plotvariables(solution, xrange, variables::Vector{<:NTuple{2, Any}}; kwargs...)
+    plotvariables(solution, xrange, map(t -> tuple(t[1], -Inf, Inf, t[2]), variables); kwargs...)
+end
+
+function plotvariables(solution, xrange, variables::Vector{<:NTuple{3, Any}}; kwargs...)
+    plotvariables(solution, xrange, map(t -> tuple(t..., ""), variables); kwargs...)
+end
+
+function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; name="", showaxis=false, showlegend=true, linetype="lines", colored=false)
     numvars = length(variables)
 
     @assert 1 ≤ numvars
