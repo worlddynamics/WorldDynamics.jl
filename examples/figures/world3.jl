@@ -1,9 +1,9 @@
 using WorldDynamics
 
-include("../solutions/solveworld3.jl")
+include("../scenarios/world3_historicalrun.jl")
 
 
-sol = solveworld3()
+sol = world3_historicalrun()
 
 
 @named pop = WorldDynamics.World3.Pop4.population()

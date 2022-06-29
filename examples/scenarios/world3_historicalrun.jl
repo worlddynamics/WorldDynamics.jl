@@ -1,7 +1,7 @@
 using WorldDynamics
 using ModelingToolkit
 
-function solveworld3()
+function world3_historicalrun()
     @named pop = WorldDynamics.World3.Pop4.population()
     @named dr = WorldDynamics.World3.Pop4.death_rate()
     @named br = WorldDynamics.World3.Pop4.birth_rate()

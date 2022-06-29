@@ -1,7 +1,7 @@
 using WorldDynamics
 using ModelingToolkit
 
-function solvenonrenewable()
+function nonrenewable_historicalrun()
     @named pop = WorldDynamics.World3.NonRenewable.population()
     @named io = WorldDynamics.World3.NonRenewable.industrial_output()
     @named ic = WorldDynamics.World3.NonRenewable.industrial_capital()

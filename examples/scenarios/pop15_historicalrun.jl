@@ -1,14 +1,14 @@
 using WorldDynamics
 using ModelingToolkit
 
-function solvepop1()
-    @named pop = WorldDynamics.World3.Pop1.population()
-    @named dr = WorldDynamics.World3.Pop1.death_rate()
-    @named br = WorldDynamics.World3.Pop1.birth_rate()
-    @named io = WorldDynamics.World3.Pop1.industrial_output()
-    @named so = WorldDynamics.World3.Pop1.service_output()
-    @named pp = WorldDynamics.World3.Pop1.persistent_pollution()
-    @named f  = WorldDynamics.World3.Pop1.food()
+function pop15_historicalrun()
+    @named pop = WorldDynamics.World3.Pop15.population()
+    @named dr = WorldDynamics.World3.Pop15.death_rate()
+    @named br = WorldDynamics.World3.Pop15.birth_rate()
+    @named io = WorldDynamics.World3.Pop15.industrial_output()
+    @named so = WorldDynamics.World3.Pop15.service_output()
+    @named pp = WorldDynamics.World3.Pop15.persistent_pollution()
+    @named f  = WorldDynamics.World3.Pop15.food()
 
     systems = [pop, dr, br, io, so, pp, f]
 

@@ -1,9 +1,9 @@
 using WorldDynamics
 
-include("../solutions/solvepollution.jl")
+include("../scenarios/pollution_historicalrun.jl")
 
 
-sol = solvepollution()
+sol = pollution_historicalrun()
 
 
 @named nr = WorldDynamics.World3.Pollution.non_renewable()

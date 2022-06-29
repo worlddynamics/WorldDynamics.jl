@@ -1,9 +1,9 @@
 using WorldDynamics
 
-include("../solutions/solveagriculture.jl")
+include("../scenarios/agriculture_historicalrun.jl")
 
 
-sol = solveagriculture()
+sol = agriculture_historicalrun()
 
 
 @named ld = WorldDynamics.World3.Agriculture.land_development()

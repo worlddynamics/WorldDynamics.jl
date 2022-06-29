@@ -1,7 +1,7 @@
 using WorldDynamics
 using ModelingToolkit
 
-function solvepollution()
+function pollution_historicalrun()
     @named pop = WorldDynamics.World3.Pollution.population()
     @named nr = WorldDynamics.World3.Pollution.non_renewable()
     @named ag = WorldDynamics.World3.Pollution.agriculture()

@@ -1,7 +1,7 @@
 using WorldDynamics
 using ModelingToolkit
 
-function solvecapital()
+function capital_historicalrun()
     @named pop = WorldDynamics.World3.Capital.population()
     @named nr = WorldDynamics.World3.Capital.non_renewable()
     @named ag = WorldDynamics.World3.Capital.agriculture()

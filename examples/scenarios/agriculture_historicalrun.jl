@@ -1,7 +1,7 @@
 using WorldDynamics
 using ModelingToolkit
 
-function solveagriculture()
+function agriculture_historicalrun()
     @named pop = WorldDynamics.World3.Agriculture.population()
     @named io = WorldDynamics.World3.Agriculture.industrial_output()
     @named pp = WorldDynamics.World3.Agriculture.persistent_pollution()
