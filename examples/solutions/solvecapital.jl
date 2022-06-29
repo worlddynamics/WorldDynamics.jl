@@ -1,14 +1,13 @@
-include("../../src/World3/Capital.jl")
-include("../../src/solvesystems.jl")
-
+using WorldDynamics
+using ModelingToolkit
 
 function solvecapital()
-    @named pop = Capital.population()
-    @named nr = Capital.non_renewable()
-    @named ag = Capital.agriculture()
-    @named is = Capital.industrial_subsector()
-    @named ss = Capital.service_subsector()
-    @named js = Capital.job_subsector()
+    @named pop = WorldDynamics.World3.Capital.population()
+    @named nr = WorldDynamics.World3.Capital.non_renewable()
+    @named ag = WorldDynamics.World3.Capital.agriculture()
+    @named is = WorldDynamics.World3.Capital.industrial_subsector()
+    @named ss = WorldDynamics.World3.Capital.service_subsector()
+    @named js = WorldDynamics.World3.Capital.job_subsector()
 
     systems = [pop, nr, ag, is, ss, js]
 
@@ -32,5 +31,5 @@ function solvecapital()
         js.p3 ~ pop.p3
     ]
 
-    return solvesystems(systems, connection_eqs, (1900, 1970.0))
+    return WorldDynamics.solvesystems(systems, connection_eqs, (1900, 1970.0))
 end

@@ -1,18 +1,17 @@
-include("../../src/World3/Agriculture.jl")
-include("../../src/solvesystems.jl")
-
+using WorldDynamics
+using ModelingToolkit
 
 function solveagriculture()
-    @named pop = Agriculture.population()
-    @named io = Agriculture.industrial_output()
-    @named pp = Agriculture.persistent_pollution()
-    @named ld = Agriculture.land_development()
-    @named ai = Agriculture.agricultural_inputs()
-    @named iad = Agriculture.investment_allocation_decision()
-    @named leuiu = Agriculture.land_erosion_urban_industrial_use()
-    @named dlm = Agriculture.discontinung_land_maintenance()
-    @named lfr = Agriculture.land_fertility_regeneration()
-    @named lfd = Agriculture.land_fertility_degradation()
+    @named pop = WorldDynamics.World3.Agriculture.population()
+    @named io = WorldDynamics.World3.Agriculture.industrial_output()
+    @named pp = WorldDynamics.World3.Agriculture.persistent_pollution()
+    @named ld = WorldDynamics.World3.Agriculture.land_development()
+    @named ai = WorldDynamics.World3.Agriculture.agricultural_inputs()
+    @named iad = WorldDynamics.World3.Agriculture.investment_allocation_decision()
+    @named leuiu = WorldDynamics.World3.Agriculture.land_erosion_urban_industrial_use()
+    @named dlm = WorldDynamics.World3.Agriculture.discontinung_land_maintenance()
+    @named lfr = WorldDynamics.World3.Agriculture.land_fertility_regeneration()
+    @named lfd = WorldDynamics.World3.Agriculture.land_fertility_degradation()
 
     systems = [pop, io, pp, ld, ai, iad, leuiu, dlm, lfr, lfd]
 
@@ -47,5 +46,5 @@ function solveagriculture()
         io.pop ~ pop.pop
     ]
 
-    return solvesystems(systems, connection_eqs, (1900.0, 1970.0))
+    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 1970.0))
 end

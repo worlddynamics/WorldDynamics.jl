@@ -1,14 +1,15 @@
-include("../../src/plotvariables.jl")
+using WorldDynamics
+
 include("../solutions/solvenonrenewable.jl")
 
 
 sol = solvenonrenewable()
 
 
-@named nr = NonRenewable.non_renewable()
-@named ic = NonRenewable.industrial_capital()
-@named io = NonRenewable.industrial_output()
-@named pop = NonRenewable.population()
+@named nr = WorldDynamics.World3.NonRenewable.non_renewable()
+@named ic = WorldDynamics.World3.NonRenewable.industrial_capital()
+@named io = WorldDynamics.World3.NonRenewable.industrial_output()
+@named pop = WorldDynamics.World3.NonRenewable.population()
 
 @variables t
 

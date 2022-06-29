@@ -1,12 +1,11 @@
-include("../../src/World3/NonRenewable.jl")
-include("../../src/solvesystems.jl")
-
+using WorldDynamics
+using ModelingToolkit
 
 function solvenonrenewable()
-    @named pop = NonRenewable.population()
-    @named io = NonRenewable.industrial_output()
-    @named ic = NonRenewable.industrial_capital()
-    @named nr = NonRenewable.non_renewable()
+    @named pop = WorldDynamics.World3.NonRenewable.population()
+    @named io = WorldDynamics.World3.NonRenewable.industrial_output()
+    @named ic = WorldDynamics.World3.NonRenewable.industrial_capital()
+    @named nr = WorldDynamics.World3.NonRenewable.non_renewable()
 
     systems = [pop, io, ic, nr]
 
@@ -19,5 +18,5 @@ function solvenonrenewable()
         ic.io ~ io.io
     ]
 
-    return solvesystems(systems, connection_eqs, (1900.0, 2100.0))
+    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 2100.0))
 end

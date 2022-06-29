@@ -1,12 +1,13 @@
-include("../../src/plotvariables.jl")
+using WorldDynamics
+
 include("../solutions/solveagriculture.jl")
 
 
 sol = solveagriculture()
 
 
-@named ld = Agriculture.land_development()
-@named leuiu = Agriculture.land_erosion_urban_industrial_use()
+@named ld = WorldDynamics.World3.Agriculture.land_development()
+@named leuiu = WorldDynamics.World3.Agriculture.land_erosion_urban_industrial_use()
 
 @variables t
 

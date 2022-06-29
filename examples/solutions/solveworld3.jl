@@ -1,37 +1,30 @@
-include("../../src/World3/Pop4.jl")
-include("../../src/World3/Capital.jl")
-include("../../src/World3/Agriculture.jl")
-include("../../src/World3/NonRenewable.jl")
-include("../../src/World3/Pollution.jl")
-include("../../src/World3/World3.jl")
-
-include("../../src/solvesystems.jl")
-
+using WorldDynamics
+using ModelingToolkit
 
 function solveworld3()
-    @named pop = Pop4.population()
-    @named dr = Pop4.death_rate()
-    @named br = Pop4.birth_rate()
+    @named pop = WorldDynamics.World3.Pop4.population()
+    @named dr = WorldDynamics.World3.Pop4.death_rate()
+    @named br = WorldDynamics.World3.Pop4.birth_rate()
 
-    @named is = Capital.industrial_subsector()
-    @named ss = Capital.service_subsector()
-    @named js = Capital.job_subsector()
+    @named is = WorldDynamics.World3.Capital.industrial_subsector()
+    @named ss = WorldDynamics.World3.Capital.service_subsector()
+    @named js = WorldDynamics.World3.Capital.job_subsector()
 
-    @named ld = Agriculture.land_development()
-    @named ai = Agriculture.agricultural_inputs()
-    @named iad = Agriculture.investment_allocation_decision()
-    @named leuiu = Agriculture.land_erosion_urban_industrial_use()
-    @named dlm = Agriculture.discontinung_land_maintenance()
-    @named lfr = Agriculture.land_fertility_regeneration()
-    @named lfd = Agriculture.land_fertility_degradation()
+    @named ld = WorldDynamics.World3.Agriculture.land_development()
+    @named ai = WorldDynamics.World3.Agriculture.agricultural_inputs()
+    @named iad = WorldDynamics.World3.Agriculture.investment_allocation_decision()
+    @named leuiu = WorldDynamics.World3.Agriculture.land_erosion_urban_industrial_use()
+    @named dlm = WorldDynamics.World3.Agriculture.discontinung_land_maintenance()
+    @named lfr = WorldDynamics.World3.Agriculture.land_fertility_regeneration()
+    @named lfd = WorldDynamics.World3.Agriculture.land_fertility_degradation()
 
-    @named nr = NonRenewable.non_renewable()
+    @named nr = WorldDynamics.World3.NonRenewable.non_renewable()
 
-    @named pp = Pollution.persistent_pollution()
-    @named pd = Pollution.pollution_damage()
-    @named atcc = Pollution.adaptive_technological_control_cards()
+    @named pp = WorldDynamics.World3.Pollution.persistent_pollution()
+    @named pd = WorldDynamics.World3.Pollution.pollution_damage()
+    @named atcc = WorldDynamics.World3.Pollution.adaptive_technological_control_cards()
 
-    @named se = SupplementaryEquations.supplementary_equations()
+    @named se = WorldDynamics.World3.SupplementaryEquations.supplementary_equations()
 
 
     systems = [
@@ -122,5 +115,5 @@ function solveworld3()
         se.io ~ is.io
     ]
 
-    return solvesystems(systems, connection_eqs, (1900.0, 2100.0))
+    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 2100.0))
 end

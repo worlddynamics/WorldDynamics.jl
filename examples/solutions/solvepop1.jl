@@ -1,15 +1,14 @@
-include("../../src/World3/Pop1.jl")
-include("../../src/solvesystems.jl")
-
+using WorldDynamics
+using ModelingToolkit
 
 function solvepop1()
-    @named pop = Pop1.population()
-    @named dr = Pop1.death_rate()
-    @named br = Pop1.birth_rate()
-    @named io = Pop1.industrial_output()
-    @named so = Pop1.service_output()
-    @named pp = Pop1.persistent_pollution()
-    @named f  = Pop1.food()
+    @named pop = WorldDynamics.World3.Pop1.population()
+    @named dr = WorldDynamics.World3.Pop1.death_rate()
+    @named br = WorldDynamics.World3.Pop1.birth_rate()
+    @named io = WorldDynamics.World3.Pop1.industrial_output()
+    @named so = WorldDynamics.World3.Pop1.service_output()
+    @named pp = WorldDynamics.World3.Pop1.persistent_pollution()
+    @named f  = WorldDynamics.World3.Pop1.food()
 
     systems = [pop, dr, br, io, so, pp, f]
 
@@ -32,5 +31,5 @@ function solvepop1()
         f.pop ~ pop.pop
     ]
 
-    return solvesystems(systems, connection_eqs, (1900.0, 1970.0))
+    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 1970.0))
 end

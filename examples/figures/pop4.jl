@@ -1,16 +1,17 @@
-include("../../src/plotvariables.jl")
+using WorldDynamics
+
 include("../solutions/solvepop4.jl")
 
 
 sol = solvepop4()
 
 
-@named pop = Pop4.population()
-@named br = Pop4.birth_rate()
-@named dr = Pop4.death_rate()
-@named so = Pop4.service_output()
-@named io = Pop4.industrial_output()
-@named f = Pop4.food()
+@named pop = WorldDynamics.World3.Pop4.population()
+@named br = WorldDynamics.World3.Pop4.birth_rate()
+@named dr = WorldDynamics.World3.Pop4.death_rate()
+@named so = WorldDynamics.World3.Pop4.service_output()
+@named io = WorldDynamics.World3.Pop4.industrial_output()
+@named f = WorldDynamics.World3.Pop4.food()
 
 @variables t
 

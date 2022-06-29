@@ -1,15 +1,16 @@
-include("../../src/plotvariables.jl")
+using WorldDynamics
+
 include("../solutions/solvepollution.jl")
 
 
 sol = solvepollution()
 
 
-@named nr = Pollution.non_renewable()
-@named pop = Pollution.population()
-@named ag = Pollution.agriculture()
-@named pp = Pollution.persistent_pollution()
-@named pd = Pollution.pollution_damage()
+@named nr = WorldDynamics.World3.Pollution.non_renewable()
+@named pop = WorldDynamics.World3.Pollution.population()
+@named ag = WorldDynamics.World3.Pollution.agriculture()
+@named pp = WorldDynamics.World3.Pollution.persistent_pollution()
+@named pd = WorldDynamics.World3.Pollution.pollution_damage()
 
 @variables t
 

@@ -1,19 +1,20 @@
-include("../../src/plotvariables.jl")
+using WorldDynamics
+
 include("../solutions/solveworld3.jl")
 
 
 sol = solveworld3()
 
 
-@named pop = Pop4.population()
-@named br = Pop4.birth_rate()
-@named dr = Pop4.death_rate()
-@named is = Capital.industrial_subsector()
-@named ss = Capital.service_subsector()
-@named ld = Agriculture.land_development()
-@named nr = NonRenewable.non_renewable()
-@named pp = Pollution.persistent_pollution()
-@named se = SupplementaryEquations.supplementary_equations()
+@named pop = WorldDynamics.World3.Pop4.population()
+@named br = WorldDynamics.World3.Pop4.birth_rate()
+@named dr = WorldDynamics.World3.Pop4.death_rate()
+@named is = WorldDynamics.World3.Capital.industrial_subsector()
+@named ss = WorldDynamics.World3.Capital.service_subsector()
+@named ld = WorldDynamics.World3.Agriculture.land_development()
+@named nr = WorldDynamics.World3.NonRenewable.non_renewable()
+@named pp = WorldDynamics.World3.Pollution.persistent_pollution()
+@named se = WorldDynamics.World3.SupplementaryEquations.supplementary_equations()
 
 
 @variables t

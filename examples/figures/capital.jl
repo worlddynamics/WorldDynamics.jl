@@ -1,13 +1,14 @@
-include("../../src/plotvariables.jl")
+using WorldDynamics
+
 include("../solutions/solvecapital.jl")
 
 
 sol = solvecapital()
 
 
-@named pop = Capital.population()
-@named ag = Capital.agriculture()
-@named nr = Capital.non_renewable()
+@named pop = WorldDynamics.World3.Capital.population()
+@named ag = WorldDynamics.World3.Capital.agriculture()
+@named nr = WorldDynamics.World3.Capital.non_renewable()
 
 @variables t
 

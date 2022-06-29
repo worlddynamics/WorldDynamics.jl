@@ -1,14 +1,13 @@
-include("../../src/World3/Pollution.jl")
-include("../../src/solvesystems.jl")
-
+using WorldDynamics
+using ModelingToolkit
 
 function solvepollution()
-    @named pop = Pollution.population()
-    @named nr = Pollution.non_renewable()
-    @named ag = Pollution.agriculture()
-    @named pd = Pollution.pollution_damage()
-    @named atcc = Pollution.adaptive_technological_control_cards()
-    @named pp = Pollution.persistent_pollution()
+    @named pop = WorldDynamics.World3.Pollution.population()
+    @named nr = WorldDynamics.World3.Pollution.non_renewable()
+    @named ag = WorldDynamics.World3.Pollution.agriculture()
+    @named pd = WorldDynamics.World3.Pollution.pollution_damage()
+    @named atcc = WorldDynamics.World3.Pollution.adaptive_technological_control_cards()
+    @named pp = WorldDynamics.World3.Pollution.persistent_pollution()
 
     systems = [pop, nr, ag, pd, atcc, pp]
 
@@ -22,5 +21,5 @@ function solvepollution()
         pp.al ~ ag.al
     ]
 
-    return solvesystems(systems, connection_eqs, (1900.0, 1970.0))
+    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 1970.0))
 end
