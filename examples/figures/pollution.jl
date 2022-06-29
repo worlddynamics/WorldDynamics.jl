@@ -22,7 +22,7 @@ fig_6_28_variables = [
     (pp.ppgr,  0, 2e8, "ppgr")
 ]
 
-plotvariables(sol, t, fig_6_28_variables, name="Fig. 6.28", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900.0, 1970.0), fig_6_28_variables, name="Fig. 6.28", showlegend=true, showaxis=true, colored=true)
 
 
 fig_6_29_variables = [
