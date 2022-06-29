@@ -1,3 +1,5 @@
+using Interpolations
+
 function interpolate(x, y, xs)
     expanded_xs = LinRange(xs[1], xs[2], xs[3])
     if (x < expanded_xs[1])

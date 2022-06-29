@@ -1,0 +1,16 @@
+ppgf1v = 1
+ppgf21v = 1
+frpmv = 0.02
+imefv = 0.1
+imtiv = 10
+fipmv = 0.001
+amtiv = 1
+pptd1v = 20
+pptd2v = 20
+ppol70v = 1.36e8
+ahl70v = 1.5
+swatv = 0
+tddv = 10
+pctiv = 1
+pdv = 5
+pyearv = 1975

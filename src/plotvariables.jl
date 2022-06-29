@@ -3,10 +3,27 @@ using ColorTypes
 using ColorSchemes
 
 
-function plotvariables(solution, xvalue, variables; name="", showaxis=false, showlegend=true, linetype="lines", colored=false)
+function plotvariables(solution, xrange, variables::Vector{<:Number}; kwargs...)
+    plotvariables(solution, xrange, tuple.(variables, -Inf, Inf, ""); kwargs...)
+end
+
+function plotvariables(solution, xrange, variables::Vector{<:NTuple{1, Any}}; kwargs...)
+    plotvariables(solution, xrange, map(t -> tuple(t[1], -Inf, Inf, ""), variables); kwargs...)
+end
+
+function plotvariables(solution, xrange, variables::Vector{<:NTuple{2, Any}}; kwargs...)
+    plotvariables(solution, xrange, map(t -> tuple(t[1], -Inf, Inf, t[2]), variables); kwargs...)
+end
+
+function plotvariables(solution, xrange, variables::Vector{<:NTuple{3, Any}}; kwargs...)
+    plotvariables(solution, xrange, map(t -> tuple(t..., ""), variables); kwargs...)
+end
+
+function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; name="", showaxis=false, showlegend=true, linetype="lines", colored=false)
     numvars = length(variables)
 
     @assert 1 ≤ numvars
+    @assert 3 == length(xrange)
     @assert 4 == length(variables[1])
 
 
@@ -18,20 +35,24 @@ function plotvariables(solution, xvalue, variables; name="", showaxis=false, sho
 
     traces = GenericTrace[]
 
-    (var, min, max, varname) = variables[1]
+    (xvalue, xmin, xmax) = xrange
+    (var, varmin, varmax, varname) = variables[1]
 
     layout = Dict([
         ("title", attr(text=name, x=0.5)), 
         ("showlegend", showlegend),
         ("plot_bgcolor", "#EEE"),
-        ("xaxis", attr(domain=[x_domain+0.02, 1.0], position=0.0)),
+        ("xaxis", attr(
+            domain = [x_domain+0.02, 1.0], 
+            position = 0.0,
+            range = [xmin, xmax])),
         ("yaxis", attr(
             color = colors[1], 
             visible = showaxis, 
             name = "", 
             position = 0.0, 
             showgrid = false, 
-            range = [min, max], 
+            range = [varmin, varmax], 
             domain = [0.05, 1.0]
         ))
     ])
@@ -46,7 +67,7 @@ function plotvariables(solution, xvalue, variables; name="", showaxis=false, sho
 
 
     for i ∈ 2:numvars
-        (var, min, max, varname) = variables[i]
+        (var, varmin, varmax, varname) = variables[i]
 
         layout[string("yaxis", i)] = attr(
             color = colors[i], 
@@ -55,7 +76,7 @@ function plotvariables(solution, xvalue, variables; name="", showaxis=false, sho
             name = "", 
             position = (i-1) * x_offset, 
             showgrid = false, 
-            range = [min, max]
+            range = [varmin, varmax]
         )
 
         push!(traces, scatter(

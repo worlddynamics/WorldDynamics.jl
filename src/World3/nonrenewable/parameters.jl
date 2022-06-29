@@ -1,0 +1,13 @@
+nriv = 1e12
+nruf1v = 1
+nruf2v = 1
+popiv = 1.65e9
+gcv = 0.012
+pop2v = 4e9
+zpgtv = 2500
+fioaav = 0.12
+fioasv = 0.12
+fioacv = 0.43
+alicv = 14
+icorv = 3
+pyearv = 1975
