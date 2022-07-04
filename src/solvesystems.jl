@@ -1,7 +1,7 @@
-using ModelingToolkit, DifferentialEquations
+using ModelingToolkit
+using DifferentialEquations
 
-
-function solvesystems(systems, connection_eqs, timespan)
+function solvesystems(systems, connection_eqs, timespan; solver=Tsit5())
     @variables t
 
     @named _model = ODESystem(connection_eqs, t)
@@ -10,7 +10,7 @@ function solvesystems(systems, connection_eqs, timespan)
     sys = structural_simplify(model)
 
     prob = ODEProblem(sys, [], timespan)
-    sol = solve(prob, Tsit5())
+    sol = solve(prob, solver)
 
     return sol
 end
