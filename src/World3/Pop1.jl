@@ -25,8 +25,10 @@ persistent_pollution = CommonPop.persistent_pollution
 food = CommonPop.food
 
 
-function population(; name)
-    @parameters ffw = ffwv rlt = rltv pet = petv
+function population(; name, params=default_parameters)
+    @parameters ffw = params["ffwv"]
+    @parameters rlt = params["rltv"]
+    @parameters pet = params["petv"]
 
     @variables le(t) tf(t)
     @variables pop(t) = pop0

@@ -17,8 +17,10 @@ include("agriculture/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name)
-    @parameters popi = popiv exppop = exppopv eyear = eyearv
+function population(; name, params=default_parameters)
+    @parameters popi = params["popiv"]
+    @parameters exppop = params["exppopv"]
+    @parameters eyear = params["eyearv"]
 
     @variables pop(t) pop1(t) pop2(t)
 
@@ -33,8 +35,9 @@ function population(; name)
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name)
-    @parameters eyear = eyearv ioi = ioiv
+function industrial_output(; name, params=default_parameters)
+    @parameters eyear = params["eyearv"]
+    @parameters ioi = params["ioiv"]
 
     @variables pop(t)
     @variables io(t) io1(t) io2(t) iopc(t)
@@ -49,8 +52,9 @@ function industrial_output(; name)
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name)
-    @parameters eyear = eyearv ppolxi = ppolxiv
+function persistent_pollution(; name, params=default_parameters)
+    @parameters eyear = params["eyearv"]
+    @parameters ppolxi = params["ppolxiv"]
 
     @variables ppolx(t) ppolx1(t) ppolx2(t)
 
@@ -63,12 +67,15 @@ function persistent_pollution(; name)
     ODESystem(eqs; name)
 end
 
-function land_development(; name)
-    @parameters palt = paltv lfh = lfhv pl = plv pyear = pyearv
+function land_development(; name, params=default_parameters)
+    @parameters palt = params["paltv"]
+    @parameters lfh = params["lfhv"]
+    @parameters pl = params["plv"]
+    @parameters pyear = params["pyearv"]
 
     @variables ler(t) lrui(t) ly(t) pop(t) iopc(t) io(t) fiald(t)
     @variables al(t) = al0 pal(t) = pal0
-    @variables lfc(t) f(t) fpc(t) ifpc(t) ifpc1(t) ifpc2(t) tai(t) fioaa(t) fioaa1(t) fioaa2(t) ldr(t) dcph(t) 
+    @variables lfc(t) f(t) fpc(t) ifpc(t) ifpc1(t) ifpc2(t) tai(t) fioaa(t) fioaa1(t) fioaa2(t) ldr(t) dcph(t)
 
     eqs = [
         lfc ~ al / palt
@@ -90,8 +97,13 @@ function land_development(; name)
     ODESystem(eqs; name)
 end
 
-function agricultural_inputs(; name)
-    @parameters pyear = pyearv alai1 = alai1v alai2 = alai2v lyf1 = lyf1v lyf2 = lyf2v io70 = io70v
+function agricultural_inputs(; name, params=default_parameters)
+    @parameters pyear = params["pyearv"]
+    @parameters alai1 = params["alai1v"]
+    @parameters alai2 = params["alai2v"]
+    @parameters lyf1 = params["lyf1v"]
+    @parameters lyf2 = params["lyf2v"]
+    @parameters io70 = params["io70v"]
 
     @variables tai(t) fiald(t) falm(t) al(t) lfert(t) io(t)
     @variables ai(t) = ai0
@@ -113,8 +125,8 @@ function agricultural_inputs(; name)
     ODESystem(eqs; name)
 end
 
-function investment_allocation_decision(; name)
-    @parameters sd = sdv
+function investment_allocation_decision(; name, params=default_parameters)
+    @parameters sd = params["sdv"]
 
     @variables ly(t) dcph(t) alai(t) lymc(t) aiph(t)
     @variables fiald(t) mpld(t) mpai(t) mlymc(t)
@@ -129,8 +141,11 @@ function investment_allocation_decision(; name)
     ODESystem(eqs; name)
 end
 
-function land_erosion_urban_industrial_use(; name)
-    @parameters alln = allnv pyear = pyearv ilf = ilfv uildt = uildtv
+function land_erosion_urban_industrial_use(; name, params=default_parameters)
+    @parameters alln = params["allnv"]
+    @parameters pyear = params["pyearv"]
+    @parameters ilf = params["ilfv"]
+    @parameters uildt = params["uildtv"]
 
     @variables ly(t) al(t) iopc(t) pop(t)
     @variables uil(t) = uil0
@@ -151,8 +166,9 @@ function land_erosion_urban_industrial_use(; name)
     ODESystem(eqs; name)
 end
 
-function discontinung_land_maintenance(; name)
-    @parameters sfpc = sfpcv fspd = fspdv
+function discontinung_land_maintenance(; name, params=default_parameters)
+    @parameters sfpc = params["sfpcv"]
+    @parameters fspd = params["fspdv"]
 
     @variables fpc(t)
     @variables pfr(t) = pfr0
@@ -167,8 +183,8 @@ function discontinung_land_maintenance(; name)
     ODESystem(eqs; name)
 end
 
-function land_fertility_regeneration(; name)
-    @parameters ilf = ilfv
+function land_fertility_regeneration(; name, params=default_parameters)
+    @parameters ilf = params["ilfv"]
 
     @variables lfert(t) falm(t)
     @variables lfr(t) lfrt(t)
@@ -181,7 +197,7 @@ function land_fertility_regeneration(; name)
     ODESystem(eqs; name)
 end
 
-function land_fertility_degradation(; name)
+function land_fertility_degradation(; name, params=default_parameters)
     @variables lfr(t) ppolx(t)
     @variables lfert(t) = lfert0
     @variables lfdr(t) lfd(t)

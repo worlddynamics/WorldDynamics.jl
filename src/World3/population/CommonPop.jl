@@ -20,8 +20,11 @@ include("common_pop/initialisations.jl")
 D = Differential(t)
 
 
-function death_rate(; name)
-    @parameters len = lenv sfpc = sfpcv hsid = hsidv iphst = iphstv
+function death_rate(; name, params=default_parameters)
+    @parameters len = params["lenv"]
+    @parameters sfpc = params["sfpcv"]
+    @parameters hsid = params["hsidv"]
+    @parameters iphst = params["iphstv"]
 
     @variables dr(t) pop(t)
     @variables fpc(t) sopc(t) iopc(t) ppolx(t)
@@ -46,13 +49,20 @@ function death_rate(; name)
     ODESystem(eqs; name)
 end
 
-function birth_rate(; name)
-    @parameters mtfn = mtfnv lpd = lpdv dcfsn = dcfsnv zpgt = zpgtv sad = sadv ieat = ieatv fcest = fcestv hsid = hsidv
+function birth_rate(; name, params=default_parameters)
+    @parameters mtfn = params["mtfnv"]
+    @parameters lpd = params["lpdv"]
+    @parameters dcfsn = params["dcfsnv"]
+    @parameters zpgt = params["zpgtv"]
+    @parameters sad = params["sadv"]
+    @parameters ieat = params["ieatv"]
+    @parameters fcest = params["fcestv"]
+    @parameters hsid = params["hsidv"]
 
     @variables br(t) pop(t)
     @variables le(t) iopc(t) sopc(t)
-    @variables ple(t) = le0 ple1(t) = le0 ple2(t) = le0 diopc(t) = iopc0 diopc1(t) = iopc0 diopc2(t) = iopc0 aiopc(t) = iopc0 fcfpc(t) = fcapc0 fcfpc2(t) = fcapc0 fcfpc1(t) = fcapc0 
-    @variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) dcfs(t) sfsn(t) frsn(t) fie(t) nfc(t) fce(t) fcapc(t) fsafc(t) 
+    @variables ple(t) = le0 ple1(t) = le0 ple2(t) = le0 diopc(t) = iopc0 diopc1(t) = iopc0 diopc2(t) = iopc0 aiopc(t) = iopc0 fcfpc(t) = fcapc0 fcfpc2(t) = fcapc0 fcfpc1(t) = fcapc0
+    @variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) dcfs(t) sfsn(t) frsn(t) fie(t) nfc(t) fce(t) fcapc(t) fsafc(t)
 
     eqs = [
         cbr ~ 1000.0 * br / pop
@@ -84,8 +94,10 @@ function birth_rate(; name)
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name)
-    @parameters lt = ltv lt2 = lt2v cio = ciov
+function industrial_output(; name, params=default_parameters)
+    @parameters lt = params["ltv"]
+    @parameters lt2 = params["lt2v"]
+    @parameters cio = params["ciov"]
 
     @variables pop(t)
     @variables io(t) io1(t) io11(t) io12(t) io2(t) iopc(t)
@@ -102,8 +114,10 @@ function industrial_output(; name)
     ODESystem(eqs; name)
 end
 
-function service_output(; name)
-    @parameters lt = ltv lt2 = lt2v cso = csov
+function service_output(; name, params=default_parameters)
+    @parameters lt = params["ltv"]
+    @parameters lt2 = params["lt2v"]
+    @parameters cso = params["csov"]
 
     @variables pop(t)
     @variables so(t) so1(t) so11(t) so12(t) so2(t) sopc(t)
@@ -120,8 +134,9 @@ function service_output(; name)
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name)
-    @parameters ps = psv pt = ptv
+function persistent_pollution(; name, params=default_parameters)
+    @parameters ps = params["psv"]
+    @parameters pt = params["ptv"]
 
     @variables ppolx(t) = ppolx0
 
@@ -132,10 +147,12 @@ function persistent_pollution(; name)
     ODESystem(eqs; name)
 end
 
-function food(; name)
-    @parameters lt = ltv lt2 = lt2v cfood = cfoodv
+function food(; name, params=default_parameters)
+    @parameters lt = params["ltv"]
+    @parameters lt2 = params["lt2v"]
+    @parameters cfood = params["cfoodv"]
 
-    @variables pop(t) 
+    @variables pop(t)
     @variables f(t) f1(t) f11(t) f12(t) f2(t) fpc(t)
 
     eqs = [

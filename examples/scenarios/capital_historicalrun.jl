@@ -1,13 +1,13 @@
 using WorldDynamics
 using ModelingToolkit
 
-function capital_historicalrun()
-    @named pop = WorldDynamics.World3.Capital.population()
-    @named nr = WorldDynamics.World3.Capital.non_renewable()
-    @named ag = WorldDynamics.World3.Capital.agriculture()
-    @named is = WorldDynamics.World3.Capital.industrial_subsector()
-    @named ss = WorldDynamics.World3.Capital.service_subsector()
-    @named js = WorldDynamics.World3.Capital.job_subsector()
+function capital_historicalrun(; kwargs...)
+    @named pop = WorldDynamics.World3.Capital.population(; kwargs...)
+    @named nr = WorldDynamics.World3.Capital.non_renewable(; kwargs...)
+    @named ag = WorldDynamics.World3.Capital.agriculture(; kwargs...)
+    @named is = WorldDynamics.World3.Capital.industrial_subsector(; kwargs...)
+    @named ss = WorldDynamics.World3.Capital.service_subsector(; kwargs...)
+    @named js = WorldDynamics.World3.Capital.job_subsector(; kwargs...)
 
     systems = [pop, nr, ag, is, ss, js]
 

@@ -1,13 +1,13 @@
 using WorldDynamics
 using ModelingToolkit
 
-function pollution_historicalrun()
-    @named pop = WorldDynamics.World3.Pollution.population()
-    @named nr = WorldDynamics.World3.Pollution.non_renewable()
-    @named ag = WorldDynamics.World3.Pollution.agriculture()
-    @named pd = WorldDynamics.World3.Pollution.pollution_damage()
-    @named atcc = WorldDynamics.World3.Pollution.adaptive_technological_control_cards()
-    @named pp = WorldDynamics.World3.Pollution.persistent_pollution()
+function pollution_historicalrun(; kwargs...)
+    @named pop = WorldDynamics.World3.Pollution.population(; kwargs...)
+    @named nr = WorldDynamics.World3.Pollution.non_renewable(; kwargs...)
+    @named ag = WorldDynamics.World3.Pollution.agriculture(; kwargs...)
+    @named pd = WorldDynamics.World3.Pollution.pollution_damage(; kwargs...)
+    @named atcc = WorldDynamics.World3.Pollution.adaptive_technological_control_cards(; kwargs...)
+    @named pp = WorldDynamics.World3.Pollution.persistent_pollution(; kwargs...)
 
     systems = [pop, nr, ag, pd, atcc, pp]
 

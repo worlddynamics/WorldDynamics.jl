@@ -17,43 +17,43 @@ include("pollution/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name)
+function population(; name, params=default_parameters)
     @variables pop(t) = pop0
-    
+
     eqs = [
         pop ~ interpolate(t, popt, popts) * 1e8
     ]
-    
+
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name)
+function non_renewable(; name, params=default_parameters)
     @variables pcrum(t) = pcrum0
-    
+
     eqs = [
         pcrum ~ interpolate(t, pcrumt, pcrumts) * 1e-2
     ]
-    
+
     ODESystem(eqs; name)
 end
 
-function agriculture(; name)
+function agriculture(; name, params=default_parameters)
     @variables aiph(t) = aiph0 al(t) = al0
-    
+
     eqs = [
         aiph ~ interpolate(t, aipht, aiphts)
-        al ~ interpolate(t, alt, alts) * 1e8        
+        al ~ interpolate(t, alt, alts) * 1e8
     ]
 
     ODESystem(eqs; name)
 end
 
-function pollution_damage(; name)
-    @parameters pyear = pyearv
-    
-    @variables ppolx(t) 
+function pollution_damage(; name, params=default_parameters)
+    @parameters pyear = params["pyearv"]
+
+    @variables ppolx(t)
     @variables lmp(t) = lmp0 lmp1(t) = lmp10 lmp2(t) = lmp20 lfdr(t) lfdr1(t) lfdr2(t)
-    
+
     eqs = [
         lmp ~ clip(lmp2, lmp1, t, pyear)
         lmp1 ~ interpolate(ppolx, lmp1t, lmp1ts)
@@ -66,8 +66,10 @@ function pollution_damage(; name)
     ODESystem(eqs; name)
 end
 
-function adaptive_technological_control_cards(; name)
-    @parameters pyear = pyearv tdd = tddv pd = pdv
+function adaptive_technological_control_cards(; name, params=default_parameters)
+    @parameters pyear = params["pyearv"]
+    @parameters tdd = params["tddv"]
+    @parameters pd = params["pdv"]
 
     @variables lmp(t)
     @variables ppgf22(t) = ppgf220 ppgf222(t) = ppgf220 ppgf221(t) = ppgf220 pcti(t) = pcti0 plmp(t) = plmp0 plmp2(t) = plmp0 plmp1(t) = plmp0
@@ -88,8 +90,20 @@ function adaptive_technological_control_cards(; name)
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name)
-    @parameters pyear = pyearv ppgf1 = ppgf1v ppgf21 = ppgf21v swat = swatv frpm = frpmv imef = imefv imti = imtiv fipm = fipmv amti = amtiv pptd1 = pptd1v pptd2 = pptd2v ppol70 = ppol70v ahl70 = ahl70v
+function persistent_pollution(; name, params=default_parameters)
+    @parameters pyear = params["pyearv"]
+    @parameters ppgf1 = params["ppgf1v"]
+    @parameters ppgf21 = params["ppgf21v"]
+    @parameters swat = params["swatv"]
+    @parameters frpm = params["frpmv"]
+    @parameters imef = params["imefv"]
+    @parameters imti = params["imtiv"]
+    @parameters fipm = params["fipmv"]
+    @parameters amti = params["amtiv"]
+    @parameters pptd1 = params["pptd1v"]
+    @parameters pptd2 = params["pptd2v"]
+    @parameters ppol70 = params["ppol70v"]
+    @parameters ahl70 = params["ahl70v"]
 
     @variables ppgf22(t) pcrum(t) pop(t) aiph(t) al(t)
     @variables ppapr3(t) = ppapr30 ppapr2(t) = ppapr30 ppapr1(t) = ppapr30 ppol(t) = ppol0

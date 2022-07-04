@@ -16,7 +16,7 @@ include("capital/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name)
+function population(; name, params=default_parameters)
     @variables pop(t) p2(t) p3(t)
 
     eqs = [
@@ -28,8 +28,8 @@ function population(; name)
     ODESystem(eqs; name)
 end
 
-function agriculture(; name)
-    @variables aiph(t) al(t) fioaa(t) 
+function agriculture(; name, params=default_parameters)
+    @variables aiph(t) al(t) fioaa(t)
 
     eqs = [
         aiph ~ interpolate(t, aipht, aiphts)
@@ -40,7 +40,7 @@ function agriculture(; name)
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name)
+function non_renewable(; name, params=default_parameters)
     @variables fcaor(t)
 
     eqs = [
@@ -50,13 +50,21 @@ function non_renewable(; name)
     ODESystem(eqs; name)
 end
 
-function industrial_subsector(; name)
-    @parameters pyear = pyearv icor1 = icor1v icor2 = icor2v alic1 = alic1v alic2 = alic2v iet = ietv iopcd = iopcdv fioac1 = fioac1v fioac2 = fioac2v
+function industrial_subsector(; name, params=default_parameters)
+    @parameters pyear = params["pyearv"]
+    @parameters icor1 = params["icor1v"]
+    @parameters icor2 = params["icor2v"]
+    @parameters alic1 = params["alic1v"]
+    @parameters alic2 = params["alic2v"]
+    @parameters iet = params["ietv"]
+    @parameters iopcd = params["iopcdv"]
+    @parameters fioac1 = params["fioac1v"]
+    @parameters fioac2 = params["fioac2v"]
 
     @variables pop(t) fcaor(t) cuf(t) fioaa(t) fioas(t)
     @variables ic(t) = ic0
-    @variables iopc(t) io(t) icor(t) icdr(t) alic(t) icir(t) fioai(t) fioac(t) fioacc(t) fioacv(t) 
-    
+    @variables iopc(t) io(t) icor(t) icdr(t) alic(t) icir(t) fioai(t) fioac(t) fioacc(t) fioacv(t)
+
     eqs = [
         iopc ~ io / pop
         io ~ ic * (1 - fcaor) * cuf / icor
@@ -74,11 +82,15 @@ function industrial_subsector(; name)
     ODESystem(eqs; name)
 end
 
-function service_subsector(; name)
-    @parameters pyear = pyearv alsc1 = alsc1v alsc2 = alsc2v scor1 = scor1v scor2 = scor2v
+function service_subsector(; name, params=default_parameters)
+    @parameters pyear = params["pyearv"]
+    @parameters alsc1 = params["alsc1v"]
+    @parameters alsc2 = params["alsc2v"]
+    @parameters scor1 = params["scor1v"]
+    @parameters scor2 = params["scor2v"]
 
-    @variables iopc(t) io(t) cuf(t) pop(t) 
-    @variables sc(t) = sc0 
+    @variables iopc(t) io(t) cuf(t) pop(t)
+    @variables sc(t) = sc0
     @variables isopc(t) isopc1(t) isopc2(t) fioas(t) fioas1(t) fioas2(t) scir(t) scdr(t) alsc(t) so(t) sopc(t) scor(t)
 
     eqs = [
@@ -100,12 +112,13 @@ function service_subsector(; name)
     ODESystem(eqs; name)
 end
 
-function job_subsector(; name)
-    @parameters lfpf = lfpfv lufdt = lufdtv
+function job_subsector(; name, params=default_parameters)
+    @parameters lfpf = params["lfpfv"]
+    @parameters lufdt = params["lufdtv"]
 
     @variables ic(t) iopc(t) sc(t) sopc(t) al(t) aiph(t) p2(t) p3(t)
     @variables lufd(t) = lufd0
-    @variables j(t) pjis(t) jpicu(t) pjss(t) jpscu(t) pjas(t) jph(t) lf(t) luf(t) cuf(t) 
+    @variables j(t) pjis(t) jpicu(t) pjss(t) jpscu(t) pjas(t) jph(t) lf(t) luf(t) cuf(t)
 
     eqs = [
         j ~ pjis + pjas + pjss

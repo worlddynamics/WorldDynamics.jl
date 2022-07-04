@@ -1,39 +1,39 @@
 using WorldDynamics
 using ModelingToolkit
 
-function world3_historicalrun()
-    @named pop = WorldDynamics.World3.Pop4.population()
-    @named dr = WorldDynamics.World3.Pop4.death_rate()
-    @named br = WorldDynamics.World3.Pop4.birth_rate()
+function world3_historicalrun(; kwargs...)
+    @named pop = WorldDynamics.World3.Pop4.population(; kwargs...)
+    @named dr = WorldDynamics.World3.Pop4.death_rate(; kwargs...)
+    @named br = WorldDynamics.World3.Pop4.birth_rate(; kwargs...)
 
-    @named is = WorldDynamics.World3.Capital.industrial_subsector()
-    @named ss = WorldDynamics.World3.Capital.service_subsector()
-    @named js = WorldDynamics.World3.Capital.job_subsector()
+    @named is = WorldDynamics.World3.Capital.industrial_subsector(; kwargs...)
+    @named ss = WorldDynamics.World3.Capital.service_subsector(; kwargs...)
+    @named js = WorldDynamics.World3.Capital.job_subsector(; kwargs...)
 
-    @named ld = WorldDynamics.World3.Agriculture.land_development()
-    @named ai = WorldDynamics.World3.Agriculture.agricultural_inputs()
-    @named iad = WorldDynamics.World3.Agriculture.investment_allocation_decision()
-    @named leuiu = WorldDynamics.World3.Agriculture.land_erosion_urban_industrial_use()
-    @named dlm = WorldDynamics.World3.Agriculture.discontinung_land_maintenance()
-    @named lfr = WorldDynamics.World3.Agriculture.land_fertility_regeneration()
-    @named lfd = WorldDynamics.World3.Agriculture.land_fertility_degradation()
+    @named ld = WorldDynamics.World3.Agriculture.land_development(; kwargs...)
+    @named ai = WorldDynamics.World3.Agriculture.agricultural_inputs(; kwargs...)
+    @named iad = WorldDynamics.World3.Agriculture.investment_allocation_decision(; kwargs...)
+    @named leuiu = WorldDynamics.World3.Agriculture.land_erosion_urban_industrial_use(; kwargs...)
+    @named dlm = WorldDynamics.World3.Agriculture.discontinung_land_maintenance(; kwargs...)
+    @named lfr = WorldDynamics.World3.Agriculture.land_fertility_regeneration(; kwargs...)
+    @named lfd = WorldDynamics.World3.Agriculture.land_fertility_degradation(; kwargs...)
 
-    @named nr = WorldDynamics.World3.NonRenewable.non_renewable()
+    @named nr = WorldDynamics.World3.NonRenewable.non_renewable(; kwargs...)
 
-    @named pp = WorldDynamics.World3.Pollution.persistent_pollution()
-    @named pd = WorldDynamics.World3.Pollution.pollution_damage()
-    @named atcc = WorldDynamics.World3.Pollution.adaptive_technological_control_cards()
+    @named pp = WorldDynamics.World3.Pollution.persistent_pollution(; kwargs...)
+    @named pd = WorldDynamics.World3.Pollution.pollution_damage(; kwargs...)
+    @named atcc = WorldDynamics.World3.Pollution.adaptive_technological_control_cards(; kwargs...)
 
     @named se = WorldDynamics.World3.SupplementaryEquations.supplementary_equations()
 
 
     systems = [
-        pop, dr, br, 
-        is, ss, js, 
-        ld, ai, iad, leuiu, dlm, lfr, lfd, 
-        nr, 
-        pp, pd, atcc, 
-        se
+        pop, dr, br,
+        is, ss, js,
+        ld, ai, iad, leuiu, dlm, lfr, lfd,
+        nr,
+        pp, pd, atcc,
+        se,
     ]
 
 
