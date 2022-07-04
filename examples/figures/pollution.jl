@@ -48,3 +48,16 @@ fig_6_30_variables = [
 ]
 
 plotvariables(sol, (t, 1900.0, 2100.0), fig_6_30_variables, name="Fig. 6.30", showlegend=true, showaxis=true, colored=true)
+
+
+fig_6_31_variables = [
+    (pp.ppgr,  0, 2e9, "ppgr"),
+    (pp.ppapr, 0, 2e9, "ppapr"),
+    (pp.ppasr, 0, 2e9, "ppasr"),
+    (pp.ppolx, 0, 1e2, "ppolx"),
+    (pp.ahl,   0, 40,  "ahl"),
+    (pd.lmp,   0, 1,   "lmp"),
+    (pd.lfdr,  0, 0.5, "lfdr"),
+]
+
+plotvariables(sol, (t, 1900.0, 2100.0), fig_6_31_variables, name="Fig. 6.31", showlegend=true, showaxis=true, colored=true)
