@@ -16,7 +16,7 @@ include("capital/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name, params=default_parameters)
+function population(; name, params=params)
     @variables pop(t) p2(t) p3(t)
 
     eqs = [
@@ -28,7 +28,7 @@ function population(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function agriculture(; name, params=default_parameters)
+function agriculture(; name, params=params)
     @variables aiph(t) al(t) fioaa(t)
 
     eqs = [
@@ -40,7 +40,7 @@ function agriculture(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=default_parameters)
+function non_renewable(; name, params=params)
     @variables fcaor(t)
 
     eqs = [
@@ -50,7 +50,7 @@ function non_renewable(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function industrial_subsector(; name, params=default_parameters)
+function industrial_subsector(; name, params=params)
     @parameters pyear = params["pyearv"]
     @parameters icor1 = params["icor1v"]
     @parameters icor2 = params["icor2v"]
@@ -82,7 +82,7 @@ function industrial_subsector(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function service_subsector(; name, params=default_parameters)
+function service_subsector(; name, params=params)
     @parameters pyear = params["pyearv"]
     @parameters alsc1 = params["alsc1v"]
     @parameters alsc2 = params["alsc2v"]
@@ -112,7 +112,7 @@ function service_subsector(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function job_subsector(; name, params=default_parameters)
+function job_subsector(; name, params=params)
     @parameters lfpf = params["lfpfv"]
     @parameters lufdt = params["lufdtv"]
 

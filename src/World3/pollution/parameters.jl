@@ -1,4 +1,4 @@
-default_parameters = Dict(
+params = Dict(
     "ppgf1v" => 1,
     "ppgf21v" => 1,
     "frpmv" => 0.02,

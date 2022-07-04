@@ -1,4 +1,4 @@
-default_parameters = Dict(
+params = Dict(
     "paltv" => 3.2e9,
     "lfhv" => 0.7,
     "plv" => 0.1,

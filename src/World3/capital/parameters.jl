@@ -1,4 +1,4 @@
-default_parameters = Dict(
+params = Dict(
     "pyearv" => 4000,
     "icor1v" => 3,
     "icor2v" => 3,

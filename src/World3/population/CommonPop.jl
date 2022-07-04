@@ -20,7 +20,7 @@ include("common_pop/initialisations.jl")
 D = Differential(t)
 
 
-function death_rate(; name, params=default_parameters)
+function death_rate(; name, params=params)
     @parameters len = params["lenv"]
     @parameters sfpc = params["sfpcv"]
     @parameters hsid = params["hsidv"]
@@ -49,7 +49,7 @@ function death_rate(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function birth_rate(; name, params=default_parameters)
+function birth_rate(; name, params=params)
     @parameters mtfn = params["mtfnv"]
     @parameters lpd = params["lpdv"]
     @parameters dcfsn = params["dcfsnv"]
@@ -94,7 +94,7 @@ function birth_rate(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name, params=default_parameters)
+function industrial_output(; name, params=params)
     @parameters lt = params["ltv"]
     @parameters lt2 = params["lt2v"]
     @parameters cio = params["ciov"]
@@ -114,7 +114,7 @@ function industrial_output(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function service_output(; name, params=default_parameters)
+function service_output(; name, params=params)
     @parameters lt = params["ltv"]
     @parameters lt2 = params["lt2v"]
     @parameters cso = params["csov"]
@@ -134,7 +134,7 @@ function service_output(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name, params=default_parameters)
+function persistent_pollution(; name, params=params)
     @parameters ps = params["psv"]
     @parameters pt = params["ptv"]
 
@@ -147,7 +147,7 @@ function persistent_pollution(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function food(; name, params=default_parameters)
+function food(; name, params=params)
     @parameters lt = params["ltv"]
     @parameters lt2 = params["lt2v"]
     @parameters cfood = params["cfoodv"]

@@ -16,7 +16,7 @@ include("nonrenewable/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name, params=default_parameters)
+function population(; name, params=params)
     @parameters gc = params["gcv"]
     @parameters pop2 = params["pop2v"]
     @parameters popi = params["popiv"]
@@ -32,7 +32,7 @@ function population(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name, params=default_parameters)
+function industrial_output(; name, params=params)
     @parameters icor = params["icorv"]
 
     @variables ic(t) fcaor(t) pop(t)
@@ -46,7 +46,7 @@ function industrial_output(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function industrial_capital(; name, params=default_parameters)
+function industrial_capital(; name, params=params)
     @parameters fioaa = params["fioaav"]
     @parameters fioas = params["fioasv"]
     @parameters fioac = params["fioacv"]
@@ -65,7 +65,7 @@ function industrial_capital(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=default_parameters)
+function non_renewable(; name, params=params)
     @parameters nri = params["nriv"]
     @parameters nruf1 = params["nruf1v"]
     @parameters nruf2 = params["nruf2v"]

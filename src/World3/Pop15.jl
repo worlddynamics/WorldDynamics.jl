@@ -26,10 +26,10 @@ service_output = CommonPop.service_output
 industrial_output = CommonPop.industrial_output
 persistent_pollution = CommonPop.persistent_pollution
 food = CommonPop.food
-default_parameters = CommonPop.default_parameters
+params = CommonPop.params
 
 
-function population(; name, params=default_parameters)
+function population(; name, params=params)
     @parameters pet = params["petv"]
 
     @variables le(t) tf(t)

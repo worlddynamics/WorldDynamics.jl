@@ -1,4 +1,4 @@
-default_parameters = Dict(
+params = Dict(
     "nriv" => 1e12,
     "nruf1v" => 1,
     "nruf2v" => 1,

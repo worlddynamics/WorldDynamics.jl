@@ -17,7 +17,7 @@ include("pollution/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name, params=default_parameters)
+function population(; name, params=params)
     @variables pop(t) = pop0
 
     eqs = [
@@ -27,7 +27,7 @@ function population(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=default_parameters)
+function non_renewable(; name, params=params)
     @variables pcrum(t) = pcrum0
 
     eqs = [
@@ -37,7 +37,7 @@ function non_renewable(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function agriculture(; name, params=default_parameters)
+function agriculture(; name, params=params)
     @variables aiph(t) = aiph0 al(t) = al0
 
     eqs = [
@@ -48,7 +48,7 @@ function agriculture(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function pollution_damage(; name, params=default_parameters)
+function pollution_damage(; name, params=params)
     @parameters pyear = params["pyearv"]
 
     @variables ppolx(t)
@@ -66,7 +66,7 @@ function pollution_damage(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function adaptive_technological_control_cards(; name, params=default_parameters)
+function adaptive_technological_control_cards(; name, params=params)
     @parameters pyear = params["pyearv"]
     @parameters tdd = params["tddv"]
     @parameters pd = params["pdv"]
@@ -90,7 +90,7 @@ function adaptive_technological_control_cards(; name, params=default_parameters)
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name, params=default_parameters)
+function persistent_pollution(; name, params=params)
     @parameters pyear = params["pyearv"]
     @parameters ppgf1 = params["ppgf1v"]
     @parameters ppgf21 = params["ppgf21v"]
