@@ -31,5 +31,5 @@ function pop1_historicalrun(; kwargs...)
         f.pop ~ pop.pop
     ]
 
-    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 1970.0))
+    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 2100.0))
 end
