@@ -17,10 +17,10 @@ D = Differential(t)
 
 
 function population(; name, params=params)
-    @parameters gc = params["gcv"]
-    @parameters pop2 = params["pop2v"]
-    @parameters popi = params["popiv"]
-    @parameters zpgt = params["zpgtv"]
+    @parameters gc = params[:gcv]
+    @parameters pop2 = params[:pop2v]
+    @parameters popi = params[:popiv]
+    @parameters zpgt = params[:zpgtv]
 
     @variables pop(t), pop1(t)
 
@@ -33,7 +33,7 @@ function population(; name, params=params)
 end
 
 function industrial_output(; name, params=params)
-    @parameters icor = params["icorv"]
+    @parameters icor = params[:icorv]
 
     @variables ic(t) fcaor(t) pop(t)
     @variables io(t) iopc(t)
@@ -47,10 +47,10 @@ function industrial_output(; name, params=params)
 end
 
 function industrial_capital(; name, params=params)
-    @parameters fioaa = params["fioaav"]
-    @parameters fioas = params["fioasv"]
-    @parameters fioac = params["fioacv"]
-    @parameters alic = params["alicv"]
+    @parameters fioaa = params[:fioaav]
+    @parameters fioas = params[:fioasv]
+    @parameters fioac = params[:fioacv]
+    @parameters alic = params[:alicv]
 
     @variables io(t)
     @variables ic(t) = ic0
@@ -66,10 +66,10 @@ function industrial_capital(; name, params=params)
 end
 
 function non_renewable(; name, params=params)
-    @parameters nri = params["nriv"]
-    @parameters nruf1 = params["nruf1v"]
-    @parameters nruf2 = params["nruf2v"]
-    @parameters pyear = params["pyearv"]
+    @parameters nri = params[:nriv]
+    @parameters nruf1 = params[:nruf1v]
+    @parameters nruf2 = params[:nruf2v]
+    @parameters pyear = params[:pyearv]
 
     @variables pop(t) iopc(t)
     @variables nr(t) = nri

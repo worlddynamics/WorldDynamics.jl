@@ -27,9 +27,9 @@ params = CommonPop.params
 
 
 function population(; name, params=params)
-    @parameters ffw = params["ffwv"]
-    @parameters rlt = params["rltv"]
-    @parameters pet = params["petv"]
+    @parameters ffw = params[:ffwv]
+    @parameters rlt = params[:rltv]
+    @parameters pet = params[:petv]
 
     @variables le(t) tf(t)
     @variables pop(t) = pop0

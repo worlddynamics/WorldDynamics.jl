@@ -18,9 +18,9 @@ D = Differential(t)
 
 
 function population(; name, params=params)
-    @parameters popi = params["popiv"]
-    @parameters exppop = params["exppopv"]
-    @parameters eyear = params["eyearv"]
+    @parameters popi = params[:popiv]
+    @parameters exppop = params[:exppopv]
+    @parameters eyear = params[:eyearv]
 
     @variables pop(t) pop1(t) pop2(t)
 
@@ -36,8 +36,8 @@ function population(; name, params=params)
 end
 
 function industrial_output(; name, params=params)
-    @parameters eyear = params["eyearv"]
-    @parameters ioi = params["ioiv"]
+    @parameters eyear = params[:eyearv]
+    @parameters ioi = params[:ioiv]
 
     @variables pop(t)
     @variables io(t) io1(t) io2(t) iopc(t)
@@ -53,8 +53,8 @@ function industrial_output(; name, params=params)
 end
 
 function persistent_pollution(; name, params=params)
-    @parameters eyear = params["eyearv"]
-    @parameters ppolxi = params["ppolxiv"]
+    @parameters eyear = params[:eyearv]
+    @parameters ppolxi = params[:ppolxiv]
 
     @variables ppolx(t) ppolx1(t) ppolx2(t)
 
@@ -68,10 +68,10 @@ function persistent_pollution(; name, params=params)
 end
 
 function land_development(; name, params=params)
-    @parameters palt = params["paltv"]
-    @parameters lfh = params["lfhv"]
-    @parameters pl = params["plv"]
-    @parameters pyear = params["pyearv"]
+    @parameters palt = params[:paltv]
+    @parameters lfh = params[:lfhv]
+    @parameters pl = params[:plv]
+    @parameters pyear = params[:pyearv]
 
     @variables ler(t) lrui(t) ly(t) pop(t) iopc(t) io(t) fiald(t)
     @variables al(t) = al0 pal(t) = pal0
@@ -98,12 +98,12 @@ function land_development(; name, params=params)
 end
 
 function agricultural_inputs(; name, params=params)
-    @parameters pyear = params["pyearv"]
-    @parameters alai1 = params["alai1v"]
-    @parameters alai2 = params["alai2v"]
-    @parameters lyf1 = params["lyf1v"]
-    @parameters lyf2 = params["lyf2v"]
-    @parameters io70 = params["io70v"]
+    @parameters pyear = params[:pyearv]
+    @parameters alai1 = params[:alai1v]
+    @parameters alai2 = params[:alai2v]
+    @parameters lyf1 = params[:lyf1v]
+    @parameters lyf2 = params[:lyf2v]
+    @parameters io70 = params[:io70v]
 
     @variables tai(t) fiald(t) falm(t) al(t) lfert(t) io(t)
     @variables ai(t) = ai0
@@ -126,7 +126,7 @@ function agricultural_inputs(; name, params=params)
 end
 
 function investment_allocation_decision(; name, params=params)
-    @parameters sd = params["sdv"]
+    @parameters sd = params[:sdv]
 
     @variables ly(t) dcph(t) alai(t) lymc(t) aiph(t)
     @variables fiald(t) mpld(t) mpai(t) mlymc(t)
@@ -142,10 +142,10 @@ function investment_allocation_decision(; name, params=params)
 end
 
 function land_erosion_urban_industrial_use(; name, params=params)
-    @parameters alln = params["allnv"]
-    @parameters pyear = params["pyearv"]
-    @parameters ilf = params["ilfv"]
-    @parameters uildt = params["uildtv"]
+    @parameters alln = params[:allnv]
+    @parameters pyear = params[:pyearv]
+    @parameters ilf = params[:ilfv]
+    @parameters uildt = params[:uildtv]
 
     @variables ly(t) al(t) iopc(t) pop(t)
     @variables uil(t) = uil0
@@ -167,8 +167,8 @@ function land_erosion_urban_industrial_use(; name, params=params)
 end
 
 function discontinung_land_maintenance(; name, params=params)
-    @parameters sfpc = params["sfpcv"]
-    @parameters fspd = params["fspdv"]
+    @parameters sfpc = params[:sfpcv]
+    @parameters fspd = params[:fspdv]
 
     @variables fpc(t)
     @variables pfr(t) = pfr0
@@ -184,7 +184,7 @@ function discontinung_land_maintenance(; name, params=params)
 end
 
 function land_fertility_regeneration(; name, params=params)
-    @parameters ilf = params["ilfv"]
+    @parameters ilf = params[:ilfv]
 
     @variables lfert(t) falm(t)
     @variables lfr(t) lfrt(t)
