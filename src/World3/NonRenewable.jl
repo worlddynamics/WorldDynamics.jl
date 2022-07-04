@@ -72,7 +72,7 @@ function non_renewable(; name, params=default_parameters)
     @parameters pyear = params["pyearv"]
 
     @variables pop(t) iopc(t)
-    @variables nr(t) = nr0
+    @variables nr(t) = nri
     @variables nrur(t) nruf(t) pcrum(t) nrfr(t) fcaor(t) fcaor1(t) fcaor2(t)
 
     eqs = [
