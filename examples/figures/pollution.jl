@@ -16,11 +16,11 @@ sol = pollution_historicalrun()
 
 
 fig_6_28_variables = [
-    (nr.pcrum, 0, 1  , "pcrum"), 
-    (pop.pop,  0, 4e9, "pop"), 
-    (ag.al,    0, 2e9, "al"), 
-    (ag.aiph,  0, 50 , "aiph"), 
-    (pp.ppgr,  0, 2e8, "ppgr")
+    (nr.pcrum, 0, 1  , "pcrum"),
+    (pop.pop,  0, 4e9, "pop"),
+    (ag.al,    0, 2e9, "al"),
+    (ag.aiph,  0, 50 , "aiph"),
+    (pp.ppgr,  0, 2e8, "ppgr"),
 ]
 
 plotvariables(sol, (t, 1900.0, 1970.0), fig_6_28_variables, name="Fig. 6.28", showlegend=true, showaxis=true, colored=true)
@@ -37,3 +37,14 @@ fig_6_29_variables = [
 ]
 
 plotvariables(sol, (t, 1900.0, 1970.0), fig_6_29_variables, name="Fig. 6.29", showlegend=true, showaxis=true, colored=true)
+
+
+fig_6_30_variables = [
+    (nr.pcrum, 0, 8,      "pcrum"),
+    (pop.pop,  0, 1.6e10, "pop"),
+    (ag.al,    0, 4e9,    "al"),
+    (ag.aiph,  0, 1.5e3,  "aiph"),
+    (pp.ppgr,  0, 8e9,    "ppgr"),
+]
+
+plotvariables(sol, (t, 1900.0, 2100.0), fig_6_30_variables, name="Fig. 6.30", showlegend=true, showaxis=true, colored=true)
