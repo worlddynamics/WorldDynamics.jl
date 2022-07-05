@@ -2,33 +2,48 @@ using WorldDynamics
 using ModelingToolkit
 
 function world3_historicalrun(;
-    pop_params=WorldDynamics.World3.Pop4.params,
-    capital_params=WorldDynamics.World3.Capital.params,
-    agriculture_params=WorldDynamics.World3.Agriculture.params,
-    nonrenewable_params=WorldDynamics.World3.NonRenewable.params,
-    pollution_params=WorldDynamics.World3.Pollution.params,
+    pop_params = WorldDynamics.World3.Pop4.params,
+    capital_params = WorldDynamics.World3.Capital.params,
+    agriculture_params = WorldDynamics.World3.Agriculture.params,
+    nonrenewable_params = WorldDynamics.World3.NonRenewable.params,
+    pollution_params = WorldDynamics.World3.Pollution.params,
+    pop_inits = WorldDynamics.World3.Pop4.inits,
+    capital_inits = WorldDynamics.World3.Capital.inits,
+    agriculture_inits = WorldDynamics.World3.Agriculture.inits,
+    nonrenewable_inits = WorldDynamics.World3.NonRenewable.inits,
+    pollution_inits = WorldDynamics.World3.Pollution.inits,
+    pop_tables = WorldDynamics.World3.Pop4.tables,
+    capital_tables = WorldDynamics.World3.Capital.tables,
+    agriculture_tables = WorldDynamics.World3.Agriculture.tables,
+    nonrenewable_tables = WorldDynamics.World3.NonRenewable.tables,
+    pollution_tables = WorldDynamics.World3.Pollution.tables,
+    pop_ranges = WorldDynamics.World3.Pop4.ranges,
+    capital_ranges = WorldDynamics.World3.Capital.ranges,
+    agriculture_ranges = WorldDynamics.World3.Agriculture.ranges,
+    nonrenewable_ranges = WorldDynamics.World3.NonRenewable.ranges,
+    pollution_ranges = WorldDynamics.World3.Pollution.ranges,
 )
-    @named pop = WorldDynamics.World3.Pop4.population(; params=pop_params)
-    @named dr = WorldDynamics.World3.Pop4.death_rate(; params=pop_params)
-    @named br = WorldDynamics.World3.Pop4.birth_rate(; params=pop_params)
+    @named pop = WorldDynamics.World3.Pop4.population(; params=pop_params, inits=pop_inits, tables=pop_tables, ranges=pop_ranges)
+    @named dr = WorldDynamics.World3.Pop4.death_rate(; params=pop_params, inits=pop_inits, tables=pop_tables, ranges=pop_ranges)
+    @named br = WorldDynamics.World3.Pop4.birth_rate(; params=pop_params, inits=pop_inits, tables=pop_tables, ranges=pop_ranges)
 
-    @named is = WorldDynamics.World3.Capital.industrial_subsector(; params=capital_params)
-    @named ss = WorldDynamics.World3.Capital.service_subsector(; params=capital_params)
-    @named js = WorldDynamics.World3.Capital.job_subsector(; params=capital_params)
+    @named is = WorldDynamics.World3.Capital.industrial_subsector(; params=capital_params, inits=capital_inits, tables=capital_tables, ranges=capital_ranges)
+    @named ss = WorldDynamics.World3.Capital.service_subsector(; params=capital_params, inits=capital_inits, tables=capital_tables, ranges=capital_ranges)
+    @named js = WorldDynamics.World3.Capital.job_subsector(; params=capital_params, inits=capital_inits, tables=capital_tables, ranges=capital_ranges)
 
-    @named ld = WorldDynamics.World3.Agriculture.land_development(; params=agriculture_params)
-    @named ai = WorldDynamics.World3.Agriculture.agricultural_inputs(; params=agriculture_params)
-    @named iad = WorldDynamics.World3.Agriculture.investment_allocation_decision(; params=agriculture_params)
-    @named leuiu = WorldDynamics.World3.Agriculture.land_erosion_urban_industrial_use(; params=agriculture_params)
-    @named dlm = WorldDynamics.World3.Agriculture.discontinung_land_maintenance(; params=agriculture_params)
-    @named lfr = WorldDynamics.World3.Agriculture.land_fertility_regeneration(; params=agriculture_params)
-    @named lfd = WorldDynamics.World3.Agriculture.land_fertility_degradation(; params=agriculture_params)
+    @named ld = WorldDynamics.World3.Agriculture.land_development(; params=agriculture_params, inits=agriculture_inits, tables=agriculture_tables, ranges=agriculture_ranges)
+    @named ai = WorldDynamics.World3.Agriculture.agricultural_inputs(; params=agriculture_params, inits=agriculture_inits, tables=agriculture_tables, ranges=agriculture_ranges)
+    @named iad = WorldDynamics.World3.Agriculture.investment_allocation_decision(; params=agriculture_params, inits=agriculture_inits, tables=agriculture_tables, ranges=agriculture_ranges)
+    @named leuiu = WorldDynamics.World3.Agriculture.land_erosion_urban_industrial_use(; params=agriculture_params, inits=agriculture_inits, tables=agriculture_tables, ranges=agriculture_ranges)
+    @named dlm = WorldDynamics.World3.Agriculture.discontinung_land_maintenance(; params=agriculture_params, inits=agriculture_inits, tables=agriculture_tables, ranges=agriculture_ranges)
+    @named lfr = WorldDynamics.World3.Agriculture.land_fertility_regeneration(; params=agriculture_params, inits=agriculture_inits, tables=agriculture_tables, ranges=agriculture_ranges)
+    @named lfd = WorldDynamics.World3.Agriculture.land_fertility_degradation(; params=agriculture_params, inits=agriculture_inits, tables=agriculture_tables, ranges=agriculture_ranges)
 
-    @named nr = WorldDynamics.World3.NonRenewable.non_renewable(; params=nonrenewable_params)
+    @named nr = WorldDynamics.World3.NonRenewable.non_renewable(; params=nonrenewable_params, inits=nonrenewable_inits, tables=nonrenewable_tables, ranges=nonrenewable_ranges)
 
-    @named pp = WorldDynamics.World3.Pollution.persistent_pollution(; params=pollution_params)
-    @named pd = WorldDynamics.World3.Pollution.pollution_damage(; params=pollution_params)
-    @named atcc = WorldDynamics.World3.Pollution.adaptive_technological_control_cards(; params=pollution_params)
+    @named pp = WorldDynamics.World3.Pollution.persistent_pollution(; params=pollution_params, inits=pollution_inits, tables=pollution_tables, ranges=pollution_ranges)
+    @named pd = WorldDynamics.World3.Pollution.pollution_damage(; params=pollution_params, inits=pollution_inits, tables=pollution_tables, ranges=pollution_ranges)
+    @named atcc = WorldDynamics.World3.Pollution.adaptive_technological_control_cards(; params=pollution_params, inits=pollution_inits, tables=pollution_tables, ranges=pollution_ranges)
 
     @named se = WorldDynamics.World3.SupplementaryEquations.supplementary_equations()
 
