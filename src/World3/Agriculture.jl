@@ -26,8 +26,6 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
 
     eqs = [
         pop ~ clip(pop2, pop1, t, eyear)
-        # TODO: if we put the correct value of 0.012, the code breaks
-        #  I have to investigate more
         pop1 ~ popi * exp(exppop * (t - 1900))
         pop2 ~ popi * exp(exppop * (eyear - 1900.0))
     ]
