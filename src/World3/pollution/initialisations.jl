@@ -1,11 +1,11 @@
 inits = Dict{Symbol, Number}()
 
 inits[:t0] = 1900
-inits[:pcrum0] = interpolate(inits[:t0], pcrumt, pcrumts) * 1e-2
-inits[:pop0] = interpolate(inits[:t0], popt, popts) * 1e8
+inits[:pcrum0] = interpolate(inits[:t0], tables[:pcrum], ranges[:pcrum]) * 1e-2
+inits[:pop0] = interpolate(inits[:t0], tables[:pop], ranges[:pop]) * 1e8
 inits[:ppgio0] = inits[:pcrum0] * inits[:pop0] * params[:frpm] * params[:imef] * params[:imti]
-inits[:aiph0] = interpolate(inits[:t0], aipht, aiphts)
-inits[:al0] = interpolate(inits[:t0], alt, alts) * 1e8
+inits[:aiph0] = interpolate(inits[:t0], tables[:aiph], ranges[:aiph])
+inits[:al0] = interpolate(inits[:t0], tables[:al], ranges[:al]) * 1e8
 inits[:ppgao0] = inits[:aiph0] * inits[:al0] * params[:fipm] * params[:amti]
 inits[:ppgr0] = (inits[:ppgio0] + inits[:ppgao0]) * params[:ppgf1]
 inits[:pptd0] = clip(params[:pptd2], params[:pptd1], inits[:t0], params[:pyear])
@@ -14,7 +14,7 @@ inits[:ppol0] = 2.5e7
 inits[:pcti0] = 1
 inits[:ppgf220] = inits[:pcti0]
 inits[:ppolx0] = inits[:ppol0] / params[:ppol70]
-inits[:lmp10] = interpolate(inits[:ppolx0], lmp1t, lmp1ts)
-inits[:lmp20] = interpolate(inits[:ppolx0], lmp2t, lmp2ts)
+inits[:lmp10] = interpolate(inits[:ppolx0], tables[:lmp1], ranges[:lmp1])
+inits[:lmp20] = interpolate(inits[:ppolx0], tables[:lmp2], ranges[:lmp2])
 inits[:lmp0] = clip(inits[:lmp20], inits[:lmp10], inits[:t0], params[:pyear])
 inits[:plmp0] = inits[:lmp0]

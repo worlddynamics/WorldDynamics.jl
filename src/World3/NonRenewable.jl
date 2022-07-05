@@ -16,7 +16,7 @@ include("nonrenewable/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name, params=params, inits=inits)
+function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters gc = params[:gc]
     @parameters pop2 = params[:pop2]
     @parameters popi = params[:popi]
@@ -32,7 +32,7 @@ function population(; name, params=params, inits=inits)
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name, params=params, inits=inits)
+function industrial_output(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters icor = params[:icor]
 
     @variables ic(t) fcaor(t) pop(t)
@@ -46,7 +46,7 @@ function industrial_output(; name, params=params, inits=inits)
     ODESystem(eqs; name)
 end
 
-function industrial_capital(; name, params=params, inits=inits)
+function industrial_capital(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters fioaa = params[:fioaa]
     @parameters fioas = params[:fioas]
     @parameters fioac = params[:fioac]
@@ -65,7 +65,7 @@ function industrial_capital(; name, params=params, inits=inits)
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=params, inits=inits)
+function non_renewable(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters nri = params[:nri]
     @parameters nruf1 = params[:nruf1]
     @parameters nruf2 = params[:nruf2]
@@ -79,11 +79,11 @@ function non_renewable(; name, params=params, inits=inits)
         D(nr) ~ -nrur
         nrur ~ pop * pcrum * nruf
         nruf ~ clip(nruf2, nruf1, t, pyear)
-        pcrum ~ interpolate(iopc, pcrumt, pcrumts)
+        pcrum ~ interpolate(iopc, tables[:pcrum], ranges[:pcrum])
         nrfr ~ nr / nri
         fcaor ~ clip(fcaor2, fcaor1, t, pyear)
-        fcaor1 ~ interpolate(nrfr, fcaor1t, fcaor1ts)
-        fcaor2 ~ interpolate(nrfr, fcaor2t, fcaor2ts)
+        fcaor1 ~ interpolate(nrfr, tables[:fcaor1], ranges[:fcaor1])
+        fcaor2 ~ interpolate(nrfr, tables[:fcaor2], ranges[:fcaor2])
     ]
 
     ODESystem(eqs; name)

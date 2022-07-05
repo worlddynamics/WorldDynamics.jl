@@ -17,38 +17,38 @@ include("pollution/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name, params=params, inits=inits)
+function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables pop(t) = pop0
 
     eqs = [
-        pop ~ interpolate(t, popt, popts) * 1e8
+        pop ~ interpolate(t, tables[:pop], ranges[:pop]) * 1e8
     ]
 
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=params, inits=inits)
+function non_renewable(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables pcrum(t) = pcrum0
 
     eqs = [
-        pcrum ~ interpolate(t, pcrumt, pcrumts) * 1e-2
+        pcrum ~ interpolate(t, tables[:pcrum], ranges[:pcrum]) * 1e-2
     ]
 
     ODESystem(eqs; name)
 end
 
-function agriculture(; name, params=params, inits=inits)
+function agriculture(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables aiph(t) = aiph0 al(t) = al0
 
     eqs = [
-        aiph ~ interpolate(t, aipht, aiphts)
-        al ~ interpolate(t, alt, alts) * 1e8
+        aiph ~ interpolate(t, tables[:aiph], ranges[:aiph])
+        al ~ interpolate(t, tables[:al], ranges[:al]) * 1e8
     ]
 
     ODESystem(eqs; name)
 end
 
-function pollution_damage(; name, params=params, inits=inits)
+function pollution_damage(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters pyear = params[:pyear]
 
     @variables ppolx(t)
@@ -59,17 +59,17 @@ function pollution_damage(; name, params=params, inits=inits)
 
     eqs = [
         lmp ~ clip(lmp2, lmp1, t, pyear)
-        lmp1 ~ interpolate(ppolx, lmp1t, lmp1ts)
-        lmp2 ~ interpolate(ppolx, lmp2t, lmp2ts)
+        lmp1 ~ interpolate(ppolx, tables[:lmp1], ranges[:lmp1])
+        lmp2 ~ interpolate(ppolx, tables[:lmp2], ranges[:lmp2])
         lfdr ~ clip(lfdr2, lfdr1, t, pyear)
-        lfdr1 ~ interpolate(ppolx, lfdr1t, lfdr1ts)
-        lfdr2 ~ interpolate(ppolx, lfdr2t, lfdr2ts)
+        lfdr1 ~ interpolate(ppolx, tables[:lfdr1], ranges[:lfdr1])
+        lfdr2 ~ interpolate(ppolx, tables[:lfdr2], ranges[:lfdr2])
     ]
 
     ODESystem(eqs; name)
 end
 
-function adaptive_technological_control_cards(; name, params=params, inits=inits)
+function adaptive_technological_control_cards(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters pyear = params[:pyear]
     @parameters tdd = params[:tdd]
     @parameters pd = params[:pd]
@@ -92,7 +92,7 @@ function adaptive_technological_control_cards(; name, params=params, inits=inits
         D(ppgf221) ~ 3 * (pcti - ppgf221) / tdd
         D(pcti) ~ pctir
         pctir ~ clip(pcti * pctcm, 0, t, pyear)
-        pctcm ~ interpolate(1 - plmp, pctcmt, pctcmts)
+        pctcm ~ interpolate(1 - plmp, tables[:pctcm], ranges[:pctcm])
         D(plmp) ~ 3 * (plmp2 - plmp) / pd
         D(plmp2) ~ 3 * (plmp1 - plmp2) / pd
         D(plmp1) ~ 3 * (lmp - plmp1) / pd
@@ -101,7 +101,7 @@ function adaptive_technological_control_cards(; name, params=params, inits=inits
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name, params=params, inits=inits)
+function persistent_pollution(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters pyear = params[:pyear]
     @parameters ppgf1 = params[:ppgf1]
     @parameters ppgf21 = params[:ppgf21]
@@ -144,7 +144,7 @@ function persistent_pollution(; name, params=params, inits=inits)
         D(ppol) ~ ppapr - ppasr
         ppolx ~ ppol / ppol70
         ppasr ~ ppol / (1.4 * ahl)
-        ahlm ~ interpolate(ppolx, ahlmt, ahlmts)
+        ahlm ~ interpolate(ppolx, tables[:ahlm], ranges[:ahlm])
         ahl ~ ahl70 * ahlm
     ]
 

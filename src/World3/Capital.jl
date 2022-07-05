@@ -16,11 +16,11 @@ include("capital/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name, params=params, inits=inits)
+function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables pop(t) p2(t) p3(t)
 
     eqs = [
-        pop ~ interpolate(t, popt, popts) * (1e9)
+        pop ~ interpolate(t, tables[:pop], ranges[:pop]) * (1e9)
         p2 ~ 0.25 * pop
         p3 ~ 0.25 * pop
     ]
@@ -28,29 +28,29 @@ function population(; name, params=params, inits=inits)
     ODESystem(eqs; name)
 end
 
-function agriculture(; name, params=params, inits=inits)
+function agriculture(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables aiph(t) al(t) fioaa(t)
 
     eqs = [
-        aiph ~ interpolate(t, aipht, aiphts)
-        al ~ interpolate(t, alt, alts) * (1e8)
-        fioaa ~ interpolate(t, fioaat, fioaats)
+        aiph ~ interpolate(t, tables[:aiph], ranges[:aiph])
+        al ~ interpolate(t, tables[:al], ranges[:al]) * (1e8)
+        fioaa ~ interpolate(t, tables[:fioaa], ranges[:fioaa])
     ]
 
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=params, inits=inits)
+function non_renewable(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables fcaor(t)
 
     eqs = [
-        fcaor ~ interpolate(t, fcaort, fcaorts)
+        fcaor ~ interpolate(t, tables[:fcaor], ranges[:fcaor])
     ]
 
     ODESystem(eqs; name)
 end
 
-function industrial_subsector(; name, params=params, inits=inits)
+function industrial_subsector(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters pyear = params[:pyear]
     @parameters icor1 = params[:icor1]
     @parameters icor2 = params[:icor2]
@@ -76,13 +76,13 @@ function industrial_subsector(; name, params=params, inits=inits)
         fioai ~ 1 - fioaa - fioas - fioac
         fioac ~ clip(fioacv, fioacc, t, iet)
         fioacc ~ clip(fioac2, fioac1, t, pyear)
-        fioacv ~ interpolate(iopc / iopcd, fioacvt, fioacvts)
+        fioacv ~ interpolate(iopc / iopcd, tables[:fioacv], ranges[:fioacv])
     ]
 
     ODESystem(eqs; name)
 end
 
-function service_subsector(; name, params=params, inits=inits)
+function service_subsector(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters pyear = params[:pyear]
     @parameters alsc1 = params[:alsc1]
     @parameters alsc2 = params[:alsc2]
@@ -95,11 +95,11 @@ function service_subsector(; name, params=params, inits=inits)
 
     eqs = [
         isopc ~ clip(isopc2, isopc1, t, pyear)
-        isopc1 ~ interpolate(iopc, isopc1t, isopc1ts)
-        isopc2 ~ interpolate(iopc, isopc2t, isopc2ts)
+        isopc1 ~ interpolate(iopc, tables[:isopc1], ranges[:isopc1])
+        isopc2 ~ interpolate(iopc, tables[:isopc2], ranges[:isopc2])
         fioas ~ clip(fioas2, fioas1, t, pyear)
-        fioas1 ~ interpolate(sopc / isopc, fioas1t, fioas1ts)
-        fioas2 ~ interpolate(sopc / isopc, fioas2t, fioas2ts)
+        fioas1 ~ interpolate(sopc / isopc, tables[:fioas1], ranges[:fioas1])
+        fioas2 ~ interpolate(sopc / isopc, tables[:fioas2], ranges[:fioas2])
         scir ~ io * fioas
         D(sc) ~ scir - scdr
         scdr ~ sc / alsc
@@ -112,7 +112,7 @@ function service_subsector(; name, params=params, inits=inits)
     ODESystem(eqs; name)
 end
 
-function job_subsector(; name, params=params, inits=inits)
+function job_subsector(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters lfpf = params[:lfpf]
     @parameters lufdt = params[:lufdt]
 
@@ -123,15 +123,15 @@ function job_subsector(; name, params=params, inits=inits)
     eqs = [
         j ~ pjis + pjas + pjss
         pjis ~ ic * jpicu
-        jpicu ~ interpolate(iopc, jpicut, jpicuts) * (1e-3)
+        jpicu ~ interpolate(iopc, tables[:jpicu], ranges[:jpicu]) * (1e-3)
         pjss ~ sc * jpscu
-        jpscu ~ interpolate(sopc, jpscut, jpscuts) * (1e-3)
+        jpscu ~ interpolate(sopc, tables[:jpscu], ranges[:jpscu]) * (1e-3)
         pjas ~ jph * al
-        jph ~ interpolate(aiph, jpht, jphts)
+        jph ~ interpolate(aiph, tables[:jph], ranges[:jph])
         lf ~ (p2 + p3) * lfpf
         luf ~ j / lf
         D(lufd) ~ (luf - lufd) / lufdt
-        cuf ~ interpolate(lufd, cuft, cufts)
+        cuf ~ interpolate(lufd, tables[:cuf], ranges[:cuf])
     ]
 
     ODESystem(eqs; name)

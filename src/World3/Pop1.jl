@@ -23,10 +23,14 @@ service_output = CommonPop.service_output
 industrial_output = CommonPop.industrial_output
 persistent_pollution = CommonPop.persistent_pollution
 food = CommonPop.food
+
 params = CommonPop.params
+inits = CommonPop.inits
+tables = CommonPop.tables
+ranges = CommonPop.ranges
 
 
-function population(; name, params=params, inits=inits)
+function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters ffw = params[:ffw]
     @parameters rlt = params[:rlt]
     @parameters pet = params[:pet]
