@@ -76,3 +76,12 @@ nr_parameters_7_11[:nri] = 1e13
 sol_7_11 = world3_historicalrun(nonrenewable_params=nr_parameters_7_11)
 
 plotvariables(sol_7_11, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.11", showlegend=true, showaxis=true, colored=true)
+
+
+agr_tables_7_13 = copy(WorldDynamics.World3.Agriculture.tables)
+agr_tables_7_13[:fioaa1] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
+agr_tables_7_13[:fioaa2] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
+
+sol_7_13 = world3_historicalrun(agriculture_tables=agr_tables_7_13)
+
+plotvariables(sol_7_13, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.13", showlegend=true, showaxis=true, colored=true)
