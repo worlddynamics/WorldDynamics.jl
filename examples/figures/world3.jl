@@ -43,7 +43,7 @@ fig_7_3_variables = [
     (ss.sopc, 0, 400,  "sopc"),
     (se.foa,  0, 1,    "foa"),
     (se.foi,  0, 1,    "foi"),
-    (se.fos,  0, 1,    "fos")
+    (se.fos,  0, 1,    "fos"),
 ]
 
 plotvariables(sol, (t, 1900.0, 1970.0), fig_7_3_variables, name="Fig. 7.3", showlegend=true, showaxis=true, colored=true)
@@ -56,7 +56,15 @@ fig_7_7_variables = [
     (pop.pop,  0, 16e9, "pop"),
     (pp.ppolx, 0, 32,   "ppolx"),
     (br.cbr,   0, 50,   "cbr"),
-    (dr.cdr,   0, 50,   "cdr")
+    (dr.cdr,   0, 50,   "cdr"),
 ]
 
 plotvariables(sol, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.7", showlegend=true, showaxis=true, colored=true)
+
+
+nr_parameters_7_10 = copy(WorldDynamics.World3.NonRenewable.params)
+nr_parameters_7_10[:nri] = 2e12
+
+sol_7_10 = world3_historicalrun(nonrenewable_params=nr_parameters_7_10)
+
+plotvariables(sol_7_10, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.10", showlegend=true, showaxis=true, colored=true)
