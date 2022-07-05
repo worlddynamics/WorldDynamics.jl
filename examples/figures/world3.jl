@@ -68,3 +68,11 @@ nr_parameters_7_10[:nri] = 2e12
 sol_7_10 = world3_historicalrun(nonrenewable_params=nr_parameters_7_10)
 
 plotvariables(sol_7_10, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.10", showlegend=true, showaxis=true, colored=true)
+
+
+nr_parameters_7_11 = copy(WorldDynamics.World3.NonRenewable.params)
+nr_parameters_7_11[:nri] = 1e13
+
+sol_7_11 = world3_historicalrun(nonrenewable_params=nr_parameters_7_11)
+
+plotvariables(sol_7_11, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.11", showlegend=true, showaxis=true, colored=true)

@@ -34,3 +34,16 @@ fig_4_69b_variables = [
 plotvariables(sol, (t, 1900.0, 1970.0), fig_4_69a_variables, name="Fig. 4.69a", showlegend=true, showaxis=true, colored=true)
 
 plotvariables(sol, (t, 1900.0, 1970.0), fig_4_69b_variables, name="Fig. 4.69b", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_4_74 = copy(WorldDynamics.World3.Agriculture.params)
+parameters_4_74[:palt] = 4.35e9
+
+initialisations_4_74 = copy(WorldDynamics.World3.Agriculture.inits)
+initialisations_4_74[:pal0] = 3.45e9
+
+sol_4_74 = agriculture_historicalrun(params=parameters_4_74, inits=initialisations_4_74)
+
+plotvariables(sol_4_74, (t, 1900.0, 2100.0), fig_4_69a_variables, name="Fig. 4.74a", showlegend=true, showaxis=true, colored=true)
+
+plotvariables(sol_4_74, (t, 1900.0, 2100.0), fig_4_69b_variables, name="Fig. 4.74b", showlegend=true, showaxis=true, colored=true)

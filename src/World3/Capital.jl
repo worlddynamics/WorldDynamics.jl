@@ -16,7 +16,7 @@ include("capital/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name, params=params)
+function population(; name, params=params, inits=inits)
     @variables pop(t) p2(t) p3(t)
 
     eqs = [
@@ -28,7 +28,7 @@ function population(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function agriculture(; name, params=params)
+function agriculture(; name, params=params, inits=inits)
     @variables aiph(t) al(t) fioaa(t)
 
     eqs = [
@@ -40,7 +40,7 @@ function agriculture(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=params)
+function non_renewable(; name, params=params, inits=inits)
     @variables fcaor(t)
 
     eqs = [
@@ -50,7 +50,7 @@ function non_renewable(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function industrial_subsector(; name, params=params)
+function industrial_subsector(; name, params=params, inits=inits)
     @parameters pyear = params[:pyear]
     @parameters icor1 = params[:icor1]
     @parameters icor2 = params[:icor2]
@@ -62,7 +62,7 @@ function industrial_subsector(; name, params=params)
     @parameters fioac2 = params[:fioac2]
 
     @variables pop(t) fcaor(t) cuf(t) fioaa(t) fioas(t)
-    @variables ic(t) = ic0
+    @variables ic(t) = inits[:ic0]
     @variables iopc(t) io(t) icor(t) icdr(t) alic(t) icir(t) fioai(t) fioac(t) fioacc(t) fioacv(t)
 
     eqs = [
@@ -82,7 +82,7 @@ function industrial_subsector(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function service_subsector(; name, params=params)
+function service_subsector(; name, params=params, inits=inits)
     @parameters pyear = params[:pyear]
     @parameters alsc1 = params[:alsc1]
     @parameters alsc2 = params[:alsc2]
@@ -90,7 +90,7 @@ function service_subsector(; name, params=params)
     @parameters scor2 = params[:scor2]
 
     @variables iopc(t) io(t) cuf(t) pop(t)
-    @variables sc(t) = sc0
+    @variables sc(t) = inits[:sc0]
     @variables isopc(t) isopc1(t) isopc2(t) fioas(t) fioas1(t) fioas2(t) scir(t) scdr(t) alsc(t) so(t) sopc(t) scor(t)
 
     eqs = [
@@ -112,12 +112,12 @@ function service_subsector(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function job_subsector(; name, params=params)
+function job_subsector(; name, params=params, inits=inits)
     @parameters lfpf = params[:lfpf]
     @parameters lufdt = params[:lufdt]
 
     @variables ic(t) iopc(t) sc(t) sopc(t) al(t) aiph(t) p2(t) p3(t)
-    @variables lufd(t) = lufd0
+    @variables lufd(t) = inits[:lufd0]
     @variables j(t) pjis(t) jpicu(t) pjss(t) jpscu(t) pjas(t) jph(t) lf(t) luf(t) cuf(t)
 
     eqs = [

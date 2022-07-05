@@ -29,11 +29,27 @@ food = CommonPop.food
 params = CommonPop.params
 
 
-function population(; name, params=params)
+function population(; name, params=params, inits=inits)
     @parameters pet = params[:pet]
 
     @variables le(t) tf(t)
-    @variables p1(t) = p1_0 p2(t) = p2_0 p3(t) = p3_0 p4(t) = p4_0 p5(t) = p5_0 p6(t) = p6_0 p7(t) = p7_0 p8(t) = p8_0 p9(t) = p9_0 p10(t) = p10_0 p11(t) = p11_0 p12(t) = p12_0 p13(t) = p13_0 p14(t) = p14_0 p15(t) = p15_0
+
+    @variables p1(t) = inits[:p1_0]
+    @variables p2(t) = inits[:p2_0]
+    @variables p3(t) = inits[:p3_0]
+    @variables p4(t) = inits[:p4_0]
+    @variables p5(t) = inits[:p5_0]
+    @variables p6(t) = inits[:p6_0]
+    @variables p7(t) = inits[:p7_0]
+    @variables p8(t) = inits[:p8_0]
+    @variables p9(t) = inits[:p9_0]
+    @variables p10(t) = inits[:p10_0]
+    @variables p11(t) = inits[:p11_0]
+    @variables p12(t) = inits[:p12_0]
+    @variables p13(t) = inits[:p13_0]
+    @variables p14(t) = inits[:p14_0]
+    @variables p15(t) = inits[:p15_0]
+
     @variables d1a(t) m1(t) d1(t) mat1(t) d2a(t) m2(t) d2(t) mat2(t) d3a(t) m3(t) d3(t) mat3(t) d4a(t) m4(t) d4(t) mat4(t)
     @variables d5a(t) m5(t) d5(t) mat5(t) d6a(t) m6(t) d6(t) mat6(t) d7a(t) m7(t) d7(t) mat7(t) d8a(t) m8(t) d8(t) mat8(t)
     @variables d9a(t) m9(t) d9(t) mat9(t) d10a(t) m10(t) d10(t) mat10(t) d11a(t) m11(t) d11(t) mat11(t) d12a(t) m12(t) d12(t) mat12(t)

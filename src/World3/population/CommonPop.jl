@@ -20,7 +20,7 @@ include("common_pop/initialisations.jl")
 D = Differential(t)
 
 
-function death_rate(; name, params=params)
+function death_rate(; name, params=params, inits=inits)
     @parameters len = params[:len]
     @parameters sfpc = params[:sfpc]
     @parameters hsid = params[:hsid]
@@ -28,7 +28,7 @@ function death_rate(; name, params=params)
 
     @variables dr(t) pop(t)
     @variables fpc(t) sopc(t) iopc(t) ppolx(t)
-    @variables ehspc(t) = ehspc0
+    @variables ehspc(t) = inits[:ehspc0]
     @variables cdr(t) le(t) lmf(t) hsapc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t)
 
     eqs = [
@@ -49,7 +49,7 @@ function death_rate(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function birth_rate(; name, params=params)
+function birth_rate(; name, params=params, inits=inits)
     @parameters mtfn = params[:mtfn]
     @parameters lpd = params[:lpd]
     @parameters dcfsn = params[:dcfsn]
@@ -61,7 +61,18 @@ function birth_rate(; name, params=params)
 
     @variables br(t) pop(t)
     @variables le(t) iopc(t) sopc(t)
-    @variables ple(t) = le0 ple1(t) = le0 ple2(t) = le0 diopc(t) = iopc0 diopc1(t) = iopc0 diopc2(t) = iopc0 aiopc(t) = iopc0 fcfpc(t) = fcapc0 fcfpc2(t) = fcapc0 fcfpc1(t) = fcapc0
+
+    @variables ple(t) = inits[:le0]
+    @variables ple1(t) = inits[:le0]
+    @variables ple2(t) = inits[:le0]
+    @variables diopc(t) = inits[:iopc0]
+    @variables diopc1(t) = inits[:iopc0]
+    @variables diopc2(t) = inits[:iopc0]
+    @variables aiopc(t) = inits[:iopc0]
+    @variables fcfpc(t) = inits[:fcapc0]
+    @variables fcfpc2(t) = inits[:fcapc0]
+    @variables fcfpc1(t) = inits[:fcapc0]
+
     @variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) dcfs(t) sfsn(t) frsn(t) fie(t) nfc(t) fce(t) fcapc(t) fsafc(t)
 
     eqs = [
@@ -79,7 +90,7 @@ function birth_rate(; name, params=params)
         D(diopc) ~ 3 * (diopc2 - diopc) / sad
         D(diopc2) ~ 3 * (diopc1 - diopc2) / sad
         D(diopc1) ~ 3 * (iopc - diopc1) / sad
-        frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, t0 + 1)
+        frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, inits[:t0] + 1)
         fie ~ (iopc - aiopc) / aiopc
         D(aiopc) ~ (iopc - aiopc) / ieat
         nfc ~ (mtf / dtf) - 1
@@ -94,7 +105,7 @@ function birth_rate(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name, params=params)
+function industrial_output(; name, params=params, inits=inits)
     @parameters lt = params[:lt]
     @parameters lt2 = params[:lt2]
     @parameters cio = params[:cio]
@@ -114,7 +125,7 @@ function industrial_output(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function service_output(; name, params=params)
+function service_output(; name, params=params, inits=inits)
     @parameters lt = params[:lt]
     @parameters lt2 = params[:lt2]
     @parameters cso = params[:cso]
@@ -134,11 +145,11 @@ function service_output(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name, params=params)
+function persistent_pollution(; name, params=params, inits=inits)
     @parameters ps = params[:ps]
     @parameters pt = params[:pt]
 
-    @variables ppolx(t) = ppolx0
+    @variables ppolx(t) = inits[:ppolx0]
 
     eqs = [
         D(ppolx) ~ step(t, ps, pt)
@@ -147,7 +158,7 @@ function persistent_pollution(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function food(; name, params=params)
+function food(; name, params=params, inits=inits)
     @parameters lt = params[:lt]
     @parameters lt2 = params[:lt2]
     @parameters cfood = params[:cfood]
