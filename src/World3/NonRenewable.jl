@@ -16,7 +16,7 @@ include("nonrenewable/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name, params=params)
+function population(; name, params=params, inits=inits)
     @parameters gc = params[:gc]
     @parameters pop2 = params[:pop2]
     @parameters popi = params[:popi]
@@ -32,7 +32,7 @@ function population(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name, params=params)
+function industrial_output(; name, params=params, inits=inits)
     @parameters icor = params[:icor]
 
     @variables ic(t) fcaor(t) pop(t)
@@ -46,14 +46,14 @@ function industrial_output(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function industrial_capital(; name, params=params)
+function industrial_capital(; name, params=params, inits=inits)
     @parameters fioaa = params[:fioaa]
     @parameters fioas = params[:fioas]
     @parameters fioac = params[:fioac]
     @parameters alic = params[:alic]
 
     @variables io(t)
-    @variables ic(t) = ic0
+    @variables ic(t) = inits[:ic0]
     @variables icir(t) icdr(t)
 
     eqs = [
@@ -65,14 +65,14 @@ function industrial_capital(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=params)
+function non_renewable(; name, params=params, inits=inits)
     @parameters nri = params[:nri]
     @parameters nruf1 = params[:nruf1]
     @parameters nruf2 = params[:nruf2]
     @parameters pyear = params[:pyear]
 
     @variables pop(t) iopc(t)
-    @variables nr(t) = nri
+    @variables nr(t) = params[:nri]
     @variables nrur(t) nruf(t) pcrum(t) nrfr(t) fcaor(t) fcaor1(t) fcaor2(t)
 
     eqs = [

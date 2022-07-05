@@ -17,7 +17,7 @@ include("pollution/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name, params=params)
+function population(; name, params=params, inits=inits)
     @variables pop(t) = pop0
 
     eqs = [
@@ -27,7 +27,7 @@ function population(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=params)
+function non_renewable(; name, params=params, inits=inits)
     @variables pcrum(t) = pcrum0
 
     eqs = [
@@ -37,7 +37,7 @@ function non_renewable(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function agriculture(; name, params=params)
+function agriculture(; name, params=params, inits=inits)
     @variables aiph(t) = aiph0 al(t) = al0
 
     eqs = [
@@ -48,11 +48,14 @@ function agriculture(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function pollution_damage(; name, params=params)
+function pollution_damage(; name, params=params, inits=inits)
     @parameters pyear = params[:pyear]
 
     @variables ppolx(t)
-    @variables lmp(t) = lmp0 lmp1(t) = lmp10 lmp2(t) = lmp20 lfdr(t) lfdr1(t) lfdr2(t)
+    @variables lmp(t) = inits[:lmp0]
+    @variables lmp1(t) = inits[:lmp10]
+    @variables lmp2(t) = inits[:lmp20]
+    @variables lfdr(t) lfdr1(t) lfdr2(t)
 
     eqs = [
         lmp ~ clip(lmp2, lmp1, t, pyear)
@@ -66,13 +69,21 @@ function pollution_damage(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function adaptive_technological_control_cards(; name, params=params)
+function adaptive_technological_control_cards(; name, params=params, inits=inits)
     @parameters pyear = params[:pyear]
     @parameters tdd = params[:tdd]
     @parameters pd = params[:pd]
 
     @variables lmp(t)
-    @variables ppgf22(t) = ppgf220 ppgf222(t) = ppgf220 ppgf221(t) = ppgf220 pcti(t) = pcti0 plmp(t) = plmp0 plmp2(t) = plmp0 plmp1(t) = plmp0
+
+    @variables ppgf22(t) = inits[:ppgf220]
+    @variables ppgf222(t) = inits[:ppgf220]
+    @variables ppgf221(t) = inits[:ppgf220]
+    @variables pcti(t) = inits[:pcti0]
+    @variables plmp(t) = inits[:plmp0]
+    @variables plmp2(t) = inits[:plmp0]
+    @variables plmp1(t) = inits[:plmp0]
+
     @variables pctir(t) pctcm(t)
 
     eqs = [
@@ -90,7 +101,7 @@ function adaptive_technological_control_cards(; name, params=params)
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name, params=params)
+function persistent_pollution(; name, params=params, inits=inits)
     @parameters pyear = params[:pyear]
     @parameters ppgf1 = params[:ppgf1]
     @parameters ppgf21 = params[:ppgf21]
@@ -106,8 +117,18 @@ function persistent_pollution(; name, params=params)
     @parameters ahl70 = params[:ahl70]
 
     @variables ppgf22(t) pcrum(t) pop(t) aiph(t) al(t)
-    @variables ppapr3(t) = ppapr30 ppapr2(t) = ppapr30 ppapr1(t) = ppapr30 ppol(t) = ppol0
-    @variables ppgr(t) = ppgr0 ppgf(t) ppgf2(t) ppgio(t) = ppgio0 ppgao(t) = ppgao0 ppapr(t) pptd(t) = pptd0 ppolx(t) = ppolx0 ppasr(t) ahlm(t) ahl(t)
+
+    @variables ppapr3(t) = inits[:ppapr30]
+    @variables ppapr2(t) = inits[:ppapr30]
+    @variables ppapr1(t) = inits[:ppapr30]
+    @variables ppol(t) = inits[:ppol0]
+    @variables ppgr(t) = inits[:ppgr0]
+    @variables ppgio(t) = inits[:ppgio0]
+    @variables ppgao(t) = inits[:ppgao0]
+    @variables pptd(t) = inits[:pptd0]
+    @variables ppolx(t) = inits[:ppolx0]
+
+    @variables ppgf(t) ppgf2(t) ppapr(t) ppasr(t) ahlm(t) ahl(t)
 
     eqs = [
         ppgr ~ (ppgio + ppgao) * ppgf

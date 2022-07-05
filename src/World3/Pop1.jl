@@ -26,13 +26,13 @@ food = CommonPop.food
 params = CommonPop.params
 
 
-function population(; name, params=params)
+function population(; name, params=params, inits=inits)
     @parameters ffw = params[:ffw]
     @parameters rlt = params[:rlt]
     @parameters pet = params[:pet]
 
     @variables le(t) tf(t)
-    @variables pop(t) = pop0
+    @variables pop(t) = inits[:pop0]
     @variables dr(t) br(t)
 
     eqs = [
