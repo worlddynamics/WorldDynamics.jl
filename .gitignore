@@ -6,3 +6,4 @@ Manifest.toml
 *.fls
 *.log
 *.aux
+.vscode/settings.json
