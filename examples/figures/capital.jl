@@ -21,7 +21,7 @@ fig_3_36_variables = [
     (ag.al,    0, 1.5e9, "al"),
     (ag.fioaa, 0, 0.5,   "fioaa"),
     (nr.fcaor, 0, 0.25,  "fcaor"),
-    (ag.aiph,  0, 50,    "aiph")
+    (ag.aiph,  0, 50,    "aiph"),
 ]
 
 plotvariables(sol, (t, 1900.0, 1970.0), fig_3_36_variables, name="Fig. 3.36", showlegend=true, showaxis=true, colored=true)
@@ -44,3 +44,11 @@ parameters_3_38[:alic1] = 21
 sol_3_38 = capital_historicalrun(params=parameters_3_38)
 
 plotvariables(sol_3_38, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.38", showlegend=true, showaxis=true, colored=true)
+
+
+cap_tables_3_41 = copy(WorldDynamics.World3.Capital.tables)
+cap_tables_3_41[:fcaor] = (0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35)
+
+sol_3_41 = capital_historicalrun(tables=cap_tables_3_41)
+
+plotvariables(sol_3_41, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.41", showlegend=true, showaxis=true, colored=true)
