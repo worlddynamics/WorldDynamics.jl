@@ -36,3 +36,11 @@ fig_3_37_variables = [
 ]
 
 plotvariables(sol, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.37", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_3_38 = copy(WorldDynamics.World3.Capital.params)
+parameters_3_38[:alic1] = 21
+
+sol_3_38 = capital_historicalrun(params=parameters_3_38)
+
+plotvariables(sol_3_38, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.38", showlegend=true, showaxis=true, colored=true)
