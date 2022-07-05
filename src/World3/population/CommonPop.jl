@@ -21,10 +21,10 @@ D = Differential(t)
 
 
 function death_rate(; name, params=params)
-    @parameters len = params[:lenv]
-    @parameters sfpc = params[:sfpcv]
-    @parameters hsid = params[:hsidv]
-    @parameters iphst = params[:iphstv]
+    @parameters len = params[:len]
+    @parameters sfpc = params[:sfpc]
+    @parameters hsid = params[:hsid]
+    @parameters iphst = params[:iphst]
 
     @variables dr(t) pop(t)
     @variables fpc(t) sopc(t) iopc(t) ppolx(t)
@@ -50,14 +50,14 @@ function death_rate(; name, params=params)
 end
 
 function birth_rate(; name, params=params)
-    @parameters mtfn = params[:mtfnv]
-    @parameters lpd = params[:lpdv]
-    @parameters dcfsn = params[:dcfsnv]
-    @parameters zpgt = params[:zpgtv]
-    @parameters sad = params[:sadv]
-    @parameters ieat = params[:ieatv]
-    @parameters fcest = params[:fcestv]
-    @parameters hsid = params[:hsidv]
+    @parameters mtfn = params[:mtfn]
+    @parameters lpd = params[:lpd]
+    @parameters dcfsn = params[:dcfsn]
+    @parameters zpgt = params[:zpgt]
+    @parameters sad = params[:sad]
+    @parameters ieat = params[:ieat]
+    @parameters fcest = params[:fcest]
+    @parameters hsid = params[:hsid]
 
     @variables br(t) pop(t)
     @variables le(t) iopc(t) sopc(t)
@@ -95,9 +95,9 @@ function birth_rate(; name, params=params)
 end
 
 function industrial_output(; name, params=params)
-    @parameters lt = params[:ltv]
-    @parameters lt2 = params[:lt2v]
-    @parameters cio = params[:ciov]
+    @parameters lt = params[:lt]
+    @parameters lt2 = params[:lt2]
+    @parameters cio = params[:cio]
 
     @variables pop(t)
     @variables io(t) io1(t) io11(t) io12(t) io2(t) iopc(t)
@@ -115,9 +115,9 @@ function industrial_output(; name, params=params)
 end
 
 function service_output(; name, params=params)
-    @parameters lt = params[:ltv]
-    @parameters lt2 = params[:lt2v]
-    @parameters cso = params[:csov]
+    @parameters lt = params[:lt]
+    @parameters lt2 = params[:lt2]
+    @parameters cso = params[:cso]
 
     @variables pop(t)
     @variables so(t) so1(t) so11(t) so12(t) so2(t) sopc(t)
@@ -135,8 +135,8 @@ function service_output(; name, params=params)
 end
 
 function persistent_pollution(; name, params=params)
-    @parameters ps = params[:psv]
-    @parameters pt = params[:ptv]
+    @parameters ps = params[:ps]
+    @parameters pt = params[:pt]
 
     @variables ppolx(t) = ppolx0
 
@@ -148,9 +148,9 @@ function persistent_pollution(; name, params=params)
 end
 
 function food(; name, params=params)
-    @parameters lt = params[:ltv]
-    @parameters lt2 = params[:lt2v]
-    @parameters cfood = params[:cfoodv]
+    @parameters lt = params[:lt]
+    @parameters lt2 = params[:lt2]
+    @parameters cfood = params[:cfood]
 
     @variables pop(t)
     @variables f(t) f1(t) f11(t) f12(t) f2(t) fpc(t)

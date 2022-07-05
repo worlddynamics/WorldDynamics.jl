@@ -49,7 +49,7 @@ function agriculture(; name, params=params)
 end
 
 function pollution_damage(; name, params=params)
-    @parameters pyear = params[:pyearv]
+    @parameters pyear = params[:pyear]
 
     @variables ppolx(t)
     @variables lmp(t) = lmp0 lmp1(t) = lmp10 lmp2(t) = lmp20 lfdr(t) lfdr1(t) lfdr2(t)
@@ -67,9 +67,9 @@ function pollution_damage(; name, params=params)
 end
 
 function adaptive_technological_control_cards(; name, params=params)
-    @parameters pyear = params[:pyearv]
-    @parameters tdd = params[:tddv]
-    @parameters pd = params[:pdv]
+    @parameters pyear = params[:pyear]
+    @parameters tdd = params[:tdd]
+    @parameters pd = params[:pd]
 
     @variables lmp(t)
     @variables ppgf22(t) = ppgf220 ppgf222(t) = ppgf220 ppgf221(t) = ppgf220 pcti(t) = pcti0 plmp(t) = plmp0 plmp2(t) = plmp0 plmp1(t) = plmp0
@@ -91,19 +91,19 @@ function adaptive_technological_control_cards(; name, params=params)
 end
 
 function persistent_pollution(; name, params=params)
-    @parameters pyear = params[:pyearv]
-    @parameters ppgf1 = params[:ppgf1v]
-    @parameters ppgf21 = params[:ppgf21v]
-    @parameters swat = params[:swatv]
-    @parameters frpm = params[:frpmv]
-    @parameters imef = params[:imefv]
-    @parameters imti = params[:imtiv]
-    @parameters fipm = params[:fipmv]
-    @parameters amti = params[:amtiv]
-    @parameters pptd1 = params[:pptd1v]
-    @parameters pptd2 = params[:pptd2v]
-    @parameters ppol70 = params[:ppol70v]
-    @parameters ahl70 = params[:ahl70v]
+    @parameters pyear = params[:pyear]
+    @parameters ppgf1 = params[:ppgf1]
+    @parameters ppgf21 = params[:ppgf21]
+    @parameters swat = params[:swat]
+    @parameters frpm = params[:frpm]
+    @parameters imef = params[:imef]
+    @parameters imti = params[:imti]
+    @parameters fipm = params[:fipm]
+    @parameters amti = params[:amti]
+    @parameters pptd1 = params[:pptd1]
+    @parameters pptd2 = params[:pptd2]
+    @parameters ppol70 = params[:ppol70]
+    @parameters ahl70 = params[:ahl70]
 
     @variables ppgf22(t) pcrum(t) pop(t) aiph(t) al(t)
     @variables ppapr3(t) = ppapr30 ppapr2(t) = ppapr30 ppapr1(t) = ppapr30 ppol(t) = ppol0

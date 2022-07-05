@@ -51,15 +51,15 @@ function non_renewable(; name, params=params)
 end
 
 function industrial_subsector(; name, params=params)
-    @parameters pyear = params[:pyearv]
-    @parameters icor1 = params[:icor1v]
-    @parameters icor2 = params[:icor2v]
-    @parameters alic1 = params[:alic1v]
-    @parameters alic2 = params[:alic2v]
-    @parameters iet = params[:ietv]
-    @parameters iopcd = params[:iopcdv]
-    @parameters fioac1 = params[:fioac1v]
-    @parameters fioac2 = params[:fioac2v]
+    @parameters pyear = params[:pyear]
+    @parameters icor1 = params[:icor1]
+    @parameters icor2 = params[:icor2]
+    @parameters alic1 = params[:alic1]
+    @parameters alic2 = params[:alic2]
+    @parameters iet = params[:iet]
+    @parameters iopcd = params[:iopcd]
+    @parameters fioac1 = params[:fioac1]
+    @parameters fioac2 = params[:fioac2]
 
     @variables pop(t) fcaor(t) cuf(t) fioaa(t) fioas(t)
     @variables ic(t) = ic0
@@ -83,11 +83,11 @@ function industrial_subsector(; name, params=params)
 end
 
 function service_subsector(; name, params=params)
-    @parameters pyear = params[:pyearv]
-    @parameters alsc1 = params[:alsc1v]
-    @parameters alsc2 = params[:alsc2v]
-    @parameters scor1 = params[:scor1v]
-    @parameters scor2 = params[:scor2v]
+    @parameters pyear = params[:pyear]
+    @parameters alsc1 = params[:alsc1]
+    @parameters alsc2 = params[:alsc2]
+    @parameters scor1 = params[:scor1]
+    @parameters scor2 = params[:scor2]
 
     @variables iopc(t) io(t) cuf(t) pop(t)
     @variables sc(t) = sc0
@@ -113,8 +113,8 @@ function service_subsector(; name, params=params)
 end
 
 function job_subsector(; name, params=params)
-    @parameters lfpf = params[:lfpfv]
-    @parameters lufdt = params[:lufdtv]
+    @parameters lfpf = params[:lfpf]
+    @parameters lufdt = params[:lufdt]
 
     @variables ic(t) iopc(t) sc(t) sopc(t) al(t) aiph(t) p2(t) p3(t)
     @variables lufd(t) = lufd0

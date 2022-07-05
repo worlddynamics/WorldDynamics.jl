@@ -30,7 +30,7 @@ params = CommonPop.params
 
 
 function population(; name, params=params)
-    @parameters pet = params[:petv]
+    @parameters pet = params[:pet]
 
     @variables le(t) tf(t)
     @variables p1(t) = p1_0 p2(t) = p2_0 p3(t) = p3_0 p4(t) = p4_0 p5(t) = p5_0 p6(t) = p6_0 p7(t) = p7_0 p8(t) = p8_0 p9(t) = p9_0 p10(t) = p10_0 p11(t) = p11_0 p12(t) = p12_0 p13(t) = p13_0 p14(t) = p14_0 p15(t) = p15_0
