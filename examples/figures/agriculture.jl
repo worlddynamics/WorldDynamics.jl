@@ -3,7 +3,8 @@ using WorldDynamics
 include("../scenarios/agriculture_historicalrun.jl")
 
 
-sol = agriculture_historicalrun()
+system = agriculture_historicalrun()
+sol = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 
 @named ld = WorldDynamics.World3.Agriculture.land_development()
@@ -42,7 +43,8 @@ parameters_4_74[:palt] = 4.35e9
 initialisations_4_74 = copy(WorldDynamics.World3.Agriculture.inits)
 initialisations_4_74[:pal0] = 3.45e9
 
-sol_4_74 = agriculture_historicalrun(params=parameters_4_74, inits=initialisations_4_74)
+system = agriculture_historicalrun(params=parameters_4_74, inits=initialisations_4_74)
+sol_4_74 = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 plotvariables(sol_4_74, (t, 1900.0, 2100.0), fig_4_69a_variables, name="Fig. 4.74a", showlegend=true, showaxis=true, colored=true)
 

@@ -3,7 +3,8 @@ using WorldDynamics
 include("../scenarios/world3_historicalrun.jl")
 
 
-sol = world3_historicalrun()
+system = world3_historicalrun()
+sol = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 
 @named pop = WorldDynamics.World3.Pop4.population()
@@ -15,7 +16,6 @@ sol = world3_historicalrun()
 @named nr = WorldDynamics.World3.NonRenewable.non_renewable()
 @named pp = WorldDynamics.World3.Pollution.persistent_pollution()
 @named se = WorldDynamics.World3.SupplementaryEquations.supplementary_equations()
-
 
 @variables t
 
@@ -65,7 +65,8 @@ plotvariables(sol, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.7", show
 nr_parameters_7_10 = copy(WorldDynamics.World3.NonRenewable.params)
 nr_parameters_7_10[:nri] = 2e12
 
-sol_7_10 = world3_historicalrun(nonrenewable_params=nr_parameters_7_10)
+system = world3_historicalrun(nonrenewable_params=nr_parameters_7_10)
+sol_7_10 = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 plotvariables(sol_7_10, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.10", showlegend=true, showaxis=true, colored=true)
 
@@ -73,7 +74,8 @@ plotvariables(sol_7_10, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.10"
 nr_parameters_7_11 = copy(WorldDynamics.World3.NonRenewable.params)
 nr_parameters_7_11[:nri] = 1e13
 
-sol_7_11 = world3_historicalrun(nonrenewable_params=nr_parameters_7_11)
+system = world3_historicalrun(nonrenewable_params=nr_parameters_7_11)
+sol_7_11 = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 plotvariables(sol_7_11, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.11", showlegend=true, showaxis=true, colored=true)
 
@@ -82,6 +84,7 @@ agr_tables_7_13 = copy(WorldDynamics.World3.Agriculture.tables)
 agr_tables_7_13[:fioaa1] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
 agr_tables_7_13[:fioaa2] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
 
-sol_7_13 = world3_historicalrun(agriculture_tables=agr_tables_7_13)
+system = world3_historicalrun(agriculture_tables=agr_tables_7_13)
+sol_7_13 = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 plotvariables(sol_7_13, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.13", showlegend=true, showaxis=true, colored=true)

@@ -3,7 +3,8 @@ using WorldDynamics
 include("../scenarios/pollution_historicalrun.jl")
 
 
-sol = pollution_historicalrun()
+system = pollution_historicalrun()
+sol = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 
 @named nr = WorldDynamics.World3.Pollution.non_renewable()
@@ -63,12 +64,12 @@ fig_6_31_variables = [
 plotvariables(sol, (t, 1900.0, 2100.0), fig_6_31_variables, name="Fig. 6.31", showlegend=true, showaxis=true, colored=true)
 
 
-
 parameters = copy(WorldDynamics.World3.Pollution.params)
 parameters[:imti] = 1
 parameters[:amti] = 0.5
 parameters[:ppol70] = 4.03e7
 
-sol_decreased_toxity = pollution_historicalrun(params=parameters)
+system = pollution_historicalrun(params=parameters)
+sol_decreased_toxity = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 plotvariables(sol_decreased_toxity, (t, 1900.0, 2100.0), fig_6_31_variables, name="Fig. 6.32", showlegend=true, showaxis=true, colored=true)

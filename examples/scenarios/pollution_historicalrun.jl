@@ -21,5 +21,5 @@ function pollution_historicalrun(; kwargs...)
         pp.al ~ ag.al
     ]
 
-    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 2100.0))
+    return WorldDynamics.compose(systems, connection_eqs)
 end

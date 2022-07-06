@@ -31,5 +31,5 @@ function capital_historicalrun(; kwargs...)
         js.p3 ~ pop.p3
     ]
 
-    return WorldDynamics.solvesystems(systems, connection_eqs, (1900, 2100.0))
+    return WorldDynamics.compose(systems, connection_eqs)
 end

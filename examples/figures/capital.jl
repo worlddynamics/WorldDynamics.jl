@@ -3,7 +3,8 @@ using WorldDynamics
 include("../scenarios/capital_historicalrun.jl")
 
 
-sol = capital_historicalrun()
+system = capital_historicalrun()
+sol = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 
 @named pop = WorldDynamics.World3.Capital.population()
@@ -41,7 +42,8 @@ plotvariables(sol, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.37", sh
 parameters_3_38 = copy(WorldDynamics.World3.Capital.params)
 parameters_3_38[:alic1] = 21
 
-sol_3_38 = capital_historicalrun(params=parameters_3_38)
+system = capital_historicalrun(params=parameters_3_38)
+sol_3_38 = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 plotvariables(sol_3_38, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.38", showlegend=true, showaxis=true, colored=true)
 
@@ -49,6 +51,7 @@ plotvariables(sol_3_38, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.38
 cap_tables_3_41 = copy(WorldDynamics.World3.Capital.tables)
 cap_tables_3_41[:fcaor] = (0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35)
 
-sol_3_41 = capital_historicalrun(tables=cap_tables_3_41)
+system = capital_historicalrun(tables=cap_tables_3_41)
+sol_3_41 = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 plotvariables(sol_3_41, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.41", showlegend=true, showaxis=true, colored=true)

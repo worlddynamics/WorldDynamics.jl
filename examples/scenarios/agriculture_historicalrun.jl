@@ -46,5 +46,5 @@ function agriculture_historicalrun(; kwargs...)
         io.pop ~ pop.pop
     ]
 
-    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 2100.0))
+    return WorldDynamics.compose(systems, connection_eqs)
 end

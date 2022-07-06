@@ -1,16 +1,20 @@
 using ModelingToolkit
 using DifferentialEquations
 
-function solvesystems(systems, connection_eqs, timespan; solver=Tsit5())
+function compose(systems::Vector{ODESystem}, connection_eqs::Vector{Equation})
     @variables t
 
     @named _model = ODESystem(connection_eqs, t)
-    @named model = compose(_model, systems)
+    @named model = ModelingToolkit.compose(_model, systems)
 
-    sys = structural_simplify(model)
+    return model
+end
+
+function solve(system::ODESystem, timespan; solver=Tsit5())
+    sys = structural_simplify(system)
 
     prob = ODEProblem(sys, [], timespan)
-    sol = solve(prob, solver)
+    sol = ModelingToolkit.solve(prob, solver)
 
     return sol
 end

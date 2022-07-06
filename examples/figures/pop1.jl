@@ -3,7 +3,8 @@ using WorldDynamics
 include("../scenarios/pop1_historicalrun.jl")
 
 
-sol = pop1_historicalrun()
+system = pop1_historicalrun()
+sol = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 
 @named pop = WorldDynamics.World3.Pop1.population()
@@ -47,6 +48,7 @@ parameters_2_87 = copy(WorldDynamics.World3.Pop1.params)
 parameters_2_87[:iphst] = 4000
 parameters_2_87[:lt2] = 0
 
-sol_2_87 = pop1_historicalrun(params=parameters_2_87)
+system = pop1_historicalrun(params=parameters_2_87)
+sol_2_87 = WorldDynamics.solve(system, (1900.0, 2100.0))
 
 plotvariables(sol_2_87, (t, 1900.0, 2100.0), fig_2_84_variables, name="Fig. 2.87", showlegend=true, showaxis=true, colored=true)
