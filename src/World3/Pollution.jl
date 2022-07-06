@@ -18,7 +18,7 @@ D = Differential(t)
 
 
 function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
-    @variables pop(t) = pop0
+    @variables pop(t) = inits[:pop0]
 
     eqs = [
         pop ~ interpolate(t, tables[:pop], ranges[:pop]) * 1e8
@@ -28,7 +28,7 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
 end
 
 function non_renewable(; name, params=params, inits=inits, tables=tables, ranges=ranges)
-    @variables pcrum(t) = pcrum0
+    @variables pcrum(t) = inits[:pcrum0]
 
     eqs = [
         pcrum ~ interpolate(t, tables[:pcrum], ranges[:pcrum]) * 1e-2
@@ -38,7 +38,8 @@ function non_renewable(; name, params=params, inits=inits, tables=tables, ranges
 end
 
 function agriculture(; name, params=params, inits=inits, tables=tables, ranges=ranges)
-    @variables aiph(t) = aiph0 al(t) = al0
+    @variables aiph(t) = inits[:aiph0]
+    @variables al(t) = inits[:al0]
 
     eqs = [
         aiph ~ interpolate(t, tables[:aiph], ranges[:aiph])
