@@ -3,7 +3,8 @@ using WorldDynamics
 include("../scenarios/pop1_historicalrun.jl")
 
 
-sol = pop1_historicalrun()
+system = pop1_historicalrun()
+sol = WorldDynamics.solve(system, (1900, 2100))
 
 
 @named pop = WorldDynamics.World3.Pop1.population()
@@ -17,18 +18,18 @@ sol = pop1_historicalrun()
 
 
 fig_2_84_variables = [
+    (so.sopc, 0,   1000,   "sopc"),
+    (io.iopc, 0,   1000,   "iopc"),
+    (f.fpc,   0,   1000,   "fpc"),
     (pop.pop, 0,   1.6e10, "pop"),
     (br.cbr,  0,   50,     "cbr"),
     (dr.cdr,  0,   50,     "cdr"),
-    (so.sopc, 0,   1000,   "sopc"),
-    (dr.fpu,  0,   1,      "fpu"),
-    (f.fpc,   0,   1000,   "fpc"),
     (dr.le,   0,   80,     "le"),
+    (dr.fpu,  0,   1,      "fpu"),
     (br.fce,  0.5, 1,      "fce"),
-    (io.iopc, 0,   1000,   "iopc")
 ]
 
-plotvariables(sol, (t, 1900.0, 1970.0), fig_2_84_variables, name="Fig. 2.84", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_2_84_variables, name="Fig. 2.84", showlegend=true, showaxis=true, colored=true)
 
 
 fig_2_85_variables = [
@@ -37,7 +38,17 @@ fig_2_85_variables = [
     (dr.lmp,   0, 2,   "lmp"),
     (dr.lmc,   0, 2,   "lmc"),
     (dr.hsapc, 0, 250, "hsapc"),
-    (dr.ehspc, 0, 250, "ehspc")
+    (dr.ehspc, 0, 250, "ehspc"),
 ]
 
-plotvariables(sol, (t, 1900.0, 1970.0), fig_2_85_variables, name="Fig. 2.85", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_2_85_variables, name="Fig. 2.85", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_2_87 = WorldDynamics.World3.Pop1.getparameters()
+parameters_2_87[:iphst] = 4000
+parameters_2_87[:lt2] = 0
+
+system = pop1_historicalrun(params=parameters_2_87)
+sol_2_87 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_2_87, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.87", showlegend=true, showaxis=true, colored=true)

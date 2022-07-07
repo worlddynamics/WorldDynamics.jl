@@ -1,17 +1,17 @@
 using WorldDynamics
 using ModelingToolkit
 
-function agriculture_historicalrun()
-    @named pop = WorldDynamics.World3.Agriculture.population()
-    @named io = WorldDynamics.World3.Agriculture.industrial_output()
-    @named pp = WorldDynamics.World3.Agriculture.persistent_pollution()
-    @named ld = WorldDynamics.World3.Agriculture.land_development()
-    @named ai = WorldDynamics.World3.Agriculture.agricultural_inputs()
-    @named iad = WorldDynamics.World3.Agriculture.investment_allocation_decision()
-    @named leuiu = WorldDynamics.World3.Agriculture.land_erosion_urban_industrial_use()
-    @named dlm = WorldDynamics.World3.Agriculture.discontinung_land_maintenance()
-    @named lfr = WorldDynamics.World3.Agriculture.land_fertility_regeneration()
-    @named lfd = WorldDynamics.World3.Agriculture.land_fertility_degradation()
+function agriculture_historicalrun(; kwargs...)
+    @named pop = WorldDynamics.World3.Agriculture.population(; kwargs...)
+    @named io = WorldDynamics.World3.Agriculture.industrial_output(; kwargs...)
+    @named pp = WorldDynamics.World3.Agriculture.persistent_pollution(; kwargs...)
+    @named ld = WorldDynamics.World3.Agriculture.land_development(; kwargs...)
+    @named ai = WorldDynamics.World3.Agriculture.agricultural_inputs(; kwargs...)
+    @named iad = WorldDynamics.World3.Agriculture.investment_allocation_decision(; kwargs...)
+    @named leuiu = WorldDynamics.World3.Agriculture.land_erosion_urban_industrial_use(; kwargs...)
+    @named dlm = WorldDynamics.World3.Agriculture.discontinung_land_maintenance(; kwargs...)
+    @named lfr = WorldDynamics.World3.Agriculture.land_fertility_regeneration(; kwargs...)
+    @named lfd = WorldDynamics.World3.Agriculture.land_fertility_degradation(; kwargs...)
 
     systems = [pop, io, pp, ld, ai, iad, leuiu, dlm, lfr, lfd]
 
@@ -46,5 +46,5 @@ function agriculture_historicalrun()
         io.pop ~ pop.pop
     ]
 
-    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 1970.0))
+    return WorldDynamics.compose(systems, connection_eqs)
 end
