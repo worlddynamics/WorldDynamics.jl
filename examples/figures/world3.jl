@@ -62,7 +62,7 @@ fig_7_7_variables = [
 plotvariables(sol, (t, 1900, 2100), fig_7_7_variables, name="Fig. 7.7", showlegend=true, showaxis=true, colored=true)
 
 
-nr_parameters_7_10 = copy(WorldDynamics.World3.NonRenewable.params)
+nr_parameters_7_10 = WorldDynamics.World3.NonRenewable.getparameters()
 nr_parameters_7_10[:nri] = 2e12
 
 system = world3_historicalrun(nonrenewable_params=nr_parameters_7_10)
@@ -71,7 +71,7 @@ sol_7_10 = WorldDynamics.solve(system, (1900, 2100))
 plotvariables(sol_7_10, (t, 1900, 2100), fig_7_7_variables, name="Fig. 7.10", showlegend=true, showaxis=true, colored=true)
 
 
-nr_parameters_7_11 = copy(WorldDynamics.World3.NonRenewable.params)
+nr_parameters_7_11 = WorldDynamics.World3.NonRenewable.getparameters()
 nr_parameters_7_11[:nri] = 1e13
 
 system = world3_historicalrun(nonrenewable_params=nr_parameters_7_11)
@@ -80,7 +80,7 @@ sol_7_11 = WorldDynamics.solve(system, (1900, 2100))
 plotvariables(sol_7_11, (t, 1900, 2100), fig_7_7_variables, name="Fig. 7.11", showlegend=true, showaxis=true, colored=true)
 
 
-agr_tables_7_13 = copy(WorldDynamics.World3.Agriculture.tables)
+agr_tables_7_13 = WorldDynamics.World3.Agriculture.gettables()
 agr_tables_7_13[:fioaa1] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
 agr_tables_7_13[:fioaa2] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
 

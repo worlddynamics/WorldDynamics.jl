@@ -29,6 +29,11 @@ inits = CommonPop.inits
 tables = CommonPop.tables
 ranges = CommonPop.ranges
 
+getinitialisations() = copy(inits)
+getparameters() = copy(params)
+gettables() = copy(tables)
+getranges() = copy(ranges)
+
 
 function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters ffw = params[:ffw]

@@ -33,6 +33,12 @@ inits = merge(inits, CommonPop.inits)
 tables = merge(tables, CommonPop.tables)
 ranges = merge(ranges, CommonPop.ranges)
 
+getinitialisations() = copy(inits)
+getparameters() = copy(params)
+gettables() = copy(tables)
+getranges() = copy(ranges)
+
+
 function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters rlt = params[:rlt]
     @parameters pet = params[:pet]

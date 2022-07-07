@@ -26,7 +26,7 @@ fig_5_25_variables = [
 plotvariables(sol, (t, 1900, 2100), fig_5_25_variables, name="Fig. 5.25", showlegend=true, showaxis=true, colored=true)
 
 
-parameters_5_26 = copy(WorldDynamics.World3.NonRenewable.params)
+parameters_5_26 = WorldDynamics.World3.NonRenewable.getparameters()
 parameters_5_26[:nri] = 2e12
 
 system = nonrenewable_historicalrun(params=parameters_5_26)
@@ -35,7 +35,7 @@ sol_5_26 = WorldDynamics.solve(system, (1900, 2100))
 plotvariables(sol_5_26, (t, 1900, 2100), fig_5_25_variables, name="Fig. 5.26", showlegend=true, showaxis=true, colored=true)
 
 
-parameters_5_29 = copy(WorldDynamics.World3.NonRenewable.params)
+parameters_5_29 = WorldDynamics.World3.NonRenewable.getparameters()
 parameters_5_29[:nruf2] = 0.25
 
 system = nonrenewable_historicalrun(params=parameters_5_29)

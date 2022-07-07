@@ -9,6 +9,12 @@ include("agriculture/parameters.jl")
 include("agriculture/initialisations.jl")
 
 
+getinitialisations() = copy(inits)
+getparameters() = copy(params)
+gettables() = copy(tables)
+getranges() = copy(ranges)
+
+
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
 @register max(v1, v2)

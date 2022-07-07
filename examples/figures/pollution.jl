@@ -64,7 +64,7 @@ fig_6_31_variables = [
 plotvariables(sol, (t, 1900, 2100), fig_6_31_variables, name="Fig. 6.31", showlegend=true, showaxis=true, colored=true)
 
 
-parameters = copy(WorldDynamics.World3.Pollution.params)
+parameters = WorldDynamics.World3.Pollution.getparameters()
 parameters[:imti] = 1
 parameters[:amti] = 0.5
 parameters[:ppol70] = 4.03e7

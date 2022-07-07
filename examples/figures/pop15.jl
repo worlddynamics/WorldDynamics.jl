@@ -48,7 +48,7 @@ fig_2_85_variables = [
 plotvariables(sol, (t, 1900, 1970), fig_2_85_variables, name="Fig. 2.85", showlegend=true, showaxis=true, colored=true)
 
 
-parameters_2_87 = copy(WorldDynamics.World3.Pop15.params)
+parameters_2_87 = WorldDynamics.World3.Pop15.getparameters()
 parameters_2_87[:iphst] = 4000
 parameters_2_87[:lt2] = 0
 

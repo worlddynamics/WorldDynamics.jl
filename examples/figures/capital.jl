@@ -39,7 +39,7 @@ fig_3_37_variables = [
 plotvariables(sol, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.37", showlegend=true, showaxis=true, colored=true)
 
 
-parameters_3_38 = copy(WorldDynamics.World3.Capital.params)
+parameters_3_38 = WorldDynamics.World3.Capital.getparameters()
 parameters_3_38[:alic1] = 21
 
 system = capital_historicalrun(params=parameters_3_38)
@@ -48,7 +48,7 @@ sol_3_38 = WorldDynamics.solve(system, (1900, 2100))
 plotvariables(sol_3_38, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.38", showlegend=true, showaxis=true, colored=true)
 
 
-cap_tables_3_41 = copy(WorldDynamics.World3.Capital.tables)
+cap_tables_3_41 = WorldDynamics.World3.Capital.gettables()
 cap_tables_3_41[:fcaor] = (0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35)
 
 system = capital_historicalrun(tables=cap_tables_3_41)
