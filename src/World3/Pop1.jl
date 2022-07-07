@@ -41,7 +41,7 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
     @parameters pet = params[:pet]
 
     @variables le(t) tf(t)
-    @variables pop(t) = inits[:pop0]
+    @variables pop(t) = inits[:pop]
     @variables dr(t) br(t)
 
     eqs = [

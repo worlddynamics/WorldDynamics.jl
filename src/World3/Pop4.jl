@@ -45,10 +45,10 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
 
     @variables le(t) tf(t)
 
-    @variables p1(t) = inits[:p10]
-    @variables p2(t) = inits[:p20]
-    @variables p3(t) = inits[:p30]
-    @variables p4(t) = inits[:p40]
+    @variables p1(t) = inits[:p1]
+    @variables p2(t) = inits[:p2]
+    @variables p3(t) = inits[:p3]
+    @variables p4(t) = inits[:p4]
 
     @variables pop(t) d1(t) m1(t) mat1(t) d2(t) m2(t) mat2(t) d3(t) m3(t) mat3(t) d4(t) m4(t) dr(t) br(t)
 

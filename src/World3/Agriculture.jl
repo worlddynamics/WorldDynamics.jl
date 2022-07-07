@@ -79,8 +79,8 @@ function land_development(; name, params=params, inits=inits, tables=tables, ran
 
     @variables ler(t) lrui(t) ly(t) pop(t) iopc(t) io(t) fiald(t)
 
-    @variables al(t) = inits[:al0]
-    @variables pal(t) = inits[:pal0]
+    @variables al(t) = inits[:al]
+    @variables pal(t) = inits[:pal]
 
     @variables lfc(t) f(t) fpc(t) ifpc(t) ifpc1(t) ifpc2(t) tai(t) fioaa(t) fioaa1(t) fioaa2(t) ldr(t) dcph(t)
 
@@ -113,7 +113,7 @@ function agricultural_inputs(; name, params=params, inits=inits, tables=tables, 
     @parameters io70 = params[:io70]
 
     @variables tai(t) fiald(t) falm(t) al(t) lfert(t) io(t)
-    @variables ai(t) = inits[:ai0]
+    @variables ai(t) = inits[:ai]
     @variables cai(t) alai(t) aiph(t) lymc(t) ly(t) lyf(t) lymap(t) lymap1(t) lymap2(t)
 
     eqs = [
@@ -155,7 +155,7 @@ function land_erosion_urban_industrial_use(; name, params=params, inits=inits, t
     @parameters uildt = params[:uildt]
 
     @variables ly(t) al(t) iopc(t) pop(t)
-    @variables uil(t) = inits[:uil0]
+    @variables uil(t) = inits[:uil]
     @variables all(t) llmy(t) llmy1(t) llmy2(t) ler(t) uilpc(t) uilr(t) lrui(t)
 
     eqs = [
@@ -178,7 +178,7 @@ function discontinung_land_maintenance(; name, params=params, inits=inits, table
     @parameters fspd = params[:fspd]
 
     @variables fpc(t)
-    @variables pfr(t) = inits[:pfr0]
+    @variables pfr(t) = inits[:pfr]
     @variables falm(t) fr(t)
 
     eqs = [
@@ -206,7 +206,7 @@ end
 
 function land_fertility_degradation(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables lfr(t) ppolx(t)
-    @variables lfert(t) = inits[:lfert0]
+    @variables lfert(t) = inits[:lfert]
     @variables lfdr(t) lfd(t)
 
     eqs = [

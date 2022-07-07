@@ -59,7 +59,7 @@ function industrial_capital(; name, params=params, inits=inits, tables=tables, r
     @parameters alic = params[:alic]
 
     @variables io(t)
-    @variables ic(t) = inits[:ic0]
+    @variables ic(t) = inits[:ic]
     @variables icir(t) icdr(t)
 
     eqs = [

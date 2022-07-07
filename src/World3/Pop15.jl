@@ -43,21 +43,21 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
 
     @variables le(t) tf(t)
 
-    @variables p1(t) = inits[:p1_0]
-    @variables p2(t) = inits[:p2_0]
-    @variables p3(t) = inits[:p3_0]
-    @variables p4(t) = inits[:p4_0]
-    @variables p5(t) = inits[:p5_0]
-    @variables p6(t) = inits[:p6_0]
-    @variables p7(t) = inits[:p7_0]
-    @variables p8(t) = inits[:p8_0]
-    @variables p9(t) = inits[:p9_0]
-    @variables p10(t) = inits[:p10_0]
-    @variables p11(t) = inits[:p11_0]
-    @variables p12(t) = inits[:p12_0]
-    @variables p13(t) = inits[:p13_0]
-    @variables p14(t) = inits[:p14_0]
-    @variables p15(t) = inits[:p15_0]
+    @variables p1(t) = inits[:p1]
+    @variables p2(t) = inits[:p2]
+    @variables p3(t) = inits[:p3]
+    @variables p4(t) = inits[:p4]
+    @variables p5(t) = inits[:p5]
+    @variables p6(t) = inits[:p6]
+    @variables p7(t) = inits[:p7]
+    @variables p8(t) = inits[:p8]
+    @variables p9(t) = inits[:p9]
+    @variables p10(t) = inits[:p10]
+    @variables p11(t) = inits[:p11]
+    @variables p12(t) = inits[:p12]
+    @variables p13(t) = inits[:p13]
+    @variables p14(t) = inits[:p14]
+    @variables p15(t) = inits[:p15]
 
     @variables d1a(t) m1(t) d1(t) mat1(t) d2a(t) m2(t) d2(t) mat2(t) d3a(t) m3(t) d3(t) mat3(t) d4a(t) m4(t) d4(t) mat4(t)
     @variables d5a(t) m5(t) d5(t) mat5(t) d6a(t) m6(t) d6(t) mat6(t) d7a(t) m7(t) d7(t) mat7(t) d8a(t) m8(t) d8(t) mat8(t)
