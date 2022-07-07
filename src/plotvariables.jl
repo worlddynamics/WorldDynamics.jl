@@ -23,11 +23,11 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; na
     numvars = length(variables)
 
     @assert 1 ≤ numvars
-    @assert 3 == length(xrange)
+    @assert (1 == length(xrange)) || (3 == length(xrange))
     @assert 4 == length(variables[1])
 
 
-    colors = colored ? ColorSchemes.tab10.colors : fill(RGB(0.2, 0.2, 0.2), numvars)   
+    colors = colored ? ColorSchemes.tab10.colors : fill(RGB(0.2, 0.2, 0.2), numvars)
 
     x_offset = 0.05
     x_domain = showaxis ? x_offset * numvars - 0.04 : 0.0
@@ -35,33 +35,33 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; na
 
     traces = GenericTrace[]
 
-    (xvalue, xmin, xmax) = xrange
+    (xvalue, xmin, xmax) = (3 == length(xrange)) ? xrange : (xrange[1], -Inf, Inf)
     (var, varmin, varmax, varname) = variables[1]
 
     layout = Dict([
-        ("title", attr(text=name, x=0.5)), 
+        ("title", attr(text=name, x=0.5)),
         ("showlegend", showlegend),
         ("plot_bgcolor", "#EEE"),
         ("xaxis", attr(
-            domain = [x_domain+0.02, 1.0], 
+            domain = [x_domain+0.02, 1.0],
             position = 0.0,
             range = [xmin, xmax])),
         ("yaxis", attr(
-            color = colors[1], 
-            visible = showaxis, 
-            name = "", 
-            position = 0.0, 
-            showgrid = false, 
-            range = [varmin, varmax], 
+            color = colors[1],
+            visible = showaxis,
+            name = "",
+            position = 0.0,
+            showgrid = false,
+            range = [varmin, varmax],
             domain = [0.05, 1.0]
         ))
     ])
 
     push!(traces, scatter(
-        x = solution[xvalue], 
-        y = solution[var], 
-        marker_color = colors[1], 
-        name = varname, 
+        x = solution[xvalue],
+        y = solution[var],
+        marker_color = colors[1],
+        name = varname,
         mode = linetype, yaxis="y1")
     )
 
@@ -70,21 +70,21 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; na
         (var, varmin, varmax, varname) = variables[i]
 
         layout[string("yaxis", i)] = attr(
-            color = colors[i], 
-            overlaying = "y", 
-            visible = showaxis, 
-            name = "", 
-            position = (i-1) * x_offset, 
-            showgrid = false, 
+            color = colors[i],
+            overlaying = "y",
+            visible = showaxis,
+            name = "",
+            position = (i-1) * x_offset,
+            showgrid = false,
             range = [varmin, varmax]
         )
 
         push!(traces, scatter(
-            x = solution[xvalue], 
-            y = solution[var], 
-            marker_color = colors[i], 
-            name = varname, 
-            mode = linetype, 
+            x = solution[xvalue],
+            y = solution[var],
+            marker_color = colors[i],
+            name = varname,
+            mode = linetype,
             yaxis = string("y", i))
         )
     end
