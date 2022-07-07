@@ -68,7 +68,7 @@ function industrial_subsector(; name, params=params, inits=inits, tables=tables,
     @parameters fioac2 = params[:fioac2]
 
     @variables pop(t) fcaor(t) cuf(t) fioaa(t) fioas(t)
-    @variables ic(t) = inits[:ic0]
+    @variables ic(t) = inits[:ic]
     @variables iopc(t) io(t) icor(t) icdr(t) alic(t) icir(t) fioai(t) fioac(t) fioacc(t) fioacv(t)
 
     eqs = [
@@ -96,7 +96,7 @@ function service_subsector(; name, params=params, inits=inits, tables=tables, ra
     @parameters scor2 = params[:scor2]
 
     @variables iopc(t) io(t) cuf(t) pop(t)
-    @variables sc(t) = inits[:sc0]
+    @variables sc(t) = inits[:sc]
     @variables isopc(t) isopc1(t) isopc2(t) fioas(t) fioas1(t) fioas2(t) scir(t) scdr(t) alsc(t) so(t) sopc(t) scor(t)
 
     eqs = [
@@ -123,7 +123,7 @@ function job_subsector(; name, params=params, inits=inits, tables=tables, ranges
     @parameters lufdt = params[:lufdt]
 
     @variables ic(t) iopc(t) sc(t) sopc(t) al(t) aiph(t) p2(t) p3(t)
-    @variables lufd(t) = inits[:lufd0]
+    @variables lufd(t) = inits[:lufd]
     @variables j(t) pjis(t) jpicu(t) pjss(t) jpscu(t) pjas(t) jph(t) lf(t) luf(t) cuf(t)
 
     eqs = [

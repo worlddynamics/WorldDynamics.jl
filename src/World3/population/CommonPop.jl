@@ -28,7 +28,7 @@ function death_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
 
     @variables dr(t) pop(t)
     @variables fpc(t) sopc(t) iopc(t) ppolx(t)
-    @variables ehspc(t) = inits[:ehspc0]
+    @variables ehspc(t) = inits[:ehspc]
     @variables cdr(t) le(t) lmf(t) hsapc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t)
 
     eqs = [
@@ -62,16 +62,16 @@ function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
     @variables br(t) pop(t)
     @variables le(t) iopc(t) sopc(t)
 
-    @variables ple(t) = inits[:le0]
-    @variables ple1(t) = inits[:le0]
-    @variables ple2(t) = inits[:le0]
-    @variables diopc(t) = inits[:iopc0]
-    @variables diopc1(t) = inits[:iopc0]
-    @variables diopc2(t) = inits[:iopc0]
-    @variables aiopc(t) = inits[:iopc0]
-    @variables fcfpc(t) = inits[:fcapc0]
-    @variables fcfpc2(t) = inits[:fcapc0]
-    @variables fcfpc1(t) = inits[:fcapc0]
+    @variables ple(t) = inits[:le]
+    @variables ple1(t) = inits[:le]
+    @variables ple2(t) = inits[:le]
+    @variables diopc(t) = inits[:iopc]
+    @variables diopc1(t) = inits[:iopc]
+    @variables diopc2(t) = inits[:iopc]
+    @variables aiopc(t) = inits[:iopc]
+    @variables fcfpc(t) = inits[:fcapc]
+    @variables fcfpc2(t) = inits[:fcapc]
+    @variables fcfpc1(t) = inits[:fcapc]
 
     @variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) dcfs(t) sfsn(t) frsn(t) fie(t) nfc(t) fce(t) fcapc(t) fsafc(t)
 
@@ -149,7 +149,7 @@ function persistent_pollution(; name, params=params, inits=inits, tables=tables,
     @parameters ps = params[:ps]
     @parameters pt = params[:pt]
 
-    @variables ppolx(t) = inits[:ppolx0]
+    @variables ppolx(t) = inits[:ppolx]
 
     eqs = [
         D(ppolx) ~ step(t, ps, pt)

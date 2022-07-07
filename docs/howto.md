@@ -5,7 +5,8 @@ We first have to solve the ODE system, which is constructed in the `world3_histo
 ```
 using WorldDynamics
 include("examples/scenarios/world3_historicalrun.jl")
-sol = world3_historicalrun()
+system = world3_historicalrun()
+sol = WorldDynamics.solve(system, (1900, 2100))
 ```
 
 We then have to define the variables that we want to plot. For example, Figure 7-2 of the above book shows the plot of eleven variables in the population sector of the model. These variables are defined as follows.
@@ -31,7 +32,7 @@ fig_7_2_variables = [
 For each variable of the model, the above vector includes a quadruple, containing the Julia variable, its range, and its symbolic name to be shonw in the plot (the range and the symbolic name are optional). The time variable `t` has also to be declared. Finally, we can plot the evolution of the model variables according to the previously computed solution.
 
 ```
-plotvariables(sol, (t, 1900.0, 1970.0), fig_7_2_variables, name="Fig. 7-2", showlegend=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_7_2_variables, name="Fig. 7-2", showlegend=true, colored=true)
 ```
 
 # Replicating the reference behaviour
@@ -46,7 +47,6 @@ To replicate the figures in Section 7.3 of the above book, we can operate in a s
 @named ld = WorldDynamics.World3.Agriculture.land_development()
 @named nr = WorldDynamics.World3.NonRenewable.non_renewable()
 @named pp = WorldDynamics.World3.Pollution.persistent_pollution()
-@named se = WorldDynamics.World3.SupplementaryEquations.supplementary_equations()
 reference_variables = [
     (nr.nrfr, 0, 1, "nrfr"),
     (is.iopc, 0, 1000, "iopc"),
@@ -57,7 +57,7 @@ reference_variables = [
     (dr.cdr, 0, 50, "cdr"),
 ]
 @variables t
-plotvariables(sol, (t, 1900.0, 2100.0), reference_variables, name="Fig. 7-7", showlegend=true, colored=true)
+plotvariables(sol, (t, 1900, 2100), reference_variables, name="Fig. 7-7", showlegend=true, colored=true)
 ```
 
 # Replicating the sensitivity tests
@@ -66,31 +66,32 @@ In this case, we have to mdoify the parameter or the interpolation table of the 
 
 ## Modifying a parameter
 
-In order to reproduce Figure 7-10, in which the nonrenewable resources initial value (that is, the value of the `NRI` parameter) is doubled, we can modify the value of this parameter by making a copy of the parameter set of the nonrenewable resources sector, and by changing the value of `NRI`.
+In order to reproduce Figure 7-10, in which the nonrenewable resources initial value (that is, the value of the `NRI` parameter) is doubled, we can modify the value of this parameter by getting the parameter set of the nonrenewable resources sector, and by changing the value of `NRI`.
 
 ```
-nonrenewable_parameters_7_10 = copy(WorldDynamics.World3.NonRenewable.params)
+nonrenewable_parameters_7_10 = WorldDynamics.World3.NonRenewable.getparameters()
 nonrenewable_parameters_7_10[:nri] = 2.0 * nonrenewable_parameters_7_10[:nri]
 ```
 
 We then have to solve again the ODE system, by specifying which set of paramer values has to be used for the nonrenewable resources sector.
 
 ```
-sol = world3_historicalrun(nonrenewable_params=nonrenewable_parameters_7_10)
+system = world3_historicalrun(nonrenewable_params=nonrenewable_parameters_7_10)
+sol = WorldDynamics.solve(system, (1900, 2100))
 ```
 
 Finally, we can plot the seven variables of Figure 7-10.
 
 ```
-plotvariables(sol, (t, 1900.0, 2100.0), reference_variables, name="Fig. 7-10", showlegend=true, colored=true)
+plotvariables(sol, (t, 1900, 2100), reference_variables, name="Fig. 7-10", showlegend=true, colored=true)
 ```
 
 ## Modifying an interpolation table
 
-In order to reproduce Figure 7-13, in which the slope of the fraction of industrial output allocated to agriculture is increased, we can modify the two tables `FIOAA1` and `FIOAA2` by making a copy of the table set of the agriculture sector, and by changing the value of these two tables.
+In order to reproduce Figure 7-13, in which the slope of the fraction of industrial output allocated to agriculture is increased, we can modify the two tables `FIOAA1` and `FIOAA2` by getting the table set of the agriculture sector, and by changing the value of these two tables.
 
 ```
-agriculture_tables_7_13 = copy(WorldDynamics.World3.Agriculture.tables)
+agriculture_tables_7_13 = WorldDynamics.World3.Agriculture.gettables()
 agriculture_tables_7_13[:fioaa1] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
 agriculture_tables_7_13[:fioaa2] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
 ```
@@ -98,17 +99,17 @@ agriculture_tables_7_13[:fioaa2] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
 We then have to solve again the ODE system, by specifying which set of tables has to be used for the agriculture sector.
 
 ```
-sol = world3_historicalrun(agriculture_tables=agriculture_tables_7_13)
+system = world3_historicalrun(agriculture_tables=agriculture_tables_7_13)
+sol = WorldDynamics.solve(system, (1900, 2100))
 ```
 
 Finally, we can plot the seven variables of Figure 7-10.
 
 ```
-plotvariables(sol, (t, 1900.0, 2100.0), reference_variables, name="Fig. 7-13", showlegend=true, colored=true)
+plotvariables(sol, (t, 1900, 2100), reference_variables, name="Fig. 7-13", showlegend=true, colored=true)
 ```
 
 
 ### License
 
 WorldDynamics.jl is released under the terms of MIT License.
-

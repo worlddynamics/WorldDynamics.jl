@@ -24,7 +24,7 @@ D = Differential(t)
 
 
 function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
-    @variables pop(t) = inits[:pop0]
+    @variables pop(t) = inits[:pop]
 
     eqs = [
         pop ~ interpolate(t, tables[:pop], ranges[:pop]) * 1e8
@@ -34,7 +34,7 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
 end
 
 function non_renewable(; name, params=params, inits=inits, tables=tables, ranges=ranges)
-    @variables pcrum(t) = inits[:pcrum0]
+    @variables pcrum(t) = inits[:pcrum]
 
     eqs = [
         pcrum ~ interpolate(t, tables[:pcrum], ranges[:pcrum]) * 1e-2
@@ -44,8 +44,8 @@ function non_renewable(; name, params=params, inits=inits, tables=tables, ranges
 end
 
 function agriculture(; name, params=params, inits=inits, tables=tables, ranges=ranges)
-    @variables aiph(t) = inits[:aiph0]
-    @variables al(t) = inits[:al0]
+    @variables aiph(t) = inits[:aiph]
+    @variables al(t) = inits[:al]
 
     eqs = [
         aiph ~ interpolate(t, tables[:aiph], ranges[:aiph])
@@ -59,9 +59,9 @@ function pollution_damage(; name, params=params, inits=inits, tables=tables, ran
     @parameters pyear = params[:pyear]
 
     @variables ppolx(t)
-    @variables lmp(t) = inits[:lmp0]
-    @variables lmp1(t) = inits[:lmp10]
-    @variables lmp2(t) = inits[:lmp20]
+    @variables lmp(t) = inits[:lmp]
+    @variables lmp1(t) = inits[:lmp1]
+    @variables lmp2(t) = inits[:lmp2]
     @variables lfdr(t) lfdr1(t) lfdr2(t)
 
     eqs = [
@@ -83,13 +83,13 @@ function adaptive_technological_control_cards(; name, params=params, inits=inits
 
     @variables lmp(t)
 
-    @variables ppgf22(t) = inits[:ppgf220]
-    @variables ppgf222(t) = inits[:ppgf220]
-    @variables ppgf221(t) = inits[:ppgf220]
-    @variables pcti(t) = inits[:pcti0]
-    @variables plmp(t) = inits[:plmp0]
-    @variables plmp2(t) = inits[:plmp0]
-    @variables plmp1(t) = inits[:plmp0]
+    @variables ppgf22(t) = inits[:ppgf22]
+    @variables ppgf222(t) = inits[:ppgf22]
+    @variables ppgf221(t) = inits[:ppgf22]
+    @variables pcti(t) = inits[:pcti]
+    @variables plmp(t) = inits[:plmp]
+    @variables plmp2(t) = inits[:plmp]
+    @variables plmp1(t) = inits[:plmp]
 
     @variables pctir(t) pctcm(t)
 
@@ -125,15 +125,15 @@ function persistent_pollution(; name, params=params, inits=inits, tables=tables,
 
     @variables ppgf22(t) pcrum(t) pop(t) aiph(t) al(t)
 
-    @variables ppapr3(t) = inits[:ppapr30]
-    @variables ppapr2(t) = inits[:ppapr30]
-    @variables ppapr1(t) = inits[:ppapr30]
-    @variables ppol(t) = inits[:ppol0]
-    @variables ppgr(t) = inits[:ppgr0]
-    @variables ppgio(t) = inits[:ppgio0]
-    @variables ppgao(t) = inits[:ppgao0]
-    @variables pptd(t) = inits[:pptd0]
-    @variables ppolx(t) = inits[:ppolx0]
+    @variables ppapr3(t) = inits[:ppapr3]
+    @variables ppapr2(t) = inits[:ppapr3]
+    @variables ppapr1(t) = inits[:ppapr3]
+    @variables ppol(t) = inits[:ppol]
+    @variables ppgr(t) = inits[:ppgr]
+    @variables ppgio(t) = inits[:ppgio]
+    @variables ppgao(t) = inits[:ppgao]
+    @variables pptd(t) = inits[:pptd]
+    @variables ppolx(t) = inits[:ppolx]
 
     @variables ppgf(t) ppgf2(t) ppapr(t) ppasr(t) ahlm(t) ahl(t)
 
