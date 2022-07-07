@@ -4,7 +4,7 @@ include("../scenarios/capital_historicalrun.jl")
 
 
 system = capital_historicalrun()
-sol = WorldDynamics.solve(system, (1900.0, 2100.0))
+sol = WorldDynamics.solve(system, (1900, 2100))
 
 
 @named pop = WorldDynamics.World3.Capital.population()
@@ -25,7 +25,7 @@ fig_3_36_variables = [
     (ag.aiph,  0, 50,    "aiph"),
 ]
 
-plotvariables(sol, (t, 1900.0, 1970.0), fig_3_36_variables, name="Fig. 3.36", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_3_36_variables, name="Fig. 3.36", showlegend=true, showaxis=true, colored=true)
 
 
 fig_3_37_variables = [
@@ -36,22 +36,22 @@ fig_3_37_variables = [
     (js.cuf,   0, 1, "cuf"),
 ]
 
-plotvariables(sol, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.37", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.37", showlegend=true, showaxis=true, colored=true)
 
 
 parameters_3_38 = copy(WorldDynamics.World3.Capital.params)
 parameters_3_38[:alic1] = 21
 
 system = capital_historicalrun(params=parameters_3_38)
-sol_3_38 = WorldDynamics.solve(system, (1900.0, 2100.0))
+sol_3_38 = WorldDynamics.solve(system, (1900, 2100))
 
-plotvariables(sol_3_38, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.38", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_3_38, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.38", showlegend=true, showaxis=true, colored=true)
 
 
 cap_tables_3_41 = copy(WorldDynamics.World3.Capital.tables)
 cap_tables_3_41[:fcaor] = (0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35)
 
 system = capital_historicalrun(tables=cap_tables_3_41)
-sol_3_41 = WorldDynamics.solve(system, (1900.0, 2100.0))
+sol_3_41 = WorldDynamics.solve(system, (1900, 2100))
 
-plotvariables(sol_3_41, (t, 1900.0, 2000.0), fig_3_37_variables, name="Fig. 3.41", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_3_41, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.41", showlegend=true, showaxis=true, colored=true)

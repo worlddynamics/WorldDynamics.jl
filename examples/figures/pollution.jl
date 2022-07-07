@@ -4,7 +4,7 @@ include("../scenarios/pollution_historicalrun.jl")
 
 
 system = pollution_historicalrun()
-sol = WorldDynamics.solve(system, (1900.0, 2100.0))
+sol = WorldDynamics.solve(system, (1900, 2100))
 
 
 @named nr = WorldDynamics.World3.Pollution.non_renewable()
@@ -24,7 +24,7 @@ fig_6_28_variables = [
     (pp.ppgr,  0, 2e8, "ppgr"),
 ]
 
-plotvariables(sol, (t, 1900.0, 1970.0), fig_6_28_variables, name="Fig. 6.28", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_6_28_variables, name="Fig. 6.28", showlegend=true, showaxis=true, colored=true)
 
 
 fig_6_29_variables = [
@@ -37,7 +37,7 @@ fig_6_29_variables = [
     (pd.lfdr,  0, 0.5, "lfdr"),
 ]
 
-plotvariables(sol, (t, 1900.0, 1970.0), fig_6_29_variables, name="Fig. 6.29", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_6_29_variables, name="Fig. 6.29", showlegend=true, showaxis=true, colored=true)
 
 
 fig_6_30_variables = [
@@ -48,7 +48,7 @@ fig_6_30_variables = [
     (pp.ppgr,  0, 8e9,    "ppgr"),
 ]
 
-plotvariables(sol, (t, 1900.0, 2100.0), fig_6_30_variables, name="Fig. 6.30", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 2100), fig_6_30_variables, name="Fig. 6.30", showlegend=true, showaxis=true, colored=true)
 
 
 fig_6_31_variables = [
@@ -61,7 +61,7 @@ fig_6_31_variables = [
     (pd.lfdr,  0, 0.5, "lfdr"),
 ]
 
-plotvariables(sol, (t, 1900.0, 2100.0), fig_6_31_variables, name="Fig. 6.31", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 2100), fig_6_31_variables, name="Fig. 6.31", showlegend=true, showaxis=true, colored=true)
 
 
 parameters = copy(WorldDynamics.World3.Pollution.params)
@@ -70,6 +70,6 @@ parameters[:amti] = 0.5
 parameters[:ppol70] = 4.03e7
 
 system = pollution_historicalrun(params=parameters)
-sol_decreased_toxity = WorldDynamics.solve(system, (1900.0, 2100.0))
+sol_decreased_toxity = WorldDynamics.solve(system, (1900, 2100))
 
-plotvariables(sol_decreased_toxity, (t, 1900.0, 2100.0), fig_6_31_variables, name="Fig. 6.32", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_decreased_toxity, (t, 1900, 2100), fig_6_31_variables, name="Fig. 6.32", showlegend=true, showaxis=true, colored=true)

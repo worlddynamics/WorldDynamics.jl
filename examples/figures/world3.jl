@@ -4,7 +4,7 @@ include("../scenarios/world3_historicalrun.jl")
 
 
 system = world3_historicalrun()
-sol = WorldDynamics.solve(system, (1900.0, 2100.0))
+sol = WorldDynamics.solve(system, (1900, 2100))
 
 
 @named pop = WorldDynamics.World3.Pop4.population()
@@ -33,7 +33,7 @@ fig_7_2_variables = [
     (br.dtf,  0,    8,    "dtf"),
 ]
 
-plotvariables(sol, (t, 1900.0, 1970.0), fig_7_2_variables, name="Fig. 7.2", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_7_2_variables, name="Fig. 7.2", showlegend=true, showaxis=true, colored=true)
 
 
 fig_7_3_variables = [
@@ -46,7 +46,7 @@ fig_7_3_variables = [
     (se.fos,  0, 1,    "fos"),
 ]
 
-plotvariables(sol, (t, 1900.0, 1970.0), fig_7_3_variables, name="Fig. 7.3", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_7_3_variables, name="Fig. 7.3", showlegend=true, showaxis=true, colored=true)
 
 
 fig_7_7_variables = [
@@ -59,25 +59,25 @@ fig_7_7_variables = [
     (dr.cdr,   0, 50,   "cdr"),
 ]
 
-plotvariables(sol, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.7", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 2100), fig_7_7_variables, name="Fig. 7.7", showlegend=true, showaxis=true, colored=true)
 
 
 nr_parameters_7_10 = copy(WorldDynamics.World3.NonRenewable.params)
 nr_parameters_7_10[:nri] = 2e12
 
 system = world3_historicalrun(nonrenewable_params=nr_parameters_7_10)
-sol_7_10 = WorldDynamics.solve(system, (1900.0, 2100.0))
+sol_7_10 = WorldDynamics.solve(system, (1900, 2100))
 
-plotvariables(sol_7_10, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.10", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_7_10, (t, 1900, 2100), fig_7_7_variables, name="Fig. 7.10", showlegend=true, showaxis=true, colored=true)
 
 
 nr_parameters_7_11 = copy(WorldDynamics.World3.NonRenewable.params)
 nr_parameters_7_11[:nri] = 1e13
 
 system = world3_historicalrun(nonrenewable_params=nr_parameters_7_11)
-sol_7_11 = WorldDynamics.solve(system, (1900.0, 2100.0))
+sol_7_11 = WorldDynamics.solve(system, (1900, 2100))
 
-plotvariables(sol_7_11, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.11", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_7_11, (t, 1900, 2100), fig_7_7_variables, name="Fig. 7.11", showlegend=true, showaxis=true, colored=true)
 
 
 agr_tables_7_13 = copy(WorldDynamics.World3.Agriculture.tables)
@@ -85,6 +85,6 @@ agr_tables_7_13[:fioaa1] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
 agr_tables_7_13[:fioaa2] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
 
 system = world3_historicalrun(agriculture_tables=agr_tables_7_13)
-sol_7_13 = WorldDynamics.solve(system, (1900.0, 2100.0))
+sol_7_13 = WorldDynamics.solve(system, (1900, 2100))
 
-plotvariables(sol_7_13, (t, 1900.0, 2100.0), fig_7_7_variables, name="Fig. 7.13", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_7_13, (t, 1900, 2100), fig_7_7_variables, name="Fig. 7.13", showlegend=true, showaxis=true, colored=true)
