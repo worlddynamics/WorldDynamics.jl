@@ -9,6 +9,12 @@ include("agriculture/parameters.jl")
 include("agriculture/initialisations.jl")
 
 
+getinitialisations() = copy(inits)
+getparameters() = copy(params)
+gettables() = copy(tables)
+getranges() = copy(ranges)
+
+
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
 @register max(v1, v2)
@@ -17,15 +23,15 @@ include("agriculture/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name)
-    @parameters popi = popiv exppop = exppopv eyear = eyearv
+function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters popi = params[:popi]
+    @parameters exppop = params[:exppop]
+    @parameters eyear = params[:eyear]
 
     @variables pop(t) pop1(t) pop2(t)
 
     eqs = [
         pop ~ clip(pop2, pop1, t, eyear)
-        # TODO: if we put the correct value of 0.012, the code breaks
-        #  I have to investigate more
         pop1 ~ popi * exp(exppop * (t - 1900))
         pop2 ~ popi * exp(exppop * (eyear - 1900.0))
     ]
@@ -33,8 +39,9 @@ function population(; name)
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name)
-    @parameters eyear = eyearv ioi = ioiv
+function industrial_output(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters eyear = params[:eyear]
+    @parameters ioi = params[:ioi]
 
     @variables pop(t)
     @variables io(t) io1(t) io2(t) iopc(t)
@@ -49,8 +56,9 @@ function industrial_output(; name)
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name)
-    @parameters eyear = eyearv ppolxi = ppolxiv
+function persistent_pollution(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters eyear = params[:eyear]
+    @parameters ppolxi = params[:ppolxi]
 
     @variables ppolx(t) ppolx1(t) ppolx2(t)
 
@@ -63,12 +71,18 @@ function persistent_pollution(; name)
     ODESystem(eqs; name)
 end
 
-function land_development(; name)
-    @parameters palt = paltv lfh = lfhv pl = plv pyear = pyearv
+function land_development(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters palt = params[:palt]
+    @parameters lfh = params[:lfh]
+    @parameters pl = params[:pl]
+    @parameters pyear = params[:pyear]
 
     @variables ler(t) lrui(t) ly(t) pop(t) iopc(t) io(t) fiald(t)
-    @variables al(t) = al0 pal(t) = pal0
-    @variables lfc(t) f(t) fpc(t) ifpc(t) ifpc1(t) ifpc2(t) tai(t) fioaa(t) fioaa1(t) fioaa2(t) ldr(t) dcph(t) 
+
+    @variables al(t) = inits[:al]
+    @variables pal(t) = inits[:pal]
+
+    @variables lfc(t) f(t) fpc(t) ifpc(t) ifpc1(t) ifpc2(t) tai(t) fioaa(t) fioaa1(t) fioaa2(t) ldr(t) dcph(t)
 
     eqs = [
         lfc ~ al / palt
@@ -77,24 +91,29 @@ function land_development(; name)
         f ~ ly * al * lfh * (1 - pl)
         fpc ~ f / pop
         ifpc ~ clip(ifpc2, ifpc1, t, pyear)
-        ifpc1 ~ interpolate(iopc, ifpc1t, ifpc1ts)
-        ifpc2 ~ interpolate(iopc, ifpc2t, ifpc2ts)
+        ifpc1 ~ interpolate(iopc, tables[:ifpc1], ranges[:ifpc1])
+        ifpc2 ~ interpolate(iopc, tables[:ifpc2], ranges[:ifpc2])
         tai ~ io * fioaa
         fioaa ~ clip(fioaa2, fioaa1, t, pyear)
-        fioaa1 ~ interpolate(fpc / ifpc, fioaa1t, fioaa1ts)
-        fioaa2 ~ interpolate(fpc / ifpc, fioaa2t, fioaa2ts)
+        fioaa1 ~ interpolate(fpc / ifpc, tables[:fioaa1], ranges[:fioaa1])
+        fioaa2 ~ interpolate(fpc / ifpc, tables[:fioaa2], ranges[:fioaa2])
         ldr ~ tai * fiald / dcph
-        dcph ~ interpolate(pal / palt, dcpht, dcphts)
+        dcph ~ interpolate(pal / palt, tables[:dcph], ranges[:dcph])
     ]
 
     ODESystem(eqs; name)
 end
 
-function agricultural_inputs(; name)
-    @parameters pyear = pyearv alai1 = alai1v alai2 = alai2v lyf1 = lyf1v lyf2 = lyf2v io70 = io70v
+function agricultural_inputs(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters pyear = params[:pyear]
+    @parameters alai1 = params[:alai1]
+    @parameters alai2 = params[:alai2]
+    @parameters lyf1 = params[:lyf1]
+    @parameters lyf2 = params[:lyf2]
+    @parameters io70 = params[:io70]
 
     @variables tai(t) fiald(t) falm(t) al(t) lfert(t) io(t)
-    @variables ai(t) = ai0
+    @variables ai(t) = inits[:ai]
     @variables cai(t) alai(t) aiph(t) lymc(t) ly(t) lyf(t) lymap(t) lymap1(t) lymap2(t)
 
     eqs = [
@@ -102,47 +121,50 @@ function agricultural_inputs(; name)
         D(ai) ~ (cai - ai) / alai
         alai ~ clip(alai2, alai1, t, pyear)
         aiph ~ ai * (1 - falm) / al
-        lymc ~ interpolate(aiph, lymct, lymcts)
+        lymc ~ interpolate(aiph, tables[:lymc], ranges[:lymc])
         ly ~ lyf * lfert * lymc * lymap
         lyf ~ clip(lyf2, lyf1, t, pyear)
         lymap ~ clip(lymap2, lymap1, t, pyear)
-        lymap1 ~ interpolate(io / io70, lymap1t, lymap1ts)
-        lymap2 ~ interpolate(io / io70, lymap2t, lymap2ts)
+        lymap1 ~ interpolate(io / io70, tables[:lymap1], ranges[:lymap1])
+        lymap2 ~ interpolate(io / io70, tables[:lymap2], ranges[:lymap2])
     ]
 
     ODESystem(eqs; name)
 end
 
-function investment_allocation_decision(; name)
-    @parameters sd = sdv
+function investment_allocation_decision(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters sd = params[:sd]
 
     @variables ly(t) dcph(t) alai(t) lymc(t) aiph(t)
     @variables fiald(t) mpld(t) mpai(t) mlymc(t)
 
     eqs = [
-        fiald ~ interpolate(mpld / mpai, fialdt, fialdts)
+        fiald ~ interpolate(mpld / mpai, tables[:fiald], ranges[:fiald])
         mpld ~ ly / (dcph * sd)
         mpai ~ alai * ly * mlymc / lymc
-        mlymc ~ interpolate(aiph, mlymct, mlymcts)
+        mlymc ~ interpolate(aiph, tables[:mlymc], ranges[:mlymc])
     ]
 
     ODESystem(eqs; name)
 end
 
-function land_erosion_urban_industrial_use(; name)
-    @parameters alln = allnv pyear = pyearv ilf = ilfv uildt = uildtv
+function land_erosion_urban_industrial_use(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters alln = params[:alln]
+    @parameters pyear = params[:pyear]
+    @parameters ilf = params[:ilf]
+    @parameters uildt = params[:uildt]
 
     @variables ly(t) al(t) iopc(t) pop(t)
-    @variables uil(t) = uil0
+    @variables uil(t) = inits[:uil]
     @variables all(t) llmy(t) llmy1(t) llmy2(t) ler(t) uilpc(t) uilr(t) lrui(t)
 
     eqs = [
         all ~ alln * llmy
         llmy ~ clip(llmy2, llmy1, t, pyear)
-        llmy1 ~ interpolate(ly / ilf, llmy1t, llmy1ts)
-        llmy2 ~ interpolate(ly / ilf, llmy2t, llmy2ts)
+        llmy1 ~ interpolate(ly / ilf, tables[:llmy1], ranges[:llmy1])
+        llmy2 ~ interpolate(ly / ilf, tables[:llmy2], ranges[:llmy2])
         ler ~ al / all
-        uilpc ~ interpolate(iopc, uilpct, uilpcts)
+        uilpc ~ interpolate(iopc, tables[:uilpc], ranges[:uilpc])
         uilr ~ uilpc * pop
         lrui ~ max(0, (uilr - uil) / uildt)
         D(uil) ~ lrui
@@ -151,15 +173,16 @@ function land_erosion_urban_industrial_use(; name)
     ODESystem(eqs; name)
 end
 
-function discontinung_land_maintenance(; name)
-    @parameters sfpc = sfpcv fspd = fspdv
+function discontinung_land_maintenance(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters sfpc = params[:sfpc]
+    @parameters fspd = params[:fspd]
 
     @variables fpc(t)
-    @variables pfr(t) = pfr0
+    @variables pfr(t) = inits[:pfr]
     @variables falm(t) fr(t)
 
     eqs = [
-        falm ~ interpolate(pfr, falmt, falmts)
+        falm ~ interpolate(pfr, tables[:falm], ranges[:falm])
         fr ~ fpc / sfpc
         D(pfr) ~ (fr - pfr) / fspd
     ]
@@ -167,28 +190,28 @@ function discontinung_land_maintenance(; name)
     ODESystem(eqs; name)
 end
 
-function land_fertility_regeneration(; name)
-    @parameters ilf = ilfv
+function land_fertility_regeneration(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters ilf = params[:ilf]
 
     @variables lfert(t) falm(t)
     @variables lfr(t) lfrt(t)
 
     eqs = [
         lfr ~ (ilf - lfert) / lfrt
-        lfrt ~ interpolate(falm, lfrtt, lfrtts)
+        lfrt ~ interpolate(falm, tables[:lfrt], ranges[:lfrt])
     ]
 
     ODESystem(eqs; name)
 end
 
-function land_fertility_degradation(; name)
+function land_fertility_degradation(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables lfr(t) ppolx(t)
-    @variables lfert(t) = lfert0
+    @variables lfert(t) = inits[:lfert]
     @variables lfdr(t) lfd(t)
 
     eqs = [
         D(lfert) ~ lfr - lfd
-        lfdr ~ interpolate(ppolx, lfdrt, lfdrts)
+        lfdr ~ interpolate(ppolx, tables[:lfdr], ranges[:lfdr])
         lfd ~ lfert * lfdr
     ]
 

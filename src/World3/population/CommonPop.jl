@@ -20,72 +20,95 @@ include("common_pop/initialisations.jl")
 D = Differential(t)
 
 
-function death_rate(; name)
-    @parameters len = lenv sfpc = sfpcv hsid = hsidv iphst = iphstv
+function death_rate(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters len = params[:len]
+    @parameters sfpc = params[:sfpc]
+    @parameters hsid = params[:hsid]
+    @parameters iphst = params[:iphst]
 
     @variables dr(t) pop(t)
     @variables fpc(t) sopc(t) iopc(t) ppolx(t)
-    @variables ehspc(t) = ehspc0
+    @variables ehspc(t) = inits[:ehspc]
     @variables cdr(t) le(t) lmf(t) hsapc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t)
 
     eqs = [
         cdr ~ 1000.0 * dr / pop
         le ~ len * lmf * lmhs * lmp * lmc
-        lmf ~ interpolate(fpc / sfpc, lmft, lmfts)
-        hsapc ~ interpolate(sopc, hsapct, hsapcts)
+        lmf ~ interpolate(fpc / sfpc, tables[:lmf], ranges[:lmf])
+        hsapc ~ interpolate(sopc, tables[:hsapc], ranges[:hsapc])
         D(ehspc) ~ (hsapc - ehspc) / hsid
         lmhs ~ clip(lmhs2, lmhs1, t, iphst)
-        lmhs1 ~ interpolate(ehspc, lmhs1t, lmhs1ts)
-        lmhs2 ~ interpolate(ehspc, lmhs2t, lmhs2ts)
-        fpu ~ interpolate(pop, fput, fputs)
-        cmi ~ interpolate(iopc, cmit, cmits)
+        lmhs1 ~ interpolate(ehspc, tables[:lmhs1], ranges[:lmhs1])
+        lmhs2 ~ interpolate(ehspc, tables[:lmhs2], ranges[:lmhs2])
+        fpu ~ interpolate(pop, tables[:fpu], ranges[:fpu])
+        cmi ~ interpolate(iopc, tables[:cmi], ranges[:cmi])
         lmc ~ 1 - (cmi * fpu)
-        lmp ~ interpolate(ppolx, lmpt, lmpts)
+        lmp ~ interpolate(ppolx, tables[:lmp], ranges[:lmp])
     ]
 
     ODESystem(eqs; name)
 end
 
-function birth_rate(; name)
-    @parameters mtfn = mtfnv lpd = lpdv dcfsn = dcfsnv zpgt = zpgtv sad = sadv ieat = ieatv fcest = fcestv hsid = hsidv
+function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters mtfn = params[:mtfn]
+    @parameters lpd = params[:lpd]
+    @parameters dcfsn = params[:dcfsn]
+    @parameters zpgt = params[:zpgt]
+    @parameters sad = params[:sad]
+    @parameters ieat = params[:ieat]
+    @parameters fcest = params[:fcest]
+    @parameters hsid = params[:hsid]
 
     @variables br(t) pop(t)
     @variables le(t) iopc(t) sopc(t)
-    @variables ple(t) = le0 ple1(t) = le0 ple2(t) = le0 diopc(t) = iopc0 diopc1(t) = iopc0 diopc2(t) = iopc0 aiopc(t) = iopc0 fcfpc(t) = fcapc0 fcfpc2(t) = fcapc0 fcfpc1(t) = fcapc0 
-    @variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) dcfs(t) sfsn(t) frsn(t) fie(t) nfc(t) fce(t) fcapc(t) fsafc(t) 
+
+    @variables ple(t) = inits[:le]
+    @variables ple1(t) = inits[:le]
+    @variables ple2(t) = inits[:le]
+    @variables diopc(t) = inits[:iopc]
+    @variables diopc1(t) = inits[:iopc]
+    @variables diopc2(t) = inits[:iopc]
+    @variables aiopc(t) = inits[:iopc]
+    @variables fcfpc(t) = inits[:fcapc]
+    @variables fcfpc2(t) = inits[:fcapc]
+    @variables fcfpc1(t) = inits[:fcapc]
+
+    @variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) dcfs(t) sfsn(t) frsn(t) fie(t) nfc(t) fce(t) fcapc(t) fsafc(t)
 
     eqs = [
         cbr ~ 1000.0 * br / pop
         tf ~ min(mtf, mtf * (1 - fce) + dtf * fce)
         mtf ~ mtfn * fm
-        fm ~ interpolate(le, fmt, fmts)
+        fm ~ interpolate(le, tables[:fm], ranges[:fm])
         dtf ~ dcfs * cmple
-        cmple ~ interpolate(ple, cmplet, cmplets)
+        cmple ~ interpolate(ple, tables[:cmple], ranges[:cmple])
         D(ple) ~ 3 * (ple2 - ple) / lpd
         D(ple2) ~ 3 * (ple1 - ple2) / lpd
         D(ple1) ~ 3 * (le - ple1) / lpd
         dcfs ~ clip(2, dcfsn * frsn * sfsn, t, zpgt)
-        sfsn ~ interpolate(diopc, sfsnt, sfsnts)
+        sfsn ~ interpolate(diopc, tables[:sfsn], ranges[:sfsn])
         D(diopc) ~ 3 * (diopc2 - diopc) / sad
         D(diopc2) ~ 3 * (diopc1 - diopc2) / sad
         D(diopc1) ~ 3 * (iopc - diopc1) / sad
-        frsn ~ clip(interpolate(fie, frsnt, frsnts), 0.82, t, t0 + 1)
+        frsn ~ clip(interpolate(fie, tables[:frsn], ranges[:frsn]), 0.82, t, inits[:t0] + 1)
         fie ~ (iopc - aiopc) / aiopc
         D(aiopc) ~ (iopc - aiopc) / ieat
         nfc ~ (mtf / dtf) - 1
-        fce ~ clip(1.0, interpolate(fcfpc, fcet, fcets), t, fcest)
+        fce ~ clip(1.0, interpolate(fcfpc, tables[:fce], ranges[:fce]), t, fcest)
         D(fcfpc) ~ 3 * (fcfpc2 - fcfpc) / hsid
         D(fcfpc2) ~ 3 * (fcfpc1 - fcfpc2) / hsid
         D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid
         fcapc ~ fsafc * sopc
-        fsafc ~ interpolate(nfc, fsafct, fsafcts)
+        fsafc ~ interpolate(nfc, tables[:fsafc], ranges[:fsafc])
     ]
 
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name)
-    @parameters lt = ltv lt2 = lt2v cio = ciov
+function industrial_output(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters lt = params[:lt]
+    @parameters lt2 = params[:lt2]
+    @parameters cio = params[:cio]
 
     @variables pop(t)
     @variables io(t) io1(t) io11(t) io12(t) io2(t) iopc(t)
@@ -102,8 +125,10 @@ function industrial_output(; name)
     ODESystem(eqs; name)
 end
 
-function service_output(; name)
-    @parameters lt = ltv lt2 = lt2v cso = csov
+function service_output(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters lt = params[:lt]
+    @parameters lt2 = params[:lt2]
+    @parameters cso = params[:cso]
 
     @variables pop(t)
     @variables so(t) so1(t) so11(t) so12(t) so2(t) sopc(t)
@@ -120,10 +145,11 @@ function service_output(; name)
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name)
-    @parameters ps = psv pt = ptv
+function persistent_pollution(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters ps = params[:ps]
+    @parameters pt = params[:pt]
 
-    @variables ppolx(t) = ppolx0
+    @variables ppolx(t) = inits[:ppolx]
 
     eqs = [
         D(ppolx) ~ step(t, ps, pt)
@@ -132,10 +158,12 @@ function persistent_pollution(; name)
     ODESystem(eqs; name)
 end
 
-function food(; name)
-    @parameters lt = ltv lt2 = lt2v cfood = cfoodv
+function food(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters lt = params[:lt]
+    @parameters lt2 = params[:lt2]
+    @parameters cfood = params[:cfood]
 
-    @variables pop(t) 
+    @variables pop(t)
     @variables f(t) f1(t) f11(t) f12(t) f2(t) fpc(t)
 
     eqs = [

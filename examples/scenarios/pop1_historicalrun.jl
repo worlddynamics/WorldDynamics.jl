@@ -1,14 +1,14 @@
 using WorldDynamics
 using ModelingToolkit
 
-function pop1_historicalrun()
-    @named pop = WorldDynamics.World3.Pop1.population()
-    @named dr = WorldDynamics.World3.Pop1.death_rate()
-    @named br = WorldDynamics.World3.Pop1.birth_rate()
-    @named io = WorldDynamics.World3.Pop1.industrial_output()
-    @named so = WorldDynamics.World3.Pop1.service_output()
-    @named pp = WorldDynamics.World3.Pop1.persistent_pollution()
-    @named f  = WorldDynamics.World3.Pop1.food()
+function pop1_historicalrun(; kwargs...)
+    @named pop = WorldDynamics.World3.Pop1.population(; kwargs...)
+    @named dr = WorldDynamics.World3.Pop1.death_rate(; kwargs...)
+    @named br = WorldDynamics.World3.Pop1.birth_rate(; kwargs...)
+    @named io = WorldDynamics.World3.Pop1.industrial_output(; kwargs...)
+    @named so = WorldDynamics.World3.Pop1.service_output(; kwargs...)
+    @named pp = WorldDynamics.World3.Pop1.persistent_pollution(; kwargs...)
+    @named f  = WorldDynamics.World3.Pop1.food(; kwargs...)
 
     systems = [pop, dr, br, io, so, pp, f]
 
@@ -31,5 +31,5 @@ function pop1_historicalrun()
         f.pop ~ pop.pop
     ]
 
-    return WorldDynamics.solvesystems(systems, connection_eqs, (1900.0, 1970.0))
+    return WorldDynamics.compose(systems, connection_eqs)
 end

@@ -9,6 +9,12 @@ include("capital/parameters.jl")
 include("capital/initialisations.jl")
 
 
+getinitialisations() = copy(inits)
+getparameters() = copy(params)
+gettables() = copy(tables)
+getranges() = copy(ranges)
+
+
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
 
@@ -16,11 +22,11 @@ include("capital/initialisations.jl")
 D = Differential(t)
 
 
-function population(; name)
+function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables pop(t) p2(t) p3(t)
 
     eqs = [
-        pop ~ interpolate(t, popt, popts) * (1e9)
+        pop ~ interpolate(t, tables[:pop], ranges[:pop]) * (1e9)
         p2 ~ 0.25 * pop
         p3 ~ 0.25 * pop
     ]
@@ -28,35 +34,43 @@ function population(; name)
     ODESystem(eqs; name)
 end
 
-function agriculture(; name)
-    @variables aiph(t) al(t) fioaa(t) 
+function agriculture(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @variables aiph(t) al(t) fioaa(t)
 
     eqs = [
-        aiph ~ interpolate(t, aipht, aiphts)
-        al ~ interpolate(t, alt, alts) * (1e8)
-        fioaa ~ interpolate(t, fioaat, fioaats)
+        aiph ~ interpolate(t, tables[:aiph], ranges[:aiph])
+        al ~ interpolate(t, tables[:al], ranges[:al]) * (1e8)
+        fioaa ~ interpolate(t, tables[:fioaa], ranges[:fioaa])
     ]
 
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name)
+function non_renewable(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables fcaor(t)
 
     eqs = [
-        fcaor ~ interpolate(t, fcaort, fcaorts)
+        fcaor ~ interpolate(t, tables[:fcaor], ranges[:fcaor])
     ]
 
     ODESystem(eqs; name)
 end
 
-function industrial_subsector(; name)
-    @parameters pyear = pyearv icor1 = icor1v icor2 = icor2v alic1 = alic1v alic2 = alic2v iet = ietv iopcd = iopcdv fioac1 = fioac1v fioac2 = fioac2v
+function industrial_subsector(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters pyear = params[:pyear]
+    @parameters icor1 = params[:icor1]
+    @parameters icor2 = params[:icor2]
+    @parameters alic1 = params[:alic1]
+    @parameters alic2 = params[:alic2]
+    @parameters iet = params[:iet]
+    @parameters iopcd = params[:iopcd]
+    @parameters fioac1 = params[:fioac1]
+    @parameters fioac2 = params[:fioac2]
 
     @variables pop(t) fcaor(t) cuf(t) fioaa(t) fioas(t)
-    @variables ic(t) = ic0
-    @variables iopc(t) io(t) icor(t) icdr(t) alic(t) icir(t) fioai(t) fioac(t) fioacc(t) fioacv(t) 
-    
+    @variables ic(t) = inits[:ic]
+    @variables iopc(t) io(t) icor(t) icdr(t) alic(t) icir(t) fioai(t) fioac(t) fioacc(t) fioacv(t)
+
     eqs = [
         iopc ~ io / pop
         io ~ ic * (1 - fcaor) * cuf / icor
@@ -68,26 +82,30 @@ function industrial_subsector(; name)
         fioai ~ 1 - fioaa - fioas - fioac
         fioac ~ clip(fioacv, fioacc, t, iet)
         fioacc ~ clip(fioac2, fioac1, t, pyear)
-        fioacv ~ interpolate(iopc / iopcd, fioacvt, fioacvts)
+        fioacv ~ interpolate(iopc / iopcd, tables[:fioacv], ranges[:fioacv])
     ]
 
     ODESystem(eqs; name)
 end
 
-function service_subsector(; name)
-    @parameters pyear = pyearv alsc1 = alsc1v alsc2 = alsc2v scor1 = scor1v scor2 = scor2v
+function service_subsector(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters pyear = params[:pyear]
+    @parameters alsc1 = params[:alsc1]
+    @parameters alsc2 = params[:alsc2]
+    @parameters scor1 = params[:scor1]
+    @parameters scor2 = params[:scor2]
 
-    @variables iopc(t) io(t) cuf(t) pop(t) 
-    @variables sc(t) = sc0 
+    @variables iopc(t) io(t) cuf(t) pop(t)
+    @variables sc(t) = inits[:sc]
     @variables isopc(t) isopc1(t) isopc2(t) fioas(t) fioas1(t) fioas2(t) scir(t) scdr(t) alsc(t) so(t) sopc(t) scor(t)
 
     eqs = [
         isopc ~ clip(isopc2, isopc1, t, pyear)
-        isopc1 ~ interpolate(iopc, isopc1t, isopc1ts)
-        isopc2 ~ interpolate(iopc, isopc2t, isopc2ts)
+        isopc1 ~ interpolate(iopc, tables[:isopc1], ranges[:isopc1])
+        isopc2 ~ interpolate(iopc, tables[:isopc2], ranges[:isopc2])
         fioas ~ clip(fioas2, fioas1, t, pyear)
-        fioas1 ~ interpolate(sopc / isopc, fioas1t, fioas1ts)
-        fioas2 ~ interpolate(sopc / isopc, fioas2t, fioas2ts)
+        fioas1 ~ interpolate(sopc / isopc, tables[:fioas1], ranges[:fioas1])
+        fioas2 ~ interpolate(sopc / isopc, tables[:fioas2], ranges[:fioas2])
         scir ~ io * fioas
         D(sc) ~ scir - scdr
         scdr ~ sc / alsc
@@ -100,25 +118,26 @@ function service_subsector(; name)
     ODESystem(eqs; name)
 end
 
-function job_subsector(; name)
-    @parameters lfpf = lfpfv lufdt = lufdtv
+function job_subsector(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+    @parameters lfpf = params[:lfpf]
+    @parameters lufdt = params[:lufdt]
 
     @variables ic(t) iopc(t) sc(t) sopc(t) al(t) aiph(t) p2(t) p3(t)
-    @variables lufd(t) = lufd0
-    @variables j(t) pjis(t) jpicu(t) pjss(t) jpscu(t) pjas(t) jph(t) lf(t) luf(t) cuf(t) 
+    @variables lufd(t) = inits[:lufd]
+    @variables j(t) pjis(t) jpicu(t) pjss(t) jpscu(t) pjas(t) jph(t) lf(t) luf(t) cuf(t)
 
     eqs = [
         j ~ pjis + pjas + pjss
         pjis ~ ic * jpicu
-        jpicu ~ interpolate(iopc, jpicut, jpicuts) * (1e-3)
+        jpicu ~ interpolate(iopc, tables[:jpicu], ranges[:jpicu]) * (1e-3)
         pjss ~ sc * jpscu
-        jpscu ~ interpolate(sopc, jpscut, jpscuts) * (1e-3)
+        jpscu ~ interpolate(sopc, tables[:jpscu], ranges[:jpscu]) * (1e-3)
         pjas ~ jph * al
-        jph ~ interpolate(aiph, jpht, jphts)
+        jph ~ interpolate(aiph, tables[:jph], ranges[:jph])
         lf ~ (p2 + p3) * lfpf
         luf ~ j / lf
         D(lufd) ~ (luf - lufd) / lufdt
-        cuf ~ interpolate(lufd, cuft, cufts)
+        cuf ~ interpolate(lufd, tables[:cuf], ranges[:cuf])
     ]
 
     ODESystem(eqs; name)
