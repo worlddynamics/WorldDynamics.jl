@@ -112,8 +112,6 @@
 |102| `lymc`    | `Agriculture.agricultural_inputs` | `Agriculture.investment_allocation_decision` | 2|
 |103| `ly`    | `Agriculture.agricultural_inputs` | `Agriculture.land_development`, `Agriculture.investment_allocation_decision`, `Agriculture.land_erosion_urban_industrial_use` | 4|
 |104| `lyf`    | `Agriculture.agricultural_inputs` |  | 1|
-|| `lyf1`    | `Agriculture.agricultural_inputs` |  | 1|
-|| `lyf2`    | `Agriculture.agricultural_inputs` |  | 1|
 |105| `lymap`    | `Agriculture.agricultural_inputs` |  | 1|
 |106| `lymap1`    | `Agriculture.agricultural_inputs` |  | 1|
 |107| `lymap2`    | `Agriculture.agricultural_inputs` |  | 1|
@@ -141,8 +139,6 @@
 |129| `nr`    | `NonRenewable.non_renewable` | | 1|
 |130| `nrur`    | `NonRenewable.non_renewable` | | 1|
 |131| `nruf`    | `NonRenewable.non_renewable` | | 1|
-|| `nruf1`    | `NonRenewable.non_renewable` | | 1|
-|| `nruf2`    | `NonRenewable.non_renewable` | | 1|
 |132| `pcrum`    | `NonRenewable.non_renewable` | `Pollution.persistent_pollution` | 2|
 |133| `nrfr`    | `NonRenewable.non_renewable` | | 1|
 |134| `fcaor`    | `NonRenewable.non_renewable` | `Capital.industrial_subsector` | 2|
@@ -151,20 +147,34 @@
 |137| `ppgr`    | `Pollution.persistent_pollution` | | 1|
 |138| `ppgf`    | `Pollution.persistent_pollution` | | 1|
 || `ppgf2`    | `Pollution.persistent_pollution` | | 1|
-|| `ppgf22`    | `Pollution.persistent_pollution` | | 1|
+|| `ppgf22`    | `Pollution.persistent_pollution` | `Pollution.adaptive_technological_control_cards` | 2|
 |139| `ppgio`    | `Pollution.persistent_pollution` | | 1|
 |140| `ppgao`    | `Pollution.persistent_pollution` | | 1|
 |141| `ppapr`    | `Pollution.persistent_pollution` | | 1|
 || `ppapr1`    | `Pollution.persistent_pollution` | | 1|
 || `ppapr2`    | `Pollution.persistent_pollution` | | 1|
 || `ppapr3`    | `Pollution.persistent_pollution` | | 1|
+|| `pptd`    | `Pollution.persistent_pollution` | | 1|
 |142| `ppol`    | `Pollution.persistent_pollution` | | 1|
 |143| `ppolx`    | `Pollution.persistent_pollution` | `Agriculture.land_fertility_degradation`, `Pollution.pollution_damage`, `Pop4.death_rate` | 4|
 |144| `ppasr`    | `Pollution.persistent_pollution` | | 1|
 |145| `ahlm`    | `Pollution.persistent_pollution` | | 1|
 |146| `ahl`    | `Pollution.persistent_pollution` | | 1|
+|| `ppgf221`    | `Pollution.adaptive_technological_control_cards` | | 1|
+|| `ppgf222`    | `Pollution.adaptive_technological_control_cards` | | 1|
+|| `pcti`    | `Pollution.adaptive_technological_control_cards` | | 1|
+|| `plmp`    | `Pollution.adaptive_technological_control_cards` | | 1|
+|| `plmp1`    | `Pollution.adaptive_technological_control_cards` | | 1|
+|| `plmp2`    | `Pollution.adaptive_technological_control_cards` | | 1|
+|| `pctcm`    | `Pollution.adaptive_technological_control_cards` | | 1|
+|| `pctir`    | `Pollution.adaptive_technological_control_cards` | | 1|
+|| `lmp`    | `Pollution.pollution_damage` | `Pollution.adaptive_technological_control_cards` | 2|
+|| `lmp1`    | `Pollution.pollution_damage` | | 1|
+|| `lmp2`    | `Pollution.pollution_damage` | | 1|
+|| `lfdr`    | `Pollution.pollution_damage` | | 1|
+|| `lfdr1`    | `Pollution.pollution_damage` | | 1|
+|| `lfdr2`    | `Pollution.pollution_damage` | | 1|
 |147| `foa`    | `SupplementaryEquations.supplementary_equations` | | 1|
 |148| `foi`    | `SupplementaryEquations.supplementary_equations` | | 1|
 |149| `fos`    | `SupplementaryEquations.supplementary_equations` | | 1|
-|150| `lmp`    | `Pollution.pollution_damage` | `Pollution.adaptive_technological_control_cards` | 2|
-||     |  |  | 232|
+||     |  |  | 244|
