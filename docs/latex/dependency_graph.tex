@@ -1,0 +1,224 @@
+\RequirePackage{etex}
+% \documentclass[margin=0.1cm,varwidth=\maxdimen]{standalone}
+\documentclass[margin=0.5cm]{standalone}
+\usepackage{fontawesome5}
+\usepackage[usenames]{color}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows, calc, decorations.pathmorphing, decorations.pathreplacing, calligraphy, backgrounds, math, shapes, shapes.geometric, spy, positioning}
+\usepackage{tikz-network}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.17}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xxcolor}
+\usepackage{wasysym}
+\usepackage{adjustbox}
+
+\begin{document}
+
+\newif\ifagriculture
+\newif\ifcapital
+\newif\ifnonrenewable
+\newif\ifpollution
+\newif\ifpop
+\newif\ifsupplementary
+
+\agriculturetrue
+% \agriculturefalse
+\capitaltrue
+% \capitalfalse
+\nonrenewabletrue
+% \nonrenewablefalse
+\pollutiontrue
+% \pollutionfalse
+\poptrue
+% \popfalse
+\supplementarytrue
+% \supplementaryfalse
+
+\begin{tikzpicture}
+  \SetVertexStyle[LineColor=black,TextColor=black,FillColor=white]
+  \SetEdgeStyle[Color=black]
+  \EdgesNotInBG
+  \ifpop
+  % Pop4
+  \begin{scope}[xshift=0cm,yshift=0cm]
+  \SetVertexStyle[LineColor=blue,TextColor=blue,FillColor=white]
+  \SetEdgeStyle[Color=blue]
+  \node[text=blue] at (5,1) {\texttt{Pop4}};
+  \Vertex[x=2,y=-1,label=\texttt{pop}]{pop}
+  \Vertex[x=0,y=1,label=\texttt{br}]{br}
+  \Vertex[x=4,y=1,label=\texttt{dr}]{dr}
+  \Edge[Direct,label=\texttt{pop}](pop)(br)
+  \Edge[Direct,bend=30,label=\texttt{br},position={above left=1mm}](br)(pop)
+  \Edge[Direct,bend=-30,label=\texttt{tf},position={below right=1mm}](br)(pop)
+  \Edge[Direct,label=\texttt{pop}](pop)(dr)
+  \Edge[Direct,bend=30,label=\texttt{le},position={below left=1mm}](dr)(pop)
+  \Edge[Direct,bend=-30,label=\texttt{dr},position={above right=1mm}](dr)(pop)
+  \Edge[Direct,label=\texttt{le}](dr)(br)
+  \end{scope}
+  \fi
+  \ifcapital
+  % Capital
+  \begin{scope}[xshift=0cm,yshift=-10cm]
+  \SetVertexStyle[LineColor=black,TextColor=black,FillColor=white]
+  \SetEdgeStyle[Color=black]
+  \node[text=black] at (5.5,0) {\texttt{Capital}};
+  \Vertex[x=2,y=2,label=\texttt{ss}]{ss}
+  \Vertex[x=0,y=0,label=\texttt{is}]{is}
+  \Vertex[x=4,y=0,label=\texttt{js}]{js}
+  \Edge[Direct,label=\texttt{iopc}](is)(js)
+  \Edge[Direct,bend=-15,label=\texttt{ic}](is)(js)
+  \Edge[Direct,label=\texttt{iopc}](is)(ss)
+  \Edge[Direct,bend=-30,label=\texttt{io}](is)(ss)
+  \Edge[Direct,bend=-30,label=\texttt{fioas},distance=.25](ss)(is)
+  \Edge[Direct,bend=-20,label=\texttt{sopc}](ss)(js)
+  \Edge[Direct,label=\texttt{sc}](ss)(js)
+  \Edge[Direct,bend=-20,label=\texttt{cuf}](js)(ss)
+  \Edge[Direct,bend=30,label=\texttt{cuf}](js)(is)
+  \end{scope}
+  \fi
+  \ifagriculture
+  % Agriculture
+  \begin{scope}[xshift=-7.5cm,yshift=0cm]
+  \SetVertexStyle[LineColor=red,TextColor=red,FillColor=white]
+  \SetEdgeStyle[Color=red]
+  \node[text=red] at (3,4) {\texttt{Agriculture}};
+  \Vertex[x=0,y=-1,label=\texttt{ld}]{ld}
+  \Vertex[x=0,y=2,label=\texttt{ai}]{ai}
+  \Vertex[x=-1,y=4,label=\texttt{dlm}]{dlm}
+  \Vertex[x=2,y=5,label=\texttt{lfd}]{lfd}
+  \Vertex[x=-1,y=6,label=\texttt{lfr}]{lfr}
+  \Vertex[x=5,y=1,label=\texttt{iad}]{iad}
+  \Vertex[x=6,y=0,label=\texttt{leuiu}]{leuiu}
+  \Edge[Direct,bend=-10,label=\texttt{al}](ld)(ai)
+  \Edge[Direct,bend=-10,label=\texttt{al}](ld)(leuiu)
+  \Edge[Direct,bend=70,label=\texttt{fpc}](ld)(dlm)
+  \Edge[Direct,bend=-40,label=\texttt{tai}](ld)(ai)
+  \Edge[Direct,bend=-10,label=\texttt{dcph}](ld)(iad)
+  \Edge[Direct,bend=-8,label=\texttt{alai}](ai)(iad)
+  \Edge[Direct,bend=-25,label=\texttt{aiph}](ai)(iad)
+  \Edge[Direct,bend=20,label=\texttt{lymc}](ai)(iad)
+  \Edge[Direct,bend=5,label=\texttt{ly}](ai)(iad)
+  \Edge[Direct,bend=-70,label=\texttt{ly}](ai)(ld)
+  \Edge[Direct,bend=60,label=\texttt{ly}](ai)(leuiu)
+  \Edge[Direct,bend=40,label=\texttt{fiald}](ai)(iad)
+  \Edge[Direct,bend=-30,label=\texttt{fiald}](ai)(ld)
+  \Edge[Direct,bend=25,label=\texttt{ler}](leuiu)(ld)
+  \Edge[Direct,bend=40,label=\texttt{lrui}](leuiu)(ld)
+  \Edge[Direct,bend=15,label=\texttt{lfert}](lfd)(lfr)
+  \Edge[Direct,bend=-25,label=\texttt{lfert},distance=0.25](lfd)(ai)
+  \Edge[Direct,bend=25,label=\texttt{lfr}](lfr)(lfd)
+  \Edge[Direct,bend=-25,label=\texttt{falm}](dlm)(ai)
+  \Edge[Direct,label=\texttt{falm}](dlm)(lfr)
+  \end{scope}
+  \fi
+  \ifpollution
+  % Pollution
+  \begin{scope}[xshift=-13.5cm,yshift=-7.5cm]
+  \SetVertexStyle[LineColor=green!50!red,TextColor=green!50!red,FillColor=white]
+  \SetEdgeStyle[Color=green!50!red]
+  \node[text=green!50!red] at (2,-1) {\texttt{Pollution}};
+  \Vertex[x=2,y=2,label=\texttt{pp}]{pp}
+  \Vertex[x=0,y=0,label=\texttt{pd}]{pd}
+  \Vertex[x=4,y=0,label=\texttt{atcc}]{atcc}
+  \Edge[Direct,label=\texttt{ppgf22}](pp)(atcc)
+  \Edge[Direct,label=\texttt{ppolx}](pp)(pd)
+  \Edge[Direct,label=\texttt{lmp}](pd)(atcc)
+  \end{scope}
+  \fi
+  \ifnonrenewable
+  % NonRenewable
+  \begin{scope}[xshift=-3cm,yshift=-5cm]
+  \SetVertexStyle[LineColor=purple,TextColor=purple,FillColor=white]
+  \SetEdgeStyle[Color=purple]
+  \node[text=purple] at (0.5,1.5) {\texttt{NonRenewable}};
+  \Vertex[x=2,y=1,label=\texttt{nr}]{nr}
+  \end{scope}
+  \fi
+  \ifsupplementary{
+  % SupplementaryEquations
+  \begin{scope}[xshift=-7.5cm,yshift=-10cm]
+  \SetVertexStyle[LineColor=orange,TextColor=orange,FillColor=white]
+  \SetEdgeStyle[Color=orange]
+  \node[text=orange] at (-3,0) {\texttt{SupplementaryEquations}};
+  \Vertex[x=0,y=0,label=\texttt{se}]{se}
+  \end{scope}
+  }
+  \fi
+  \ifpop
+  \ifagriculture
+  \Edge[Direct,bend=35,style={dashed},label=\texttt{pop}](pop)(ld)
+  \Edge[Direct,bend=15,style={dashed},label=\texttt{pop}](pop)(leuiu)
+  \Edge[Direct,bend=-15,style={dashed},label=\texttt{fpc},distance=0.5](ld)(dr)
+  \fi
+  \fi
+  \ifpop
+  \ifnonrenewable
+  \Edge[Direct,style={dashed},label=\texttt{pop}](pop)(nr)
+  \fi
+  \fi
+  \ifpop
+  \ifcapital
+  \Edge[Direct,bend=-10,style={dashed},label=\texttt{pop},distance=0.6](pop)(is)
+  \Edge[Direct,bend=-10,style={dashed},label=\texttt{pop}](pop)(ss)
+  \Edge[Direct,bend=5,style={dashed},label=\texttt{p2},distance=0.75](pop)(js)
+  \Edge[Direct,bend=25,style={dashed},label=\texttt{p3},distance=0.75](pop)(js)
+  \Edge[Direct,bend=10,style={dashed},label=\texttt{iopc},distance=0.45](is)(br)
+  \Edge[Direct,bend=-10,style={dashed},label=\texttt{iopc}](is)(dr)
+  \Edge[Direct,bend=15,style={dashed},label=\texttt{sopc},distance=0.5](ss)(br)
+  \Edge[Direct,bend=-15,style={dashed},label=\texttt{sopc},distance=0.75](ss)(dr)
+  \fi
+  \fi
+  \ifpop
+  \ifpollution
+  \Edge[Direct,bend=-5,style={dashed},label=\texttt{pop},distance=0.75](pop)(pp)
+  \Edge[Direct,bend=45,style={dashed},label=\texttt{ppolx},distance=0.25](pp)(dr)
+  \fi\fi
+  \ifcapital
+  \ifnonrenewable
+  \Edge[Direct,bend=10,style={dashed},label=\texttt{iopc}](is)(nr)
+  \Edge[Direct,bend=-30,style={dashed},label=\texttt{fcaor},distance=0.2](nr)(is)
+  \fi
+  \fi
+  \ifcapital
+  \ifagriculture
+  \Edge[Direct,bend=5,style={dashed},label=\texttt{iopc}](is)(ld)
+  \Edge[Direct,bend=-10,style={dashed},label=\texttt{iopc},distance=0.4](is)(leuiu)
+  \Edge[Direct,bend=15,style={dashed},label=\texttt{io}](is)(ld)
+  \Edge[Direct,bend=5,style={dashed},label=\texttt{io}](is)(ai)
+  \Edge[Direct,bend=-15,style={dashed},label=\texttt{al},distance=0.35](ld)(js)
+  \Edge[Direct,bend=-30,style={dashed},label=\texttt{fioaa},distance=0.5](ld)(is)
+  \Edge[Direct,bend=-15,style={dashed},label=\texttt{aiph},distance=0.5](ai)(js)
+  \fi
+  \fi
+  \ifcapital
+  \ifsupplementary
+  \Edge[Direct,bend=5,style={dashed},label=\texttt{io}](is)(se)
+  \Edge[Direct,bend=-15,style={dashed},label=\texttt{so},distance=0.75](ss)(se)
+  \fi
+  \fi
+  \ifpollution
+  \ifnonrenewable
+  \Edge[Direct,bend=5,style={dashed},label=\texttt{pcrum},distance=0.65](nr)(pp)
+  \fi
+  \fi
+  \ifagriculture
+  \ifpollution
+  \Edge[Direct,bend=-15,style={dashed},label=\texttt{al},distance=0.4](ld)(pp)
+  \Edge[Direct,bend=-15,style={dashed},label=\texttt{aiph},distance=0.5](ai)(pp)
+  \Edge[Direct,bend=65,style={dashed},label=\texttt{ppolx},distance=0.25](pp)(lfd)
+  \fi
+  \fi
+  \ifagriculture
+  \ifsupplementary
+  \Edge[Direct,bend=-35,style={dashed},label=\texttt{f},distance=0.75](ld)(se)
+  \fi
+  \fi
+\end{tikzpicture}
+
+\end{document}
