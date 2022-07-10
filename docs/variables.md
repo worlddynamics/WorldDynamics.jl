@@ -1,5 +1,4 @@
 # Variable/ODE system correspondance
-
 | #   | Variable | Main ODE system | Other ODE systems | # ODE systems |
 | --- | -------- | --------------- | ----------------- | ------------- |
 |1| `pop`    | `Pop4.population` | `Agriculture.land_development`, `Agriculture.land_erosion_urban_industrial_use`, `Capital.industrial_subsector`, `Capital.service_subsector`, `NonRenewable.non_renewable`, `Pollution.persistent_pollution`, `Pop4.birth_rate`, `Pop4.death_rate` | 9 |
@@ -90,7 +89,7 @@
 |80| `lf`    | `Capital.job_subsector` | | 1|
 |81| `luf`    | `Capital.job_subsector` | | 1|
 |82| `lufd`    | `Capital.job_subsector` | | 1|
-|83| `cuf`    | `Capital.job_subsector` | `Capital.job_subsector`, `Capital.service_subsector` | 3|
+|83| `cuf`    | `Capital.job_subsector` | `Capital.industrial_subsector`, `Capital.service_subsector` | 3|
 |84| `lfc`    | `Agriculture.land_development` | | 1|
 |85| `al`    | `Agriculture.land_development` | `Agriculture.agricultural_inputs`, `Agriculture.land_erosion_urban_industrial_use`, `Capital.job_subsector`, `Pollution.persistent_pollution` | 5|
 |86| `pal`    | `Agriculture.land_development` | | 1|
@@ -110,7 +109,7 @@
 |100| `alai`    | `Agriculture.agricultural_inputs` | `Agriculture.investment_allocation_decision` | 2|
 |101| `aiph`    | `Agriculture.agricultural_inputs` | `Agriculture.investment_allocation_decision`, `Capital.job_subsector`, `Pollution.persistent_pollution` | 4|
 |102| `lymc`    | `Agriculture.agricultural_inputs` | `Agriculture.investment_allocation_decision` | 2|
-|103| `ly`    | `Agriculture.agricultural_inputs` | `Agriculture.land_development`, `Agriculture.investment_allocation_decision`, `Agriculture.land_erosion_urban_industrial_use` | 4|
+|103| `ly`    | `Agriculture.agricultural_inputs` | `Agriculture.investment_allocation_decision`, `Agriculture.land_development`, `Agriculture.land_erosion_urban_industrial_use` | 4|
 |104| `lyf`    | `Agriculture.agricultural_inputs` |  | 1|
 |105| `lymap`    | `Agriculture.agricultural_inputs` |  | 1|
 |106| `lymap1`    | `Agriculture.agricultural_inputs` |  | 1|
@@ -177,4 +176,3 @@
 |147| `foa`    | `SupplementaryEquations.supplementary_equations` | | 1|
 |148| `foi`    | `SupplementaryEquations.supplementary_equations` | | 1|
 |149| `fos`    | `SupplementaryEquations.supplementary_equations` | | 1|
-||     |  |  | 244|
