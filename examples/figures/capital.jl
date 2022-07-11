@@ -48,10 +48,18 @@ sol_3_38 = WorldDynamics.solve(system, (1900, 2100))
 plotvariables(sol_3_38, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.38", showlegend=true, showaxis=true, colored=true)
 
 
+fig_3_41_variables = [
+    (is.iopc,  0, 100, "iopc"),
+    (ss.sopc,  0, 100, "sopc"),
+    (is.io,    0, 400e9, "io"),
+    (ss.fioas, 0, 0.4, "fioas"),
+    (js.cuf,   0, 1, "cuf"),
+]
+
 cap_tables_3_41 = WorldDynamics.World3.Capital.gettables()
 cap_tables_3_41[:fcaor] = (0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35)
 
 system = capital_historicalrun(tables=cap_tables_3_41)
 sol_3_41 = WorldDynamics.solve(system, (1900, 2100))
 
-plotvariables(sol_3_41, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.41", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_3_41, (t, 1900, 2000), fig_3_41_variables, name="Fig. 3.41", showlegend=true, showaxis=true, colored=true)
