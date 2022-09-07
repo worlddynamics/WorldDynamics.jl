@@ -25,7 +25,9 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
 
     @variables p(t) = inits[:p]
     @variables cr(t)
-    @variables br(t) dr(t)
+    #
+    @variables br(t)
+    @variables dr(t)
 
     eqs = [
         D(p) ~ br - dr
