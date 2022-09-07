@@ -1,6 +1,6 @@
 params = Dict(
     :ecirn => 1,
-    :ciafn => 3,
+    :ciafn => 0.3,
     :cign => 0.05,
     :cign1 => 0.05,
     :swt4 => 1970,

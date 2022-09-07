@@ -24,7 +24,7 @@ sol = WorldDynamics.solve(system, (1900, 2100))
 @variables t
 
 fig_4_1_variables = [
-    (pop.p, 0, 3e9, "Population"),
+    (pop.p, 0, 8e9, "Population"),
     (nr.nr, 0, 1e12, "Natural resources"),
     (ci.ci, 0, 20e9, "Capital investment"),
     (pol.polr, 0, 40, "Pollution"),
