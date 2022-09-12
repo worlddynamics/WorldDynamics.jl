@@ -5,17 +5,10 @@ include("solvesystems.jl")
 
 export plotvariables
 
-    module World3
+include("World2/World2.jl")
+include("World3/World3.jl")
 
-    include("World3/Agriculture.jl")
-    include("World3/Capital.jl")
-    include("World3/NonRenewable.jl")
-    include("World3/Pollution.jl")
-    include("World3/Pop1.jl")
-    include("World3/Pop4.jl")
-    include("World3/Pop15.jl")
-    include("World3/SupplementaryEquations.jl")
-
-    end
+export World2
+export World3
 
 end
