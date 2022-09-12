@@ -84,3 +84,13 @@ sol_4_87 = WorldDynamics.solve(new_system, (1900, 2100))
 
 plotvariables(sol_4_87, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.87a", showlegend=true, showaxis=true, colored=true)
 plotvariables(sol_4_87, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.87b", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_4_88 = World3.Agriculture.getparameters()
+parameters_4_88[:eyear] = 2050
+
+system = agriculture_historicalrun(params=parameters_4_88)
+sol_4_88 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_4_88, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.88a", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_4_88, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.88b", showlegend=true, showaxis=true, colored=true)
