@@ -47,3 +47,13 @@ sol_4_74 = WorldDynamics.solve(system, (1900, 2100))
 
 plotvariables(sol_4_74, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.74a", showlegend=true, showaxis=true, colored=true)
 plotvariables(sol_4_74, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.74b", showlegend=true, showaxis=true, colored=true)
+
+
+tables_4_84 = World3.Agriculture.gettables()
+tables_4_84[:lfdr] = (0.0, 0.0, 0.0, 0.0)
+
+system = agriculture_historicalrun(tables=tables_4_84)
+sol_4_84 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_4_84, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.84a", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_4_84, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.84b", showlegend=true, showaxis=true, colored=true)
