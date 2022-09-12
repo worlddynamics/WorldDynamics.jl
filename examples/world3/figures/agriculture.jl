@@ -75,3 +75,12 @@ sol_4_86 = WorldDynamics.solve(system, (1900, 2100))
 
 plotvariables(sol_4_86, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.86a", showlegend=true, showaxis=true, colored=true)
 plotvariables(sol_4_86, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.86b", showlegend=true, showaxis=true, colored=true)
+
+
+new_equations = equations(system)
+new_equations[74] = leuiu.uilr ~ leuiu.pop * leuiu.uilpc * 0.25
+@named new_system = ODESystem(new_equations)
+sol_4_87 = WorldDynamics.solve(new_system, (1900, 2100))
+
+plotvariables(sol_4_87, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.87a", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_4_87, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.87b", showlegend=true, showaxis=true, colored=true)
