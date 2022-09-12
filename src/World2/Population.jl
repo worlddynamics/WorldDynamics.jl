@@ -1,17 +1,19 @@
 module Population
 
+
 using ModelingToolkit
 
 include("../functions.jl")
-
 include("population/tables.jl")
 include("population/parameters.jl")
 include("population/initialisations.jl")
+
 
 getinitialisations() = copy(inits)
 getparameters() = copy(params)
 gettables() = copy(tables)
 getranges() = copy(ranges)
+
 
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
@@ -19,13 +21,14 @@ getranges() = copy(ranges)
 @variables t
 D = Differential(t)
 
+
 function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters la = params[:la]
     @parameters pdn = params[:pdn]
 
     @variables p(t) = inits[:p]
     @variables cr(t)
-    #
+
     @variables br(t)
     @variables dr(t)
 
@@ -47,7 +50,7 @@ function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
     @variables brmm(t)
     @variables brcm(t)
     @variables brpm(t)
-    #
+
     @variables p(t)
     @variables msl(t)
     @variables cr(t)
@@ -55,11 +58,11 @@ function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
     @variables polr(t)
 
     eqs = [
-        br ~ p * clip(brn, brn1, swt1, t) * brfm * brmm * brcm * brpm,
-        brmm ~ interpolate(msl, tables[:brmm], ranges[:brmm]),
-        brcm ~ interpolate(cr, tables[:brcm], ranges[:brcm]),
-        brfm ~ interpolate(fr, tables[:brfm], ranges[:brfm]),
-        brpm ~ interpolate(polr, tables[:brpm], ranges[:brpm]),
+        br ~ p * clip(brn, brn1, swt1, t) * brfm * brmm * brcm * brpm
+        brmm ~ interpolate(msl, tables[:brmm], ranges[:brmm])
+        brcm ~ interpolate(cr, tables[:brcm], ranges[:brcm])
+        brfm ~ interpolate(fr, tables[:brfm], ranges[:brfm])
+        brpm ~ interpolate(polr, tables[:brpm], ranges[:brpm])
     ]
 
     ODESystem(eqs; name)
@@ -75,7 +78,7 @@ function death_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
     @variables drmm(t)
     @variables drcm(t)
     @variables drpm(t)
-    #
+
     @variables p(t)
     @variables msl(t)
     @variables cr(t)
@@ -83,14 +86,15 @@ function death_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
     @variables polr(t)
 
     eqs = [
-        dr ~ p * clip(drn, drn1, swt3, t) * drfm * drmm * drcm * drpm,
-        drmm ~ interpolate(msl, tables[:drmm], ranges[:drmm]),
-        drcm ~ interpolate(cr, tables[:drcm], ranges[:drcm]),
-        drfm ~ interpolate(fr, tables[:drfm], ranges[:drfm]),
-        drpm ~ interpolate(polr, tables[:drpm], ranges[:drpm]),
+        dr ~ p * clip(drn, drn1, swt3, t) * drfm * drmm * drcm * drpm
+        drmm ~ interpolate(msl, tables[:drmm], ranges[:drmm])
+        drcm ~ interpolate(cr, tables[:drcm], ranges[:drcm])
+        drfm ~ interpolate(fr, tables[:drfm], ranges[:drfm])
+        drpm ~ interpolate(polr, tables[:drpm], ranges[:drpm])
     ]
 
     ODESystem(eqs; name)
 end
+
 
 end

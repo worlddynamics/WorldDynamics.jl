@@ -1,3 +1,3 @@
-inits = Dict{Symbol,Number}()
-
-inits[:ciaf] = 0.2
+inits = Dict{Symbol, Number}(
+    :ciaf => 0.2,
+)

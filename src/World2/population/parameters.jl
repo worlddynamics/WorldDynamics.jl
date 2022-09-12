@@ -1,4 +1,4 @@
-params = Dict(
+params = Dict{Symbol, Number}(
     :brn => 0.04,
     :brn1 => 0.04,
     :drn => 0.028,
