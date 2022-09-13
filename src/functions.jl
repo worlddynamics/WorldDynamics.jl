@@ -38,7 +38,7 @@ end
 
 function step(t::Float64, hght::Float64, sttm::Float64)
     if (t < sttm)
-        return 0.0
+        return zero(hght)
     else
         return hght
     end
