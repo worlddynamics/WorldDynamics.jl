@@ -1,9 +1,10 @@
 module WorldDynamics
 
+include("functions.jl")
 include("plotvariables.jl")
 include("solvesystems.jl")
 
-export plotvariables
+export interpolate, plotvariables
 
 module World3
 
