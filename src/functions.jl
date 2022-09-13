@@ -1,19 +1,19 @@
 using Interpolations
 
-function interpolate(x::Float64, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})::Float64
-    expanded_xs = LinRange(xs[1], xs[2], length(y))
-    if (x <= xs[1])
-        return y[1]
+function interpolate(x::Float64, yvalues::Tuple{Vararg{Float64}}, xrange::Tuple{Float64, Float64})::Float64
+    expanded_xrange = LinRange(xrange[1], xrange[2], length(yvalues))
+    if (x <= xrange[1])
+        return yvalues[1]
     end
-    if (x >= xs[2])
-        return y[end]
+    if (x >= xrange[2])
+        return yvalues[end]
     end
-    li = LinearInterpolation(expanded_xs, collect(y))
+    li = LinearInterpolation(expanded_xrange, collect(yvalues))
     return li(x)
 end
 
 min(v1::Float64, v2::Float64) = v1 < v2 ? v1 : v2
 max(v1::Float64, v2::Float64) = v1 > v2 ? v1 : v2
-clip(f1::Float64, f2::Float64, va::Float64, th::Float64) = va >= th ? f1 : f2
-step(t::Float64, hght::Float64, sttm::Float64) = t < sttm ? zero(hght) : hght
-switch(v1::Float64, v2::Float64, z::Float64) = isapprox(z, zero(z); atol=1e-16) ? v1 : v2
+clip(returnifgte::Float64, returniflt::Float64, inputvalue::Float64, threshold::Float64) = inputvalue >= threshold ? returnifgte : returniflt
+step(inputvalue::Float64, returnifgte::Float64, threshold::Float64) = clip(returnifgte, zero(returnifgte), inputvalue, threshold)
+switch(returnifzero::Float64, returnifnotzero::Float64, inputvalue::Float64) = isapprox(inputvalue, zero(inputvalue); atol=1e-16) ? returnifzero : returnifnotzero
