@@ -1,4 +1,4 @@
-params = Dict(
+params = Dict{Symbol, Float64}(
     :nri => 1e12,
     :nruf1 => 1,
     :nruf2 => 1,

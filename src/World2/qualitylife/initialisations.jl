@@ -1,1 +1,1 @@
-inits = Dict{Symbol, Number}()
+inits = Dict{Symbol, Float64}()

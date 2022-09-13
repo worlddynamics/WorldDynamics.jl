@@ -1,4 +1,4 @@
-params = Dict(
+params = Dict{Symbol, Float64}(
     :pyear => 4000,
     :icor1 => 3,
     :icor2 => 3,

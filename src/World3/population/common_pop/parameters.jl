@@ -1,4 +1,4 @@
-params = Dict(
+params = Dict{Symbol, Float64}(
     :len => 28,
     :sfpc => 230,
     :hsid => 20,

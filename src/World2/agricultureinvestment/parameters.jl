@@ -1,4 +1,4 @@
-params = Dict{Symbol, Number}(
+params = Dict{Symbol, Float64}(
     :fc => 1,
     :fc1 => 1,
     :swt7 => 1970,
