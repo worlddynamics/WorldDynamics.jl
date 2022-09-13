@@ -1,4 +1,5 @@
 using Interpolations
+using IfElse
 
 function interpolate(x::Float64, yvalues::Tuple{Vararg{Float64}}, xrange::Tuple{Float64, Float64})::Float64
     expanded_xrange = LinRange(xrange[1], xrange[2], length(yvalues))
@@ -12,6 +13,6 @@ function interpolate(x::Float64, yvalues::Tuple{Vararg{Float64}}, xrange::Tuple{
     return li(x)
 end
 
-clip(returnifgte::Float64, returniflt::Float64, inputvalue::Float64, threshold::Float64) = inputvalue >= threshold ? returnifgte : returniflt
+clip(returnifgte::Float64, returniflt::Float64, inputvalue::Float64, threshold::Float64) = IfElse.ifelse(inputvalue ≥ threshold, returnifgte, returniflt)
 step(inputvalue::Float64, returnifgte::Float64, threshold::Float64) = clip(returnifgte, zero(returnifgte), inputvalue, threshold)
-switch(returnifzero::Float64, returnifnotzero::Float64, inputvalue::Float64) = isapprox(inputvalue, zero(inputvalue); atol=1e-16) ? returnifzero : returnifnotzero
+switch(returnifzero::Float64, returnifnotzero::Float64, inputvalue::Float64) = IfElse.ifelse(isapprox(inputvalue, zero(inputvalue); atol=1e-16), returnifzero, returnifnotzero)
