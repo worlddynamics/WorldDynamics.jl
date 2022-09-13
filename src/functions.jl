@@ -1,6 +1,6 @@
 using Interpolations
 
-function interpolate(x, y, xs)
+function interpolate(x::Float64, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})::Float64
     expanded_xs = LinRange(xs[1], xs[2], length(y))
     if (x < expanded_xs[1])
         return y[1]
@@ -12,7 +12,7 @@ function interpolate(x, y, xs)
     return li(x)
 end
 
-function clip(f1, f2, va, th)
+function clip(f1::Float64, f2::Float64, va::Float64, th::Float64)
     if (va >= th)
         return f1
     else
@@ -20,7 +20,7 @@ function clip(f1, f2, va, th)
     end
 end
 
-function min(v1, v2)
+function min(v1::Float64, v2::Float64)
     if (v1 < v2)
         return v1
     else
@@ -28,7 +28,7 @@ function min(v1, v2)
     end
 end
 
-function max(v1, v2)
+function max(v1::Float64, v2::Float64)
     if (v1 > v2)
         return v1
     else
@@ -36,15 +36,15 @@ function max(v1, v2)
     end
 end
 
-function step(t, hght, sttm)
+function step(t::Float64, hght::Float64, sttm::Float64)
     if (t < sttm)
-        return 0
+        return 0.0
     else
         return hght
     end
 end
 
-function switch(v1, v2, z)
+function switch(v1::Float64, v2::Float64, z::Float64)
     # TODO: this atol value is arbitrary, we should compute a proper value
     if isapprox(z, 0.0; atol=1e-16)
         return v1
