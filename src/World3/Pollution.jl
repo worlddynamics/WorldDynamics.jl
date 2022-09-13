@@ -98,7 +98,7 @@ function adaptive_technological_control_cards(; name, params=params, inits=inits
         D(ppgf222) ~ 3 * (ppgf221 - ppgf222) / tdd
         D(ppgf221) ~ 3 * (pcti - ppgf221) / tdd
         D(pcti) ~ pctir
-        pctir ~ clip(pcti * pctcm, 0, t, pyear)
+        pctir ~ clip(pcti * pctcm, 0.0, t, pyear)
         pctcm ~ interpolate(1 - plmp, tables[:pctcm], ranges[:pctcm])
         D(plmp) ~ 3 * (plmp2 - plmp) / pd
         D(plmp2) ~ 3 * (plmp1 - plmp2) / pd

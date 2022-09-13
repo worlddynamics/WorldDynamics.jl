@@ -166,7 +166,7 @@ function land_erosion_urban_industrial_use(; name, params=params, inits=inits, t
         ler ~ al / all
         uilpc ~ interpolate(iopc, tables[:uilpc], ranges[:uilpc])
         uilr ~ uilpc * pop
-        lrui ~ max(0, (uilr - uil) / uildt)
+        lrui ~ max(0.0, (uilr - uil) / uildt)
         D(uil) ~ lrui
     ]
 

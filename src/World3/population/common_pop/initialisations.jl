@@ -29,6 +29,6 @@ inits[:fsafc] = interpolate(inits[:nfc], tables[:fsafc], ranges[:fsafc])
 inits[:fcapc] = inits[:fsafc] * inits[:sopc]
 inits[:fcfpc] = inits[:fcapc]
 inits[:fce] = interpolate(inits[:fcfpc], tables[:fce], ranges[:fce])
-inits[:tf] = min(inits[:mtf], inits[:mtf] * (1 - inits[:fce]) + inits[:dtf] * inits[:fce])
+inits[:tf] = min(inits[:mtf], inits[:mtf] * (1.0 - inits[:fce]) + inits[:dtf] * inits[:fce])
 inits[:br] = inits[:tf] * inits[:pop] * params[:ffw] / params[:rlt]
 inits[:cbr] = 1000 * inits[:br] / inits[:pop]

@@ -77,7 +77,7 @@ function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
 
     eqs = [
         cbr ~ 1000.0 * br / pop
-        tf ~ min(mtf, mtf * (1 - fce) + dtf * fce)
+        tf ~ min(mtf, mtf * (1.0 - fce) + dtf * fce)
         mtf ~ mtfn * fm
         fm ~ interpolate(le, tables[:fm], ranges[:fm])
         dtf ~ dcfs * cmple
@@ -85,12 +85,12 @@ function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
         D(ple) ~ 3 * (ple2 - ple) / lpd
         D(ple2) ~ 3 * (ple1 - ple2) / lpd
         D(ple1) ~ 3 * (le - ple1) / lpd
-        dcfs ~ clip(2, dcfsn * frsn * sfsn, t, zpgt)
+        dcfs ~ clip(2.0, dcfsn * frsn * sfsn, t, zpgt)
         sfsn ~ interpolate(diopc, tables[:sfsn], ranges[:sfsn])
         D(diopc) ~ 3 * (diopc2 - diopc) / sad
         D(diopc2) ~ 3 * (diopc1 - diopc2) / sad
         D(diopc1) ~ 3 * (iopc - diopc1) / sad
-        frsn ~ clip(interpolate(fie, tables[:frsn], ranges[:frsn]), 0.82, t, inits[:t0] + 1)
+        frsn ~ clip(interpolate(fie, tables[:frsn], ranges[:frsn]), 0.82, t, inits[:t0] + 1.0)
         fie ~ (iopc - aiopc) / aiopc
         D(aiopc) ~ (iopc - aiopc) / ieat
         nfc ~ (mtf / dtf) - 1
