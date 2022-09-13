@@ -13,7 +13,6 @@ include("common_pop/initialisations.jl")
 
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
-@register min(v1, v2)
 @register step(t, hght, sttm)
 
 @variables t

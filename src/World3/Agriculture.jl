@@ -17,7 +17,6 @@ getranges() = copy(ranges)
 
 @register interpolate(x, y::NTuple, xs::Tuple)
 @register clip(f1, f2, va, th)
-@register max(v1, v2)
 
 @variables t
 D = Differential(t)
