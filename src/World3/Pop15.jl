@@ -13,7 +13,7 @@ include("population/pop15/tables.jl")
 include("population/pop15/initialisations.jl")
 
 
-@register interpolate(x, y::NTuple, xs::Tuple)
+@register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
 @register clip(f1, f2, va, th)
 
 @variables t
