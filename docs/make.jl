@@ -3,6 +3,12 @@ using Documenter
 push!(LOAD_PATH, "../src/")
 using WorldDynamics
 
-makedocs(sitename="WorldDynamics Documentation",
+makedocs(sitename="WorldDynamics.jl",
     modules=[WorldDynamics],
-    pages=["WorldDynamics tutorial" => "tutorial.md", "World3 equations and constants" => "world3.md", "Source code documentation" => "source.md"])
+    pages=[
+        "Home" => "index.md",
+        "WorldDynamics tutorial" => "tutorial.md",
+        "World3 equations and constants" => "world3.md",
+        "Source code documentation" => "source.md"
+    ]
+)
