@@ -70,6 +70,7 @@ For the definitions, see *Appendix B: Definition File* at page 587 of [*Dynamics
 |	| $\mathtt{fcfpc1}(0) = \mathtt{fcapc}(0)$  |
 
 ## Variable/ODE system correspondance
+
 | #   | Variable | Main ODE system | Other ODE systems | # ODE systems |
 | --- | -------- | --------------- | ----------------- | ------------- |
 |1| `pop`    | `Pop4.population` | `Agriculture.land_development`, `Agriculture.land_erosion_urban_industrial_use`, `Capital.industrial_subsector`, `Capital.service_subsector`, `NonRenewable.non_renewable`, `Pollution.persistent_pollution`, `Pop4.birth_rate`, `Pop4.death_rate` | 9 |

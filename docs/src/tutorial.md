@@ -1,10 +1,17 @@
 # A WorldDynamics tutorial
 
-`WorldDynamics` allows the user to *play* with the World3 model introduced in the book *Dynamics of Growth in a Finite World* (1974). Informally speaking, this model is formed by five sectors, each containg one or more subsectors. The following picture shows the structure of the model and the connections between the subsectors which share a common variable.
+`WorldDynamics` allows the user to *play* with the World3 model introduced in the book *Dynamics of Growth in a Finite World* (1974). Informally speaking, this model is formed by five systems, each containg one or more subsystems. The following picture shows the structure of the model and the connections between the subsystems which share a common variable.
 
+![The World3 model](../img/world3.png)
+
+As it can be seen, the five systems are `Pop4` (which is the population system with four age levels), `Agriculture`, `Capital`, `Non-renewable` (resources), and `Pollution`. The `Pop4` system is formed by the three subsystems `pop` (population), `br` (birth rate), and `dr` (death rate). For instance, the subsystem `br` uses the variable `pop` which originates from the subsystem `pop`, while the subsystem `pop` uses the variable `le` which originates from the subsystem `dr`. Of course, there are variables which connect subsystem of different systems. For example, the subsystem `pp` of the system `Pollution` uses the variable `aiph` which originates from the subsystem `ai` of the system `Agriculture` (for an entire list of variables and of subsystems using them see the corresponding section of the documentation).
+
+In `WorldDynamics` each system is a Julia module and each subsystem correspond to a Julia function of this module (or of a module which is included in this module), which defines the ODE system corresponding to the subsystem itself. All the ODE systems corresponding to the subsystems of the World3 model have to be composed (see the function `compose` in the `solvesystems.jl` code file). This will produce the entire ODE system of the World3 model, which can then be solved by using the function `solve` in the `solvesystems.jl` code file.
+
+Let us now see how we can replicate the runs described in Chapter 7 of the above mentioned book. 
 ## Replicating historical runs
 
-We first have to solve the ODE system, which is constructed in the `world3_historicalrun` function, included in the `world3_historicalrun.jl` code file. This ODE system is the one described in the book *Dynamics of Growth in a Finite World* (1974), and used in Chapter 7 of the book itself.
+We first have to solve the World3 ODE system, which is constructed in the `world3_historicalrun` function, included in the `world3_historicalrun.jl` code file.
 
 ```
 using WorldDynamics
@@ -13,7 +20,7 @@ system = world3_historicalrun()
 sol = WorldDynamics.solve(system, (1900, 2100))
 ```
 
-We then have to define the variables that we want to plot. For example, Figure 7-2 of the above book shows the plot of eleven variables in the population sector of the model. In order to easily access to these variables, we first create shortcuts to the subsectors in which they are introduced.
+We then have to define the variables that we want to plot. For example, Figure 7-2 of the above book shows the plot of eleven variables in the population system of the model. In order to easily access to these variables, we first create shortcuts to the subsystems in which they are introduced.
 
 ```
 @named pop = WorldDynamics.World3.Pop4.population()
@@ -38,6 +45,7 @@ fig_7_2_variables = [
 ]
 @variables t
 ```
+
 For each variable of the model, the above vector includes a quadruple, containing the Julia variable, its range, and its symbolic name to be shonw in the plot (the range and the symbolic name are optional). The time variable `t` has also to be declared.
 
 Finally, we can plot the evolution of the model variables according to the previously computed solution.
@@ -45,7 +53,6 @@ Finally, we can plot the evolution of the model variables according to the previ
 ```
 plotvariables(sol, (t, 1900, 1970), fig_7_2_variables, name="Fig. 7-2", showlegend=true, colored=true)
 ```
-
 ## Replicating the reference behaviour
 
 To replicate the figures in Section 7.3 of the above book, we can operate in a similar way by declaring the varibales to be plot and by changing the time range. For example the following code reproduce the plot of Figure 7-7.
