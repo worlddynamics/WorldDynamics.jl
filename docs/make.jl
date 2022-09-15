@@ -1,7 +1,4 @@
-using Documenter
-
-push!(LOAD_PATH, "../src/")
-using WorldDynamics
+using Documenter, WorldDynamics
 
 makedocs(sitename="WorldDynamics.jl",
     modules=[WorldDynamics],
