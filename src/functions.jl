@@ -3,7 +3,7 @@ using Interpolations
 """
    `interpolate(x, y, xs)`
 
-Return the value of a function with input `x`, by linearly interpolating the function itself through the table `y` and the range `xs`. If `x` is out of the range, the value at the corresponding extremity is returned.
+Return the value of a function with input `x`, by linearly interpolating the function itself through the table `y` and the range `xs`. If `x` is out of the range, the value at the corresponding extremity is returned. This function correspond to the `TABHL` function in the `DYNAMO` language. This latter function receives a table (that is, `y`), a value (that is, `x`), a left and a right extreme of an interval (that is, `xs`), and an increment value.  
 """
 function interpolate(x, y, xs)
     expanded_xs = LinRange(xs[1], xs[2], length(y))
@@ -20,7 +20,7 @@ end
 """
    `clip(f1, f2, va, th)`
 
-Return `f1` if the value `v` is greater than the threshold `th`, `f2` otherwise.
+Return `f1` if the value `v` is greater than the threshold `th`, `f2` otherwise. This function correspond to the `CLIP` (also called `FIFGE`) function in the `DYNAMO` language. 
 """
 function clip(f1, f2, va, th)
     if (va >= th)
@@ -33,7 +33,7 @@ end
 """
    `min(v1, v2)`
 
-Return the minimum between `v1` and `v2`.
+Return the minimum between `v1` and `v2`. This function correspond to the `MIN` function in the `DYNAMO` language.
 """
 function min(v1, v2)
     if (v1 < v2)
@@ -46,7 +46,7 @@ end
 """
    `max(v1, v2)`
 
-Return the maximum between `v1` and `v2`.
+Return the maximum between `v1` and `v2`. This function correspond to the `MAX` function in the `DYNAMO` language.
 """
 function max(v1, v2)
     if (v1 > v2)
@@ -59,7 +59,7 @@ end
 """
    `step(t, hght, sttm)`
 
-Return `0` if the value `t` is smaller than the threshold `sttm`, `hght` otherwise.
+Return `0` if the value `t` is smaller than the threshold `sttm`, `hght` otherwise. This function correspond to the `STEP` function in the `DYNAMO` language.
 """
 function step(t, hght, sttm)
     if (t < sttm)
@@ -72,7 +72,7 @@ end
 """
    `switch(v1, v2, z)`
 
-Return `v1` if the value `z` is approximately `0` with tolerance `1e-16`, `v2` otherwise.
+Return `v1` if the value `z` is approximately `0` with tolerance `1e-16`, `v2` otherwise. This function correspond to the `SWITCH` (also called `FIFZE`) function in the `DYNAMO` language. 
 """
 function switch(v1, v2, z)
     # TODO: this atol value is arbitrary, we should compute a proper value
