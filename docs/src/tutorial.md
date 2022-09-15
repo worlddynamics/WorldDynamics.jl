@@ -1,5 +1,7 @@
 # A WorldDynamics tutorial
 
+`WorldDynamics` allows the user to *play* with the World3 model introduced in the book *Dynamics of Growth in a Finite World* (1974). Informally speaking, this model is formed by five sectors, each containg one or more subsectors. The following picture shows the structure of the model and the connections between the subsectors which share a common variable.
+
 ## Replicating historical runs
 
 We first have to solve the ODE system, which is constructed in the `world3_historicalrun` function, included in the `world3_historicalrun.jl` code file. This ODE system is the one described in the book *Dynamics of Growth in a Finite World* (1974), and used in Chapter 7 of the book itself.
@@ -11,12 +13,17 @@ system = world3_historicalrun()
 sol = WorldDynamics.solve(system, (1900, 2100))
 ```
 
-We then have to define the variables that we want to plot. For example, Figure 7-2 of the above book shows the plot of eleven variables in the population sector of the model. These variables are defined as follows.
+We then have to define the variables that we want to plot. For example, Figure 7-2 of the above book shows the plot of eleven variables in the population sector of the model. In order to easily access to these variables, we first create shortcuts to the subsectors in which they are introduced.
 
 ```
 @named pop = WorldDynamics.World3.Pop4.population()
 @named br = WorldDynamics.World3.Pop4.birth_rate()
 @named dr = WorldDynamics.World3.Pop4.death_rate()
+```
+
+The eleven variables are then defined as follows.
+
+```
 fig_7_2_variables = [
     (pop.pop, 0, 4e9, "pop"),
     (br.cbr, 0, 50, "cbr"),
@@ -31,7 +38,9 @@ fig_7_2_variables = [
 ]
 @variables t
 ```
-For each variable of the model, the above vector includes a quadruple, containing the Julia variable, its range, and its symbolic name to be shonw in the plot (the range and the symbolic name are optional). The time variable `t` has also to be declared. Finally, we can plot the evolution of the model variables according to the previously computed solution.
+For each variable of the model, the above vector includes a quadruple, containing the Julia variable, its range, and its symbolic name to be shonw in the plot (the range and the symbolic name are optional). The time variable `t` has also to be declared.
+
+Finally, we can plot the evolution of the model variables according to the previously computed solution.
 
 ```
 plotvariables(sol, (t, 1900, 1970), fig_7_2_variables, name="Fig. 7-2", showlegend=true, colored=true)
