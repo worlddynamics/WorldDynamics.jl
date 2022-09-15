@@ -2,7 +2,7 @@
 
 `WorldDynamics` allows the user to *play* with the World3 model introduced in the book *Dynamics of Growth in a Finite World* (1974). Informally speaking, this model is formed by five systems, each containg one or more subsystems. The following picture shows the structure of the model and the connections between the subsystems which share a common variable.
 
-![The World3 model](../img/world3.png)
+![The World3 model](img/world3.png)
 
 As it can be seen, the five systems are `Pop4` (which is the population system with four age levels), `Agriculture`, `Capital`, `Non-renewable` (resources), and `Pollution`. The `Pop4` system is formed by the three subsystems `pop` (population), `br` (birth rate), and `dr` (death rate). For instance, the subsystem `br` uses the variable `pop` which originates from the subsystem `pop`, while the subsystem `pop` uses the variable `le` which originates from the subsystem `dr`. Of course, there are variables which connect subsystem of different systems. For example, the subsystem `pp` of the system `Pollution` uses the variable `aiph` which originates from the subsystem `ai` of the system `Agriculture` (for an entire list of variables and of subsystems using them see the corresponding section of the documentation).
 
