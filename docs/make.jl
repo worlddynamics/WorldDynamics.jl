@@ -9,3 +9,7 @@ makedocs(sitename="WorldDynamics.jl",
         "Source code documentation" => "source.md"
     ]
 )
+
+deploydocs(
+    repo = "github.com/natema/WorldDynamics.jl.git",
+)
