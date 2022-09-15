@@ -1,6 +1,10 @@
 # Julia
 Manifest.toml
 
+# Docs
+docs/build/
+docs/site/
+
 # Latex
 *.fdb_latexmk
 *.fls

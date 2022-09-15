@@ -1,3 +1,3 @@
-inits = Dict{Symbol,Number}()
-
-inits[:ci] = 0.4e9
+inits = Dict{Symbol, Float64}(
+    :ci => 0.4e9,
+)

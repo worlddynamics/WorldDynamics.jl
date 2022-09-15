@@ -1,4 +1,4 @@
-inits = Dict(
+inits = Dict{Symbol, Float64}(
     :p1 => 5.3e7,
     :p2 => 2.1e8,
     :p3 => 2.2e8,

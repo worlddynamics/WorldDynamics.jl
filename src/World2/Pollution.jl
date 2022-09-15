@@ -1,30 +1,33 @@
 module Pollution
 
+
 using ModelingToolkit
 
 include("../functions.jl")
-
 include("pollution/tables.jl")
 include("pollution/parameters.jl")
 include("pollution/initialisations.jl")
+
 
 getinitialisations() = copy(inits)
 getparameters() = copy(params)
 gettables() = copy(tables)
 getranges() = copy(ranges)
 
-@register interpolate(x, y::NTuple, xs::Tuple)
+
+@register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
 @register clip(f1, f2, va, th)
 
 @variables t
 D = Differential(t)
+
 
 function pollution(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters pols = params[:pols]
 
     @variables polr(t)
     @variables pol(t) = inits[:pol]
-    #
+
     @variables polg(t)
     @variables pola(t)
 
@@ -39,13 +42,13 @@ end
 function pollution_absorption(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @variables pola(t)
     @variables polat(t)
-    #
+
     @variables pol(t)
     @variables polr(t)
 
     eqs = [
-        pola ~ pol / polat,
-        polat ~ interpolate(polr, tables[:polat], ranges[:polat]),
+        pola ~ pol / polat
+        polat ~ interpolate(polr, tables[:polat], ranges[:polat])
     ]
 
     ODESystem(eqs; name)
@@ -58,16 +61,17 @@ function pollution_generation(; name, params=params, inits=inits, tables=tables,
 
     @variables polg(t)
     @variables polcm(t)
-    #
+
     @variables p(t)
     @variables cir(t)
 
     eqs = [
-        polg ~ p * clip(poln, poln1, swt6, t) * polcm,
-        polcm ~ interpolate(cir, tables[:polcm], ranges[:polcm]),
+        polg ~ p * clip(poln, poln1, swt6, t) * polcm
+        polcm ~ interpolate(cir, tables[:polcm], ranges[:polcm])
     ]
 
     ODESystem(eqs; name)
 end
+
 
 end

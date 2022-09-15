@@ -13,7 +13,7 @@ include("population/pop15/tables.jl")
 include("population/pop15/initialisations.jl")
 
 
-@register interpolate(x, y::NTuple, xs::Tuple)
+@register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
 @register clip(f1, f2, va, th)
 
 @variables t
@@ -160,7 +160,7 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
         pw ~ (p11 + p12 + p13 + p14) / pop
         pe ~ p15 / pop
         extra ~ p5 * 0.06 + p6 * 0.25 + p7 * 0.28 + p8 * 0.21 + p9 * 0.13 + p10 * 0.07
-        br ~ clip(dr, (tf / 10) * extra, t, pet)
+        br ~ clip(dr, (tf / 10.0) * extra, t, pet)
     ]
 
     ODESystem(eqs; name)

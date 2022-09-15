@@ -1,4 +1,4 @@
-tables = Dict{Symbol, Tuple{Vararg{Number}}}(
+tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
     :ifpc1 => (230.0, 480.0, 690.0, 850.0, 970.0, 1070.0, 1150.0, 1210.0, 1250.0),
     :ifpc2 => (230.0, 480.0, 690.0, 850.0, 970.0, 1070.0, 1150.0, 1210.0, 1250.0),
     :fioaa1 => (0.4, 0.2, 0.1, 0.025, 0.0, 0.0),
@@ -17,7 +17,7 @@ tables = Dict{Symbol, Tuple{Vararg{Number}}}(
     :falm => (0.0, 0.04, 0.07, 0.09, 0.1),
 )
 
-ranges = Dict{Symbol, Tuple{Number, Number}}(
+ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :ifpc1 => (0, 1600),
     :ifpc2 => (0, 1600),
     :fioaa1 => (0.0, 2.5),

@@ -1,4 +1,3 @@
-inits = Dict{Symbol,Number}()
-
-inits[:t0] = 1900
-inits[:p] = 1.65e9
+inits = Dict{Symbol, Float64}(
+    :p => 1.65e9,
+)

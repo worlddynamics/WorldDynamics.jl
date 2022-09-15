@@ -2,16 +2,16 @@ using WorldDynamics
 using ModelingToolkit
 
 function agriculture_historicalrun(; kwargs...)
-    @named pop = WorldDynamics.World3.Agriculture.population(; kwargs...)
-    @named io = WorldDynamics.World3.Agriculture.industrial_output(; kwargs...)
-    @named pp = WorldDynamics.World3.Agriculture.persistent_pollution(; kwargs...)
-    @named ld = WorldDynamics.World3.Agriculture.land_development(; kwargs...)
-    @named ai = WorldDynamics.World3.Agriculture.agricultural_inputs(; kwargs...)
-    @named iad = WorldDynamics.World3.Agriculture.investment_allocation_decision(; kwargs...)
-    @named leuiu = WorldDynamics.World3.Agriculture.land_erosion_urban_industrial_use(; kwargs...)
-    @named dlm = WorldDynamics.World3.Agriculture.discontinung_land_maintenance(; kwargs...)
-    @named lfr = WorldDynamics.World3.Agriculture.land_fertility_regeneration(; kwargs...)
-    @named lfd = WorldDynamics.World3.Agriculture.land_fertility_degradation(; kwargs...)
+    @named pop = World3.Agriculture.population(; kwargs...)
+    @named io = World3.Agriculture.industrial_output(; kwargs...)
+    @named pp = World3.Agriculture.persistent_pollution(; kwargs...)
+    @named ld = World3.Agriculture.land_development(; kwargs...)
+    @named ai = World3.Agriculture.agricultural_inputs(; kwargs...)
+    @named iad = World3.Agriculture.investment_allocation_decision(; kwargs...)
+    @named leuiu = World3.Agriculture.land_erosion_urban_industrial_use(; kwargs...)
+    @named dlm = World3.Agriculture.discontinung_land_maintenance(; kwargs...)
+    @named lfr = World3.Agriculture.land_fertility_regeneration(; kwargs...)
+    @named lfd = World3.Agriculture.land_fertility_degradation(; kwargs...)
 
     systems = [pop, io, pp, ld, ai, iad, leuiu, dlm, lfr, lfd]
 

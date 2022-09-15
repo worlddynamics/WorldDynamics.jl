@@ -15,9 +15,8 @@ gettables() = copy(tables)
 getranges() = copy(ranges)
 
 
-@register interpolate(x, y::NTuple, xs::Tuple)
+@register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
 @register clip(f1, f2, va, th)
-@register max(v1, v2)
 
 @variables t
 D = Differential(t)
@@ -166,7 +165,7 @@ function land_erosion_urban_industrial_use(; name, params=params, inits=inits, t
         ler ~ al / all
         uilpc ~ interpolate(iopc, tables[:uilpc], ranges[:uilpc])
         uilr ~ uilpc * pop
-        lrui ~ max(0, (uilr - uil) / uildt)
+        lrui ~ max(0.0, (uilr - uil) / uildt)
         D(uil) ~ lrui
     ]
 
