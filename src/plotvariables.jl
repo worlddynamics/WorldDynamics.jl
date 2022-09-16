@@ -19,6 +19,11 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{3, Any}}; kw
     plotvariables(solution, xrange, map(t -> tuple(t..., ""), variables); kwargs...)
 end
 
+"""
+   `plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; name="", showaxis=false, showlegend=true, linetype="lines", colored=false)`
+
+Plot the values of the variables in the vector `variables` obtained by the ODE system `solution` (normally, obtained by using the `solve` function in `solvesystems.jl`) in the specified `xrange` interval. For each variable, the vector `variables` includes a quadruple, containing the Julia variable, its range, and its symbolic name to be shown in the plot.
+"""
 function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; name="", showaxis=false, showlegend=true, linetype="lines", colored=false, save=false)
     numvars = length(variables)
 
