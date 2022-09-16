@@ -19,7 +19,7 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{3, Any}}; kw
     plotvariables(solution, xrange, map(t -> tuple(t..., ""), variables); kwargs...)
 end
 
-function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; name="", showaxis=false, showlegend=true, linetype="lines", colored=false)
+function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; name="", showaxis=false, showlegend=true, linetype="lines", colored=false, save=false)
     numvars = length(variables)
 
     @assert 1 ≤ numvars
@@ -89,5 +89,6 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; na
         )
     end
 
-    savefig(plot(traces, Layout(layout)), "docs/src/assets/plots/" * name * ".svg")
+    plot(traces, Layout(layout))
+    save && savefig(plot(traces, Layout(layout)), "docs/src/assets/plots/" * name * ".svg")
 end
