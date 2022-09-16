@@ -1,5 +1,8 @@
 # WorldDynamics.jl
 
+[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://natema.github.io/WorldDynamics.jl/stable)
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://natema.github.io/WorldDynamics.jl/dev)
+
 An open-source framework written in Julia for world dynamics modeling and simulation.
 
 ## The World Dynamics Project
