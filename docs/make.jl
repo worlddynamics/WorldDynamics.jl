@@ -1,7 +1,4 @@
-using Documenter
-
-push!(LOAD_PATH, "../src/")
-using WorldDynamics
+using Documenter, WorldDynamics
 
 makedocs(sitename="WorldDynamics.jl",
     modules=[WorldDynamics],
@@ -11,4 +8,8 @@ makedocs(sitename="WorldDynamics.jl",
         "World3 equations and constants" => "world3.md",
         "Source code documentation" => "source.md"
     ]
+)
+
+deploydocs(
+    repo = "github.com/natema/WorldDynamics.jl.git",
 )
