@@ -89,6 +89,8 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; na
         )
     end
 
-    plot(traces, Layout(layout))
-    save && savefig(plot(traces, Layout(layout)), "docs/src/assets/plots/" * name * ".svg")
+    p = plot(traces, Layout(layout))
+    save && savefig(p, "./" * name * ".svg")
+
+    return p
 end
