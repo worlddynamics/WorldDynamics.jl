@@ -11,3 +11,7 @@ docs/site/
 *.log
 *.aux
 .vscode/settings.json
+
+# Mac
+.DS_Store
+docs/.DS_Store
