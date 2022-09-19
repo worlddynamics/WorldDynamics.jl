@@ -2,6 +2,8 @@
 
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://natema.github.io/WorldDynamics.jl/stable)
 [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://natema.github.io/WorldDynamics.jl/dev)
+[![DOI](https://zenodo.org/badge/425565525.svg)](https://zenodo.org/badge/latestdoi/425565525)
+
 
 An open-source framework written in Julia for world dynamics modeling and simulation.
 
