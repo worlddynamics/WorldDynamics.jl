@@ -28,4 +28,10 @@ The World Dynamics project aims to provide a modern framework to investigate [mo
 }
 ```
 
-## More info coming soon!!!
+### Acknowledgments 
+
+We thank for their support: 
+
+[<img src="docs/src/assets/logo-i3s.png" width="200" />](https://www.i3s.unice.fr/fr)
+[<img src="docs/src/assets/logo-ds4h.png" width="120" />](https://ds4h.univ-cotedazur.eu/about-us/rise)
+[<img src="docs/src/assets/logo-idex-ucajedi.png" width="200" />](https://univ-cotedazur.fr/universite/ucajedi-lidex-duniversite-cote-dazur)
