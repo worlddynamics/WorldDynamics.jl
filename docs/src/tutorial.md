@@ -14,7 +14,7 @@ Let us now see how we can replicate the runs described in Chapter 7 of the above
 We first have to solve the World3 ODE system, which is constructed in the `world3_historicalrun` function, included in the `world3_historicalrun.jl` code file.
 
 ```
-using WorldDynamics
+using WorldDynamics, ModelingToolkit
 include("examples/scenarios/world3_historicalrun.jl")
 system = world3_historicalrun()
 sol = WorldDynamics.solve(system, (1900, 2100))
