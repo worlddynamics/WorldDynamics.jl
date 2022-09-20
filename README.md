@@ -14,10 +14,10 @@ The World Dynamics project aims to provide a modern framework to investigate [mo
 ### How to cite this work 
 
 ```
-@software{paulo_bruno_serafim_2022_7093581,
-  author       = {Paulo Bruno Serafim and
-                  Pierluigi Crescenzi and
-                  Emanuele Natale},
+@software{pierluigi_crescenzi_2022_7093581,
+  author       = {Pierluigi Crescenzi and
+                  Emanuele Natale and
+                  Paulo Bruno Serafim},
   title        = {WorldDynamics.jl: v0.1.0},
   month        = sep,
   year         = 2022,
