@@ -29,7 +29,7 @@ fig_2_84_variables = [
     (io.iopc, 0,   1000,   "iopc"),
 ]
 
-plotvariables(sol, (t, 1900, 1970), fig_2_84_variables, name="Fig. 2.84", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_2_84_variables, name="Fig. 2.84c", showlegend=true, showaxis=true, colored=true)
 
 
 fig_2_85_variables = [
@@ -45,14 +45,107 @@ fig_2_85_variables = [
     (dr.ehspc, 0, 250, "ehspc"),
 ]
 
-plotvariables(sol, (t, 1900, 1970), fig_2_85_variables, name="Fig. 2.85", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_2_85_variables, name="Fig. 2.85c", showlegend=true, showaxis=true, colored=true)
+
+
+fig_2_86_variables = [
+    (br.tf,   0, 15,   "tf"),
+    (br.mtf,  0, 15,   "mtf"),
+    (br.dtf,   0, 15,   "dtf"),
+    (br.dcfs,   0, 15,   "dcfs"),
+    (br.frsn, 0.6, 1.4, "frsn"),
+    (br.sfsn, 0.75, 1.25, "sfsn"),
+    (br.cmple, 1, 4, "cmple"),
+]
+
+plotvariables(sol, (t, 1900, 1970), fig_2_86_variables, name="Fig. 2.86c", showlegend=true, showaxis=true, colored=true)
 
 
 parameters_2_87 = WorldDynamics.World3.Pop15.getparameters()
 parameters_2_87[:iphst] = 4000
-parameters_2_87[:lt2] = 0
+parameters_2_87[:lt2] = 1900
 
 system = pop15_historicalrun(params=parameters_2_87)
 sol_2_87 = WorldDynamics.solve(system, (1900, 2100))
 
-plotvariables(sol_2_87, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.87", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol_2_87, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.87c", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_2_88 = WorldDynamics.World3.Pop15.getparameters()
+parameters_2_88[:iphst] = 4000
+parameters_2_88[:lt2] = 1900
+parameters_2_88[:cio] = 1000
+parameters_2_88[:cso] = 1500
+parameters_2_88[:cfood] = 2500
+
+system = pop15_historicalrun(params=parameters_2_88)
+sol_2_88 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_2_88, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.88c", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_2_89 = WorldDynamics.World3.Pop15.getparameters()
+parameters_2_89[:lt2] = 1900
+
+system = pop15_historicalrun(params=parameters_2_89)
+sol_2_89 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_2_89, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.89c", showlegend=true, showaxis=true, colored=true)
+
+
+plotvariables(sol, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.90c", showlegend=true, showaxis=true, colored=true)
+
+
+plotvariables(sol, (t, 1900, 2100), fig_2_85_variables, name="Fig. 2.91c", showlegend=true, showaxis=true, colored=true)
+
+
+plotvariables(sol, (t, 1900, 2100), fig_2_86_variables, name="Fig. 2.93c", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_2_96 = WorldDynamics.World3.Pop15.getparameters()
+parameters_2_96[:fcest] = 75
+
+system = pop15_historicalrun(params=parameters_2_96)
+sol_2_96 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_2_96, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.96c", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_2_97 = WorldDynamics.World3.Pop15.getparameters()
+parameters_2_97[:fcest] = 75
+parameters_2_97[:zpgt] = 75
+
+system = pop15_historicalrun(params=parameters_2_97)
+sol_2_97 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_2_97, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.97c", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_2_98 = WorldDynamics.World3.Pop15.getparameters()
+parameters_2_98[:lt] = 2000
+
+system = pop15_historicalrun(params=parameters_2_98)
+sol_2_98 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_2_98, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.98c", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_2_99 = WorldDynamics.World3.Pop15.getparameters()
+parameters_2_99[:lt] = 2000
+parameters_2_99[:fcest] = 75
+
+system = pop15_historicalrun(params=parameters_2_99)
+sol_2_99 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_2_99, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.99c", showlegend=true, showaxis=true, colored=true)
+
+
+parameters_2_100 = WorldDynamics.World3.Pop15.getparameters()
+parameters_2_100[:lt] = 2000
+parameters_2_100[:fcest] = 75
+parameters_2_100[:zpgt] = 75
+
+system = pop15_historicalrun(params=parameters_2_100)
+sol_2_100 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_2_100, (t, 1900, 2100), fig_2_84_variables, name="Fig. 2.100c", showlegend=true, showaxis=true, colored=true)
