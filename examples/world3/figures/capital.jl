@@ -25,7 +25,7 @@ fig_3_36_variables = [
     (ag.aiph,  0, 50,    "aiph"),
 ]
 
-plotvariables(sol, (t, 1900, 1980), fig_3_36_variables, name="Fig. 3.36", showlegend=true, showaxis=true, colored=true)
+plotvariables(sol, (t, 1900, 1970), fig_3_36_variables, name="Fig. 3.36", showlegend=true, showaxis=true, colored=true)
 
 
 fig_3_37_variables = [
@@ -92,6 +92,21 @@ sol_3_42 = WorldDynamics.solve(system, (1900, 2100))
 plotvariables(sol_3_42, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.42", showlegend=true, showaxis=true, colored=true)
 
 
+fig_3_43_variables = [
+    (pop.pop,  0, 5e9, "pop"),
+    (nr.fcaor,  0, 1, "fcaor"),
+    (ag.fioaa,    0, 0.5, "fioaa"),
+]
+
+cap_tables_3_43 = WorldDynamics.World3.Capital.gettables()
+cap_tables_3_43[:fcaor] = (0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.4, 0.6, 0.8)
+
+system = capital_historicalrun(tables=cap_tables_3_43)
+sol_3_43 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_3_43, (t, 1900, 2000), fig_3_43_variables, name="Fig. 3.43", showlegend=true, showaxis=true, colored=true)
+
+
 cap_tables_3_44 = WorldDynamics.World3.Capital.gettables()
 cap_tables_3_44[:fcaor] = (0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.4, 0.6, 0.8)
 
@@ -100,6 +115,19 @@ sol_3_44 = WorldDynamics.solve(system, (1900, 2100))
 
 plotvariables(sol_3_44, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.44", showlegend=true, showaxis=true, colored=true)
 
+
+fig_3_45_variables = [
+    (pop.pop,  0, 5e9, "pop"),
+    (nr.fcaor,  0, 0.25, "fcaor"),
+    (ag.fioaa,    0, 0.5, "fioaa"),
+]
+
+cap_tables_3_45 = WorldDynamics.World3.Capital.gettables()
+cap_tables_3_45[:fioaa] = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.3, 0.3, 0.3)
+
+system = capital_historicalrun(tables=cap_tables_3_45)
+sol_3_45 = WorldDynamics.solve(system, (1900, 2100))
+plotvariables(sol_3_45, (t, 1900, 2000), fig_3_45_variables, name="Fig. 3.45", showlegend=true, showaxis=true, colored=true)
 
 cap_tables_3_46 = WorldDynamics.World3.Capital.gettables()
 cap_tables_3_46[:fcaor] = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.3, 0.3, 0.3)
@@ -110,6 +138,15 @@ sol_3_46 = WorldDynamics.solve(system, (1900, 2100))
 plotvariables(sol_3_46, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.46", showlegend=true, showaxis=true, colored=true)
 
 
+cap_tables_3_47 = WorldDynamics.World3.Capital.gettables()
+cap_tables_3_47[:pop] = (1.65, 1.73, 1.8, 2.1, 2.3, 2.55, 3, 3.65, 2, 0.5, 0.2)
+
+system = capital_historicalrun(tables=cap_tables_3_47)
+sol_3_47 = WorldDynamics.solve(system, (1900, 2100))
+
+plotvariables(sol_3_47, (t, 1900, 2000), fig_3_45_variables, name="Fig. 3.47", showlegend=true, showaxis=true, colored=true)
+
+
 cap_tables_3_48 = WorldDynamics.World3.Capital.gettables()
 cap_tables_3_48[:pop] = (1.65, 1.73, 1.8, 2.1, 2.3, 2.55, 3, 3.65, 2, 0.5, 0.2)
 
@@ -117,6 +154,3 @@ system = capital_historicalrun(tables=cap_tables_3_48)
 sol_3_48 = WorldDynamics.solve(system, (1900, 2100))
 
 plotvariables(sol_3_48, (t, 1900, 2000), fig_3_37_variables, name="Fig. 3.48", showlegend=true, showaxis=true, colored=true)
-
-
-
