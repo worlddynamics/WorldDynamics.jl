@@ -1,234 +1,382 @@
-using WorldDynamics
+include("../../plotvariables.jl")
+
+
+function _variables_a()
+    @named ld = land_development()
+    @named ai = agricultural_inputs()
+    @named lfd = land_fertility_degradation()
 
-include("../scenarios/agriculture_historicalrun.jl")
+    variables = [
+        (ld.f,      0, 12e12, "f"),
+        (ld.fpc,    0, 1000,  "fpc"),
+        (ai.ly,     0, 8000,  "ly"),
+        (lfd.lfert, 0, 600,   "lfert"),
+        (ai.aiph,   0, 1000,  "aiph"),
+    ]
 
+    return variables
+end
 
-system = agriculture_historicalrun()
-sol = WorldDynamics.solve(system, (1900, 2100))
+function _variables_b()
+    @named ld = land_development()
+    @named leuiu = land_erosion_urban_industrial_use()
 
+    variables = [
+        (ld.al,      0, 4e9,   "al"),
+        (ld.pal,     0, 4e9,   "pal"),
+        (leuiu.ler,  0, 40e6,  "ler"),
+        (ld.ldr,     0, 40e6,  "ldr"),
+        (leuiu.lrui, 0, 40e6,  "lrui"),
+        (ld.dcph,    0, 10000, "dcph"),
+    ]
 
-@named ld = World3.Agriculture.land_development()
-@named ai = World3.Agriculture.agricultural_inputs()
-@named lfd = World3.Agriculture.land_fertility_degradation()
-@named leuiu = World3.Agriculture.land_erosion_urban_industrial_use()
-@named iad = World3.Agriculture.investment_allocation_decision()
-@named dlm = World3.Agriculture.discontinung_land_maintenance()
-@named lfr = World3.Agriculture.land_fertility_regeneration()
+    return variables
+end
 
-@variables t
+function _variables_c()
+    @named ld = land_development()
+    @named iad = investment_allocation_decision()
 
+    variables = [
+        (ld.tai, 0, 2e13, "tai"),
+        (iad.fiald, 0, 0.4, "fiald"),
+        (iad.mpai, 0, 100, "mpai"),
+        (iad.mpld, 0, 100, "mpld"),
+    ]
 
-fig_4_69a_variables = [
-    (ld.f,      0, 12e12, "f"),
-    (ld.fpc,    0, 1000,  "fpc"),
-    (ai.ly,     0, 8000,  "ly"),
-    (lfd.lfert, 0, 600,   "lfert"),
-    (ai.aiph,   0, 1000,  "aiph"),
-]
+    return variables
+end
 
-fig_4_69b_variables = [
-    (ld.al,      0, 4e9,   "al"),
-    (ld.pal,     0, 4e9,   "pal"),
-    (leuiu.ler,  0, 40e6,  "ler"),
-    (ld.ldr,     0, 40e6,  "ldr"),
-    (leuiu.lrui, 0, 40e6,  "lrui"),
-    (ld.dcph,    0, 10000, "dcph"),
-]
+function _variables_d()
+    @named lfd = land_fertility_degradation()
+    @named dlm = discontinung_land_maintenance()
+    @named lfr = land_fertility_regeneration()
 
-fig_4_69c_variables = [
-    (ld.tai, 0, 2e13, "tai"),
-    (iad.fiald, 0, 0.4, "fiald"),
-    (iad.mpai, 0, 100, "mpai"),
-    (iad.mpld, 0, 100, "mpld"),
-]
+    variables = [
+        (dlm.fr, 0, 4, "fr"),
+        (dlm.falm, 0, 0.1, "falm"),
+        (lfd.lfert, 0, 600, "lfert"),
+        (lfd.lfd, 0, 80, "lfd"),
+        (lfr.lfr, 0, 80, "lfr"),
+        (lfr.lfrt, 0, 20, "lfrt"),
+    ]
 
-fig_4_69d_variables = [
-    (dlm.fr, 0, 4, "fr"),
-    (dlm.falm, 0, 0.1, "falm"),
-    (lfd.lfert, 0, 600, "lfert"),
-    (lfd.lfd, 0, 80, "lfd"),
-    (lfr.lfr, 0, 80, "lfr"),
-    (lfr.lfrt, 0, 20, "lfrt"),
-]
+    return variables
+end
 
-plotvariables(sol, (t, 1900, 1970), fig_4_69a_variables, name="Fig. 4.69a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol, (t, 1900, 1970), fig_4_69b_variables, name="Fig. 4.69b", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol, (t, 1900, 1970), fig_4_69c_variables, name="Fig. 4.69c", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol, (t, 1900, 1970), fig_4_69d_variables, name="Fig. 4.69d", showlegend=true, showaxis=true, colored=true)
 
-plotvariables(sol, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.70a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.70b", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol, (t, 1900, 2100), fig_4_69c_variables, name="Fig. 4.70c", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol, (t, 1900, 2100), fig_4_69d_variables, name="Fig. 4.70d", showlegend=true, showaxis=true, colored=true)
+function _historicalrunsolution()
+    isdefined(@__MODULE__, :_solution_historicalrun) && return _solution_historicalrun
+    global _solution_historicalrun = solve(historicalrun(), (1900, 2100))
+    return _solution_historicalrun
+end
 
+fig_69a() = plotvariables(_historicalrunsolution(), (t, 1900, 1970), _variables_a(); title="Fig. 4.69a")
+fig_69b() = plotvariables(_historicalrunsolution(), (t, 1900, 1970), _variables_b(); title="Fig. 4.69b")
+fig_69c() = plotvariables(_historicalrunsolution(), (t, 1900, 1970), _variables_c(); title="Fig. 4.69c")
+fig_69d() = plotvariables(_historicalrunsolution(), (t, 1900, 1970), _variables_d(); title="Fig. 4.69d")
 
-tables_4_72 = World3.Agriculture.gettables()
-tables_4_72[:lymc] = (1.0, 3, 3.8, 6, 7, 8, 8.4, 8.8, 9.2, 9.6, 10, 10.4, 10.8, 11.2, 11.6, 12, 12.4, 12.8, 13.2, 13.6, 14, 14.2, 14.4, 14.6, 14.8, 15)
+fig_70a() = plotvariables(_historicalrunsolution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.70a")
+fig_70b() = plotvariables(_historicalrunsolution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.70b")
+fig_70c() = plotvariables(_historicalrunsolution(), (t, 1900, 2100), _variables_c(); title="Fig. 4.70c")
+fig_70d() = plotvariables(_historicalrunsolution(), (t, 1900, 2100), _variables_d(); title="Fig. 4.70d")
 
-system = agriculture_historicalrun(tables=tables_4_72)
-sol_4_72 = WorldDynamics.solve(system, (1900, 2100))
 
-plotvariables(sol_4_72, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.72a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_72, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.72b", showlegend=true, showaxis=true, colored=true)
+function _fig72solution()
+    isdefined(@__MODULE__, :_solution_4_72) && return _solution_4_72
 
+    tables_4_72 = gettables()
+    tables_4_72[:lymc] = (1.0, 3, 3.8, 6, 7, 8, 8.4, 8.8, 9.2, 9.6, 10, 10.4, 10.8, 11.2, 11.6, 12, 12.4, 12.8, 13.2, 13.6, 14, 14.2, 14.4, 14.6, 14.8, 15)
 
-tables_4_73 = World3.Agriculture.gettables()
-tables_4_73[:lymc] = (1.0, 3.0, 3.8, 4.4, 4.9, 5.4, 5.6, 5.7, 5.8, 5.9, 6.0, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.8, 7.0, 7.1, 7.2, 7.3, 7.4, 7.5)
+    system = historicalrun(tables=tables_4_72)
+    global _solution_4_72 = solve(system, (1900, 2100))
 
-system = agriculture_historicalrun(tables=tables_4_73)
-sol_4_73 = WorldDynamics.solve(system, (1900, 2100))
+    return _solution_4_72
+end
 
-plotvariables(sol_4_73, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.73a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_73, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.73b", showlegend=true, showaxis=true, colored=true)
+fig_72a() = plotvariables(_fig72solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.72a")
+fig_72b() = plotvariables(_fig72solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.72b")
 
 
-parameters_4_74 = World3.Agriculture.getparameters()
-parameters_4_74[:palt] = 4.35e9
+function _fig73solution()
+    isdefined(@__MODULE__, :_solution_4_73) && return _solution_4_73
 
-initialisations_4_74 = World3.Agriculture.getinitialisations()
-initialisations_4_74[:pal] = 3.45e9
+    tables_4_73 = gettables()
+    tables_4_73[:lymc] = (1.0, 3.0, 3.8, 4.4, 4.9, 5.4, 5.6, 5.7, 5.8, 5.9, 6.0, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.8, 7.0, 7.1, 7.2, 7.3, 7.4, 7.5)
 
-system = agriculture_historicalrun(params=parameters_4_74, inits=initialisations_4_74)
-sol_4_74 = WorldDynamics.solve(system, (1900, 2100))
+    system = historicalrun(tables=tables_4_73)
+    global _solution_4_73 = solve(system, (1900, 2100))
 
-plotvariables(sol_4_74, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.74a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_74, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.74b", showlegend=true, showaxis=true, colored=true)
+    return _solution_4_73
+end
 
+fig_73a() = plotvariables(_fig73solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.73a")
+fig_73b() = plotvariables(_fig73solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.73b")
 
-parameters_4_75 = World3.Agriculture.getparameters()
-parameters_4_75[:palt] = 2.4e9
 
-initialisations_4_75 = World3.Agriculture.getinitialisations()
-initialisations_4_75[:pal] = 1.5e9
+function _fig74solution()
+    isdefined(@__MODULE__, :_solution_4_74) && return _solution_4_74
 
-system = agriculture_historicalrun(params=parameters_4_75, inits=initialisations_4_75)
-sol_4_75 = WorldDynamics.solve(system, (1900, 2100))
+    parameters_4_74 = getparameters()
+    parameters_4_74[:palt] = 4.35e9
 
-plotvariables(sol_4_75, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.75a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_75, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.75b", showlegend=true, showaxis=true, colored=true)
+    initialisations_4_74 = getinitialisations()
+    initialisations_4_74[:pal] = 3.45e9
 
+    system = historicalrun(params=parameters_4_74, inits=initialisations_4_74)
+    global _solution_4_74 = solve(system, (1900, 2100))
 
-tables_4_76 = World3.Agriculture.gettables()
-tables_4_76[:dcph] = (3e5, 1e5, 7400, 5200, 3500, 2400, 1500, 750, 300, 150, 75)
+    return _solution_4_74
+end
 
-system = agriculture_historicalrun(params=parameters_4_74, inits=initialisations_4_74, tables=tables_4_76)
-sol_4_76 = WorldDynamics.solve(system, (1900, 2100))
+fig_74a() = plotvariables(_fig74solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.74a")
+fig_74b() = plotvariables(_fig74solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.74b")
 
-plotvariables(sol_4_76, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.76a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_76, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.76b", showlegend=true, showaxis=true, colored=true)
 
+function _fig75solution()
+    isdefined(@__MODULE__, :_solution_4_75) && return _solution_4_75
 
-tables_4_77 = World3.Agriculture.gettables()
-tables_4_77[:lymc] = (1.0, 3.0, 3.8, 6.0, 7.0, 8.0, 8.4, 8.8, 9.2, 9.6, 10.0, 10.4, 10.8, 11.2, 11.6, 12.0, 12.4, 12.8, 13.2, 13.6, 14.0, 14.2, 14.4, 14.6, 14.8, 15.0)
+    parameters_4_75 = getparameters()
+    parameters_4_75[:palt] = 2.4e9
 
-system = agriculture_historicalrun(params=parameters_4_74, inits=initialisations_4_74, tables=tables_4_77)
-sol_4_77 = WorldDynamics.solve(system, (1900, 2100))
+    initialisations_4_75 = getinitialisations()
+    initialisations_4_75[:pal] = 1.5e9
 
-plotvariables(sol_4_77, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.77a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_77, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.77b", showlegend=true, showaxis=true, colored=true)
+    system = historicalrun(params=parameters_4_75, inits=initialisations_4_75)
+    global _solution_4_75 = solve(system, (1900, 2100))
 
+    return _solution_4_75
+end
 
-system = agriculture_historicalrun(params=parameters_4_75, inits=initialisations_4_75, tables=tables_4_73)
-sol_4_78 = WorldDynamics.solve(system, (1900, 2100))
+fig_75a() = plotvariables(_fig75solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.75a")
+fig_75b() = plotvariables(_fig75solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.75b")
 
-plotvariables(sol_4_78, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.78a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_78, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.78b", showlegend=true, showaxis=true, colored=true)
 
+function _fig76solution()
+    isdefined(@__MODULE__, :_solution_4_76) && return _solution_4_76
 
-tables_4_82 = World3.Agriculture.gettables()
-tables_4_82[:dcph] = (1e5, 5200, 2400, 750, 300, 150, 100, 60, 40, 30, 25)
-tables_4_82[:llmy1] = (1.2, 1.0, 0.9, 0.8, 0.7, 0.5, 0.4, 0.3, 0.25, 0.2)
-tables_4_82[:llmy2] = (1.2, 1.0, 0.9, 0.8, 0.7, 0.5, 0.4, 0.3, 0.25, 0.2)
-tables_4_82[:lymap1] = (1.0, 1.0, 1.0, 1.0)
-tables_4_82[:lymap2] = (1.0, 1.0, 1.0, 1.0)
+    parameters_4_76 = getparameters()
+    parameters_4_76[:palt] = 4.35e9
 
-system = agriculture_historicalrun(tables=tables_4_82)
-sol_4_82 = WorldDynamics.solve(system, (1900, 2100))
+    initialisations_4_76 = getinitialisations()
+    initialisations_4_76[:pal] = 3.45e9
 
-plotvariables(sol_4_82, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.82a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_82, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.82b", showlegend=true, showaxis=true, colored=true)
+    tables_4_76 = gettables()
+    tables_4_76[:dcph] = (3e5, 1e5, 7400, 5200, 3500, 2400, 1500, 750, 300, 150, 75)
 
+    system = historicalrun(params=parameters_4_76, inits=initialisations_4_76, tables=tables_4_76)
+    global _solution_4_76 = solve(system, (1900, 2100))
 
-tables_4_83 = World3.Agriculture.gettables()
-tables_4_83[:dcph] = (3e5, 1e5, 7400, 5200, 3500, 2400, 1500, 750, 300, 150, 75)
-tables_4_83[:llmy1] = (1.2, 1.0, 0.5, 0.2, 0.1, 0.05, 0.025, 0.01, 0.005, 0.001)
-tables_4_83[:llmy2] = (1.2, 1.0, 0.5, 0.2, 0.1, 0.05, 0.025, 0.01, 0.005, 0.001)
-tables_4_83[:lymap1] = (1.0, 0.5, 0.1, 0.1)
-tables_4_83[:lymap2] = (1.0, 0.5, 0.1, 0.1)
+    return _solution_4_76
+end
 
-system = agriculture_historicalrun(tables=tables_4_83)
-sol_4_83 = WorldDynamics.solve(system, (1900, 2100))
+fig_76a() = plotvariables(_fig76solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.76a")
+fig_76b() = plotvariables(_fig76solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.76b")
 
-plotvariables(sol_4_83, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.83a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_83, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.83b", showlegend=true, showaxis=true, colored=true)
 
+function _fig77solution()
+    isdefined(@__MODULE__, :_solution_4_77) && return _solution_4_77
 
-tables_4_84 = World3.Agriculture.gettables()
-tables_4_84[:lfdr] = (0.0, 0.0, 0.0, 0.0)
+    parameters_4_77 = getparameters()
+    parameters_4_77[:palt] = 4.35e9
 
-system = agriculture_historicalrun(tables=tables_4_84)
-sol_4_84 = WorldDynamics.solve(system, (1900, 2100))
+    initialisations_4_77 = getinitialisations()
+    initialisations_4_77[:pal] = 3.45e9
 
-plotvariables(sol_4_84, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.84a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_84, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.84b", showlegend=true, showaxis=true, colored=true)
+    tables_4_77 = gettables()
+    tables_4_77[:lymc] = (1.0, 3.0, 3.8, 6.0, 7.0, 8.0, 8.4, 8.8, 9.2, 9.6, 10.0, 10.4, 10.8, 11.2, 11.6, 12.0, 12.4, 12.8, 13.2, 13.6, 14.0, 14.2, 14.4, 14.6, 14.8, 15.0)
 
-tables_4_85 = World3.Agriculture.gettables()
-tables_4_85[:lfdr] = (0.0, 0.0, 0.0, 0.0)
-tables_4_85[:lymap2] = (1.0, 1.0, 1.0, 1.0)
+    system = historicalrun(params=parameters_4_77, inits=initialisations_4_77, tables=tables_4_77)
+    global _solution_4_77 = solve(system, (1900, 2100))
 
-system = agriculture_historicalrun(tables=tables_4_85)
-sol_4_85 = WorldDynamics.solve(system, (1900, 2100))
+    return _solution_4_77
+end
 
-plotvariables(sol_4_85, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.85a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_85, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.85b", showlegend=true, showaxis=true, colored=true)
+fig_77a() = plotvariables(_fig77solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.77a")
+fig_77b() = plotvariables(_fig77solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.77b")
 
 
-tables_4_86 = World3.Agriculture.gettables()
-tables_4_86[:lfdr] = (0.0, 0.0, 0.0, 0.0)
-tables_4_86[:lymap2] = (1.0, 1.0, 1.0, 1.0)
-tables_4_86[:llmy2] = (1.2, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0)
+function _fig78solution()
+    isdefined(@__MODULE__, :_solution_4_78) && return _solution_4_78
 
-system = agriculture_historicalrun(tables=tables_4_86)
-sol_4_86 = WorldDynamics.solve(system, (1900, 2100))
+    parameters_4_78 = getparameters()
+    parameters_4_78[:palt] = 2.4e9
 
-plotvariables(sol_4_86, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.86a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_86, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.86b", showlegend=true, showaxis=true, colored=true)
+    initialisations_4_78 = getinitialisations()
+    initialisations_4_78[:pal] = 1.5e9
 
+    tables_4_78 = gettables()
+    tables_4_78[:lymc] = (1.0, 3.0, 3.8, 4.4, 4.9, 5.4, 5.6, 5.7, 5.8, 5.9, 6.0, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.8, 7.0, 7.1, 7.2, 7.3, 7.4, 7.5)
 
-new_equations = equations(system)
-new_equations[74] = leuiu.uilr ~ leuiu.pop * leuiu.uilpc * 0.25
-@named new_system = ODESystem(new_equations)
-sol_4_87 = WorldDynamics.solve(new_system, (1900, 2100))
+    system = historicalrun(params=parameters_4_78, inits=initialisations_4_78, tables=tables_4_78)
+    global _solution_4_78 = solve(system, (1900, 2100))
 
-plotvariables(sol_4_87, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.87a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_87, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.87b", showlegend=true, showaxis=true, colored=true)
+    return _solution_4_78
+end
 
+fig_78a() = plotvariables(_fig78solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.78a")
+fig_78b() = plotvariables(_fig78solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.78b")
 
-parameters_4_88 = World3.Agriculture.getparameters()
-parameters_4_88[:eyear] = 2050
 
-system = agriculture_historicalrun(params=parameters_4_88)
-sol_4_88 = WorldDynamics.solve(system, (1900, 2100))
+function _fig82solution()
+    isdefined(@__MODULE__, :_solution_4_82) && return _solution_4_82
 
-plotvariables(sol_4_88, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.88a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_88, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.88b", showlegend=true, showaxis=true, colored=true)
+    tables_4_82 = gettables()
+    tables_4_82[:dcph] = (1e5, 5200, 2400, 750, 300, 150, 100, 60, 40, 30, 25)
+    tables_4_82[:llmy1] = (1.2, 1.0, 0.9, 0.8, 0.7, 0.5, 0.4, 0.3, 0.25, 0.2)
+    tables_4_82[:llmy2] = (1.2, 1.0, 0.9, 0.8, 0.7, 0.5, 0.4, 0.3, 0.25, 0.2)
+    tables_4_82[:lymap1] = (1.0, 1.0, 1.0, 1.0)
+    tables_4_82[:lymap2] = (1.0, 1.0, 1.0, 1.0)
 
+    system = historicalrun(tables=tables_4_82)
+    global _solution_4_82 = solve(system, (1900, 2100))
 
-parameters_4_89 = World3.Agriculture.getparameters()
-parameters_4_89[:eyear] = 2025
+    return _solution_4_82
+end
 
-system = agriculture_historicalrun(params=parameters_4_89)
-sol_4_89 = WorldDynamics.solve(system, (1900, 2100))
+fig_82a() = plotvariables(_fig82solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.82a")
+fig_82b() = plotvariables(_fig82solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.82b")
 
-plotvariables(sol_4_89, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.89a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_89, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.89b", showlegend=true, showaxis=true, colored=true)
 
+function _fig83solution()
+    isdefined(@__MODULE__, :_solution_4_83) && return _solution_4_83
 
-parameters_4_90 = World3.Agriculture.getparameters()
-parameters_4_90[:eyear] = 2000
+    tables_4_83 = gettables()
+    tables_4_83[:dcph] = (3e5, 1e5, 7400, 5200, 3500, 2400, 1500, 750, 300, 150, 75)
+    tables_4_83[:llmy1] = (1.2, 1.0, 0.5, 0.2, 0.1, 0.05, 0.025, 0.01, 0.005, 0.001)
+    tables_4_83[:llmy2] = (1.2, 1.0, 0.5, 0.2, 0.1, 0.05, 0.025, 0.01, 0.005, 0.001)
+    tables_4_83[:lymap1] = (1.0, 0.5, 0.1, 0.1)
+    tables_4_83[:lymap2] = (1.0, 0.5, 0.1, 0.1)
 
-system = agriculture_historicalrun(params=parameters_4_90)
-sol_4_90 = WorldDynamics.solve(system, (1900, 2100))
+    system = historicalrun(tables=tables_4_83)
+    global _solution_4_83 = solve(system, (1900, 2100))
 
-plotvariables(sol_4_90, (t, 1900, 2100), fig_4_69a_variables, name="Fig. 4.90a", showlegend=true, showaxis=true, colored=true)
-plotvariables(sol_4_90, (t, 1900, 2100), fig_4_69b_variables, name="Fig. 4.90b", showlegend=true, showaxis=true, colored=true)
+    return _solution_4_83
+end
+
+fig_83a() = plotvariables(_fig83solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.83a")
+fig_83b() = plotvariables(_fig83solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.83b")
+
+
+function _fig84solution()
+    isdefined(@__MODULE__, :_solution_4_84) && return _solution_4_84
+
+    tables_4_84 = gettables()
+    tables_4_84[:lfdr] = (0.0, 0.0, 0.0, 0.0)
+
+    system = historicalrun(tables=tables_4_84)
+    global _solution_4_84 = solve(system, (1900, 2100))
+
+    return _solution_4_84
+end
+
+fig_84a() = plotvariables(_fig84solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.84a")
+fig_84b() = plotvariables(_fig84solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.84b")
+
+
+function _fig85solution()
+    isdefined(@__MODULE__, :_solution_4_85) && return _solution_4_85
+
+    tables_4_85 = gettables()
+    tables_4_85[:lfdr] = (0.0, 0.0, 0.0, 0.0)
+    tables_4_85[:lymap2] = (1.0, 1.0, 1.0, 1.0)
+
+    system = historicalrun(tables=tables_4_85)
+    global _solution_4_85 = solve(system, (1900, 2100))
+
+    return _solution_4_85
+end
+
+fig_85a() = plotvariables(_fig85solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.85a")
+fig_85b() = plotvariables(_fig85solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.85b")
+
+
+function _fig86solution()
+    isdefined(@__MODULE__, :_solution_4_86) && return _solution_4_86
+
+    tables_4_86 = gettables()
+    tables_4_86[:lfdr] = (0.0, 0.0, 0.0, 0.0)
+    tables_4_86[:lymap2] = (1.0, 1.0, 1.0, 1.0)
+    tables_4_86[:llmy2] = (1.2, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0)
+
+    system = historicalrun(tables=tables_4_86)
+    global _solution_4_86 = solve(system, (1900, 2100))
+
+    return _solution_4_86
+end
+
+fig_86a() = plotvariables(_fig86solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.86a")
+fig_86b() = plotvariables(_fig86solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.86b")
+
+
+function _fig87solution()
+    isdefined(@__MODULE__, :_solution_4_87) && return _solution_4_87
+
+    tables_4_87 = gettables()
+    tables_4_87[:lfdr] = (0.0, 0.0, 0.0, 0.0)
+    tables_4_87[:lymap2] = (1.0, 1.0, 1.0, 1.0)
+    tables_4_87[:llmy2] = (1.2, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0)
+
+    system = historicalrun(tables=tables_4_87)
+
+    @named leuiu = land_erosion_urban_industrial_use()
+
+    new_equations = equations(system)
+    new_equations[74] = leuiu.uilr ~ leuiu.pop * leuiu.uilpc * 0.25
+
+    @named new_system = ODESystem(new_equations)
+    global _solution_4_87 = solve(new_system, (1900, 2100))
+
+    return _solution_4_87
+end
+
+fig_87a() = plotvariables(_fig87solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.87a")
+fig_87b() = plotvariables(_fig87solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.87b")
+
+
+function _fig88solution()
+    isdefined(@__MODULE__, :_solution_4_88) && return _solution_4_88
+
+    parameters_4_88 = getparameters()
+    parameters_4_88[:eyear] = 2050
+
+    system = historicalrun(params=parameters_4_88)
+    global _solution_4_88 = solve(system, (1900, 2100))
+
+    return _solution_4_88
+end
+
+fig_88a() = plotvariables(_fig88solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.88a")
+fig_88b() = plotvariables(_fig88solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.88b")
+
+
+function _fig89solution()
+    isdefined(@__MODULE__, :_solution_4_89) && return _solution_4_89
+
+    parameters_4_89 = getparameters()
+    parameters_4_89[:eyear] = 2025
+
+    system = historicalrun(params=parameters_4_89)
+    global _solution_4_89 = solve(system, (1900, 2100))
+
+    return _solution_4_89
+end
+
+fig_89a() = plotvariables(_fig89solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.89a")
+fig_89b() = plotvariables(_fig89solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.89b")
+
+
+function _fig90solution()
+    isdefined(@__MODULE__, :_solution_4_90) && return _solution_4_90
+
+    parameters_4_90 = getparameters()
+    parameters_4_90[:eyear] = 2000
+
+    system = historicalrun(params=parameters_4_90)
+    global _solution_4_90 = solve(system, (1900, 2100))
+
+    return _solution_4_90
+end
+
+fig_90a() = plotvariables(_fig90solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.90a")
+fig_90b() = plotvariables(_fig90solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.90b")
