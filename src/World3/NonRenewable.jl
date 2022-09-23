@@ -96,4 +96,9 @@ function non_renewable(; name, params=params, inits=inits, tables=tables, ranges
 end
 
 
+include("../solvesystems.jl")
+include("nonrenewable/scenarios.jl")
+include("nonrenewable/plots.jl")
+
+
 end # module

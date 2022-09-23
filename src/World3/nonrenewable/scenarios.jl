@@ -1,11 +1,8 @@
-using WorldDynamics
-using ModelingToolkit
-
-function nonrenewable_historicalrun(; kwargs...)
-    @named pop = WorldDynamics.World3.NonRenewable.population(; kwargs...)
-    @named io = WorldDynamics.World3.NonRenewable.industrial_output(; kwargs...)
-    @named ic = WorldDynamics.World3.NonRenewable.industrial_capital(; kwargs...)
-    @named nr = WorldDynamics.World3.NonRenewable.non_renewable(; kwargs...)
+function historicalrun(; kwargs...)
+    @named pop = population(; kwargs...)
+    @named io = industrial_output(; kwargs...)
+    @named ic = industrial_capital(; kwargs...)
+    @named nr = non_renewable(; kwargs...)
 
     systems = [pop, io, ic, nr]
 
@@ -18,5 +15,5 @@ function nonrenewable_historicalrun(; kwargs...)
         ic.io ~ io.io
     ]
 
-    return WorldDynamics.compose(systems, connection_eqs)
+    return compose(systems, connection_eqs)
 end
