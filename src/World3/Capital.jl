@@ -144,4 +144,9 @@ function job_subsector(; name, params=params, inits=inits, tables=tables, ranges
 end
 
 
+include("../solvesystems.jl")
+include("capital/scenarios.jl")
+include("capital/plots.jl")
+
+
 end # module

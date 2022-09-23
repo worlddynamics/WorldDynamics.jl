@@ -1,13 +1,10 @@
-using WorldDynamics
-using ModelingToolkit
-
-function capital_historicalrun(; kwargs...)
-    @named pop = WorldDynamics.World3.Capital.population(; kwargs...)
-    @named nr = WorldDynamics.World3.Capital.non_renewable(; kwargs...)
-    @named ag = WorldDynamics.World3.Capital.agriculture(; kwargs...)
-    @named is = WorldDynamics.World3.Capital.industrial_subsector(; kwargs...)
-    @named ss = WorldDynamics.World3.Capital.service_subsector(; kwargs...)
-    @named js = WorldDynamics.World3.Capital.job_subsector(; kwargs...)
+function historicalrun(; kwargs...)
+    @named pop = population(; kwargs...)
+    @named nr = non_renewable(; kwargs...)
+    @named ag = agriculture(; kwargs...)
+    @named is = industrial_subsector(; kwargs...)
+    @named ss = service_subsector(; kwargs...)
+    @named js = job_subsector(; kwargs...)
 
     systems = [pop, nr, ag, is, ss, js]
 
@@ -31,5 +28,5 @@ function capital_historicalrun(; kwargs...)
         js.p3 ~ pop.p3
     ]
 
-    return WorldDynamics.compose(systems, connection_eqs)
+    return compose(systems, connection_eqs)
 end
