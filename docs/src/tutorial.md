@@ -8,63 +8,76 @@ As it can be seen, the five systems are `Pop4` (which is the population system w
 
 In `WorldDynamics` each system is a Julia module and each subsystem correspond to a Julia function of this module (or of a module which is included in this module), which defines the ODE system corresponding to the subsystem itself. All the ODE systems corresponding to the subsystems of the World3 model have to be composed (see the function `compose` in the `solvesystems.jl` code file). This will produce the entire ODE system of the World3 model, which can then be solved by using the function `solve` in the `solvesystems.jl` code file.
 
-Let us now see how we can replicate the runs described in Chapter 7 of the above mentioned book. 
-## Replicating historical runs
+Let us now see how we can replicate the runs described in the chapters of the above mentioned book.
 
-We first have to solve the World3 ODE system, which is constructed in the `world3_historicalrun` function, included in the `world3_historicalrun.jl` code file.
+## Replicating book runs
+
+For each run described in the seventh chapter of the book, `WorldDynamics` defines a function which allows the user to reproduce the corresponding figure. For example, in order to replicate Run 7-1, which shows the behavior of important variables in the population system when the world model is run from 1900 to 1970, and which is described in Section 7.2 of the book and depicted in Figure 7-2, we can simply execute the following code.
 
 ```
 using WorldDynamics, ModelingToolkit
-include("examples/scenarios/world3_historicalrun.jl")
-system = world3_historicalrun()
-sol = WorldDynamics.solve(system, (1900, 2100))
+World3.fig_2()
 ```
 
-We then have to define the variables that we want to plot. For example, Figure 7-2 of the above book shows the plot of eleven variables in the population system of the model. In order to easily access to these variables, we first create shortcuts to the subsystems in which they are introduced.
+Instead, in order to replicate Run 7-28, which reaches equilibrium through discrete policy changes, and which is described in Section 7.7 of the book depicted in Figure 7-38, we can execute the following code.
 
 ```
-@named pop = WorldDynamics.World3.Pop4.population()
-@named br = WorldDynamics.World3.Pop4.birth_rate()
-@named dr = WorldDynamics.World3.Pop4.death_rate()
+using WorldDynamics, ModelingToolkit
+World3.fig_38()
 ```
 
-The eleven variables are then defined as follows.
+We can also replicate the runs of the other chapters of the book (each one devoted to one system of the model). For example, in order to replicate the standard run of the capital system, which is described in Section 3.7 of the book and depicted in Figure 3-36, we can  execute the following code.
 
 ```
-fig_7_2_variables = [
-    (pop.pop, 0, 4e9, "pop"),
-    (br.cbr, 0, 50, "cbr"),
-    (dr.cdr, 0, 50, "cdr"),
-    (dr.le, 0, 60, "le"),
-    (dr.lmf, 0.75, 1.75, "lmf"),
-    (dr.lmp, 0.75, 1.75, "lmp"),
-    (dr.lmhs, 0.75, 1.75, "lmhs"),
-    (dr.lmc, 0.75, 1.75, "lmc"),
-    (br.tf, 0, 8, "tf"),
-    (br.dtf, 0, 8, "dtf"),
-]
-@variables t
+using WorldDynamics, ModelingToolkit
+World3.Capital.fig_36()
 ```
+## Performing sensitivity tests
 
-For each variable of the model, the above vector includes a quadruple, containing the Julia variable, its range, and its symbolic name to be shown in the plot (the range and the symbolic name are optional). The time variable `t` has also to be declared.
+In order to perform sensitivity tests, we have first to modify the parameter or the interpolation table of the variable with respect to which we want to perform the sensitivity test, then to create the ODE system corresponding to the historical run with the modification integrated in the system, and finally to solve the ODE system. We can then plot the resulting evolution of the model.
 
-Finally, we can plot the evolution of the model variables according to the previously computed solution.
+### Modifying a parameter of the variable
+
+In order to reproduce Figure 7-10, for example, in which the nonrenewable resources initial value (that is, the value of the `NRI` parameter) is doubled, we can modify the value of this parameter by getting the parameter set of the nonrenewable resources sector, and by changing the value of `NRI`, as shown in the following code.
 
 ```
-plotvariables(sol, (t, 1900, 1970), fig_7_2_variables, name="Fig. 7-2", showlegend=true, colored=true)
+using WorldDynamics, ModelingToolkit
+nonrenewable_parameters_7_10 = World3.NonRenewable.getparameters();
+nonrenewable_parameters_7_10[:nri] = 2.0 * nonrenewable_parameters_7_10[:nri];
 ```
-## Replicating the reference behaviour
+#### Creating the ODE system
 
-To replicate the figures in Section 7.3 of the above book, we can operate in a similar way by declaring the varibales to be plot and by changing the time range. For example the following code reproduce the plot of Figure 7-7.
+The ODE system is then created by executing the following code, in which we specify which set of parameter values has to be used for the nonrenewable resources sector.
 
 ```
-@named pop = WorldDynamics.World3.Pop4.population()
-@named br = WorldDynamics.World3.Pop4.birth_rate()
-@named dr = WorldDynamics.World3.Pop4.death_rate()
-@named is = WorldDynamics.World3.Capital.industrial_subsector()
-@named ld = WorldDynamics.World3.Agriculture.land_development()
-@named nr = WorldDynamics.World3.NonRenewable.non_renewable()
-@named pp = WorldDynamics.World3.Pollution.persistent_pollution()
+system = World3.historicalrun(nonrenewable_params=nonrenewable_parameters_7_10);
+```
+
+#### Solving the ODE system
+
+We then have to solve the ODE system, by executing the following code.
+
+```
+sol = WorldDynamics.solve(system, (1900, 2100));
+```
+
+#### Plotting the evolution of the model
+
+We first have to define the variables that we want to plot. For example, Figure 7-10 of the book shows the plot of seven variables of seven different subsystems of the model. In order to easily access to these variables, we first create shortcuts to the subsystems in which they are introduced.
+
+```
+@named pop = World3.Pop4.population();
+@named br = World3.Pop4.birth_rate();
+@named dr = World3.Pop4.death_rate();
+@named is = World3.Capital.industrial_subsector();
+@named ld = World3.Agriculture.land_development();
+@named nr = World3.NonRenewable.non_renewable();
+@named pp = World3.Pollution.persistent_pollution();
+```
+
+The seven variables are then defined as follows.
+
+```
 reference_variables = [
     (nr.nrfr, 0, 1, "nrfr"),
     (is.iopc, 0, 1000, "iopc"),
@@ -73,56 +86,28 @@ reference_variables = [
     (pp.ppolx, 0, 32, "ppolx"),
     (br.cbr, 0, 50, "cbr"),
     (dr.cdr, 0, 50, "cdr"),
-]
-@variables t
-plotvariables(sol, (t, 1900, 2100), reference_variables, name="Fig. 7-7", showlegend=true, colored=true)
+];
+@variables t;
 ```
 
-## Replicating the sensitivity tests
+For each variable that we want to plot, the above vector includes a quadruple, containing the Julia variable, its range, and its symbolic name to be shown in the plot (the range and the symbolic name are optional). The time variable `t` has also to be declared.
 
-In this case, we have to mdoify the parameter or the interpolation table of the varaible with respect to which we want to perform the sensistivity test, we have to solve agian the ODE system, and we can finally plot the resulting evolution of the system.
-
-### Modifying a parameter
-
-In order to reproduce Figure 7-10, in which the nonrenewable resources initial value (that is, the value of the `NRI` parameter) is doubled, we can modify the value of this parameter by getting the parameter set of the nonrenewable resources sector, and by changing the value of `NRI`.
+Finally, we can plot the evolution of the variables according to the previously computed solution.
 
 ```
-nonrenewable_parameters_7_10 = WorldDynamics.World3.NonRenewable.getparameters()
-nonrenewable_parameters_7_10[:nri] = 2.0 * nonrenewable_parameters_7_10[:nri]
-```
-
-We then have to solve again the ODE system, by specifying which set of paramer values has to be used for the nonrenewable resources sector.
-
-```
-system = world3_historicalrun(nonrenewable_params=nonrenewable_parameters_7_10)
-sol = WorldDynamics.solve(system, (1900, 2100))
-```
-
-Finally, we can plot the seven variables of Figure 7-10.
-
-```
-plotvariables(sol, (t, 1900, 2100), reference_variables, name="Fig. 7-10", showlegend=true, colored=true)
+plotvariables(sol, (t, 1900, 2100), reference_variables, title="Fig. 7-10", showlegend=true, colored=true)
 ```
 
 ### Modifying an interpolation table
 
-In order to reproduce Figure 7-13, in which the slope of the fraction of industrial output allocated to agriculture is increased, we can modify the two tables `FIOAA1` and `FIOAA2` by getting the table set of the agriculture sector, and by changing the value of these two tables.
+In order to reproduce Figure 7-13, in which the slope of the fraction of industrial output allocated to agriculture is increased, we can modify the two tables `FIOAA1` and `FIOAA2` by getting the table set of the agriculture sector, and by changing the value of these two tables. We then have to solve again the ODE system, by specifying which set of tables has to be used for the agriculture sector. Finally, we can plot the same seven variables of Figure 7-10. This is exactly what we do in the following code.
 
 ```
-agriculture_tables_7_13 = WorldDynamics.World3.Agriculture.gettables()
-agriculture_tables_7_13[:fioaa1] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
-agriculture_tables_7_13[:fioaa2] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
-```
-
-We then have to solve again the ODE system, by specifying which set of tables has to be used for the agriculture sector.
-
-```
-system = world3_historicalrun(agriculture_tables=agriculture_tables_7_13)
-sol = WorldDynamics.solve(system, (1900, 2100))
-```
-
-Finally, we can plot the seven variables of Figure 7-10.
-
-```
-plotvariables(sol, (t, 1900, 2100), reference_variables, name="Fig. 7-13", showlegend=true, colored=true)
+using WorldDynamics, ModelingToolkit
+agriculture_tables_7_13 = World3.Agriculture.gettables();
+agriculture_tables_7_13[:fioaa1] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0);
+agriculture_tables_7_13[:fioaa2] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0);
+system = World3.historicalrun(agriculture_tables=agriculture_tables_7_13);
+sol = WorldDynamics.solve(system, (1900, 2100));
+plotvariables(sol, (t, 1900, 2100), reference_variables, title="Fig. 7-13", showlegend=true, colored=true)
 ```
