@@ -38,3 +38,6 @@ We thank for their support:
 
 [<img src="docs/src/assets/logo-inria.png" width="200" />](https://www.inria.fr/fr)
 [<img src="docs/src/assets/logo-cnrs.png" width="100" />](https://www.cnrs.fr/)
+
+[<img src="docs/src/assets/logo-UniversitadiRomaTorVergata.png" width="120" />](https://ing.uniroma2.it)
+[<img src="docs/src/assets/logo-gssi.png" width="210" />](https://www.gssi.it/)
