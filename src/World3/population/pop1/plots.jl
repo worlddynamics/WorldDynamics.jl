@@ -175,6 +175,6 @@ function fig103solution()
     return _solution_103
 end
 
-fig_103a() = plotvariables(_103solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.103a")
-fig_103b() = plotvariables(_103solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.103b")
-fig_103c() = plotvariables(_103solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.103c")
+fig_103a() = plotvariables(fig103solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.103a")
+fig_103b() = plotvariables(fig103solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.103b")
+fig_103c() = plotvariables(fig103solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.103c")
