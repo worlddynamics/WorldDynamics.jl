@@ -1,14 +1,14 @@
 include("../../plotvariables.jl")
 
 
-function _historicalrunsolution()
+function historicalrunsolution()
     isdefined(@__MODULE__, :_solution_historicalrun) && return _solution_historicalrun
     global _solution_historicalrun = solve(historicalrun(), (1900, 2100))
     return _solution_historicalrun
 end
 
 
-function _variables_37()
+function variables_37()
     @named is = industrial_subsector()
     @named ss = service_subsector()
     @named js = job_subsector()
@@ -24,7 +24,7 @@ function _variables_37()
     return variables
 end
 
-function _variables_40()
+function variables_40()
     @named is = industrial_subsector()
     @named ss = service_subsector()
     @named js = job_subsector()
@@ -40,7 +40,7 @@ function _variables_40()
     return variables
 end
 
-function _variables_45()
+function variables_45()
     @named pop = population()
     @named nr = non_renewable()
     @named ag = agriculture()
@@ -68,10 +68,10 @@ function fig_36()
         (ag.aiph,  0, 50,    "aiph"),
     ]
 
-    return plotvariables(_historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 3.36")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 3.36")
 end
 
-fig_37() = plotvariables(_historicalrunsolution(), (t, 1900, 2000), _variables_37(); title="Fig. 3.37")
+fig_37() = plotvariables(historicalrunsolution(), (t, 1900, 2000), variables_37(); title="Fig. 3.37")
 
 function fig_38()
     parameters_3_38 = getparameters()
@@ -80,7 +80,7 @@ function fig_38()
     system = historicalrun(params=parameters_3_38)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.38")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.38")
 end
 
 function fig_39()
@@ -90,7 +90,7 @@ function fig_39()
     system = historicalrun(params=parameters_3_39)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.39")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.39")
 end
 
 function fig_40()
@@ -100,7 +100,7 @@ function fig_40()
     system = historicalrun(params=parameters_3_40)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), _variables_40(); title="Fig. 3.40")
+    return plotvariables(solution, (t, 1900, 2000), variables_40(); title="Fig. 3.40")
 end
 
 function fig_41()
@@ -110,7 +110,7 @@ function fig_41()
     system = historicalrun(tables=cap_tables_3_41)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), _variables_40(); title="Fig. 3.41")
+    return plotvariables(solution, (t, 1900, 2000), variables_40(); title="Fig. 3.41")
 end
 
 function fig_42()
@@ -120,7 +120,7 @@ function fig_42()
     system = historicalrun(params=parameters_3_42)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.42")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.42")
 end
 
 function fig_43()
@@ -150,7 +150,7 @@ function fig_44()
     system = historicalrun(tables=cap_tables_3_44)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.44")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.44")
 end
 
 function fig_45()
@@ -159,7 +159,7 @@ function fig_45()
 
     system = historicalrun(tables=cap_tables_3_45)
     solution = solve(system, (1900, 2100))
-    return plotvariables(solution, (t, 1900, 2000), _variables_45(); title="Fig. 3.45")
+    return plotvariables(solution, (t, 1900, 2000), variables_45(); title="Fig. 3.45")
 end
 
 function fig_46()
@@ -169,7 +169,7 @@ function fig_46()
     system = historicalrun(tables=cap_tables_3_46)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.46")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.46")
 end
 
 function fig_47()
@@ -179,7 +179,7 @@ function fig_47()
     system = historicalrun(tables=cap_tables_3_47)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), _variables_45(); title="Fig. 3.47")
+    return plotvariables(solution, (t, 1900, 2000), variables_45(); title="Fig. 3.47")
 end
 
 function fig_48()
@@ -189,5 +189,5 @@ function fig_48()
     system = historicalrun(tables=cap_tables_3_48)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.48")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.48")
 end

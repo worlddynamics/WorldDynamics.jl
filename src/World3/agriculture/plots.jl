@@ -1,7 +1,7 @@
 include("../../plotvariables.jl")
 
 
-function _variables_a()
+function variables_a()
     @named ld = land_development()
     @named ai = agricultural_inputs()
     @named lfd = land_fertility_degradation()
@@ -17,7 +17,7 @@ function _variables_a()
     return variables
 end
 
-function _variables_b()
+function variables_b()
     @named ld = land_development()
     @named leuiu = land_erosion_urban_industrial_use()
 
@@ -33,7 +33,7 @@ function _variables_b()
     return variables
 end
 
-function _variables_c()
+function variables_c()
     @named ld = land_development()
     @named iad = investment_allocation_decision()
 
@@ -47,7 +47,7 @@ function _variables_c()
     return variables
 end
 
-function _variables_d()
+function variables_d()
     @named lfd = land_fertility_degradation()
     @named dlm = discontinung_land_maintenance()
     @named lfr = land_fertility_regeneration()
@@ -65,24 +65,24 @@ function _variables_d()
 end
 
 
-function _historicalrunsolution()
+function historicalrunsolution()
     isdefined(@__MODULE__, :_solution_historicalrun) && return _solution_historicalrun
     global _solution_historicalrun = solve(historicalrun(), (1900, 2100))
     return _solution_historicalrun
 end
 
-fig_69a() = plotvariables(_historicalrunsolution(), (t, 1900, 1970), _variables_a(); title="Fig. 4.69a")
-fig_69b() = plotvariables(_historicalrunsolution(), (t, 1900, 1970), _variables_b(); title="Fig. 4.69b")
-fig_69c() = plotvariables(_historicalrunsolution(), (t, 1900, 1970), _variables_c(); title="Fig. 4.69c")
-fig_69d() = plotvariables(_historicalrunsolution(), (t, 1900, 1970), _variables_d(); title="Fig. 4.69d")
+fig_69a() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 4.69a")
+fig_69b() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 4.69b")
+fig_69c() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 4.69c")
+fig_69d() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_d(); title="Fig. 4.69d")
 
-fig_70a() = plotvariables(_historicalrunsolution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.70a")
-fig_70b() = plotvariables(_historicalrunsolution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.70b")
-fig_70c() = plotvariables(_historicalrunsolution(), (t, 1900, 2100), _variables_c(); title="Fig. 4.70c")
-fig_70d() = plotvariables(_historicalrunsolution(), (t, 1900, 2100), _variables_d(); title="Fig. 4.70d")
+fig_70a() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 4.70a")
+fig_70b() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 4.70b")
+fig_70c() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 4.70c")
+fig_70d() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_d(); title="Fig. 4.70d")
 
 
-function _fig72solution()
+function fig72solution()
     isdefined(@__MODULE__, :_solution_4_72) && return _solution_4_72
 
     tables_4_72 = gettables()
@@ -94,11 +94,11 @@ function _fig72solution()
     return _solution_4_72
 end
 
-fig_72a() = plotvariables(_fig72solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.72a")
-fig_72b() = plotvariables(_fig72solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.72b")
+fig_72a() = plotvariables(fig72solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.72a")
+fig_72b() = plotvariables(fig72solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.72b")
 
 
-function _fig73solution()
+function fig73solution()
     isdefined(@__MODULE__, :_solution_4_73) && return _solution_4_73
 
     tables_4_73 = gettables()
@@ -110,11 +110,11 @@ function _fig73solution()
     return _solution_4_73
 end
 
-fig_73a() = plotvariables(_fig73solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.73a")
-fig_73b() = plotvariables(_fig73solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.73b")
+fig_73a() = plotvariables(fig73solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.73a")
+fig_73b() = plotvariables(fig73solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.73b")
 
 
-function _fig74solution()
+function fig74solution()
     isdefined(@__MODULE__, :_solution_4_74) && return _solution_4_74
 
     parameters_4_74 = getparameters()
@@ -129,11 +129,11 @@ function _fig74solution()
     return _solution_4_74
 end
 
-fig_74a() = plotvariables(_fig74solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.74a")
-fig_74b() = plotvariables(_fig74solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.74b")
+fig_74a() = plotvariables(fig74solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.74a")
+fig_74b() = plotvariables(fig74solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.74b")
 
 
-function _fig75solution()
+function fig75solution()
     isdefined(@__MODULE__, :_solution_4_75) && return _solution_4_75
 
     parameters_4_75 = getparameters()
@@ -148,11 +148,11 @@ function _fig75solution()
     return _solution_4_75
 end
 
-fig_75a() = plotvariables(_fig75solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.75a")
-fig_75b() = plotvariables(_fig75solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.75b")
+fig_75a() = plotvariables(fig75solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.75a")
+fig_75b() = plotvariables(fig75solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.75b")
 
 
-function _fig76solution()
+function fig76solution()
     isdefined(@__MODULE__, :_solution_4_76) && return _solution_4_76
 
     parameters_4_76 = getparameters()
@@ -170,11 +170,11 @@ function _fig76solution()
     return _solution_4_76
 end
 
-fig_76a() = plotvariables(_fig76solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.76a")
-fig_76b() = plotvariables(_fig76solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.76b")
+fig_76a() = plotvariables(fig76solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.76a")
+fig_76b() = plotvariables(fig76solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.76b")
 
 
-function _fig77solution()
+function fig77solution()
     isdefined(@__MODULE__, :_solution_4_77) && return _solution_4_77
 
     parameters_4_77 = getparameters()
@@ -192,11 +192,11 @@ function _fig77solution()
     return _solution_4_77
 end
 
-fig_77a() = plotvariables(_fig77solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.77a")
-fig_77b() = plotvariables(_fig77solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.77b")
+fig_77a() = plotvariables(fig77solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.77a")
+fig_77b() = plotvariables(fig77solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.77b")
 
 
-function _fig78solution()
+function fig78solution()
     isdefined(@__MODULE__, :_solution_4_78) && return _solution_4_78
 
     parameters_4_78 = getparameters()
@@ -214,11 +214,11 @@ function _fig78solution()
     return _solution_4_78
 end
 
-fig_78a() = plotvariables(_fig78solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.78a")
-fig_78b() = plotvariables(_fig78solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.78b")
+fig_78a() = plotvariables(fig78solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.78a")
+fig_78b() = plotvariables(fig78solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.78b")
 
 
-function _fig82solution()
+function fig82solution()
     isdefined(@__MODULE__, :_solution_4_82) && return _solution_4_82
 
     tables_4_82 = gettables()
@@ -234,11 +234,11 @@ function _fig82solution()
     return _solution_4_82
 end
 
-fig_82a() = plotvariables(_fig82solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.82a")
-fig_82b() = plotvariables(_fig82solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.82b")
+fig_82a() = plotvariables(fig82solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.82a")
+fig_82b() = plotvariables(fig82solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.82b")
 
 
-function _fig83solution()
+function fig83solution()
     isdefined(@__MODULE__, :_solution_4_83) && return _solution_4_83
 
     tables_4_83 = gettables()
@@ -254,11 +254,11 @@ function _fig83solution()
     return _solution_4_83
 end
 
-fig_83a() = plotvariables(_fig83solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.83a")
-fig_83b() = plotvariables(_fig83solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.83b")
+fig_83a() = plotvariables(fig83solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.83a")
+fig_83b() = plotvariables(fig83solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.83b")
 
 
-function _fig84solution()
+function fig84solution()
     isdefined(@__MODULE__, :_solution_4_84) && return _solution_4_84
 
     tables_4_84 = gettables()
@@ -270,11 +270,11 @@ function _fig84solution()
     return _solution_4_84
 end
 
-fig_84a() = plotvariables(_fig84solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.84a")
-fig_84b() = plotvariables(_fig84solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.84b")
+fig_84a() = plotvariables(fig84solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.84a")
+fig_84b() = plotvariables(fig84solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.84b")
 
 
-function _fig85solution()
+function fig85solution()
     isdefined(@__MODULE__, :_solution_4_85) && return _solution_4_85
 
     tables_4_85 = gettables()
@@ -287,11 +287,11 @@ function _fig85solution()
     return _solution_4_85
 end
 
-fig_85a() = plotvariables(_fig85solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.85a")
-fig_85b() = plotvariables(_fig85solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.85b")
+fig_85a() = plotvariables(fig85solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.85a")
+fig_85b() = plotvariables(fig85solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.85b")
 
 
-function _fig86solution()
+function fig86solution()
     isdefined(@__MODULE__, :_solution_4_86) && return _solution_4_86
 
     tables_4_86 = gettables()
@@ -305,11 +305,11 @@ function _fig86solution()
     return _solution_4_86
 end
 
-fig_86a() = plotvariables(_fig86solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.86a")
-fig_86b() = plotvariables(_fig86solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.86b")
+fig_86a() = plotvariables(fig86solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.86a")
+fig_86b() = plotvariables(fig86solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.86b")
 
 
-function _fig87solution()
+function fig87solution()
     isdefined(@__MODULE__, :_solution_4_87) && return _solution_4_87
 
     tables_4_87 = gettables()
@@ -330,11 +330,11 @@ function _fig87solution()
     return _solution_4_87
 end
 
-fig_87a() = plotvariables(_fig87solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.87a")
-fig_87b() = plotvariables(_fig87solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.87b")
+fig_87a() = plotvariables(fig87solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.87a")
+fig_87b() = plotvariables(fig87solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.87b")
 
 
-function _fig88solution()
+function fig88solution()
     isdefined(@__MODULE__, :_solution_4_88) && return _solution_4_88
 
     parameters_4_88 = getparameters()
@@ -346,11 +346,11 @@ function _fig88solution()
     return _solution_4_88
 end
 
-fig_88a() = plotvariables(_fig88solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.88a")
-fig_88b() = plotvariables(_fig88solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.88b")
+fig_88a() = plotvariables(fig88solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.88a")
+fig_88b() = plotvariables(fig88solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.88b")
 
 
-function _fig89solution()
+function fig89solution()
     isdefined(@__MODULE__, :_solution_4_89) && return _solution_4_89
 
     parameters_4_89 = getparameters()
@@ -362,11 +362,11 @@ function _fig89solution()
     return _solution_4_89
 end
 
-fig_89a() = plotvariables(_fig89solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.89a")
-fig_89b() = plotvariables(_fig89solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.89b")
+fig_89a() = plotvariables(fig89solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.89a")
+fig_89b() = plotvariables(fig89solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.89b")
 
 
-function _fig90solution()
+function fig90solution()
     isdefined(@__MODULE__, :_solution_4_90) && return _solution_4_90
 
     parameters_4_90 = getparameters()
@@ -378,5 +378,5 @@ function _fig90solution()
     return _solution_4_90
 end
 
-fig_90a() = plotvariables(_fig90solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.90a")
-fig_90b() = plotvariables(_fig90solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.90b")
+fig_90a() = plotvariables(fig90solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.90a")
+fig_90b() = plotvariables(fig90solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.90b")

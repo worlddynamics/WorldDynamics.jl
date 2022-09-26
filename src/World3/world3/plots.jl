@@ -4,14 +4,14 @@ include("../../plotvariables.jl")
 @variables t
 
 
-function _historicalrunsolution()
+function historicalrunsolution()
     isdefined(@__MODULE__, :_solution_historicalrun) && return _solution_historicalrun
     global _solution_historicalrun = solve(historicalrun(), (1900, 2100))
     return _solution_historicalrun
 end
 
 
-function _variables_7()
+function variables_7()
     @named nr = NonRenewable.non_renewable()
     @named is = Capital.industrial_subsector()
     @named ld = Agriculture.land_development()
@@ -33,7 +33,7 @@ function _variables_7()
     return variables
 end
 
-function _variables_20()
+function variables_20()
     @named nr = NonRenewable.non_renewable()
     @named is = Capital.industrial_subsector()
     @named ld = Agriculture.land_development()
@@ -74,7 +74,7 @@ function fig_2()
         (br.dtf,  0,    8,    "dtf"),
     ]
 
-    return plotvariables(_historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.2")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.2")
 end
 
 function fig_3()
@@ -92,7 +92,7 @@ function fig_3()
         (se.fos,  0, 1,    "fos"),
     ]
 
-    return plotvariables(_historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.3")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.3")
 end
 
 function fig_4()
@@ -109,7 +109,7 @@ function fig_4()
         (lfd.lfert, 0, 800, "lfert")
     ]
 
-    return plotvariables(_historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.4")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.4")
 end
 
 function fig_5()
@@ -122,7 +122,7 @@ function fig_5()
         (nr.pcrum, 0, 1, "pcrum"),
     ]
 
-    return plotvariables(_historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.5")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.5")
 end
 
 function fig_6()
@@ -139,10 +139,10 @@ function fig_6()
         (dr.lmp, 0, 4, "lmp"),
     ]
 
-    return plotvariables(_historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.6")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.6")
 end
 
-fig_7() = plotvariables(_historicalrunsolution(), (t, 1900, 2100), _variables_7(); title="Fig. 7.7")
+fig_7() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_7(); title="Fig. 7.7")
 
 function fig_8()
     @named nr = NonRenewable.non_renewable()
@@ -158,7 +158,7 @@ function fig_8()
         (ld.fioaa, 0, 0.2, "fioaa"),
     ]
 
-    return plotvariables(_historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.8")
+    return plotvariables(historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.8")
 end
 
 function fig_9()
@@ -175,7 +175,7 @@ function fig_9()
         (pop.pop, 0, 16e9, "pop"),
     ]
 
-    return plotvariables(_historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.9")
+    return plotvariables(historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.9")
 end
 
 function fig_10()
@@ -185,7 +185,7 @@ function fig_10()
     system = historicalrun(nonrenewable_params=nr_parameters_7_10)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.10")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.10")
 end
 
 function fig_11()
@@ -195,7 +195,7 @@ function fig_11()
     system = historicalrun(nonrenewable_params=nr_parameters_7_11)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.11")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.11")
 end
 
 function fig_13()
@@ -206,7 +206,7 @@ function fig_13()
     system = historicalrun(agriculture_tables=agr_tables_7_13)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.13")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.13")
 end
 
 function fig_14()
@@ -217,7 +217,7 @@ function fig_14()
     system = historicalrun(capital_params=cap_parameters_7_14)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.14")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.14")
 end
 
 function fig_15()
@@ -230,7 +230,7 @@ function fig_15()
     system = historicalrun(capital_params=cap_parameters_7_15)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.15")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.15")
 end
 
 function fig_16()
@@ -240,7 +240,7 @@ function fig_16()
     system = historicalrun(nonrenewable_tables=nr_tables_7_16)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.16")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.16")
 end
 
 function fig_18()
@@ -253,7 +253,7 @@ function fig_18()
     system = historicalrun(nonrenewable_params= nr_parameters_7_18, nonrenewable_tables=nr_tables_7_18)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.18")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.18")
 end
 
 function fig_19()
@@ -269,7 +269,7 @@ function fig_19()
     system = historicalrun(nonrenewable_params= nr_parameters_7_19, nonrenewable_tables=nr_tables_7_19, agriculture_tables=agr_tables_7_19)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.19")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.19")
 end
 
 function fig_20()
@@ -294,7 +294,7 @@ function fig_20()
 
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_20(); title="Fig. 7.20")
+    return plotvariables(solution, (t, 1900, 2100), variables_20(); title="Fig. 7.20")
 end
 
 function fig_21()
@@ -323,7 +323,7 @@ function fig_21()
 
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_20(); title="Fig. 7.21")
+    return plotvariables(solution, (t, 1900, 2100), variables_20(); title="Fig. 7.21")
 end
 
 function fig_22()
@@ -381,7 +381,7 @@ function fig_34()
     system = historicalrun(pop_params=pop_parameters_7_34)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.34")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.34")
 end
 
 function fig_35()
@@ -392,7 +392,7 @@ function fig_35()
     system = historicalrun(capital_params=cap_parameters_7_35)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.35")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.35")
 end
 
 function fig_36()
@@ -405,7 +405,7 @@ function fig_36()
     system = historicalrun(capital_tables=cap_tables_7_36, agriculture_tables=agr_tables_7_36)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.36")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.36")
 end
 
 function fig_37()
@@ -426,7 +426,7 @@ function fig_37()
 
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.37")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.37")
 end
 
 function fig_38()
@@ -462,5 +462,5 @@ function fig_38()
 
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.38")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.38")
 end

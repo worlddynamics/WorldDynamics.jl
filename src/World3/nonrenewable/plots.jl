@@ -1,14 +1,14 @@
 include("../../plotvariables.jl")
 
 
-function _historicalrunsolution()
+function historicalrunsolution()
     isdefined(@__MODULE__, :_solution_historicalrun) && return _solution_historicalrun
     global _solution_historicalrun = solve(historicalrun(), (1900, 2100))
     return _solution_historicalrun
 end
 
 
-function _variables_nr()
+function variables_nr()
     @named nr = non_renewable()
     @named ic = industrial_capital()
     @named io = industrial_output()
@@ -26,7 +26,7 @@ function _variables_nr()
 end
 
 
-fig_25() = plotvariables(_historicalrunsolution(), (t, 1900, 2100), _variables_nr(); title="Fig. 5.25")
+fig_25() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_nr(); title="Fig. 5.25")
 
 function fig_26()
     parameters_5_26 = getparameters()
@@ -35,7 +35,7 @@ function fig_26()
     system = historicalrun(params=parameters_5_26)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_nr(); title="Fig. 5.26")
+    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.26")
 end
 
 function fig_28()
@@ -45,7 +45,7 @@ function fig_28()
     system = historicalrun(tables=tables_5_28)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_nr(); title="Fig. 5.28")
+    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.28")
 end
 
 function fig_29()
@@ -55,7 +55,7 @@ function fig_29()
     system = historicalrun(params=parameters_5_29)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_nr(); title="Fig. 5.29")
+    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.29")
 end
 
 function fig_30()
@@ -69,5 +69,5 @@ function fig_30()
     system = historicalrun(params=parameters_5_30, tables=tables_5_30)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_nr(); title="Fig. 5.30")
+    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.30")
 end

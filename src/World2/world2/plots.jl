@@ -4,7 +4,7 @@ include("../../plotvariables.jl")
 @variables t
 
 
-function _nrdepletionsolution()
+function nrdepletionsolution()
     isdefined(@__MODULE__, :_solution_nrdepletion) && return _solution_nrdepletion
     global _solution_nrdepletion = solve(natural_resource_depletion(), (1900, 2100))
     return _solution_nrdepletion
@@ -34,5 +34,5 @@ function fig_1()
         (ql.ql,    0, 2,    "Quality of life"),
     ]
 
-    return plotvariables(_nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-1")
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-1")
 end
