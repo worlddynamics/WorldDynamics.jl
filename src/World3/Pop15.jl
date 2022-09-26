@@ -167,4 +167,9 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
 end
 
 
+include("../solvesystems.jl")
+include("population/pop15/scenarios.jl")
+include("population/pop15/plots.jl")
+
+
 end # module
