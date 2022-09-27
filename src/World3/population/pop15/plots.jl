@@ -55,13 +55,13 @@ function variables_c()
     @named br = birth_rate()
 
     variables = [
-        (br.tf,   0, 15,   "tf"),
-        (br.mtf,  0, 15,   "mtf"),
-        (br.dtf,   0, 15,   "dtf"),
-        (br.dcfs,   0, 15,   "dcfs"),
-        (br.frsn, 0.6, 1.4, "frsn"),
-        (br.sfsn, 0.75, 1.25, "sfsn"),
-        (br.cmple, 1, 4, "cmple"),
+        (br.tf,    0,    15,   "tf"),
+        (br.mtf,   0,    15,   "mtf"),
+        (br.dtf,   0,    15,   "dtf"),
+        (br.dcfs,  0,    15,   "dcfs"),
+        (br.frsn,  0.6,  1.4,  "frsn"),
+        (br.sfsn,  0.75, 1.25, "sfsn"),
+        (br.cmple, 1,    4,    "cmple"),
     ]
 
     return variables
@@ -133,7 +133,7 @@ fig_94c() = plotvariables(fig94solution(), (t, 1900, 2100), variables_c(); title
 
 function fig_96()
     parameters_2_96 = getparameters()
-    parameters_2_96[:fcest] = 75
+    parameters_2_96[:fcest] = 1975
 
     system = historicalrun(params=parameters_2_96)
     solution = solve(system, (1900, 2100))
@@ -143,8 +143,8 @@ end
 
 function fig_97()
     parameters_2_97 = getparameters()
-    parameters_2_97[:fcest] = 75
-    parameters_2_97[:zpgt] = 75
+    parameters_2_97[:fcest] = 1975
+    parameters_2_97[:zpgt] = 1975
 
     system = historicalrun(params=parameters_2_97)
     solution = solve(system, (1900, 2100))
@@ -165,7 +165,7 @@ end
 function fig_99()
     parameters_2_99 = getparameters()
     parameters_2_99[:lt] = 2000
-    parameters_2_99[:fcest] = 75
+    parameters_2_99[:fcest] = 1975
 
     system = historicalrun(params=parameters_2_99)
     solution = solve(system, (1900, 2100))
@@ -176,8 +176,8 @@ end
 function fig_100()
     parameters_2_100 = getparameters()
     parameters_2_100[:lt] = 2000
-    parameters_2_100[:fcest] = 75
-    parameters_2_100[:zpgt] = 75
+    parameters_2_100[:fcest] = 1975
+    parameters_2_100[:zpgt] = 1975
 
     system = historicalrun(params=parameters_2_100)
     solution = solve(system, (1900, 2100))
