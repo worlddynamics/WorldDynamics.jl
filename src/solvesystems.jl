@@ -20,7 +20,7 @@ end
 
 Return the solution of the `system` ODE system in the `timespan` interval (for the available different ODE system solvers, see the documentation of `DifferentialEquations.jl`).
 """
-function solve(system::ODESystem, timespan; solver=AutoVern9(Rodas5()))
+function solve(system::ODESystem, timespan; solver=Tsit5())
     sys = structural_simplify(system)
 
     prob = ODEProblem(sys, [], timespan)
