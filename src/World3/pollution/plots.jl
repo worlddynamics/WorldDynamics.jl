@@ -32,12 +32,12 @@ function fig_26()
 
     variables = [
         (pp.ppgr,  0, 1e10, "ppgr"),
-        (pp.ppapr, 0, 1e9, "ppapr"),
-        (pp.ppasr, 0, 1e9, "ppasr"),
+        (pp.ppapr, 0, 1e9,  "ppapr"),
+        (pp.ppasr, 0, 1e9,  "ppasr"),
         (pp.ppolx, 0, 24,   "ppolx"),
         (pp.ahl,   0, 40,   "ahl"),
-        (pd.lmp,   0, 1,   "lmp"),
-        (pd.lfdr,  0, 0.5, "lfdr"),
+        (pd.lmp,   0, 1,    "lmp"),
+        (pd.lfdr,  0, 0.5,  "lfdr"),
     ]
 
     initialisations_6_26 = getinitialisations()
@@ -49,9 +49,9 @@ function fig_26()
     new_equations[31] = pp.ppgr ~ 1e10 * clip(1, 0, t, 1920) * clip(0, 1, t, 1922)
 
     @named new_system = ODESystem(new_equations)
-    solution_6_26 = solve(new_system, (1900, 2100))
+    solution = solve(new_system, (1900, 2100))
 
-    return plotvariables(solution_6_26, (t, 1900, 1980), variables; title="Fig. 6.26")
+    return plotvariables(solution, (t, 1900, 1980), variables; title="Fig. 6.26")
 end
 
 function fig_27()
@@ -59,13 +59,13 @@ function fig_27()
     @named pd = pollution_damage()
 
     variables = [
-        (pp.ppgr,  0, 1e9, "ppgr"),
-        (pp.ppapr, 0, 1e9, "ppapr"),
-        (pp.ppasr, 0, 1e9, "ppasr"),
+        (pp.ppgr,  0, 1e9,  "ppgr"),
+        (pp.ppapr, 0, 1e9,  "ppapr"),
+        (pp.ppasr, 0, 1e9,  "ppasr"),
         (pp.ppolx, 0, 40,   "ppolx"),
         (pp.ahl,   0, 40,   "ahl"),
-        (pd.lmp,   0, 1,   "lmp"),
-        (pd.lfdr,  0, 0.5, "lfdr"),
+        (pd.lmp,   0, 1,    "lmp"),
+        (pd.lfdr,  0, 0.5,  "lfdr"),
     ]
 
     initialisations_6_27 = getinitialisations()
@@ -77,9 +77,9 @@ function fig_27()
     new_equations[31] = pp.ppgr ~ step(t, 1e9, 1920) + step(t, -1e9, 2000)
 
     @named new_system = ODESystem(new_equations)
-    solution_6_27 = solve(new_system, (1900, 2100))
+    solution = solve(new_system, (1900, 2100))
 
-    return plotvariables(solution_6_27, (t, 1900, 2100), variables; title="Fig. 6.27")
+    return plotvariables(solution, (t, 1900, 2100), variables; title="Fig. 6.27")
 end
 
 function fig_28()
