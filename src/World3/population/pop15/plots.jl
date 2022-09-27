@@ -111,6 +111,26 @@ fig_90() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a()
 fig_91() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 2.91c")
 fig_93() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 2.93c")
 
+function fig94solution()
+    isdefined(@__MODULE__, :_solution_94) && return _solution_94
+
+    @named pop = population()
+
+    system = historicalrun()
+
+    new_equations = equations(system)
+    new_equations[96] = pop.extra ~ 0.1 * pop.p6 + 0.25 * pop.p7 + 0.3 * pop.p8 + 0.25 * pop.p9 + 0.1 * pop.p10
+
+    @named new_system = ODESystem(new_equations)
+    global _solution_94 = solve(new_system, (1900, 2100))
+
+    return _solution_94
+end
+
+fig_94a() = plotvariables(fig94solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.94a")
+fig_94b() = plotvariables(fig94solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.94b")
+fig_94c() = plotvariables(fig94solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.94c")
+
 function fig_96()
     parameters_2_96 = getparameters()
     parameters_2_96[:fcest] = 75
