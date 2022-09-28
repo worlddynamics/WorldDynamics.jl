@@ -26,39 +26,39 @@ function variables_nr()
 end
 
 
-fig_25() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_nr(); title="Fig. 5.25")
+fig_25(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_nr(); title="Fig. 5.25", kwargs...)
 
-function fig_26()
+function fig_26(; kwargs...)
     parameters_5_26 = getparameters()
     parameters_5_26[:nri] = 2e12
 
     system = historicalrun(params=parameters_5_26)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.26")
+    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.26", kwargs...)
 end
 
-function fig_28()
+function fig_28(; kwargs...)
     tables_5_28 = gettables()
     tables_5_28[:fcaor2] = (1.0, 0.3, 0.1, 0.065, 0.06, 0.055, 0.05, 0.05, 0.05, 0.05, 0.05)
 
     system = historicalrun(tables=tables_5_28)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.28")
+    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.28", kwargs...)
 end
 
-function fig_29()
+function fig_29(; kwargs...)
     parameters_5_29 = getparameters()
     parameters_5_29[:nruf2] = 0.25
 
     system = historicalrun(params=parameters_5_29)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.29")
+    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.29", kwargs...)
 end
 
-function fig_30()
+function fig_30(; kwargs...)
     parameters_5_30 = getparameters()
     parameters_5_30[:zpgt] = 1975
     parameters_5_30[:nruf2] = 0.25
@@ -69,5 +69,5 @@ function fig_30()
     system = historicalrun(params=parameters_5_30, tables=tables_5_30)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.30")
+    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.30", kwargs...)
 end

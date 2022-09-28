@@ -11,7 +11,7 @@ function nrdepletionsolution()
 end
 
 
-function fig_1()
+function fig_1(; kwargs...)
     @named pop = Population.population()
     @named dr = Population.death_rate()
     @named br = Population.birth_rate()
@@ -34,5 +34,5 @@ function fig_1()
         (ql.ql,    0, 2,    "Quality of life"),
     ]
 
-    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-1")
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-1", kwargs...)
 end
