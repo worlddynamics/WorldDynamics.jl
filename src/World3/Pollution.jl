@@ -159,4 +159,9 @@ function persistent_pollution(; name, params=params, inits=inits, tables=tables,
 end
 
 
+include("../solvesystems.jl")
+include("pollution/scenarios.jl")
+include("pollution/plots.jl")
+
+
 end # module

@@ -218,4 +218,9 @@ function land_fertility_degradation(; name, params=params, inits=inits, tables=t
 end
 
 
+include("../solvesystems.jl")
+include("agriculture/scenarios.jl")
+include("agriculture/plots.jl")
+
+
 end # module
