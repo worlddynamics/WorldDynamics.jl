@@ -63,10 +63,24 @@ function variables_c()
 end
 
 
+"""
+    Reproduce Fig 2.84a. The original figure is presented on Chapter 2.
+"""
 fig_84() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 2.84a")
+
+"""
+    Reproduce Fig 2.85a. The original figure is presented on Chapter 2.
+"""
 fig_85() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 2.85a")
+
+"""
+    Reproduce Fig 2.86a. The original figure is presented on Chapter 2.
+"""
 fig_86() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 2.86a")
 
+"""
+    Reproduce Fig 2.87a. The original figure is presented on Chapter 2.
+"""
 function fig_87()
     parameters_2_87 = getparameters()
     parameters_2_87[:iphst] = 4000
@@ -78,6 +92,9 @@ function fig_87()
     return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.87a")
 end
 
+"""
+    Reproduce Fig 2.88a. The original figure is presented on Chapter 2.
+"""
 function fig_88()
     parameters_2_88 = getparameters()
     parameters_2_88[:iphst] = 4000
@@ -92,6 +109,9 @@ function fig_88()
     plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.88a")
 end
 
+"""
+    Reproduce Fig 2.89a. The original figure is presented on Chapter 2.
+"""
 function fig_89()
     parameters_2_89 = getparameters()
     parameters_2_89[:lt2] = 1900
@@ -102,10 +122,24 @@ function fig_89()
     plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.89a")
 end
 
+"""
+    Reproduce Fig 2.90a. The original figure is presented on Chapter 2.
+"""
 fig_90() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 2.90a")
+
+"""
+    Reproduce Fig 2.91a. The original figure is presented on Chapter 2.
+"""
 fig_91() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 2.91a")
+
+"""
+    Reproduce Fig 2.93a. The original figure is presented on Chapter 2.
+"""
 fig_93() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 2.93a")
 
+"""
+    Reproduce Fig 2.96a. The original figure is presented on Chapter 2.
+"""
 function fig_96()
     parameters_2_96 = getparameters()
     parameters_2_96[:fcest] = 75
@@ -116,6 +150,9 @@ function fig_96()
     return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.96a")
 end
 
+"""
+    Reproduce Fig 2.97a. The original figure is presented on Chapter 2.
+"""
 function fig_97()
     parameters_2_97 = getparameters()
     parameters_2_97[:fcest] = 75
@@ -127,6 +164,9 @@ function fig_97()
     return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.97a")
 end
 
+"""
+    Reproduce Fig 2.98a. The original figure is presented on Chapter 2.
+"""
 function fig_98()
     parameters_2_98 = getparameters()
     parameters_2_98[:lt] = 2000
@@ -137,6 +177,9 @@ function fig_98()
     return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.98a")
 end
 
+"""
+    Reproduce Fig 2.99a. The original figure is presented on Chapter 2.
+"""
 function fig_99()
     parameters_2_99 = getparameters()
     parameters_2_99[:lt] = 2000
@@ -148,6 +191,9 @@ function fig_99()
     return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.99a")
 end
 
+"""
+    Reproduce Fig 2.100a. The original figure is presented on Chapter 2.
+"""
 function fig_100()
     parameters_2_100 = getparameters()
     parameters_2_100[:lt] = 2000
@@ -175,6 +221,17 @@ function fig103solution()
     return _solution_103
 end
 
+"""
+    Reproduce Fig 2.103a. The original figure is presented on Chapter 2.
+"""
 fig_103a() = plotvariables(fig103solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.103a")
+
+"""
+    Reproduce Fig 2.103b. The original figure is presented on Chapter 2.
+"""
 fig_103b() = plotvariables(fig103solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.103b")
+
+"""
+    Reproduce Fig 2.103c. The original figure is presented on Chapter 2.
+"""
 fig_103c() = plotvariables(fig103solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.103c")
