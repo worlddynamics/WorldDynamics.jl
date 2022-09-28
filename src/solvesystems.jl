@@ -22,11 +22,11 @@ Return the solution of the `system` ODE system in the `timespan` interval (for t
 
 We use the AutoVern9(Rodas5()) solver since it is among the suggested ones in the documentation of `DifferentialEquations.jl`, and among those we tested, it is the one that works best.
 """
-function solve(system::ODESystem, timespan; solver=AutoVern9(Rodas5()))
+function solve(system::ODESystem, timespan; solver=AutoVern9(Rodas5()), kwargs...)
     sys = structural_simplify(system)
 
     prob = ODEProblem(sys, [], timespan)
-    sol = ModelingToolkit.solve(prob, solver)
+    sol = ModelingToolkit.solve(prob, solver; kwargs...)
 
     return sol
 end
