@@ -38,10 +38,10 @@ function variables_c()
     @named iad = investment_allocation_decision()
 
     variables = [
-        (ld.tai, 0, 2e13, "tai"),
-        (iad.fiald, 0, 0.4, "fiald"),
-        (iad.mpai, 0, 100, "mpai"),
-        (iad.mpld, 0, 100, "mpld"),
+        (ld.tai,    0, 2e13, "tai"),
+        (iad.fiald, 0, 0.4,  "fiald"),
+        (iad.mpai,  0, 100,  "mpai"),
+        (iad.mpld,  0, 100,  "mpld"),
     ]
 
     return variables
@@ -53,12 +53,12 @@ function variables_d()
     @named lfr = land_fertility_regeneration()
 
     variables = [
-        (dlm.fr, 0, 4, "fr"),
-        (dlm.falm, 0, 0.1, "falm"),
+        (dlm.fr,    0, 4,   "fr"),
+        (dlm.falm,  0, 0.1, "falm"),
         (lfd.lfert, 0, 600, "lfert"),
-        (lfd.lfd, 0, 80, "lfd"),
-        (lfr.lfr, 0, 80, "lfr"),
-        (lfr.lfrt, 0, 20, "lfrt"),
+        (lfd.lfd,   0, 80,  "lfd"),
+        (lfr.lfr,   0, 80,  "lfr"),
+        (lfr.lfrt,  0, 20,  "lfrt"),
     ]
 
     return variables
@@ -71,15 +71,15 @@ function historicalrunsolution()
     return _solution_historicalrun
 end
 
-fig_69a() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 4.69a")
-fig_69b() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 4.69b")
-fig_69c() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 4.69c")
-fig_69d() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_d(); title="Fig. 4.69d")
+fig_69a(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 4.69a", kwargs...)
+fig_69b(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 4.69b", kwargs...)
+fig_69c(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 4.69c", kwargs...)
+fig_69d(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_d(); title="Fig. 4.69d", kwargs...)
 
-fig_70a() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 4.70a")
-fig_70b() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 4.70b")
-fig_70c() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 4.70c")
-fig_70d() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_d(); title="Fig. 4.70d")
+fig_70a(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 4.70a", kwargs...)
+fig_70b(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 4.70b", kwargs...)
+fig_70c(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 4.70c", kwargs...)
+fig_70d(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_d(); title="Fig. 4.70d", kwargs...)
 
 
 function fig72solution()
@@ -94,8 +94,8 @@ function fig72solution()
     return _solution_4_72
 end
 
-fig_72a() = plotvariables(fig72solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.72a")
-fig_72b() = plotvariables(fig72solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.72b")
+fig_72a(; kwargs...) = plotvariables(fig72solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.72a", kwargs...)
+fig_72b(; kwargs...) = plotvariables(fig72solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.72b", kwargs...)
 
 
 function fig73solution()
@@ -110,8 +110,8 @@ function fig73solution()
     return _solution_4_73
 end
 
-fig_73a() = plotvariables(fig73solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.73a")
-fig_73b() = plotvariables(fig73solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.73b")
+fig_73a(; kwargs...) = plotvariables(fig73solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.73a", kwargs...)
+fig_73b(; kwargs...) = plotvariables(fig73solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.73b", kwargs...)
 
 
 function fig74solution()
@@ -129,8 +129,8 @@ function fig74solution()
     return _solution_4_74
 end
 
-fig_74a() = plotvariables(fig74solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.74a")
-fig_74b() = plotvariables(fig74solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.74b")
+fig_74a(; kwargs...) = plotvariables(fig74solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.74a", kwargs...)
+fig_74b(; kwargs...) = plotvariables(fig74solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.74b", kwargs...)
 
 
 function fig75solution()
@@ -148,8 +148,8 @@ function fig75solution()
     return _solution_4_75
 end
 
-fig_75a() = plotvariables(fig75solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.75a")
-fig_75b() = plotvariables(fig75solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.75b")
+fig_75a(; kwargs...) = plotvariables(fig75solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.75a", kwargs...)
+fig_75b(; kwargs...) = plotvariables(fig75solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.75b", kwargs...)
 
 
 function fig76solution()
@@ -170,8 +170,8 @@ function fig76solution()
     return _solution_4_76
 end
 
-fig_76a() = plotvariables(fig76solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.76a")
-fig_76b() = plotvariables(fig76solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.76b")
+fig_76a(; kwargs...) = plotvariables(fig76solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.76a", kwargs...)
+fig_76b(; kwargs...) = plotvariables(fig76solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.76b", kwargs...)
 
 
 function fig77solution()
@@ -192,8 +192,8 @@ function fig77solution()
     return _solution_4_77
 end
 
-fig_77a() = plotvariables(fig77solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.77a")
-fig_77b() = plotvariables(fig77solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.77b")
+fig_77a(; kwargs...) = plotvariables(fig77solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.77a", kwargs...)
+fig_77b(; kwargs...) = plotvariables(fig77solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.77b", kwargs...)
 
 
 function fig78solution()
@@ -214,8 +214,8 @@ function fig78solution()
     return _solution_4_78
 end
 
-fig_78a() = plotvariables(fig78solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.78a")
-fig_78b() = plotvariables(fig78solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.78b")
+fig_78a(; kwargs...) = plotvariables(fig78solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.78a", kwargs...)
+fig_78b(; kwargs...) = plotvariables(fig78solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.78b", kwargs...)
 
 
 function fig82solution()
@@ -234,8 +234,8 @@ function fig82solution()
     return _solution_4_82
 end
 
-fig_82a() = plotvariables(fig82solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.82a")
-fig_82b() = plotvariables(fig82solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.82b")
+fig_82a(; kwargs...) = plotvariables(fig82solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.82a", kwargs...)
+fig_82b(; kwargs...) = plotvariables(fig82solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.82b", kwargs...)
 
 
 function fig83solution()
@@ -254,8 +254,8 @@ function fig83solution()
     return _solution_4_83
 end
 
-fig_83a() = plotvariables(fig83solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.83a")
-fig_83b() = plotvariables(fig83solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.83b")
+fig_83a(; kwargs...) = plotvariables(fig83solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.83a", kwargs...)
+fig_83b(; kwargs...) = plotvariables(fig83solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.83b", kwargs...)
 
 
 function fig84solution()
@@ -270,8 +270,8 @@ function fig84solution()
     return _solution_4_84
 end
 
-fig_84a() = plotvariables(fig84solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.84a")
-fig_84b() = plotvariables(fig84solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.84b")
+fig_84a(; kwargs...) = plotvariables(fig84solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.84a", kwargs...)
+fig_84b(; kwargs...) = plotvariables(fig84solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.84b", kwargs...)
 
 
 function fig85solution()
@@ -287,8 +287,8 @@ function fig85solution()
     return _solution_4_85
 end
 
-fig_85a() = plotvariables(fig85solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.85a")
-fig_85b() = plotvariables(fig85solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.85b")
+fig_85a(; kwargs...) = plotvariables(fig85solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.85a", kwargs...)
+fig_85b(; kwargs...) = plotvariables(fig85solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.85b", kwargs...)
 
 
 function fig86solution()
@@ -305,8 +305,8 @@ function fig86solution()
     return _solution_4_86
 end
 
-fig_86a() = plotvariables(fig86solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.86a")
-fig_86b() = plotvariables(fig86solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.86b")
+fig_86a(; kwargs...) = plotvariables(fig86solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.86a", kwargs...)
+fig_86b(; kwargs...) = plotvariables(fig86solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.86b", kwargs...)
 
 
 function fig87solution()
@@ -330,8 +330,8 @@ function fig87solution()
     return _solution_4_87
 end
 
-fig_87a() = plotvariables(fig87solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.87a")
-fig_87b() = plotvariables(fig87solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.87b")
+fig_87a(; kwargs...) = plotvariables(fig87solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.87a", kwargs...)
+fig_87b(; kwargs...) = plotvariables(fig87solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.87b", kwargs...)
 
 
 function fig88solution()
@@ -346,8 +346,8 @@ function fig88solution()
     return _solution_4_88
 end
 
-fig_88a() = plotvariables(fig88solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.88a")
-fig_88b() = plotvariables(fig88solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.88b")
+fig_88a(; kwargs...) = plotvariables(fig88solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.88a", kwargs...)
+fig_88b(; kwargs...) = plotvariables(fig88solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.88b", kwargs...)
 
 
 function fig89solution()
@@ -362,8 +362,8 @@ function fig89solution()
     return _solution_4_89
 end
 
-fig_89a() = plotvariables(fig89solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.89a")
-fig_89b() = plotvariables(fig89solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.89b")
+fig_89a(; kwargs...) = plotvariables(fig89solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.89a", kwargs...)
+fig_89b(; kwargs...) = plotvariables(fig89solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.89b", kwargs...)
 
 
 function fig90solution()
@@ -378,5 +378,5 @@ function fig90solution()
     return _solution_4_90
 end
 
-fig_90a() = plotvariables(fig90solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.90a")
-fig_90b() = plotvariables(fig90solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.90b")
+fig_90a(; kwargs...) = plotvariables(fig90solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.90a", kwargs...)
+fig_90b(; kwargs...) = plotvariables(fig90solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.90b", kwargs...)

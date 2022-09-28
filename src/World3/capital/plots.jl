@@ -17,8 +17,8 @@ function variables_37()
         (is.iopc,  0, 1000, "iopc"),
         (ss.sopc,  0, 1000, "sopc"),
         (is.io,    0, 4e12, "io"),
-        (ss.fioas, 0, 0.4, "fioas"),
-        (js.cuf,   0, 1, "cuf"),
+        (ss.fioas, 0, 0.4,  "fioas"),
+        (js.cuf,   0, 1,    "cuf"),
     ]
 
     return variables
@@ -30,11 +30,11 @@ function variables_40()
     @named js = job_subsector()
 
     variables = [
-        (is.iopc,  0, 100, "iopc"),
-        (ss.sopc,  0, 100, "sopc"),
+        (is.iopc,  0, 100,   "iopc"),
+        (ss.sopc,  0, 100,   "sopc"),
         (is.io,    0, 400e9, "io"),
-        (ss.fioas, 0, 0.4, "fioas"),
-        (js.cuf,   0, 1, "cuf"),
+        (ss.fioas, 0, 0.4,   "fioas"),
+        (js.cuf,   0, 1,     "cuf"),
     ]
 
     return variables
@@ -46,16 +46,16 @@ function variables_45()
     @named ag = agriculture()
 
     variables = [
-        (pop.pop,  0, 5e9, "pop"),
-        (nr.fcaor,  0, 0.25, "fcaor"),
-        (ag.fioaa,    0, 0.5, "fioaa"),
+        (pop.pop,  0, 5e9,  "pop"),
+        (nr.fcaor, 0, 0.25, "fcaor"),
+        (ag.fioaa, 0, 0.5,  "fioaa"),
     ]
 
     return variables
 end
 
 
-function fig_36()
+function fig_36(; kwargs...)
     @named pop = population()
     @named ag = agriculture()
     @named nr = non_renewable()
@@ -68,70 +68,70 @@ function fig_36()
         (ag.aiph,  0, 50,    "aiph"),
     ]
 
-    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 3.36")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 3.36", kwargs...)
 end
 
-fig_37() = plotvariables(historicalrunsolution(), (t, 1900, 2000), variables_37(); title="Fig. 3.37")
+fig_37(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2000), variables_37(); title="Fig. 3.37", kwargs...)
 
-function fig_38()
+function fig_38(; kwargs...)
     parameters_3_38 = getparameters()
     parameters_3_38[:alic1] = 21
 
     system = historicalrun(params=parameters_3_38)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.38")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.38", kwargs...)
 end
 
-function fig_39()
+function fig_39(; kwargs...)
     parameters_3_39 = getparameters()
     parameters_3_39[:icor1] = 2
 
     system = historicalrun(params=parameters_3_39)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.39")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.39", kwargs...)
 end
 
-function fig_40()
+function fig_40(; kwargs...)
     parameters_3_40 = getparameters()
     parameters_3_40[:icor1] = 4
 
     system = historicalrun(params=parameters_3_40)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_40(); title="Fig. 3.40")
+    return plotvariables(solution, (t, 1900, 2000), variables_40(); title="Fig. 3.40", kwargs...)
 end
 
-function fig_41()
+function fig_41(; kwargs...)
     cap_tables_3_41 = gettables()
     cap_tables_3_41[:fcaor] = (0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35)
 
     system = historicalrun(tables=cap_tables_3_41)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_40(); title="Fig. 3.41")
+    return plotvariables(solution, (t, 1900, 2000), variables_40(); title="Fig. 3.41", kwargs...)
 end
 
-function fig_42()
+function fig_42(; kwargs...)
     parameters_3_42 = getparameters()
     parameters_3_42[:scor1] = 2
 
     system = historicalrun(params=parameters_3_42)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.42")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.42", kwargs...)
 end
 
-function fig_43()
+function fig_43(; kwargs...)
     @named pop = population()
     @named nr = non_renewable()
     @named ag = agriculture()
 
     variables = [
         (pop.pop,  0, 5e9, "pop"),
-        (nr.fcaor,  0, 1, "fcaor"),
-        (ag.fioaa,    0, 0.5, "fioaa"),
+        (nr.fcaor, 0, 1,   "fcaor"),
+        (ag.fioaa, 0, 0.5, "fioaa"),
     ]
 
     cap_tables_3_43 = gettables()
@@ -140,54 +140,54 @@ function fig_43()
     system = historicalrun(tables=cap_tables_3_43)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables; title="Fig. 3.43")
+    return plotvariables(solution, (t, 1900, 2000), variables; title="Fig. 3.43", kwargs...)
 end
 
-function fig_44()
+function fig_44(; kwargs...)
     cap_tables_3_44 = gettables()
     cap_tables_3_44[:fcaor] = (0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.4, 0.6, 0.8)
 
     system = historicalrun(tables=cap_tables_3_44)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.44")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.44", kwargs...)
 end
 
-function fig_45()
+function fig_45(; kwargs...)
     cap_tables_3_45 = gettables()
     cap_tables_3_45[:fioaa] = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.3, 0.3, 0.3)
 
     system = historicalrun(tables=cap_tables_3_45)
     solution = solve(system, (1900, 2100))
-    return plotvariables(solution, (t, 1900, 2000), variables_45(); title="Fig. 3.45")
+    return plotvariables(solution, (t, 1900, 2000), variables_45(); title="Fig. 3.45", kwargs...)
 end
 
-function fig_46()
+function fig_46(; kwargs...)
     cap_tables_3_46 = gettables()
     cap_tables_3_46[:fcaor] = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.3, 0.3, 0.3)
 
     system = historicalrun(tables=cap_tables_3_46)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.46")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.46", kwargs...)
 end
 
-function fig_47()
+function fig_47(; kwargs...)
     cap_tables_3_47 = gettables()
     cap_tables_3_47[:pop] = (1.65, 1.73, 1.8, 2.1, 2.3, 2.55, 3, 3.65, 2, 0.5, 0.2)
 
     system = historicalrun(tables=cap_tables_3_47)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_45(); title="Fig. 3.47")
+    return plotvariables(solution, (t, 1900, 2000), variables_45(); title="Fig. 3.47", kwargs...)
 end
 
-function fig_48()
+function fig_48(; kwargs...)
     cap_tables_3_48 = gettables()
     cap_tables_3_48[:pop] = (1.65, 1.73, 1.8, 2.1, 2.3, 2.55, 3, 3.65, 2, 0.5, 0.2)
 
     system = historicalrun(tables=cap_tables_3_48)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.48")
+    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.48", kwargs...)
 end

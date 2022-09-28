@@ -68,11 +68,11 @@ function variables_c()
 end
 
 
-fig_84() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 2.84c")
-fig_85() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 2.85c")
-fig_86() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 2.86c")
+fig_84(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 2.84c", kwargs...)
+fig_85(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 2.85c", kwargs...)
+fig_86(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 2.86c", kwargs...)
 
-function fig_87()
+function fig_87(; kwargs...)
     parameters_2_87 = getparameters()
     parameters_2_87[:iphst] = 4000
     parameters_2_87[:lt2] = 1900
@@ -80,10 +80,10 @@ function fig_87()
     system = historicalrun(params=parameters_2_87)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.87c")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.87c", kwargs...)
 end
 
-function fig_88()
+function fig_88(; kwargs...)
     parameters_2_88 = getparameters()
     parameters_2_88[:iphst] = 4000
     parameters_2_88[:lt2] = 1900
@@ -94,22 +94,22 @@ function fig_88()
     system = historicalrun(params=parameters_2_88)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.88c")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.88c", kwargs...)
 end
 
-function fig_89()
+function fig_89(; kwargs...)
     parameters_2_89 = getparameters()
     parameters_2_89[:lt2] = 1900
 
     system = historicalrun(params=parameters_2_89)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.89c")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.89c", kwargs...)
 end
 
-fig_90() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 2.90c")
-fig_91() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 2.91c")
-fig_93() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 2.93c")
+fig_90(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 2.90c", kwargs...)
+fig_91(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 2.91c", kwargs...)
+fig_93(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 2.93c", kwargs...)
 
 function fig94solution()
     isdefined(@__MODULE__, :_solution_94) && return _solution_94
@@ -127,21 +127,21 @@ function fig94solution()
     return _solution_94
 end
 
-fig_94a() = plotvariables(fig94solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.94a")
-fig_94b() = plotvariables(fig94solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.94b")
-fig_94c() = plotvariables(fig94solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.94c")
+fig_94a(; kwargs...) = plotvariables(fig94solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.94a", kwargs...)
+fig_94b(; kwargs...) = plotvariables(fig94solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.94b", kwargs...)
+fig_94c(; kwargs...) = plotvariables(fig94solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.94c", kwargs...)
 
-function fig_96()
+function fig_96(; kwargs...)
     parameters_2_96 = getparameters()
     parameters_2_96[:fcest] = 1975
 
     system = historicalrun(params=parameters_2_96)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.96c")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.96c", kwargs...)
 end
 
-function fig_97()
+function fig_97(; kwargs...)
     parameters_2_97 = getparameters()
     parameters_2_97[:fcest] = 1975
     parameters_2_97[:zpgt] = 1975
@@ -149,20 +149,20 @@ function fig_97()
     system = historicalrun(params=parameters_2_97)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.97c")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.97c", kwargs...)
 end
 
-function fig_98()
+function fig_98(; kwargs...)
     parameters_2_98 = getparameters()
     parameters_2_98[:lt] = 2000
 
     system = historicalrun(params=parameters_2_98)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.98c")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.98c", kwargs...)
 end
 
-function fig_99()
+function fig_99(; kwargs...)
     parameters_2_99 = getparameters()
     parameters_2_99[:lt] = 2000
     parameters_2_99[:fcest] = 1975
@@ -170,10 +170,10 @@ function fig_99()
     system = historicalrun(params=parameters_2_99)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.99c")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.99c", kwargs...)
 end
 
-function fig_100()
+function fig_100(; kwargs...)
     parameters_2_100 = getparameters()
     parameters_2_100[:lt] = 2000
     parameters_2_100[:fcest] = 1975
@@ -182,5 +182,5 @@ function fig_100()
     system = historicalrun(params=parameters_2_100)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.100c")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.100c", kwargs...)
 end

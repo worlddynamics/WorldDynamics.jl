@@ -56,7 +56,7 @@ function variables_20()
 end
 
 
-function fig_2()
+function fig_2(; kwargs...)
     @named pop = Pop4.population()
     @named br = Pop4.birth_rate()
     @named dr = Pop4.death_rate()
@@ -74,10 +74,10 @@ function fig_2()
         (br.dtf,  0,    8,    "dtf"),
     ]
 
-    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.2")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.2", kwargs...)
 end
 
-function fig_3()
+function fig_3(; kwargs...)
     @named is = Capital.industrial_subsector()
     @named ss = Capital.service_subsector()
     @named se = SupplementaryEquations.supplementary_equations()
@@ -92,113 +92,113 @@ function fig_3()
         (se.fos,  0, 1,    "fos"),
     ]
 
-    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.3")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.3", kwargs...)
 end
 
-function fig_4()
+function fig_4(; kwargs...)
     @named ld = Agriculture.land_development()
     @named ai = Agriculture.agricultural_inputs()
     @named lfd = Agriculture.land_fertility_degradation()
 
     variables = [
-        (ld.f, 0, 2e12, "f"),
-        (ld.fpc, 0, 800, "fpc"),
-        (ld.al, 0, 1.6e9, "al"),
-        (ai.ly, 0, 2000, "ly"),
-        (ai.aiph, 0, 80, "aiph"),
-        (lfd.lfert, 0, 800, "lfert")
+        (ld.f,      0, 2e12,  "f"),
+        (ld.fpc,    0, 800,   "fpc"),
+        (ld.al,     0, 1.6e9, "al"),
+        (ai.ly,     0, 2000,  "ly"),
+        (ai.aiph,   0, 80,    "aiph"),
+        (lfd.lfert, 0, 800,   "lfert")
     ]
 
-    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.4")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.4", kwargs...)
 end
 
-function fig_5()
+function fig_5(; kwargs...)
     @named nr = NonRenewable.non_renewable()
 
     variables = [
-        (nr.nrur, 0, 4e9, "nrur"),
-        (nr.nrfr, 0, 1, "nrfr"),
-        (nr.fcaor, 0, 1, "fcaor"),
-        (nr.pcrum, 0, 1, "pcrum"),
+        (nr.nrur,  0, 4e9, "nrur"),
+        (nr.nrfr,  0, 1,   "nrfr"),
+        (nr.fcaor, 0, 1,   "fcaor"),
+        (nr.pcrum, 0, 1,   "pcrum"),
     ]
 
-    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.5")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.5", kwargs...)
 end
 
-function fig_6()
+function fig_6(; kwargs...)
     @named pp = Pollution.persistent_pollution()
     @named dr = Pop4.death_rate()
 
     variables = [
         (pp.ppgio, 0, 2e8, "ppgio"),
         (pp.ppgao, 0, 2e8, "ppgao"),
-        (pp.ppgr, 0, 2e8, "ppgr"),
+        (pp.ppgr,  0, 2e8, "ppgr"),
         (pp.ppapr, 0, 2e8, "ppapr"),
-        (pp.ppolx, 0, 1, "ppolx"),
-        (pp.ahl, 0, 4, "ahl"),
-        (dr.lmp, 0, 4, "lmp"),
+        (pp.ppolx, 0, 1,   "ppolx"),
+        (pp.ahl,   0, 4,   "ahl"),
+        (dr.lmp,   0, 4,   "lmp"),
     ]
 
-    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.6")
+    return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.6", kwargs...)
 end
 
-fig_7() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_7(); title="Fig. 7.7")
+fig_7(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_7(); title="Fig. 7.7", kwargs...)
 
-function fig_8()
+function fig_8(; kwargs...)
     @named nr = NonRenewable.non_renewable()
     @named is = Capital.industrial_subsector()
     @named ld = Agriculture.land_development()
     @named ai = Agriculture.agricultural_inputs()
 
     variables = [
-        (nr.fcaor, 0, 1, "fcaor"),
-        (is.io, 0, 4e12, "io"),
-        (ld.tai, 0, 4e12, "tai"),
-        (ai.aiph, 0, 200, "aiph"),
-        (ld.fioaa, 0, 0.2, "fioaa"),
+        (nr.fcaor, 0, 1,    "fcaor"),
+        (is.io,    0, 4e12, "io"),
+        (ld.tai,   0, 4e12, "tai"),
+        (ai.aiph,  0, 200,  "aiph"),
+        (ld.fioaa, 0, 0.2,  "fioaa"),
     ]
 
-    return plotvariables(historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.8")
+    return plotvariables(historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.8", kwargs...)
 end
 
-function fig_9()
+function fig_9(; kwargs...)
     @named ai = Agriculture.agricultural_inputs()
     @named ld = Agriculture.land_development()
     @named dr = Pop4.death_rate()
     @named pop = Pop4.population()
 
     variables = [
-        (ai.ly, 0, 4000, "ly"),
-        (ld.al, 0, 4e9, "al"),
-        (ld.fpc, 0, 800, "fpc"),
-        (dr.lmf, 0, 1.6, "lmf"),
+        (ai.ly,   0, 4000, "ly"),
+        (ld.al,   0, 4e9,  "al"),
+        (ld.fpc,  0, 800,  "fpc"),
+        (dr.lmf,  0, 1.6,  "lmf"),
         (pop.pop, 0, 16e9, "pop"),
     ]
 
-    return plotvariables(historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.9")
+    return plotvariables(historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.9", kwargs...)
 end
 
-function fig_10()
+function fig_10(; kwargs...)
     nr_parameters_7_10 = NonRenewable.getparameters()
     nr_parameters_7_10[:nri] = 2e12
 
     system = historicalrun(nonrenewable_params=nr_parameters_7_10)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.10")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.10", kwargs...)
 end
 
-function fig_11()
+function fig_11(; kwargs...)
     nr_parameters_7_11 = NonRenewable.getparameters()
     nr_parameters_7_11[:nri] = 1e13
 
     system = historicalrun(nonrenewable_params=nr_parameters_7_11)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.11")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.11", kwargs...)
 end
 
-function fig_13()
+function fig_13(; kwargs...)
     agr_tables_7_13 = Agriculture.gettables()
     agr_tables_7_13[:fioaa1] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
     agr_tables_7_13[:fioaa2] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
@@ -206,10 +206,10 @@ function fig_13()
     system = historicalrun(agriculture_tables=agr_tables_7_13)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.13")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.13", kwargs...)
 end
 
-function fig_14()
+function fig_14(; kwargs...)
     cap_parameters_7_14 = Capital.getparameters()
     cap_parameters_7_14[:alic1] = 21
     cap_parameters_7_14[:alic2] = 21
@@ -217,10 +217,10 @@ function fig_14()
     system = historicalrun(capital_params=cap_parameters_7_14)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.14")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.14", kwargs...)
 end
 
-function fig_15()
+function fig_15(; kwargs...)
     cap_parameters_7_15 = Capital.getparameters()
     cap_parameters_7_15[:alic1] = 21
     cap_parameters_7_15[:alic2] = 21
@@ -230,20 +230,20 @@ function fig_15()
     system = historicalrun(capital_params=cap_parameters_7_15)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.15")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.15", kwargs...)
 end
 
-function fig_16()
+function fig_16(; kwargs...)
     nr_tables_7_16 = NonRenewable.gettables()
     nr_tables_7_16[:fcaor2] = (1.0, 0.2, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05)
 
     system = historicalrun(nonrenewable_tables=nr_tables_7_16)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.16")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.16", kwargs...)
 end
 
-function fig_18()
+function fig_18(; kwargs...)
     nr_parameters_7_18 = NonRenewable.getparameters()
     nr_parameters_7_18[:nruf2] = 0.125
 
@@ -253,10 +253,10 @@ function fig_18()
     system = historicalrun(nonrenewable_params= nr_parameters_7_18, nonrenewable_tables=nr_tables_7_18)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.18")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.18", kwargs...)
 end
 
-function fig_19()
+function fig_19(; kwargs...)
     nr_parameters_7_19 = NonRenewable.getparameters()
     nr_parameters_7_19[:nruf2] = 0.125
 
@@ -269,10 +269,10 @@ function fig_19()
     system = historicalrun(nonrenewable_params= nr_parameters_7_19, nonrenewable_tables=nr_tables_7_19, agriculture_tables=agr_tables_7_19)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.19")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.19", kwargs...)
 end
 
-function fig_20()
+function fig_20(; kwargs...)
     nr_parameters_7_20 = NonRenewable.getparameters()
     nr_parameters_7_20[:nruf2] = 0.125
 
@@ -294,10 +294,10 @@ function fig_20()
 
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_20(); title="Fig. 7.20")
+    return plotvariables(solution, (t, 1900, 2100), variables_20(); title="Fig. 7.20", kwargs...)
 end
 
-function fig_21()
+function fig_21(; kwargs...)
     nr_parameters_7_21 = NonRenewable.getparameters()
     nr_parameters_7_21[:nruf2] = 0.125
 
@@ -323,10 +323,10 @@ function fig_21()
 
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_20(); title="Fig. 7.21")
+    return plotvariables(solution, (t, 1900, 2100), variables_20(); title="Fig. 7.21", kwargs...)
 end
 
-function fig_22()
+function fig_22(; kwargs...)
     @named nr = NonRenewable.non_renewable()
     @named is = Capital.industrial_subsector()
     @named ld = Agriculture.land_development()
@@ -371,20 +371,27 @@ function fig_22()
 
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables; title="Fig. 7.22")
+    return plotvariables(solution, (t, 1900, 2100), variables; title="Fig. 7.22", kwargs...)
 end
 
-function fig_34()
+fig_23(; kwargs...) = @info "This figure is not implemented yet."
+fig_24(; kwargs...) = @info "This figure is not implemented yet."
+fig_26(; kwargs...) = @info "This figure is not implemented yet."
+fig_27(; kwargs...) = @info "This figure is not implemented yet."
+fig_30(; kwargs...) = @info "This figure is not implemented yet."
+fig_32(; kwargs...) = @info "This figure is not implemented yet."
+
+function fig_34(; kwargs...)
     pop_parameters_7_34 = Pop4.getparameters()
     pop_parameters_7_34[:zpgt] = 1975
 
     system = historicalrun(pop_params=pop_parameters_7_34)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.34")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.34", kwargs...)
 end
 
-function fig_35()
+function fig_35(; kwargs...)
     cap_parameters_7_35 = Capital.getparameters()
     cap_parameters_7_35[:alic1] = 21
     cap_parameters_7_35[:alsc2] = 30
@@ -392,10 +399,10 @@ function fig_35()
     system = historicalrun(capital_params=cap_parameters_7_35)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.35")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.35", kwargs...)
 end
 
-function fig_36()
+function fig_36(; kwargs...)
     cap_tables_7_36 = Capital.gettables()
     cap_tables_7_36[:isopc2] = (60, 450, 960, 1500, 1830, 2175, 2475, 2700, 3000)
 
@@ -405,10 +412,10 @@ function fig_36()
     system = historicalrun(capital_tables=cap_tables_7_36, agriculture_tables=agr_tables_7_36)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.36")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.36", kwargs...)
 end
 
-function fig_37()
+function fig_37(; kwargs...)
     pop_parameters_7_37 = Pop4.getparameters()
     pop_parameters_7_37[:zpgt] = 1975
 
@@ -426,10 +433,10 @@ function fig_37()
 
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.37")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.37", kwargs...)
 end
 
-function fig_38()
+function fig_38(; kwargs...)
     pop_parameters_7_38 = Pop4.getparameters()
     pop_parameters_7_38[:zpgt] = 1975
 
@@ -462,5 +469,8 @@ function fig_38()
 
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.38")
+    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.38", kwargs...)
 end
+
+fig_39(; kwargs...) = @info "This figure is not implemented yet."
+fig_41(; kwargs...) = @info "This figure is not implemented yet."

@@ -67,11 +67,11 @@ function variables_c()
     return variables
 end
 
-fig_84() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 2.84b")
-fig_85() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 2.85b")
-fig_86() = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 2.86b")
+fig_84(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 2.84b", kwargs...)
+fig_85(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 2.85b", kwargs...)
+fig_86(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 2.86b", kwargs...)
 
-function fig_87()
+function fig_87(; kwargs...)
     parameters_2_87 = getparameters()
     parameters_2_87[:iphst] = 4000
     parameters_2_87[:lt2] = 1900
@@ -79,10 +79,10 @@ function fig_87()
     system = historicalrun(params=parameters_2_87)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.87b")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.87b", kwargs...)
 end
 
-function fig_88()
+function fig_88(; kwargs...)
     parameters_2_88 = getparameters()
     parameters_2_88[:iphst] = 4000
     parameters_2_88[:lt2] = 1900
@@ -93,34 +93,34 @@ function fig_88()
     system = historicalrun(params=parameters_2_88)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.88b")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.88b", kwargs...)
 end
 
-function fig_89()
+function fig_89(; kwargs...)
     parameters_2_89 = getparameters()
     parameters_2_89[:lt2] = 1900
 
     system = historicalrun(params=parameters_2_89)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.89b")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.89b", kwargs...)
 end
 
-fig_90() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 2.90b")
-fig_91() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 2.91b")
-fig_93() = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 2.93b")
+fig_90(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 2.90b", kwargs...)
+fig_91(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 2.91b", kwargs...)
+fig_93(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 2.93b", kwargs...)
 
-function fig_96()
+function fig_96(; kwargs...)
     parameters_2_96 = getparameters()
     parameters_2_96[:fcest] = 1975
 
     system = historicalrun(params=parameters_2_96)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.96b")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.96b", kwargs...)
 end
 
-function fig_97()
+function fig_97(; kwargs...)
     parameters_2_97 = getparameters()
     parameters_2_97[:fcest] = 1975
     parameters_2_97[:zpgt] = 1975
@@ -128,20 +128,20 @@ function fig_97()
     system = historicalrun(params=parameters_2_97)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.97b")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.97b", kwargs...)
 end
 
-function fig_98()
+function fig_98(; kwargs...)
     parameters_2_98 = getparameters()
     parameters_2_98[:lt] = 2000
 
     system = historicalrun(params=parameters_2_98)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.98b")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.98b", kwargs...)
 end
 
-function fig_99()
+function fig_99(; kwargs...)
     parameters_2_99 = getparameters()
     parameters_2_99[:lt] = 2000
     parameters_2_99[:fcest] = 1975
@@ -149,10 +149,10 @@ function fig_99()
     system = historicalrun(params=parameters_2_99)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.99b")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.99b", kwargs...)
 end
 
-function fig_100()
+function fig_100(; kwargs...)
     parameters_2_100 = getparameters()
     parameters_2_100[:lt] = 2000
     parameters_2_100[:fcest] = 1975
@@ -161,7 +161,7 @@ function fig_100()
     system = historicalrun(params=parameters_2_100)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.100b")
+    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.100b", kwargs...)
 end
 
 
@@ -177,9 +177,9 @@ function fig101solution()
     return _solution_101
 end
 
-fig_101a() = plotvariables(fig101solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.101a")
-fig_101b() = plotvariables(fig101solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.101b")
-fig_101c() = plotvariables(fig101solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.101c")
+fig_101a(; kwargs...) = plotvariables(fig101solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.101a", kwargs...)
+fig_101b(; kwargs...) = plotvariables(fig101solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.101b", kwargs...)
+fig_101c(; kwargs...) = plotvariables(fig101solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.101c", kwargs...)
 
 
 function fig102solution()
@@ -197,9 +197,9 @@ function fig102solution()
     return _solution_102
 end
 
-fig_102a() = plotvariables(fig102solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.102a")
-fig_102b() = plotvariables(fig102solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.102b")
-fig_102c() = plotvariables(fig102solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.102c")
+fig_102a(; kwargs...) = plotvariables(fig102solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.102a", kwargs...)
+fig_102b(; kwargs...) = plotvariables(fig102solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.102b", kwargs...)
+fig_102c(; kwargs...) = plotvariables(fig102solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.102c", kwargs...)
 
 
 function fig104solution()
@@ -217,9 +217,9 @@ function fig104solution()
     return _solution_104
 end
 
-fig_104a() = plotvariables(fig104solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.104a")
-fig_104b() = plotvariables(fig104solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.104b")
-fig_104c() = plotvariables(fig104solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.104c")
+fig_104a(; kwargs...) = plotvariables(fig104solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.104a", kwargs...)
+fig_104b(; kwargs...) = plotvariables(fig104solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.104b", kwargs...)
+fig_104c(; kwargs...) = plotvariables(fig104solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.104c", kwargs...)
 
 
 function fig105solution()
@@ -237,9 +237,9 @@ function fig105solution()
     return _solution_105
 end
 
-fig_105a() = plotvariables(fig105solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.105a")
-fig_105b() = plotvariables(fig105solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.105b")
-fig_105c() = plotvariables(fig105solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.105c")
+fig_105a(; kwargs...) = plotvariables(fig105solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.105a", kwargs...)
+fig_105b(; kwargs...) = plotvariables(fig105solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.105b", kwargs...)
+fig_105c(; kwargs...) = plotvariables(fig105solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.105c", kwargs...)
 
 
 function fig106solution()
@@ -257,9 +257,9 @@ function fig106solution()
     return _solution_106
 end
 
-fig_106a() = plotvariables(fig106solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.106a")
-fig_106b() = plotvariables(fig106solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.106b")
-fig_106c() = plotvariables(fig106solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.106c")
+fig_106a(; kwargs...) = plotvariables(fig106solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.106a", kwargs...)
+fig_106b(; kwargs...) = plotvariables(fig106solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.106b", kwargs...)
+fig_106c(; kwargs...) = plotvariables(fig106solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.106c", kwargs...)
 
 
 function fig107solution()
@@ -277,9 +277,9 @@ function fig107solution()
     return _solution_107
 end
 
-fig_107a() = plotvariables(fig107solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.107a")
-fig_107b() = plotvariables(fig107solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.107b")
-fig_107c() = plotvariables(fig107solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.107c")
+fig_107a(; kwargs...) = plotvariables(fig107solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.107a", kwargs...)
+fig_107b(; kwargs...) = plotvariables(fig107solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.107b", kwargs...)
+fig_107c(; kwargs...) = plotvariables(fig107solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.107c", kwargs...)
 
 
 function fig108solution()
@@ -297,9 +297,9 @@ function fig108solution()
     return _solution_108
 end
 
-fig_108a() = plotvariables(fig108solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.108a")
-fig_108b() = plotvariables(fig108solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.108b")
-fig_108c() = plotvariables(fig108solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.108c")
+fig_108a(; kwargs...) = plotvariables(fig108solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.108a", kwargs...)
+fig_108b(; kwargs...) = plotvariables(fig108solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.108b", kwargs...)
+fig_108c(; kwargs...) = plotvariables(fig108solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.108c", kwargs...)
 
 
 function fig109solution()
@@ -315,9 +315,9 @@ function fig109solution()
     return _solution_109
 end
 
-fig_109a() = plotvariables(fig109solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.109a")
-fig_109b() = plotvariables(fig109solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.109b")
-fig_109c() = plotvariables(fig109solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.109c")
+fig_109a(; kwargs...) = plotvariables(fig109solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.109a", kwargs...)
+fig_109b(; kwargs...) = plotvariables(fig109solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.109b", kwargs...)
+fig_109c(; kwargs...) = plotvariables(fig109solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.109c", kwargs...)
 
 
 function fig110solution()
@@ -335,9 +335,9 @@ function fig110solution()
     return _solution_110
 end
 
-fig_110a() = plotvariables(fig110solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.110a")
-fig_110b() = plotvariables(fig110solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.110b")
-fig_110c() = plotvariables(fig110solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.110c")
+fig_110a(; kwargs...) = plotvariables(fig110solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.110a", kwargs...)
+fig_110b(; kwargs...) = plotvariables(fig110solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.110b", kwargs...)
+fig_110c(; kwargs...) = plotvariables(fig110solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.110c", kwargs...)
 
 
 function fig111solution()
@@ -355,9 +355,9 @@ function fig111solution()
     return _solution_111
 end
 
-fig_111a() = plotvariables(fig111solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.111a")
-fig_111b() = plotvariables(fig111solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.111b")
-fig_111c() = plotvariables(fig111solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.111c")
+fig_111a(; kwargs...) = plotvariables(fig111solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.111a", kwargs...)
+fig_111b(; kwargs...) = plotvariables(fig111solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.111b", kwargs...)
+fig_111c(; kwargs...) = plotvariables(fig111solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.111c", kwargs...)
 
 
 function fig112solution()
@@ -373,9 +373,9 @@ function fig112solution()
     return _solution_112
 end
 
-fig_112a() = plotvariables(fig112solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.112a")
-fig_112b() = plotvariables(fig112solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.112b")
-fig_112c() = plotvariables(fig112solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.112c")
+fig_112a(; kwargs...) = plotvariables(fig112solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.112a", kwargs...)
+fig_112b(; kwargs...) = plotvariables(fig112solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.112b", kwargs...)
+fig_112c(; kwargs...) = plotvariables(fig112solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.112c", kwargs...)
 
 
 function fig113solution()
@@ -393,6 +393,6 @@ function fig113solution()
     return _solution_113
 end
 
-fig_113a() = plotvariables(fig113solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.113a")
-fig_113b() = plotvariables(fig113solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.113b")
-fig_113c() = plotvariables(fig113solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.113c")
+fig_113a(; kwargs...) = plotvariables(fig113solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.113a", kwargs...)
+fig_113b(; kwargs...) = plotvariables(fig113solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.113b", kwargs...)
+fig_113c(; kwargs...) = plotvariables(fig113solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.113c", kwargs...)
