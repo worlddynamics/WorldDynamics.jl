@@ -374,6 +374,13 @@ function fig_22()
     return plotvariables(solution, (t, 1900, 2100), variables; title="Fig. 7.22")
 end
 
+fig_23() = @info "This figure is not implemented yet."
+fig_24() = @info "This figure is not implemented yet."
+fig_26() = @info "This figure is not implemented yet."
+fig_27() = @info "This figure is not implemented yet."
+fig_30() = @info "This figure is not implemented yet."
+fig_32() = @info "This figure is not implemented yet."
+
 function fig_34()
     pop_parameters_7_34 = Pop4.getparameters()
     pop_parameters_7_34[:zpgt] = 1975
@@ -464,3 +471,6 @@ function fig_38()
 
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.38")
 end
+
+fig_39() = @info "This figure is not implemented yet."
+fig_41() = @info "This figure is not implemented yet."
