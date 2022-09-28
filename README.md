@@ -11,6 +11,19 @@ An open-source framework written in Julia for world dynamics modeling and simula
 
 The World Dynamics project aims to provide a modern framework to investigate [models of global dynamics](https://en.wikipedia.org/wiki/Integrated_assessment_modelling) focused on sustainable development based on current software engineering and scientific machine learning techniques. Our group is developing a Julia library to allow scientists to easily use and adapt different world models, from [Meadows et al.'s World3](https://en.wikipedia.org/wiki/World3) to recent proposals. By enabling an open, interdisciplinary, and consistent comparative approach to scientific model development, our goal is to supply high-quality information to global policy making on environmental and economic issues.
 
+### Getting started
+
+From the Julia REPL, install the package with 
+```jl
+]add WorldDynamics
+```
+You can now use the package, e.g. for reproducing Figure 7-10 from the book [_Dynamics of growth in a finite world_](https://archive.org/details/dynamicsofgrowth0000unse): 
+```jl
+using WorldDynamics
+WorldDynamics.World3.fig_10()
+```
+For how to produce different figures (and much more), please see [the documentation](https://natema.github.io/WorldDynamics.jl/stable/).
+
 ### How to cite this work 
 
 ```
