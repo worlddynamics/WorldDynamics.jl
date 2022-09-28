@@ -62,6 +62,8 @@ using WorldDynamics, Test, PlotlyJS
     end
 
     @testset "Pollution" begin
+        @test isa(World3.Pollution.fig_26(), PlotlyJS.SyncPlot)
+        @test isa(World3.Pollution.fig_27(), PlotlyJS.SyncPlot)
         @test isa(World3.Pollution.fig_28(), PlotlyJS.SyncPlot)
         @test isa(World3.Pollution.fig_29(), PlotlyJS.SyncPlot)
         @test isa(World3.Pollution.fig_30(), PlotlyJS.SyncPlot)
@@ -173,6 +175,9 @@ using WorldDynamics, Test, PlotlyJS
         @test isa(World3.Pop15.fig_90(), PlotlyJS.SyncPlot)
         @test isa(World3.Pop15.fig_91(), PlotlyJS.SyncPlot)
         @test isa(World3.Pop15.fig_93(), PlotlyJS.SyncPlot)
+        @test isa(World3.Pop15.fig_94a(), PlotlyJS.SyncPlot)
+        @test isa(World3.Pop15.fig_94b(), PlotlyJS.SyncPlot)
+        @test isa(World3.Pop15.fig_94c(), PlotlyJS.SyncPlot)
         @test isa(World3.Pop15.fig_96(), PlotlyJS.SyncPlot)
         @test isa(World3.Pop15.fig_97(), PlotlyJS.SyncPlot)
         @test isa(World3.Pop15.fig_98(), PlotlyJS.SyncPlot)
@@ -181,6 +186,14 @@ using WorldDynamics, Test, PlotlyJS
     end
 
     @testset "World3" begin
+        @test isa(World3.fig_2(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_3(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_4(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_5(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_6(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_7(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_8(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_9(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_10(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_11(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_13(), PlotlyJS.SyncPlot)
@@ -197,6 +210,15 @@ using WorldDynamics, Test, PlotlyJS
         @test isa(World3.fig_36(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_37(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_38(), PlotlyJS.SyncPlot)
+
+        @test_logs (:info, "This figure is not implemented yet.") World3.fig_23()
+        @test_logs (:info, "This figure is not implemented yet.") World3.fig_24()
+        @test_logs (:info, "This figure is not implemented yet.") World3.fig_26()
+        @test_logs (:info, "This figure is not implemented yet.") World3.fig_27()
+        @test_logs (:info, "This figure is not implemented yet.") World3.fig_30()
+        @test_logs (:info, "This figure is not implemented yet.") World3.fig_32()
+        @test_logs (:info, "This figure is not implemented yet.") World3.fig_39()
+        @test_logs (:info, "This figure is not implemented yet.") World3.fig_41()
     end
 
 end
