@@ -27,7 +27,7 @@ function death_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
 
     @variables dr(t) pop(t)
     @variables fpc(t) sopc(t) iopc(t) ppolx(t)
-    @variables ehspc(t) = inits[:ehspc]
+    @variables ehspc(t) = inits[:hsapc] # Line 22 Appendix A
     @variables cdr(t) le(t) lmf(t) hsapc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t)
 
     eqs = [
@@ -61,18 +61,19 @@ function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
     @variables br(t) pop(t)
     @variables le(t) iopc(t) sopc(t)
 
-    @variables ple(t) = inits[:le]
-    @variables ple1(t) = inits[:le]
-    @variables ple2(t) = inits[:le]
-    @variables diopc(t) = inits[:iopc]
-    @variables diopc1(t) = inits[:iopc]
-    @variables diopc2(t) = inits[:iopc]
-    @variables aiopc(t) = inits[:iopc]
-    @variables fcfpc(t) = inits[:fcapc]
-    @variables fcfpc2(t) = inits[:fcapc]
-    @variables fcfpc1(t) = inits[:fcapc]
+    @variables ple(t) = inits[:le] # Line 37 Appendix A
+    @variables ple1(t) = inits[:le] # Line 37 Appendix A
+    @variables ple2(t) = inits[:le] # Line 37 Appendix A
+    @variables diopc(t) = inits[:iopc] # Line 40 Appendix A
+    @variables diopc1(t) = inits[:iopc] # Line 40 Appendix A
+    @variables diopc2(t) = inits[:iopc] # Line 40 Appendix A
+    @variables frsn(t) = inits[:frsn] # Line 41.2 Appendix A
+    @variables aiopc(t) = inits[:iopc]  # Line 43 Appendix A
+    @variables fcfpc(t) = inits[:fcapc] # Line 46 Appendix A
+    @variables fcfpc2(t) = inits[:fcapc] # Line 46 Appendix A
+    @variables fcfpc1(t) = inits[:fcapc] # Line 46 Appendix A
 
-    @variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) dcfs(t) sfsn(t) frsn(t) fie(t) nfc(t) fce(t) fcapc(t) fsafc(t)
+    @variables cbr(t) tf(t) mtf(t) fm(t) dtf(t) cmple(t) dcfs(t) sfsn(t) fie(t) nfc(t) fce(t) fcapc(t) fsafc(t)
 
     eqs = [
         cbr ~ 1000.0 * br / pop # Line 31 Appendix A
@@ -90,15 +91,15 @@ function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
         D(diopc2) ~ 3 * (diopc1 - diopc2) / sad # Line 40 Appendix A
         D(diopc1) ~ 3 * (iopc - diopc1) / sad # Line 40 Appendix A
         frsn ~ interpolate(fie, tables[:frsn], ranges[:frsn]) # Line 41 Appendix A
-        fie ~ (iopc - aiopc) / aiopc
-        D(aiopc) ~ (iopc - aiopc) / ieat
-        nfc ~ (mtf / dtf) - 1
-        fce ~ clip(1.0, interpolate(fcfpc, tables[:fce], ranges[:fce]), t, fcest)
-        D(fcfpc) ~ 3 * (fcfpc2 - fcfpc) / hsid
-        D(fcfpc2) ~ 3 * (fcfpc1 - fcfpc2) / hsid
-        D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid
-        fcapc ~ fsafc * sopc
-        fsafc ~ interpolate(nfc, tables[:fsafc], ranges[:fsafc])
+        fie ~ (iopc - aiopc) / aiopc # Line 42 Appendix A
+        D(aiopc) ~ (iopc - aiopc) / ieat # Line 43 Appendix A
+        nfc ~ (mtf / dtf) - 1 # Line 44 Appendix A
+        fce ~ clip(1.0, interpolate(fcfpc, tables[:fce], ranges[:fce]), t, fcest) # Line 45 Appendix A
+        D(fcfpc) ~ 3 * (fcfpc2 - fcfpc) / hsid # Line 46 Appendix A
+        D(fcfpc2) ~ 3 * (fcfpc1 - fcfpc2) / hsid # Line 46 Appendix A
+        D(fcfpc1) ~ 3 * (fcapc - fcfpc1) / hsid # Line 46 Appendix A
+        fcapc ~ fsafc * sopc # Line 47 Appendix A
+        fsafc ~ interpolate(nfc, tables[:fsafc], ranges[:fsafc]) # Line 48 Appendix A
     ]
 
     ODESystem(eqs; name)

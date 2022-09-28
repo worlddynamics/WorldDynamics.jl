@@ -7,10 +7,9 @@ inits = Dict{Symbol, Float64}(
 
 inits[:sopc] = 1.5e11 / inits[:pop]
 inits[:hsapc] = interpolate(inits[:sopc], tables[:hsapc], ranges[:hsapc])
-inits[:ehspc] = inits[:hsapc]
 inits[:fpc] = 4e11 / inits[:pop]
 inits[:lmf] = interpolate(inits[:fpc] / params[:sfpc], tables[:lmf], ranges[:lmf])
-inits[:lmhs] = interpolate(inits[:ehspc], tables[:lmhs1], ranges[:lmhs1])
+inits[:lmhs] = interpolate(inits[:hsapc], tables[:lmhs1], ranges[:lmhs1])
 inits[:lmp] = interpolate(inits[:ppolx], tables[:lmp], ranges[:lmp])
 inits[:iopc] = 0.7e11 / inits[:pop]
 inits[:cmi] = interpolate(inits[:iopc], tables[:cmi], ranges[:cmi])
