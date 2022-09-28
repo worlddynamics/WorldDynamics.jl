@@ -28,4 +28,16 @@ The World Dynamics project aims to provide a modern framework to investigate [mo
 }
 ```
 
-## More info coming soon!!!
+### Acknowledgments 
+
+We thank for their support: 
+
+[<img src="docs/src/assets/logo-i3s.png" width="200" />](https://www.i3s.unice.fr/fr)
+[<img src="docs/src/assets/logo-ds4h.png" width="120" />](https://ds4h.univ-cotedazur.eu/about-us/rise)
+[<img src="docs/src/assets/logo-idex-ucajedi.png" width="200" />](https://univ-cotedazur.fr/universite/ucajedi-lidex-duniversite-cote-dazur)
+
+[<img src="docs/src/assets/logo-inria.png" width="200" />](https://www.inria.fr/fr)
+[<img src="docs/src/assets/logo-cnrs.png" width="100" />](https://www.cnrs.fr/)
+
+[<img src="docs/src/assets/logo-UniversitadiRomaTorVergata.png" width="120" />](https://ing.uniroma2.it)
+[<img src="docs/src/assets/logo-gssi.png" width="210" />](https://www.gssi.it/)
