@@ -24,6 +24,12 @@ WorldDynamics.World3.fig_10()
 ```
 For how to produce different figures (and much more), please see [the documentation](https://natema.github.io/WorldDynamics.jl/stable/).
 
+## Project leaders 
+
+- [Pierluigi Crescenzi](http://www.pilucrescenzi.it/)
+- [Emanuele Natale](http://enatale.name)
+- [Paulo Bruno Serafim](https://paulobruno.github.io/about/)
+
 ### How to cite this work 
 
 ```
