@@ -56,6 +56,9 @@ function variables_20()
 end
 
 
+"""
+    Reproduce Fig 7.2. The original figure is presented on Chapter 7.
+"""
 function fig_2(; kwargs...)
     @named pop = Pop4.population()
     @named br = Pop4.birth_rate()
@@ -77,6 +80,9 @@ function fig_2(; kwargs...)
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.2", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.3. The original figure is presented on Chapter 7.
+"""
 function fig_3(; kwargs...)
     @named is = Capital.industrial_subsector()
     @named ss = Capital.service_subsector()
@@ -95,6 +101,9 @@ function fig_3(; kwargs...)
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.3", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.4. The original figure is presented on Chapter 7.
+"""
 function fig_4(; kwargs...)
     @named ld = Agriculture.land_development()
     @named ai = Agriculture.agricultural_inputs()
@@ -112,6 +121,9 @@ function fig_4(; kwargs...)
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.4", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.5. The original figure is presented on Chapter 7.
+"""
 function fig_5(; kwargs...)
     @named nr = NonRenewable.non_renewable()
 
@@ -125,6 +137,9 @@ function fig_5(; kwargs...)
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.5", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.6. The original figure is presented on Chapter 7.
+"""
 function fig_6(; kwargs...)
     @named pp = Pollution.persistent_pollution()
     @named dr = Pop4.death_rate()
@@ -142,8 +157,15 @@ function fig_6(; kwargs...)
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.6", kwargs...)
 end
 
+
+"""
+    Reproduce Fig 7.7. The original figure is presented on Chapter 7.
+"""
 fig_7(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_7(); title="Fig. 7.7", kwargs...)
 
+"""
+    Reproduce Fig 7.8. The original figure is presented on Chapter 7.
+"""
 function fig_8(; kwargs...)
     @named nr = NonRenewable.non_renewable()
     @named is = Capital.industrial_subsector()
@@ -161,6 +183,9 @@ function fig_8(; kwargs...)
     return plotvariables(historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.8", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.9. The original figure is presented on Chapter 7.
+"""
 function fig_9(; kwargs...)
     @named ai = Agriculture.agricultural_inputs()
     @named ld = Agriculture.land_development()
@@ -178,6 +203,9 @@ function fig_9(; kwargs...)
     return plotvariables(historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.9", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.10. The original figure is presented on Chapter 7.
+"""
 function fig_10(; kwargs...)
     nr_parameters_7_10 = NonRenewable.getparameters()
     nr_parameters_7_10[:nri] = 2e12
@@ -188,6 +216,9 @@ function fig_10(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.10", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.11. The original figure is presented on Chapter 7.
+"""
 function fig_11(; kwargs...)
     nr_parameters_7_11 = NonRenewable.getparameters()
     nr_parameters_7_11[:nri] = 1e13
@@ -198,6 +229,9 @@ function fig_11(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.11", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.13. The original figure is presented on Chapter 7.
+"""
 function fig_13(; kwargs...)
     agr_tables_7_13 = Agriculture.gettables()
     agr_tables_7_13[:fioaa1] = (0.5, 0.3, 0.1, 0.0, 0.0, 0.0)
@@ -209,6 +243,9 @@ function fig_13(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.13", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.14. The original figure is presented on Chapter 7.
+"""
 function fig_14(; kwargs...)
     cap_parameters_7_14 = Capital.getparameters()
     cap_parameters_7_14[:alic1] = 21
@@ -220,6 +257,9 @@ function fig_14(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.14", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.15. The original figure is presented on Chapter 7.
+"""
 function fig_15(; kwargs...)
     cap_parameters_7_15 = Capital.getparameters()
     cap_parameters_7_15[:alic1] = 21
@@ -233,6 +273,9 @@ function fig_15(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.15", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.16. The original figure is presented on Chapter 7.
+"""
 function fig_16(; kwargs...)
     nr_tables_7_16 = NonRenewable.gettables()
     nr_tables_7_16[:fcaor2] = (1.0, 0.2, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05)
@@ -243,6 +286,9 @@ function fig_16(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.16", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.18. The original figure is presented on Chapter 7.
+"""
 function fig_18(; kwargs...)
     nr_parameters_7_18 = NonRenewable.getparameters()
     nr_parameters_7_18[:nruf2] = 0.125
@@ -256,6 +302,9 @@ function fig_18(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.18", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.19. The original figure is presented on Chapter 7.
+"""
 function fig_19(; kwargs...)
     nr_parameters_7_19 = NonRenewable.getparameters()
     nr_parameters_7_19[:nruf2] = 0.125
@@ -272,6 +321,9 @@ function fig_19(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.19", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.20. The original figure is presented on Chapter 7.
+"""
 function fig_20(; kwargs...)
     nr_parameters_7_20 = NonRenewable.getparameters()
     nr_parameters_7_20[:nruf2] = 0.125
@@ -297,6 +349,9 @@ function fig_20(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_20(); title="Fig. 7.20", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.21. The original figure is presented on Chapter 7.
+"""
 function fig_21(; kwargs...)
     nr_parameters_7_21 = NonRenewable.getparameters()
     nr_parameters_7_21[:nruf2] = 0.125
@@ -326,6 +381,9 @@ function fig_21(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_20(); title="Fig. 7.21", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.22. The original figure is presented on Chapter 7.
+"""
 function fig_22(; kwargs...)
     @named nr = NonRenewable.non_renewable()
     @named is = Capital.industrial_subsector()
@@ -374,13 +432,40 @@ function fig_22(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables; title="Fig. 7.22", kwargs...)
 end
 
+
+"""
+    Reproduce Fig 7.23. The original figure is presented on Chapter 7.
+"""
 fig_23(; kwargs...) = @info "This figure is not implemented yet."
+
+"""
+    Reproduce Fig 7.24. The original figure is presented on Chapter 7.
+"""
 fig_24(; kwargs...) = @info "This figure is not implemented yet."
+
+"""
+    Reproduce Fig 7.26. The original figure is presented on Chapter 7.
+"""
 fig_26(; kwargs...) = @info "This figure is not implemented yet."
+
+"""
+    Reproduce Fig 7.27. The original figure is presented on Chapter 7.
+"""
 fig_27(; kwargs...) = @info "This figure is not implemented yet."
+
+"""
+    Reproduce Fig 7.30. The original figure is presented on Chapter 7.
+"""
 fig_30(; kwargs...) = @info "This figure is not implemented yet."
+
+"""
+    Reproduce Fig 7.32. The original figure is presented on Chapter 7.
+"""
 fig_32(; kwargs...) = @info "This figure is not implemented yet."
 
+"""
+    Reproduce Fig 7.34. The original figure is presented on Chapter 7.
+"""
 function fig_34(; kwargs...)
     pop_parameters_7_34 = Pop4.getparameters()
     pop_parameters_7_34[:zpgt] = 1975
@@ -391,6 +476,9 @@ function fig_34(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.34", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.35. The original figure is presented on Chapter 7.
+"""
 function fig_35(; kwargs...)
     cap_parameters_7_35 = Capital.getparameters()
     cap_parameters_7_35[:alic1] = 21
@@ -402,6 +490,9 @@ function fig_35(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.35", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.36. The original figure is presented on Chapter 7.
+"""
 function fig_36(; kwargs...)
     cap_tables_7_36 = Capital.gettables()
     cap_tables_7_36[:isopc2] = (60, 450, 960, 1500, 1830, 2175, 2475, 2700, 3000)
@@ -415,6 +506,9 @@ function fig_36(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.36", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.37. The original figure is presented on Chapter 7.
+"""
 function fig_37(; kwargs...)
     pop_parameters_7_37 = Pop4.getparameters()
     pop_parameters_7_37[:zpgt] = 1975
@@ -436,6 +530,9 @@ function fig_37(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.37", kwargs...)
 end
 
+"""
+    Reproduce Fig 7.38. The original figure is presented on Chapter 7.
+"""
 function fig_38(; kwargs...)
     pop_parameters_7_38 = Pop4.getparameters()
     pop_parameters_7_38[:zpgt] = 1975
@@ -472,5 +569,13 @@ function fig_38(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.38", kwargs...)
 end
 
+
+"""
+    Reproduce Fig 7.39. The original figure is presented on Chapter 7.
+"""
 fig_39(; kwargs...) = @info "This figure is not implemented yet."
+
+"""
+    Reproduce Fig 7.41. The original figure is presented on Chapter 7.
+"""
 fig_41(; kwargs...) = @info "This figure is not implemented yet."

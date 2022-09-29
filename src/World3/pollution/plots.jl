@@ -26,6 +26,9 @@ function variables_31()
 end
 
 
+"""
+    Reproduce Fig 6.26. The original figure is presented on Chapter 6.
+"""
 function fig_26(; kwargs...)
     @named pp = persistent_pollution()
     @named pd = pollution_damage()
@@ -54,6 +57,9 @@ function fig_26(; kwargs...)
     return plotvariables(solution, (t, 1900, 1980), variables; title="Fig. 6.26", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.27. The original figure is presented on Chapter 6.
+"""
 function fig_27(; kwargs...)
     @named pp = persistent_pollution()
     @named pd = pollution_damage()
@@ -82,6 +88,9 @@ function fig_27(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables; title="Fig. 6.27", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.28. The original figure is presented on Chapter 6.
+"""
 function fig_28(; kwargs...)
     @named nr = non_renewable()
     @named pop = population()
@@ -99,6 +108,9 @@ function fig_28(; kwargs...)
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 6.28", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.29. The original figure is presented on Chapter 6.
+"""
 function fig_29(; kwargs...)
     @named pp = persistent_pollution()
     @named pd = pollution_damage()
@@ -116,6 +128,9 @@ function fig_29(; kwargs...)
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 6.29", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.30. The original figure is presented on Chapter 6.
+"""
 function fig_30(; kwargs...)
     @named nr = non_renewable()
     @named pop = population()
@@ -133,8 +148,15 @@ function fig_30(; kwargs...)
     return plotvariables(historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 6.30", kwargs...)
 end
 
+
+"""
+    Reproduce Fig 6.31. The original figure is presented on Chapter 6.
+"""
 fig_31(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_31(); title="Fig. 6.31", kwargs...)
 
+"""
+    Reproduce Fig 6.32. The original figure is presented on Chapter 6.
+"""
 function fig_32(; kwargs...)
     parameters_6_32 = getparameters()
     parameters_6_32[:imti] = 1
@@ -147,6 +169,9 @@ function fig_32(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.32", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.33. The original figure is presented on Chapter 6.
+"""
 function fig_33(; kwargs...)
     parameters_6_33 = getparameters()
     parameters_6_33[:pptd1] = 40
@@ -159,6 +184,9 @@ function fig_33(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.33", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.34. The original figure is presented on Chapter 6.
+"""
 function fig_34(; kwargs...)
     parameters_6_34 = getparameters()
     parameters_6_34[:pptd1] = 10
@@ -171,6 +199,9 @@ function fig_34(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.34", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.35. The original figure is presented on Chapter 6.
+"""
 function fig_35(; kwargs...)
     tables_6_35 = gettables()
     tables_6_35[:ahlm] = (1, 21, 41, 61, 81)
@@ -181,6 +212,9 @@ function fig_35(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.35", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.36. The original figure is presented on Chapter 6.
+"""
 function fig_36(; kwargs...)
     tables_6_36 = gettables()
     tables_6_36[:ahlm] = (1, 1, 1, 1, 1)
@@ -191,6 +225,9 @@ function fig_36(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.36", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.37. The original figure is presented on Chapter 6.
+"""
 function fig_37(; kwargs...)
     parameters_6_37 = getparameters()
     parameters_6_37[:pptd2] = 40
@@ -201,6 +238,9 @@ function fig_37(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.37", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.38. The original figure is presented on Chapter 6.
+"""
 function fig_38(; kwargs...)
     tables_6_38 = gettables()
     tables_6_38[:ahlm] = (1, 6, 11, 16, 21)
@@ -211,6 +251,9 @@ function fig_38(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.38", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.39. The original figure is presented on Chapter 6.
+"""
 function fig_39(; kwargs...)
     tables_6_39 = gettables()
     tables_6_39[:lmp2] = (1, 1, 0.99, 0.98, 0.95, 0.92, 0.88, 0.82, 0.77, 0.70, 0.60)
@@ -222,6 +265,9 @@ function fig_39(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.39", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.40. The original figure is presented on Chapter 6.
+"""
 function fig_40(; kwargs...)
     parameters_6_40 = getparameters()
     parameters_6_40[:ppgf21] = 0.2
@@ -232,6 +278,9 @@ function fig_40(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.40", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.41. The original figure is presented on Chapter 6.
+"""
 function fig_41(; kwargs...)
     parameters_6_41 = getparameters()
     parameters_6_41[:swat] = 1
@@ -242,6 +291,9 @@ function fig_41(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.41", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.43. The original figure is presented on Chapter 6.
+"""
 function fig_43(; kwargs...)
     parameters_6_43 = getparameters()
     parameters_6_43[:swat] = 1
@@ -254,6 +306,9 @@ function fig_43(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.43", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.44. The original figure is presented on Chapter 6.
+"""
 function fig_44(; kwargs...)
     tables_6_44 = gettables()
     tables_6_44[:pcrum] = (17, 30, 52, 79, 138, 280, 280, 280, 280, 280, 280)
@@ -267,6 +322,9 @@ function fig_44(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.44", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.45. The original figure is presented on Chapter 6.
+"""
 function fig_45(; kwargs...)
     tables_6_45 = gettables()
     tables_6_45[:pcrum] = (17, 30, 52, 78, 138, 280, 480, 480, 480, 480, 480)
@@ -280,6 +338,9 @@ function fig_45(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.45", kwargs...)
 end
 
+"""
+    Reproduce Fig 6.46. The original figure is presented on Chapter 6.
+"""
 function fig_46(; kwargs...)
     parameters_6_46 = getparameters()
     parameters_6_46[:swat] = 1

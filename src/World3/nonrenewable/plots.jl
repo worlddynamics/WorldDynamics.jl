@@ -26,8 +26,15 @@ function variables_nr()
 end
 
 
+
+"""
+    Reproduce Fig 5.25. The original figure is presented on Chapter 5.
+"""
 fig_25(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_nr(); title="Fig. 5.25", kwargs...)
 
+"""
+    Reproduce Fig 5.26. The original figure is presented on Chapter 5.
+"""
 function fig_26(; kwargs...)
     parameters_5_26 = getparameters()
     parameters_5_26[:nri] = 2e12
@@ -38,6 +45,9 @@ function fig_26(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.26", kwargs...)
 end
 
+"""
+    Reproduce Fig 5.28. The original figure is presented on Chapter 5.
+"""
 function fig_28(; kwargs...)
     tables_5_28 = gettables()
     tables_5_28[:fcaor2] = (1.0, 0.3, 0.1, 0.065, 0.06, 0.055, 0.05, 0.05, 0.05, 0.05, 0.05)
@@ -48,6 +58,9 @@ function fig_28(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.28", kwargs...)
 end
 
+"""
+    Reproduce Fig 5.29. The original figure is presented on Chapter 5.
+"""
 function fig_29(; kwargs...)
     parameters_5_29 = getparameters()
     parameters_5_29[:nruf2] = 0.25
@@ -58,6 +71,9 @@ function fig_29(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.29", kwargs...)
 end
 
+"""
+    Reproduce Fig 5.30. The original figure is presented on Chapter 5.
+"""
 function fig_30(; kwargs...)
     parameters_5_30 = getparameters()
     parameters_5_30[:zpgt] = 1975
