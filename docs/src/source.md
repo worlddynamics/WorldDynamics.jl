@@ -33,3 +33,54 @@ Modules = [WorldDynamics]
 Order   = [:function]
 Pages   = ["solvesystems.jl"]
 ```
+
+## Reproducing figures
+
+### Agriculture system
+
+```@autodocs
+Modules = [WorldDynamics.World3.Agriculture]
+Pages   = ["plots.jl"]
+```
+
+### Capital system
+
+```@autodocs
+Modules = [WorldDynamics.World3.Capital]
+Pages   = ["plots.jl"]
+```
+
+### Non-Renewable system
+
+```@autodocs
+Modules = [WorldDynamics.World3.NonRenewable]
+Pages   = ["plots.jl"]
+```
+
+### One level population system
+
+```@autodocs
+Modules = [WorldDynamics.World3.Pop1]
+Pages   = ["plots.jl"]
+```
+
+### Four level population system
+
+```@autodocs
+Modules = [WorldDynamics.World3.Pop4]
+Pages   = ["plots.jl"]
+```
+
+### Fifteen level population system
+
+```@autodocs
+Modules = [WorldDynamics.World3.Pop15]
+Pages   = ["plots.jl"]
+```
+
+### World3 system
+
+```@autodocs
+Modules = [WorldDynamics.World3]
+Pages   = ["plots.jl"]
+```
