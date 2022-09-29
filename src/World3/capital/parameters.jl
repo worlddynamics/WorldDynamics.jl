@@ -1,5 +1,5 @@
 params = Dict{Symbol, Float64}(
-    :pyear => 1975, # Line 150.1 Appendix A
+    :pyear => 4000, # Line 150.1 Appendix A
     :icor1 => 3, # Line 51.1 Appendix A
     :icor2 => 3, # Line 51.2 Appendix A
     :alic1 => 14, # Line 54.1 Appendix A

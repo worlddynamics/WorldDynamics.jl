@@ -6,7 +6,7 @@ makedocs(sitename="WorldDynamics.jl",
         "Home" => "index.md",
         "WorldDynamics tutorial" => "tutorial.md",
         "World 3 equations, variables, and parameters" => "world3.md",
-        "Source code documentation" => "source.md"
+        "Source code documentation" => "source.md",
     ]
 )
 
