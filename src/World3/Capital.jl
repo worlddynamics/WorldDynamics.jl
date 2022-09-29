@@ -123,21 +123,22 @@ function job_subsector(; name, params=params, inits=inits, tables=tables, ranges
     @parameters lufdt = params[:lufdt]
 
     @variables ic(t) iopc(t) sc(t) sopc(t) al(t) aiph(t) p2(t) p3(t)
-    @variables lufd(t) = inits[:lufd]
-    @variables j(t) pjis(t) jpicu(t) pjss(t) jpscu(t) pjas(t) jph(t) lf(t) luf(t) cuf(t)
+    @variables lufd(t) = inits[:lufd] # Line 82 Appendix A
+    @variables cuf(t) = inits[:cuf] # Line 83.1 Appendix A
+    @variables j(t) pjis(t) jpicu(t) pjss(t) jpscu(t) pjas(t) jph(t) lf(t) luf(t)
 
     eqs = [
-        j ~ pjis + pjas + pjss
-        pjis ~ ic * jpicu
-        jpicu ~ interpolate(iopc, tables[:jpicu], ranges[:jpicu]) * (1e-3)
-        pjss ~ sc * jpscu
-        jpscu ~ interpolate(sopc, tables[:jpscu], ranges[:jpscu]) * (1e-3)
-        pjas ~ jph * al
-        jph ~ interpolate(aiph, tables[:jph], ranges[:jph])
-        lf ~ (p2 + p3) * lfpf
-        luf ~ j / lf
-        D(lufd) ~ (luf - lufd) / lufdt
-        cuf ~ interpolate(lufd, tables[:cuf], ranges[:cuf])
+        j ~ pjis + pjas + pjss # Line 73 Appendix A
+        pjis ~ ic * jpicu # Line 74 Appendix A
+        jpicu ~ interpolate(iopc, tables[:jpicu], ranges[:jpicu]) * (1e-3) # Line 75 Appendix A
+        pjss ~ sc * jpscu # Line 76 Appendix A
+        jpscu ~ interpolate(sopc, tables[:jpscu], ranges[:jpscu]) * (1e-3) # Line 77 Appendix A
+        pjas ~ jph * al # Line 78 Appendix A
+        jph ~ interpolate(aiph, tables[:jph], ranges[:jph]) # Line 79 Appendix A
+        lf ~ (p2 + p3) * lfpf # Line 80 Appendix A
+        luf ~ j / lf # Line 81 Appendix A
+        D(lufd) ~ (luf - lufd) / lufdt # Line 82 Appendix A
+        cuf ~ interpolate(lufd, tables[:cuf], ranges[:cuf]) # Line 83 Appendix A
     ]
 
     ODESystem(eqs; name)

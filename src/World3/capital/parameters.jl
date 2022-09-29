@@ -12,6 +12,6 @@ params = Dict{Symbol, Float64}(
     :alsc2 => 20, # Line 69.2 Appendix A
     :scor1 => 1, # Line 72.1 Appendix A
     :scor2 => 1, # Line 72.2 Appendix A
-    :lfpf => 0.75,
-    :lufdt => 2,
+    :lfpf => 0.75, # Line 80.1 Appendix A
+    :lufdt => 2, # Line 82.1 Appendix A
 )

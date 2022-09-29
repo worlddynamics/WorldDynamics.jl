@@ -1,6 +1,6 @@
 inits = Dict{Symbol, Float64}(
     :t0 => 1900,
-    :ppol => 2.5e7,
+    :ppol => 2.5e7, # Line 142.1 Appendix A
     :pcti => 1,
 )
 
