@@ -71,14 +71,46 @@ function historicalrunsolution()
     return _solution_historicalrun
 end
 
+
+"""
+    Reproduce Fig 4.69a. The original figure is presented on Chapter 4.
+"""
 fig_69a(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 4.69a", kwargs...)
+
+"""
+    Reproduce Fig 4.69b. The original figure is presented on Chapter 4.
+"""
 fig_69b(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 4.69b", kwargs...)
+
+"""
+    Reproduce Fig 4.69c. The original figure is presented on Chapter 4.
+"""
 fig_69c(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 4.69c", kwargs...)
+
+"""
+    Reproduce Fig 4.69d. The original figure is presented on Chapter 4.
+"""
 fig_69d(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_d(); title="Fig. 4.69d", kwargs...)
 
+
+"""
+    Reproduce Fig 4.70a. The original figure is presented on Chapter 4.
+"""
 fig_70a(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 4.70a", kwargs...)
+
+"""
+    Reproduce Fig 4.70b. The original figure is presented on Chapter 4.
+"""
 fig_70b(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 4.70b", kwargs...)
+
+"""
+    Reproduce Fig 4.70c. The original figure is presented on Chapter 4.
+"""
 fig_70c(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 4.70c", kwargs...)
+
+"""
+    Reproduce Fig 4.70d. The original figure is presented on Chapter 4.
+"""
 fig_70d(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_d(); title="Fig. 4.70d", kwargs...)
 
 
@@ -94,7 +126,15 @@ function fig72solution()
     return _solution_4_72
 end
 
+
+"""
+    Reproduce Fig 4.72a. The original figure is presented on Chapter 4.
+"""
 fig_72a(; kwargs...) = plotvariables(fig72solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.72a", kwargs...)
+
+"""
+    Reproduce Fig 4.72b. The original figure is presented on Chapter 4.
+"""
 fig_72b(; kwargs...) = plotvariables(fig72solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.72b", kwargs...)
 
 
@@ -110,7 +150,15 @@ function fig73solution()
     return _solution_4_73
 end
 
+
+"""
+    Reproduce Fig 4.73a. The original figure is presented on Chapter 4.
+"""
 fig_73a(; kwargs...) = plotvariables(fig73solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.73a", kwargs...)
+
+"""
+    Reproduce Fig 4.73b. The original figure is presented on Chapter 4.
+"""
 fig_73b(; kwargs...) = plotvariables(fig73solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.73b", kwargs...)
 
 
@@ -129,7 +177,15 @@ function fig74solution()
     return _solution_4_74
 end
 
+
+"""
+    Reproduce Fig 4.74a. The original figure is presented on Chapter 4.
+"""
 fig_74a(; kwargs...) = plotvariables(fig74solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.74a", kwargs...)
+
+"""
+    Reproduce Fig 4.74b. The original figure is presented on Chapter 4.
+"""
 fig_74b(; kwargs...) = plotvariables(fig74solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.74b", kwargs...)
 
 
@@ -148,7 +204,15 @@ function fig75solution()
     return _solution_4_75
 end
 
+
+"""
+    Reproduce Fig 4.75a. The original figure is presented on Chapter 4.
+"""
 fig_75a(; kwargs...) = plotvariables(fig75solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.75a", kwargs...)
+
+"""
+    Reproduce Fig 4.75b. The original figure is presented on Chapter 4.
+"""
 fig_75b(; kwargs...) = plotvariables(fig75solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.75b", kwargs...)
 
 
@@ -170,7 +234,15 @@ function fig76solution()
     return _solution_4_76
 end
 
+
+"""
+    Reproduce Fig 4.76a. The original figure is presented on Chapter 4.
+"""
 fig_76a(; kwargs...) = plotvariables(fig76solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.76a", kwargs...)
+
+"""
+    Reproduce Fig 4.76b. The original figure is presented on Chapter 4.
+"""
 fig_76b(; kwargs...) = plotvariables(fig76solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.76b", kwargs...)
 
 
@@ -192,7 +264,15 @@ function fig77solution()
     return _solution_4_77
 end
 
+
+"""
+    Reproduce Fig 4.77a. The original figure is presented on Chapter 4.
+"""
 fig_77a(; kwargs...) = plotvariables(fig77solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.77a", kwargs...)
+
+"""
+    Reproduce Fig 4.77b. The original figure is presented on Chapter 4.
+"""
 fig_77b(; kwargs...) = plotvariables(fig77solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.77b", kwargs...)
 
 
@@ -214,7 +294,15 @@ function fig78solution()
     return _solution_4_78
 end
 
+
+"""
+    Reproduce Fig 4.78a. The original figure is presented on Chapter 4.
+"""
 fig_78a(; kwargs...) = plotvariables(fig78solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.78a", kwargs...)
+
+"""
+    Reproduce Fig 4.78b. The original figure is presented on Chapter 4.
+"""
 fig_78b(; kwargs...) = plotvariables(fig78solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.78b", kwargs...)
 
 
@@ -234,7 +322,15 @@ function fig82solution()
     return _solution_4_82
 end
 
+
+"""
+    Reproduce Fig 4.82a. The original figure is presented on Chapter 4.
+"""
 fig_82a(; kwargs...) = plotvariables(fig82solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.82a", kwargs...)
+
+"""
+    Reproduce Fig 4.82b. The original figure is presented on Chapter 4.
+"""
 fig_82b(; kwargs...) = plotvariables(fig82solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.82b", kwargs...)
 
 
@@ -254,7 +350,15 @@ function fig83solution()
     return _solution_4_83
 end
 
+
+"""
+    Reproduce Fig 4.83a. The original figure is presented on Chapter 4.
+"""
 fig_83a(; kwargs...) = plotvariables(fig83solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.83a", kwargs...)
+
+"""
+    Reproduce Fig 4.83b. The original figure is presented on Chapter 4.
+"""
 fig_83b(; kwargs...) = plotvariables(fig83solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.83b", kwargs...)
 
 
@@ -270,7 +374,15 @@ function fig84solution()
     return _solution_4_84
 end
 
+
+"""
+    Reproduce Fig 4.84a. The original figure is presented on Chapter 4.
+"""
 fig_84a(; kwargs...) = plotvariables(fig84solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.84a", kwargs...)
+
+"""
+    Reproduce Fig 4.84b. The original figure is presented on Chapter 4.
+"""
 fig_84b(; kwargs...) = plotvariables(fig84solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.84b", kwargs...)
 
 
@@ -287,7 +399,15 @@ function fig85solution()
     return _solution_4_85
 end
 
+
+"""
+    Reproduce Fig 4.85a. The original figure is presented on Chapter 4.
+"""
 fig_85a(; kwargs...) = plotvariables(fig85solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.85a", kwargs...)
+
+"""
+    Reproduce Fig 4.85b. The original figure is presented on Chapter 4.
+"""
 fig_85b(; kwargs...) = plotvariables(fig85solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.85b", kwargs...)
 
 
@@ -305,7 +425,15 @@ function fig86solution()
     return _solution_4_86
 end
 
+
+"""
+    Reproduce Fig 4.86a. The original figure is presented on Chapter 4.
+"""
 fig_86a(; kwargs...) = plotvariables(fig86solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.86a", kwargs...)
+
+"""
+    Reproduce Fig 4.86b. The original figure is presented on Chapter 4.
+"""
 fig_86b(; kwargs...) = plotvariables(fig86solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.86b", kwargs...)
 
 
@@ -330,7 +458,15 @@ function fig87solution()
     return _solution_4_87
 end
 
+
+"""
+    Reproduce Fig 4.87a. The original figure is presented on Chapter 4.
+"""
 fig_87a(; kwargs...) = plotvariables(fig87solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.87a", kwargs...)
+
+"""
+    Reproduce Fig 4.87b. The original figure is presented on Chapter 4.
+"""
 fig_87b(; kwargs...) = plotvariables(fig87solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.87b", kwargs...)
 
 
@@ -346,7 +482,15 @@ function fig88solution()
     return _solution_4_88
 end
 
+
+"""
+    Reproduce Fig 4.88a. The original figure is presented on Chapter 4.
+"""
 fig_88a(; kwargs...) = plotvariables(fig88solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.88a", kwargs...)
+
+"""
+    Reproduce Fig 4.88b. The original figure is presented on Chapter 4.
+"""
 fig_88b(; kwargs...) = plotvariables(fig88solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.88b", kwargs...)
 
 
@@ -362,7 +506,15 @@ function fig89solution()
     return _solution_4_89
 end
 
+
+"""
+    Reproduce Fig 4.89a. The original figure is presented on Chapter 4.
+"""
 fig_89a(; kwargs...) = plotvariables(fig89solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.89a", kwargs...)
+
+"""
+    Reproduce Fig 4.89b. The original figure is presented on Chapter 4.
+"""
 fig_89b(; kwargs...) = plotvariables(fig89solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.89b", kwargs...)
 
 
@@ -378,5 +530,13 @@ function fig90solution()
     return _solution_4_90
 end
 
+
+"""
+    Reproduce Fig 4.90a. The original figure is presented on Chapter 4.
+"""
 fig_90a(; kwargs...) = plotvariables(fig90solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.90a", kwargs...)
+
+"""
+    Reproduce Fig 4.90b. The original figure is presented on Chapter 4.
+"""
 fig_90b(; kwargs...) = plotvariables(fig90solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.90b", kwargs...)
