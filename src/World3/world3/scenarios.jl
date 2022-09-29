@@ -20,9 +20,13 @@ function historicalrun(;
     nonrenewable_ranges = NonRenewable.ranges,
     pollution_ranges = Pollution.ranges,
 )
+    pop_inits[:iopc] =  6.65e10 / pop_inits[:pop]
+
     @named pop = Pop4.population(; params=pop_params, inits=pop_inits, tables=pop_tables, ranges=pop_ranges)
     @named dr = Pop4.death_rate(; params=pop_params, inits=pop_inits, tables=pop_tables, ranges=pop_ranges)
     @named br = Pop4.birth_rate(; params=pop_params, inits=pop_inits, tables=pop_tables, ranges=pop_ranges)
+
+    capital_params[:pyear] = 1975
 
     @named is = Capital.industrial_subsector(; params=capital_params, inits=capital_inits, tables=capital_tables, ranges=capital_ranges)
     @named ss = Capital.service_subsector(; params=capital_params, inits=capital_inits, tables=capital_tables, ranges=capital_ranges)
