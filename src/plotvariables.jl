@@ -58,7 +58,7 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; ti
             position = 0.0,
             showgrid = false,
             range = [varmin, varmax],
-            domain = [0.05, 1.0]
+            domain = [0.05, 1.0],
         ))
     ])
 
@@ -67,7 +67,7 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; ti
         y = solution[var],
         marker_color = colors[1],
         name = varname,
-        mode = linetype, yaxis="y1")
+        mode = linetype, yaxis="y1"),
     )
 
 
@@ -81,7 +81,7 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; ti
             name = "",
             position = (i-1) * x_offset,
             showgrid = false,
-            range = [varmin, varmax]
+            range = [varmin, varmax],
         )
 
         push!(traces, scatter(
@@ -90,7 +90,7 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; ti
             marker_color = colors[i],
             name = varname,
             mode = linetype,
-            yaxis = string("y", i))
+            yaxis = string("y", i)),
         )
     end
 

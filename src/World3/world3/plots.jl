@@ -115,7 +115,7 @@ function fig_4(; kwargs...)
         (ld.al,     0, 1.6e9, "al"),
         (ai.ly,     0, 2000,  "ly"),
         (ai.aiph,   0, 80,    "aiph"),
-        (lfd.lfert, 0, 800,   "lfert")
+        (lfd.lfert, 0, 800,   "lfert"),
     ]
 
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.4", kwargs...)
@@ -341,7 +341,7 @@ function fig_20(; kwargs...)
         nonrenewable_params=nr_parameters_7_20,
         pollution_params=pol_parameters_7_20,
         nonrenewable_tables=nr_tables_7_20,
-        agriculture_tables=agr_tables_7_20
+        agriculture_tables=agr_tables_7_20,
     )
 
     solution = solve(system, (1900, 2100))
@@ -373,7 +373,7 @@ function fig_21(; kwargs...)
         pollution_params=pol_parameters_7_21,
         agriculture_params=agr_parameters_7_21,
         nonrenewable_tables=nr_tables_7_21,
-        agriculture_tables=agr_tables_7_21
+        agriculture_tables=agr_tables_7_21,
     )
 
     solution = solve(system, (1900, 2100))
@@ -424,7 +424,7 @@ function fig_22(; kwargs...)
         pollution_params=pol_parameters_7_22,
         agriculture_params=agr_parameters_7_22,
         nonrenewable_tables=nr_tables_7_22,
-        agriculture_tables=agr_tables_7_22
+        agriculture_tables=agr_tables_7_22,
     )
 
     solution = solve(system, (1900, 2100))
@@ -522,7 +522,7 @@ function fig_37(; kwargs...)
     system = historicalrun(
         pop_params=pop_parameters_7_37,
         capital_tables=cap_tables_7_37,
-        agriculture_tables=agr_tables_7_37
+        agriculture_tables=agr_tables_7_37,
     )
 
     solution = solve(system, (1900, 2100))
@@ -561,7 +561,7 @@ function fig_38(; kwargs...)
         nonrenewable_params=nr_parameters_7_38,
         pollution_params=pol_parameters_7_38,
         capital_tables=cap_tables_7_38,
-        agriculture_tables=agr_tables_7_38
+        agriculture_tables=agr_tables_7_38,
     )
 
     solution = solve(system, (1900, 2100))
