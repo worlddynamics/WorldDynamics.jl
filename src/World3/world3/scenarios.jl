@@ -39,8 +39,6 @@ function historicalrun(;
     @named nr = NonRenewable.non_renewable(; params=nonrenewable_params, inits=nonrenewable_inits, tables=nonrenewable_tables, ranges=nonrenewable_ranges)
 
     @named pp = Pollution.persistent_pollution(; params=pollution_params, inits=pollution_inits, tables=pollution_tables, ranges=pollution_ranges)
-    @named pd = Pollution.pollution_damage(; params=pollution_params, inits=pollution_inits, tables=pollution_tables, ranges=pollution_ranges)
-    @named atcc = Pollution.adaptive_technological_control_cards(; params=pollution_params, inits=pollution_inits, tables=pollution_tables, ranges=pollution_ranges)
 
     @named se = SupplementaryEquations.supplementary_equations()
 
@@ -50,7 +48,7 @@ function historicalrun(;
         is, ss, js,
         ld, ai, iad, leuiu, dlm, lfr, lfd,
         nr,
-        pp, pd, atcc,
+        pp,
         se,
     ]
 
@@ -120,9 +118,7 @@ function historicalrun(;
         nr.pop ~ pop.pop
         nr.iopc ~ is.iopc
         # pollution
-        pd.ppolx ~ pp.ppolx
-        atcc.lmp ~ pd.lmp
-        pp.ppgf22 ~ atcc.ppgf22
+        pp.ppgf22 ~ 1.0
         pp.pcrum ~ nr.pcrum
         pp.pop ~ pop.pop
         pp.aiph ~ ai.aiph

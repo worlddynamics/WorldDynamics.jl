@@ -1,15 +1,15 @@
 inits = Dict{Symbol, Float64}(
     :t0 => 1900,
+    :frsn => 0.82, # Line 41.2 Appendix A
     :pop => 1.61e9,
     :ppolx => 1.0,
 )
 
 inits[:sopc] = 1.5e11 / inits[:pop]
 inits[:hsapc] = interpolate(inits[:sopc], tables[:hsapc], ranges[:hsapc])
-inits[:ehspc] = inits[:hsapc]
 inits[:fpc] = 4e11 / inits[:pop]
 inits[:lmf] = interpolate(inits[:fpc] / params[:sfpc], tables[:lmf], ranges[:lmf])
-inits[:lmhs] = interpolate(inits[:ehspc], tables[:lmhs1], ranges[:lmhs1])
+inits[:lmhs] = interpolate(inits[:hsapc], tables[:lmhs1], ranges[:lmhs1])
 inits[:lmp] = interpolate(inits[:ppolx], tables[:lmp], ranges[:lmp])
 inits[:iopc] = 0.7e11 / inits[:pop]
 inits[:cmi] = interpolate(inits[:iopc], tables[:cmi], ranges[:cmi])
@@ -18,7 +18,6 @@ inits[:lmc] = 1 - inits[:cmi] * inits[:fpu]
 inits[:le] = params[:len] * inits[:lmf] * inits[:lmhs] * inits[:lmp] * inits[:lmc]
 inits[:fm] = interpolate(inits[:le], tables[:fm], ranges[:fm])
 inits[:mtf] = params[:mtfn] * inits[:fm]
-inits[:frsn] = 0.82
 inits[:sfsn] = interpolate(inits[:iopc], tables[:sfsn], ranges[:sfsn])
 inits[:dcfs] = params[:dcfsn] * inits[:frsn] * inits[:sfsn]
 inits[:ple] = inits[:le]
