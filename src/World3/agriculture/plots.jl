@@ -49,7 +49,7 @@ end
 
 function variables_d()
     @named lfd = land_fertility_degradation()
-    @named dlm = discontinung_land_maintenance()
+    @named dlm = discontinuing_land_maintenance()
     @named lfr = land_fertility_regeneration()
 
     variables = [

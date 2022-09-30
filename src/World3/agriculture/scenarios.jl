@@ -6,7 +6,7 @@ function historicalrun(; kwargs...)
     @named ai = agricultural_inputs(; kwargs...)
     @named iad = investment_allocation_decision(; kwargs...)
     @named leuiu = land_erosion_urban_industrial_use(; kwargs...)
-    @named dlm = discontinung_land_maintenance(; kwargs...)
+    @named dlm = discontinuing_land_maintenance(; kwargs...)
     @named lfr = land_fertility_regeneration(; kwargs...)
     @named lfd = land_fertility_degradation(; kwargs...)
 

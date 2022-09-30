@@ -200,7 +200,7 @@ function land_fertility_regeneration(; name, params=params, inits=inits, tables=
     ODESystem(eqs; name)
 end
 
-function discontinung_land_maintenance(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function discontinuing_land_maintenance(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters sfpc = params[:sfpc]
     @parameters fspd = params[:fspd]
 
