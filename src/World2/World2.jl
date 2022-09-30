@@ -7,4 +7,8 @@ include("Pollution.jl")
 include("Population.jl")
 include("QualityLife.jl")
 
+include("../solvesystems.jl")
+include("world2/scenarios.jl")
+include("world2/plots.jl")
+
 end

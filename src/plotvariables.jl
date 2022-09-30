@@ -20,11 +20,11 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{3, Any}}; kw
 end
 
 """
-   `plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; name="", showaxis=false, showlegend=true, linetype="lines", colored=false)`
+   `plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; title="", showaxis=true, showlegend=true, linetype="lines", colored=true)`
 
 Plot the values of the variables in the vector `variables` obtained by the ODE system `solution` (normally, obtained by using the `solve` function in `solvesystems.jl`) in the specified `xrange` interval. For each variable, the vector `variables` includes a quadruple, containing the Julia variable, its range, and its symbolic name to be shown in the plot.
 """
-function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; name="", showaxis=false, showlegend=true, linetype="lines", colored=false, save=false)
+function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; title="", showaxis=true, showlegend=true, linetype="lines", colored=true, save=false)
     numvars = length(variables)
 
     @assert 1 ≤ numvars
@@ -44,7 +44,7 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; na
     (var, varmin, varmax, varname) = variables[1]
 
     layout = Dict([
-        ("title", attr(text=name, x=0.5)),
+        ("title", attr(text=title, x=0.5)),
         ("showlegend", showlegend),
         ("plot_bgcolor", "#EEE"),
         ("xaxis", attr(
@@ -58,7 +58,7 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; na
             position = 0.0,
             showgrid = false,
             range = [varmin, varmax],
-            domain = [0.05, 1.0]
+            domain = [0.05, 1.0],
         ))
     ])
 
@@ -67,7 +67,7 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; na
         y = solution[var],
         marker_color = colors[1],
         name = varname,
-        mode = linetype, yaxis="y1")
+        mode = linetype, yaxis="y1"),
     )
 
 
@@ -81,7 +81,7 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; na
             name = "",
             position = (i-1) * x_offset,
             showgrid = false,
-            range = [varmin, varmax]
+            range = [varmin, varmax],
         )
 
         push!(traces, scatter(
@@ -90,12 +90,12 @@ function plotvariables(solution, xrange, variables::Vector{<:NTuple{4, Any}}; na
             marker_color = colors[i],
             name = varname,
             mode = linetype,
-            yaxis = string("y", i))
+            yaxis = string("y", i)),
         )
     end
 
     p = plot(traces, Layout(layout))
-    save && savefig(p, "./" * name * ".svg")
+    save && savefig(p, "./" * title * ".svg")
 
     return p
 end

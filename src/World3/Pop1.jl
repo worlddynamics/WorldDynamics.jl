@@ -45,13 +45,18 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
     @variables dr(t) br(t)
 
     eqs = [
-        D(pop) ~ br - dr,
-        dr ~ pop / le,
+        D(pop) ~ br - dr
+        dr ~ pop / le
         br ~ clip(dr, tf * pop * ffw / rlt, t, pet)
     ]
 
     ODESystem(eqs; name)
 end
+
+
+include("../solvesystems.jl")
+include("population/pop1/scenarios.jl")
+include("population/pop1/plots.jl")
 
 
 end # module
