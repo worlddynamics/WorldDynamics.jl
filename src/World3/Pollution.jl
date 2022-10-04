@@ -2,8 +2,8 @@ module Pollution
 
 
 using ModelingToolkit
+using WorldDynamics
 
-include("../functions.jl")
 include("pollution/tables.jl")
 include("pollution/parameters.jl")
 include("pollution/initialisations.jl")
@@ -15,9 +15,9 @@ gettables() = copy(tables)
 getranges() = copy(ranges)
 
 
-@register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
-@register clip(f1, f2, va, th)
-@register switch(v1, v2, z)
+@register WorldDynamics.interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
+@register WorldDynamics.clip(f1, f2, va, th)
+@register WorldDynamics.switch(v1, v2, z)
 
 @variables t
 D = Differential(t)
@@ -159,7 +159,6 @@ function adaptive_technological_control_cards(; name, params=params, inits=inits
 end
 
 
-include("../solvesystems.jl")
 include("pollution/scenarios.jl")
 include("pollution/plots.jl")
 
