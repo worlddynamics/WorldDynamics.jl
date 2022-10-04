@@ -2,8 +2,7 @@ module Pop15
 
 
 using ModelingToolkit
-
-include("../functions.jl")
+using WorldDynamics
 
 include("population/common_pop/tables.jl")
 include("population/common_pop/parameters.jl")
@@ -13,8 +12,8 @@ include("population/pop15/tables.jl")
 include("population/pop15/initialisations.jl")
 
 
-@register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
-@register clip(f1, f2, va, th)
+@register WorldDynamics.interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
+@register WorldDynamics.clip(f1, f2, va, th)
 
 @variables t
 D = Differential(t)
@@ -167,7 +166,6 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
 end
 
 
-include("../solvesystems.jl")
 include("population/pop15/scenarios.jl")
 include("population/pop15/plots.jl")
 

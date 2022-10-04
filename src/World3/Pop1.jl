@@ -2,8 +2,7 @@ module Pop1
 
 
 using ModelingToolkit
-
-include("../functions.jl")
+using WorldDynamics
 
 include("population/common_pop/tables.jl")
 include("population/common_pop/parameters.jl")
@@ -11,7 +10,7 @@ include("population/common_pop/initialisations.jl")
 include("population/CommonPop.jl")
 
 
-@register clip(f1, f2, va, th)
+@register WorldDynamics.clip(f1, f2, va, th)
 
 @variables t
 D = Differential(t)
@@ -54,7 +53,6 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
 end
 
 
-include("../solvesystems.jl")
 include("population/pop1/scenarios.jl")
 include("population/pop1/plots.jl")
 
