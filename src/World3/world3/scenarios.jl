@@ -133,5 +133,5 @@ function historicalrun(;
         se.io ~ is.io
     ]
 
-    return compose(systems, connection_eqs)
+    return WorldDynamics.compose(systems, connection_eqs)
 end

@@ -1,6 +1,3 @@
-include("../../plotvariables.jl")
-
-
 @variables t
 
 

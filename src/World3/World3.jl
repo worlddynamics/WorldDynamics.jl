@@ -9,7 +9,10 @@ include("Pop4.jl")
 include("Pop15.jl")
 include("SupplementaryEquations.jl")
 
-include("../solvesystems.jl")
+
+using ModelingToolkit
+using WorldDynamics
+
 include("world3/scenarios.jl")
 include("world3/plots.jl")
 
