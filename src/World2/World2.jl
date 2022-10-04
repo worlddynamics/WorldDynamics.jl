@@ -7,7 +7,10 @@ include("Pollution.jl")
 include("Population.jl")
 include("QualityLife.jl")
 
-include("../solvesystems.jl")
+
+using WorldDynamics
+using ModelingToolkit
+
 include("world2/scenarios.jl")
 include("world2/plots.jl")
 
