@@ -10,8 +10,6 @@ include("population/common_pop/initialisations.jl")
 include("population/CommonPop.jl")
 
 
-@register WorldDynamics.clip(f1, f2, va, th)
-
 @variables t
 D = Differential(t)
 

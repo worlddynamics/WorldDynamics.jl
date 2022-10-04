@@ -4,16 +4,12 @@ export death_rate, birth_rate
 
 
 using ModelingToolkit
+using WorldDynamics
 
-include("../../functions.jl")
 include("common_pop/tables.jl")
 include("common_pop/parameters.jl")
 include("common_pop/initialisations.jl")
 
-
-@register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
-@register clip(f1, f2, va, th)
-@register step(t, hght, sttm)
 
 @variables t
 D = Differential(t)
@@ -152,7 +148,7 @@ function persistent_pollution(; name, params=params, inits=inits, tables=tables,
     @variables ppolx(t) = inits[:ppolx]
 
     eqs = [
-        D(ppolx) ~ step(t, ps, pt)
+        D(ppolx) ~ WorldDynamics.step(t, ps, pt)
     ]
 
     ODESystem(eqs; name)

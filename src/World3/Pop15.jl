@@ -12,9 +12,6 @@ include("population/pop15/tables.jl")
 include("population/pop15/initialisations.jl")
 
 
-@register WorldDynamics.interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
-@register WorldDynamics.clip(f1, f2, va, th)
-
 @variables t
 D = Differential(t)
 
