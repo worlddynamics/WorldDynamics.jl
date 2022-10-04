@@ -2,8 +2,8 @@ module Capital
 
 
 using ModelingToolkit
+using WorldDynamics
 
-include("../functions.jl")
 include("capital/tables.jl")
 include("capital/parameters.jl")
 include("capital/initialisations.jl")
@@ -15,8 +15,8 @@ gettables() = copy(tables)
 getranges() = copy(ranges)
 
 
-@register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
-@register clip(f1, f2, va, th)
+@register WorldDynamics.interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
+@register WorldDynamics.clip(f1, f2, va, th)
 
 @variables t
 D = Differential(t)
@@ -145,7 +145,6 @@ function job_subsector(; name, params=params, inits=inits, tables=tables, ranges
 end
 
 
-include("../solvesystems.jl")
 include("capital/scenarios.jl")
 include("capital/plots.jl")
 
