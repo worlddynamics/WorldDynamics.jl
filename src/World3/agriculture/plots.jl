@@ -1,6 +1,3 @@
-include("../../plotvariables.jl")
-
-
 function variables_a()
     @named ld = land_development()
     @named ai = agricultural_inputs()

@@ -43,5 +43,5 @@ function historicalrun(; kwargs...)
         io.pop ~ pop.pop
     ]
 
-    return compose(systems, connection_eqs)
+    return WorldDynamics.compose(systems, connection_eqs)
 end
