@@ -15,5 +15,5 @@ function historicalrun(; kwargs...)
         ic.io ~ io.io
     ]
 
-    return compose(systems, connection_eqs)
+    return WorldDynamics.compose(systems, connection_eqs)
 end
