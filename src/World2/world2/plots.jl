@@ -41,3 +41,16 @@ function fig_2(; kwargs...)
 
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-2", kwargs...)
 end
+
+function fig_3(; kwargs...)
+    @named nr = NaturalResources.natural_resources()
+
+    @variables t
+
+    variables = [
+        (nr.nr,   0, 1e12, "nr"),
+        (nr.nrur, 0, 8e9,  "nrur"),
+    ]
+
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-3", kwargs...)
+end
