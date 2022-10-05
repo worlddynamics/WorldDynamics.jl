@@ -6,17 +6,9 @@ end
 
 function fig_1(; kwargs...)
     @named pop = Population.population()
-    @named dr = Population.death_rate()
-    @named br = Population.birth_rate()
-    @named ci = CapitalInvestment.capital_investment()
-    @named cig = CapitalInvestment.capital_investment_generation()
-    @named cid = CapitalInvestment.capital_investment_discard()
-    @named ai = AgricultureInvestment.agriculture_investment()
     @named nr = NaturalResources.natural_resources()
-    @named nrur = NaturalResources.natural_resources_usage_rate()
+    @named ci = CapitalInvestment.capital_investment()
     @named pol = Pollution.pollution()
-    @named pola = Pollution.pollution_absorption()
-    @named polg = Pollution.pollution_generation()
     @named ql = QualityLife.quality_life()
 
     @variables t
