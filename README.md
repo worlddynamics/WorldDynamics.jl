@@ -17,11 +17,14 @@ From the Julia REPL, install the package with
 ```jl
 ]add WorldDynamics
 ```
-You can now use the package, e.g. for reproducing Figure 7-10 from the book [_Dynamics of growth in a finite world_](https://archive.org/details/dynamicsofgrowth0000unse): 
+You can now use the package, e.g. for reproducing Figure 7.7 from the book [_Dynamics of growth in a finite world_](https://archive.org/details/dynamicsofgrowth0000unse): 
 ```jl
 using WorldDynamics
-WorldDynamics.World3.fig_10()
+World3.fig_7()
 ```
+Here is the output superposed to the original picture: 
+![image](https://user-images.githubusercontent.com/2920162/194111344-8682a97f-f4de-4e2d-ba7e-980546e1bfaf.png)
+
 For how to produce different figures (and much more), please see [the documentation](https://natema.github.io/WorldDynamics.jl/stable/).
 
 ## Project leaders 
