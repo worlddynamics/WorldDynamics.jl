@@ -54,3 +54,19 @@ function fig_3(; kwargs...)
 
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-3", kwargs...)
 end
+
+function fig_4(; kwargs...)
+    @named ci = CapitalInvestment.capital_investment()
+    @named cig = CapitalInvestment.capital_investment_generation()
+    @named cid = CapitalInvestment.capital_investment_discard()
+
+    @variables t
+
+    variables = [
+        (ci.ci,   0, 20e9,  "ci"),
+        (cig.cig, 0, 400e6, "cig"),
+        (cid.cid, 0, 400e6, "cid"),
+    ]
+
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-4", kwargs...)
+end
