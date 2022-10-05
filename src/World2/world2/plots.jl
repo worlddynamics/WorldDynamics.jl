@@ -23,3 +23,21 @@ function fig_1(; kwargs...)
 
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-1", kwargs...)
 end
+
+function fig_2(; kwargs...)
+    @named ai = AgricultureInvestment.agriculture_investment()
+    @named ci = CapitalInvestment.capital_investment()
+    @named ql = QualityLife.quality_life()
+
+    @variables t
+
+    variables = [
+        (ai.fr,   0,   2,   "fr"),
+        (ci.msl,  0,   2,   "msl"),
+        (ql.qlc,  0,   2,   "qlc"),
+        (ql.qlp,  0,   2,   "qlp"),
+        (ai.ciaf, 0.2, 0.6, "ciaf"),
+    ]
+
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-2", kwargs...)
+end
