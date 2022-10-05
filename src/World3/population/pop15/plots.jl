@@ -1,6 +1,3 @@
-include("../../../plotvariables.jl")
-
-
 function historicalrunsolution()
     isdefined(@__MODULE__, :_solution_historicalrun) && return _solution_historicalrun
     global _solution_historicalrun = solve(historicalrun(), (1900, 2100))

@@ -76,5 +76,5 @@ function natural_resource_depletion()
         ql.polr ~ pol.polr
     ]
 
-    return compose(systems, connection_eqs)
+    return WorldDynamics.compose(systems, connection_eqs)
 end

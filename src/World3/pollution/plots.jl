@@ -1,6 +1,3 @@
-include("../../plotvariables.jl")
-
-
 function historicalrunsolution()
     isdefined(@__MODULE__, :_solution_historicalrun) && return _solution_historicalrun
     global _solution_historicalrun = solve(historicalrun(), (1900, 2100))
@@ -80,7 +77,7 @@ function fig_27(; kwargs...)
     system = historicalrun(inits=initialisations_6_27)
 
     new_equations = equations(system)
-    new_equations[31] = pp.ppgr ~ step(t, 1e9, 1920) + step(t, -1e9, 2000)
+    new_equations[31] = pp.ppgr ~ WorldDynamics.step(t, 1e9, 1920) + WorldDynamics.step(t, -1e9, 2000)
 
     @named new_system = ODESystem(new_equations)
     solution = solve(new_system, (1900, 2100))

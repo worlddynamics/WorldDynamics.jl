@@ -1,15 +1,8 @@
-include("../../plotvariables.jl")
-
-
-@variables t
-
-
 function nrdepletionsolution()
     isdefined(@__MODULE__, :_solution_nrdepletion) && return _solution_nrdepletion
     global _solution_nrdepletion = solve(natural_resource_depletion(), (1900, 2100))
     return _solution_nrdepletion
 end
-
 
 function fig_1(; kwargs...)
     @named pop = Population.population()
@@ -25,6 +18,8 @@ function fig_1(; kwargs...)
     @named pola = Pollution.pollution_absorption()
     @named polg = Pollution.pollution_generation()
     @named ql = QualityLife.quality_life()
+
+    @variables t
 
     variables = [
         (pop.p,    0, 8e9,  "Population"),

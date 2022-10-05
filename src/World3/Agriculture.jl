@@ -2,8 +2,8 @@ module Agriculture
 
 
 using ModelingToolkit
+using WorldDynamics
 
-include("../functions.jl")
 include("agriculture/tables.jl")
 include("agriculture/parameters.jl")
 include("agriculture/initialisations.jl")
@@ -13,10 +13,6 @@ getinitialisations() = copy(inits)
 getparameters() = copy(params)
 gettables() = copy(tables)
 getranges() = copy(ranges)
-
-
-@register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
-@register clip(f1, f2, va, th)
 
 @variables t
 D = Differential(t)
@@ -218,7 +214,6 @@ function discontinuing_land_maintenance(; name, params=params, inits=inits, tabl
 end
 
 
-include("../solvesystems.jl")
 include("agriculture/scenarios.jl")
 include("agriculture/plots.jl")
 

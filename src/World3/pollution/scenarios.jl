@@ -18,5 +18,5 @@ function historicalrun(; kwargs...)
         pp.al ~ ag.al
     ]
 
-    return compose(systems, connection_eqs)
+    return WorldDynamics.compose(systems, connection_eqs)
 end
