@@ -1,8 +1,3 @@
-getinitialisations() = copy(inits)
-getparameters() = copy(params)
-gettables() = copy(tables)
-getranges() = copy(ranges)
-
 @variables t
 D = Differential(t)
 

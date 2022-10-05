@@ -19,3 +19,6 @@ ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :drfm => (0, 2),
     :drcm => (0, 5),
 )
+
+gettables() = copy(tables)
+getranges() = copy(ranges)

@@ -16,3 +16,5 @@ params = Dict{Symbol, Float64}(
     :pcti => 1,
     :pd => 5,
 )
+
+getparameters() = copy(params)

@@ -15,3 +15,7 @@ inits = Dict{Symbol, Float64}(
     :p14 => 3.3e7,
     :p15 => 4.8e7,
 )
+
+inits = merge(inits, CommonPop.inits)
+
+getinitialisations() = copy(inits)

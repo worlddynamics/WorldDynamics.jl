@@ -13,3 +13,6 @@ ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :cfifr => (0, 2),
     :ciqr => (0, 2),
 )
+
+gettables() = copy(tables)
+getranges() = copy(ranges)

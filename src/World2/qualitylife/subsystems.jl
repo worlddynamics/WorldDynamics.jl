@@ -1,11 +1,5 @@
-getinitialisations() = copy(inits)
-getparameters() = copy(params)
-gettables() = copy(tables)
-getranges() = copy(ranges)
-
 @variables t
 D = Differential(t)
-
 
 function quality_life(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters qls = params[:qls]

@@ -1,3 +1,3 @@
-inits = Dict{Symbol, Float64}()
+inits = CommonPop.inits
 
 getinitialisations() = copy(inits)

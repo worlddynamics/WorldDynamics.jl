@@ -9,6 +9,7 @@ include("population/common_pop/initialisations.jl")
 include("population/CommonPop.jl")
 
 include("population/pop4/tables.jl")
+include("population/pop4/parameters.jl")
 include("population/pop4/initialisations.jl")
 include("population/pop4/subsystems.jl")
 include("population/pop4/scenarios.jl")

@@ -15,3 +15,5 @@ params = Dict{Symbol, Float64}(
     :lfpf => 0.75, # Line 80.1 Appendix A
     :lufdt => 2, # Line 82.1 Appendix A
 )
+
+getparameters() = copy(params)

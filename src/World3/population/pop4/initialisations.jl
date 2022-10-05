@@ -4,3 +4,7 @@ inits = Dict{Symbol, Float64}(
     :p3 => 19e7, # Line 10.2 Appendix A
     :p4 => 6e7, # Line 14.2 Appendix A
 )
+
+inits = merge(inits, CommonPop.inits)
+
+getinitialisations() = copy(inits)

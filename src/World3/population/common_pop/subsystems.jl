@@ -1,7 +1,6 @@
 @variables t
 D = Differential(t)
 
-
 function death_rate(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters len = params[:len]
     @parameters sfpc = params[:sfpc]

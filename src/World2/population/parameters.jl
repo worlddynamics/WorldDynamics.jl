@@ -8,3 +8,5 @@ params = Dict{Symbol, Float64}(
     :swt1 => 1970,
     :swt3 => 1970,
 )
+
+getparameters() = copy(params)

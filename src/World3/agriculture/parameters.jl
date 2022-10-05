@@ -20,3 +20,5 @@ params = Dict{Symbol, Float64}(
     :pyear => 1975, # Line 150.1 Appendix A
     :exppop => 0.012,
 )
+
+getparameters() = copy(params)

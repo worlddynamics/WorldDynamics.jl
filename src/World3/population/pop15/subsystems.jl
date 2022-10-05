@@ -1,7 +1,3 @@
-@variables t
-D = Differential(t)
-
-
 birth_rate = CommonPop.birth_rate
 death_rate = CommonPop.death_rate
 service_output = CommonPop.service_output
@@ -9,16 +5,8 @@ industrial_output = CommonPop.industrial_output
 persistent_pollution = CommonPop.persistent_pollution
 food = CommonPop.food
 
-params = CommonPop.params
-inits = merge(inits, CommonPop.inits)
-tables = merge(tables, CommonPop.tables)
-ranges = merge(ranges, CommonPop.ranges)
-
-getinitialisations() = copy(inits)
-getparameters() = copy(params)
-gettables() = copy(tables)
-getranges() = copy(ranges)
-
+@variables t
+D = Differential(t)
 
 function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters pet = params[:pet]

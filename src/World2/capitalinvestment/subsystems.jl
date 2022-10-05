@@ -1,11 +1,5 @@
-getinitialisations() = copy(inits)
-getparameters() = copy(params)
-gettables() = copy(tables)
-getranges() = copy(ranges)
-
 @variables t
 D = Differential(t)
-
 
 function capital_investment(; name, params=params, inits=inits, tables=tables, ranges=ranges)
     @parameters ecirn = params[:ecirn]
