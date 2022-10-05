@@ -3,7 +3,6 @@ module SupplementaryEquations
 
 using ModelingToolkit
 
-
 @variables t
 D = Differential(t)
 
@@ -21,4 +20,4 @@ function supplementary_equations(; name)
 end
 
 
-end # module 
+end
