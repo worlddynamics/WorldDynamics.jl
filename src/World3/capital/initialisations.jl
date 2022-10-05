@@ -4,3 +4,5 @@ inits = Dict{Symbol, Float64}(
     :cuf => 1, # Line 83.1 Appendix A
     :lufd => 1.0, # Line 82 Appendix A
 )
+
+getinitialisations() = copy(inits)

@@ -13,3 +13,5 @@ params = Dict{Symbol, Float64}(
     :alic => 14,
     :icor => 3,
 )
+
+getparameters() = copy(params)

@@ -9,3 +9,6 @@ ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :fcaor1 => (0, 1), # Line 135 Appendix A
     :fcaor2 => (0, 1), # Line 136 Appendix A
 )
+
+gettables() = copy(tables)
+getranges() = copy(ranges)

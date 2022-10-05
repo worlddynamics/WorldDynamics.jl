@@ -5,3 +5,5 @@ params = Dict{Symbol, Float64}(
     :fn => 1,
     :ciaft => 15,
 )
+
+getparameters() = copy(params)

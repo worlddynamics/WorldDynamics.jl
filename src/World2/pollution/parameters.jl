@@ -4,3 +4,5 @@ params = Dict{Symbol, Float64}(
     :poln1 => 1,
     :swt6 => 1970,
 )
+
+getparameters() = copy(params)

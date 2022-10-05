@@ -11,3 +11,9 @@ ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :m3 => (20, 80), # Line 12 Appendix A
     :m4 => (20, 80), # Line 16 Appendix A
 )
+
+tables = merge(tables, CommonPop.tables)
+ranges = merge(ranges, CommonPop.ranges)
+
+gettables() = copy(tables)
+getranges() = copy(ranges)

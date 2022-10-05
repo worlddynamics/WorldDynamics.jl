@@ -5,3 +5,6 @@ tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
 ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :cim => (0, 5),
 )
+
+gettables() = copy(tables)
+getranges() = copy(ranges)

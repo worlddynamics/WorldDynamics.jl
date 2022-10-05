@@ -19,3 +19,6 @@ inits[:lmp1] = interpolate(inits[:ppolx], tables[:lmp1], ranges[:lmp1])
 inits[:lmp2] = interpolate(inits[:ppolx], tables[:lmp2], ranges[:lmp2])
 inits[:lmp] = clip(inits[:lmp2], inits[:lmp1], inits[:t0], params[:pyear])
 inits[:plmp] = inits[:lmp]
+
+
+getinitialisations() = copy(inits)
