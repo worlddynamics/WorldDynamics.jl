@@ -16,6 +16,12 @@ function crowdingsolution()
     return _solution_crowding
 end
 
+function foodshortagesolution()
+    isdefined(@__MODULE__, :_solution_foodshortage) && return _solution_foodshortage
+    global _solution_foodshortage = solve(food_shortage(), (1900, 2300))
+    return _solution_foodshortage
+end
+
 
 @variables t
 
@@ -152,4 +158,22 @@ function fig_10(; kwargs...)
     ]
 
     plotvariables(crowdingsolution(), (t, 1900, 2300), variables; title="Fig. 4-10", kwargs...)
+end
+
+function fig_11(; kwargs...)
+    @named pop = Population.population()
+    @named nr = NaturalResources.natural_resources()
+    @named ci = CapitalInvestment.capital_investment()
+    @named pol = Pollution.pollution()
+    @named ql = QualityLife.quality_life()
+
+    variables = [
+        (pop.p,    0, 12e9,   "Population"),
+        (nr.nr,    0, 1.5e12, "Natural resources"),
+        (ci.ci,    0, 30e9,   "Capital investment"),
+        (pol.polr, 0, 60,     "Pollution"),
+        (ql.ql,    0, 3,      "Quality of life"),
+    ]
+
+    plotvariables(foodshortagesolution(), (t, 1900, 2300), variables; title="Fig. 4-11", kwargs...)
 end
