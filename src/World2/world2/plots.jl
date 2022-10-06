@@ -138,3 +138,18 @@ function fig_9(; kwargs...)
     plotvariables(crowdingsolution(), (t, 1900, 2300), variables; title="Fig. 4-9", kwargs...)
 end
 
+function fig_10(; kwargs...)
+    @named ai = AgricultureInvestment.agriculture_investment()
+    @named ci = CapitalInvestment.capital_investment()
+    @named ql = QualityLife.quality_life()
+
+    variables = [
+        (ai.fr,   0,   2.5, "fr"),
+        (ci.msl,  0,   2.5, "msl"),
+        (ql.qlc,  0,   2.5, "qlc"),
+        (ql.qlp,  0,   2.5, "qlp"),
+        (ai.ciaf, 0.2, 0.7, "ciaf"),
+    ]
+
+    plotvariables(crowdingsolution(), (t, 1900, 2300), variables; title="Fig. 4-10", kwargs...)
+end
