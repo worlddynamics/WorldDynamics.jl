@@ -122,15 +122,9 @@ function crowding(; kwargs...)
 end
 
 function food_shortage(; kwargs...)
-    nr_parameters = NaturalResources.getparameters()
-    nr_parameters[:nrun1] = 0.0
-
-    pol_parameters = Pollution.getparameters()
-    pol_parameters[:poln1] = 0.1
-
     tables = Population.gettables()
     tables[:drcm] = (0.9, 1.0, 1.0, 1.0, 1.0, 1.0)
     tables[:brcm] = (1.05, 1.0, 1.0, 1.0, 1.0, 1.0)
 
-    return natural_resource_depletion(; naturalresources_params=nr_parameters, pollution_params=pol_parameters, pop_tables=tables, kwargs...)
+    return crowding(; pop_tables=tables, kwargs...)
 end
