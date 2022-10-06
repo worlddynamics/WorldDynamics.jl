@@ -177,3 +177,5 @@ function fig_11(; kwargs...)
 
     plotvariables(foodshortagesolution(), (t, 1900, 2300), variables; title="Fig. 4-11", kwargs...)
 end
+
+fig_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), variables_2(); title="Fig. 4-12", kwargs...)
