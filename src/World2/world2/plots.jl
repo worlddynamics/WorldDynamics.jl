@@ -10,6 +10,12 @@ function pollutioncrisissolution()
     return _solution_pollutioncrisis
 end
 
+function crowdingsolution()
+    isdefined(@__MODULE__, :_solution_crowding) && return _solution_crowding
+    global _solution_crowding = solve(crowding(), (1900, 2300))
+    return _solution_crowding
+end
+
 
 @variables t
 

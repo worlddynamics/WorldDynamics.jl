@@ -110,3 +110,13 @@ function pollution_crisis(; kwargs...)
 
     return natural_resource_depletion(; naturalresources_params=parameters, kwargs...)
 end
+
+function crowding(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.0
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.1
+
+    return natural_resource_depletion(; naturalresources_params=nr_parameters, pollution_params=pol_parameters, kwargs...)
+end
