@@ -4,14 +4,15 @@ function nrdepletionsolution()
     return _solution_nrdepletion
 end
 
-function fig_1(; kwargs...)
+
+@variables t
+
+function variables_1()
     @named pop = Population.population()
     @named nr = NaturalResources.natural_resources()
     @named ci = CapitalInvestment.capital_investment()
     @named pol = Pollution.pollution()
     @named ql = QualityLife.quality_life()
-
-    @variables t
 
     variables = [
         (pop.p,    0, 8e9,  "Population"),
@@ -21,15 +22,18 @@ function fig_1(; kwargs...)
         (ql.ql,    0, 2,    "Quality of life"),
     ]
 
-    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-1", kwargs...)
+    return variables
+end
+
+
+function fig_1(; kwargs...)
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-1", kwargs...)
 end
 
 function fig_2(; kwargs...)
     @named ai = AgricultureInvestment.agriculture_investment()
     @named ci = CapitalInvestment.capital_investment()
     @named ql = QualityLife.quality_life()
-
-    @variables t
 
     variables = [
         (ai.fr,   0,   2,   "fr"),
@@ -45,8 +49,6 @@ end
 function fig_3(; kwargs...)
     @named nr = NaturalResources.natural_resources()
 
-    @variables t
-
     variables = [
         (nr.nr,   0, 1e12, "nr"),
         (nr.nrur, 0, 8e9,  "nrur"),
@@ -60,8 +62,6 @@ function fig_4(; kwargs...)
     @named cig = CapitalInvestment.capital_investment_generation()
     @named cid = CapitalInvestment.capital_investment_discard()
 
-    @variables t
-
     variables = [
         (ci.ci,   0, 20e9,  "ci"),
         (cig.cig, 0, 400e6, "cig"),
@@ -72,27 +72,11 @@ function fig_4(; kwargs...)
 end
 
 function fig_5(; kwargs...)
-    @named pop = Population.population()
-    @named nr = NaturalResources.natural_resources()
-    @named ci = CapitalInvestment.capital_investment()
-    @named pol = Pollution.pollution()
-    @named ql = QualityLife.quality_life()
-
-    @variables t
-
-    variables = [
-        (pop.p,    0, 8e9,  "Population"),
-        (nr.nr,    0, 1e12, "Natural resources"),
-        (ci.ci,    0, 20e9, "Capital investment"),
-        (pol.polr, 0, 40,   "Pollution"),
-        (ql.ql,    0, 2,    "Quality of life"),
-    ]
-
     parameters_4_5 = NaturalResources.getparameters()
     parameters_4_5[:nrun1] = 0.25
 
     system = natural_resource_depletion(naturalresources_params=parameters_4_5)
     sol = solve(system, (1900, 2100))
 
-    return plotvariables(sol, (t, 1900, 2100), variables; title="Fig. 4-5", kwargs...)
+    return plotvariables(sol, (t, 1900, 2100), variables_1(); title="Fig. 4-5", kwargs...)
 end
