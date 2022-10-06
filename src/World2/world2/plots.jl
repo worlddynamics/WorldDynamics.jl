@@ -90,3 +90,18 @@ end
 fig_5(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-5", kwargs...)
 
 fig_6(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-6", kwargs...)
+
+function fig_7(; kwargs...)
+    @named pol = Pollution.pollution()
+    @named pola = Pollution.pollution_absorption()
+    @named polg = Pollution.pollution_generation()
+
+    variables = [
+        (pol.polr,   0, 40,   "polr"),
+        (pola.polat, 0, 16,   "polat"),
+        (polg.polg,  0, 20e9, "polg"),
+        (pola.pola,  0, 20e9, "pola"),
+    ]
+
+    plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; kwargs...)
+end
