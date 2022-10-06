@@ -103,7 +103,7 @@ function fig_7(; kwargs...)
         (pola.pola,  0, 20e9, "pola"),
     ]
 
-    plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; kwargs...)
+    plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; title="Fig. 4-7", kwargs...)
 end
 
 function fig_8(; kwargs...)
@@ -117,7 +117,7 @@ function fig_8(; kwargs...)
         (dr.dr, 0, 400e6, "dr"),
     ]
 
-    plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; kwargs...)
+    plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; title="Fig. 4-8", kwargs...)
 end
 
 function fig_9(; kwargs...)
