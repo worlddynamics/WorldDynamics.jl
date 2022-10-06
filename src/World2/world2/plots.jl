@@ -119,3 +119,22 @@ function fig_8(; kwargs...)
 
     plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; kwargs...)
 end
+
+function fig_9(; kwargs...)
+    @named pop = Population.population()
+    @named nr = NaturalResources.natural_resources()
+    @named ci = CapitalInvestment.capital_investment()
+    @named pol = Pollution.pollution()
+    @named ql = QualityLife.quality_life()
+
+    variables = [
+        (pop.p,    0, 16e9,  "Population"),
+        (nr.nr,    0, 2e12,  "Natural resources"),
+        (ci.ci,    0, 40e9,  "Capital investment"),
+        (pol.polr, 0, 80,    "Pollution"),
+        (ql.ql,    0, 4,     "Quality of life"),
+    ]
+
+    plotvariables(crowdingsolution(), (t, 1900, 2300), variables; title="Fig. 4-9", kwargs...)
+end
+
