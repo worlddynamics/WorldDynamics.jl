@@ -105,3 +105,17 @@ function fig_7(; kwargs...)
 
     plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; kwargs...)
 end
+
+function fig_8(; kwargs...)
+    @named pop = Population.population()
+    @named br = Population.birth_rate()
+    @named dr = Population.death_rate()
+
+    variables = [
+        (pop.p, 0, 8e9, "p"),
+        (br.br, 0, 400e6, "br"),
+        (dr.dr, 0, 400e6, "dr"),
+    ]
+
+    plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; kwargs...)
+end
