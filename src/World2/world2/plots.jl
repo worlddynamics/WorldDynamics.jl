@@ -6,13 +6,7 @@ end
 
 function pollutioncrisissolution()
     isdefined(@__MODULE__, :_solution_pollutioncrisis) && return _solution_pollutioncrisis
-
-    parameters = NaturalResources.getparameters()
-    parameters[:nrun1] = 0.25
-
-    system = natural_resource_depletion(naturalresources_params=parameters)
-
-    global _solution_pollutioncrisis = solve(system, (1900, 2100))
+    global _solution_pollutioncrisis = solve(pollution_crisis(), (1900, 2100))
     return _solution_pollutioncrisis
 end
 

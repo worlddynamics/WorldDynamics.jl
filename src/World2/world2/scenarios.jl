@@ -103,3 +103,10 @@ function natural_resource_depletion(;
 
     return WorldDynamics.compose(systems, connection_eqs)
 end
+
+function pollution_crisis(; kwargs...)
+    parameters = NaturalResources.getparameters()
+    parameters[:nrun1] = 0.25
+
+    return natural_resource_depletion(; naturalresources_params=parameters, kwargs...)
+end
