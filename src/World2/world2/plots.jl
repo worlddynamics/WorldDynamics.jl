@@ -43,11 +43,11 @@ function variables_2()
     @named ql = QualityLife.quality_life()
 
     variables = [
-        (ai.fr,   0,   2,   "fr"),
-        (ci.msl,  0,   2,   "msl"),
-        (ql.qlc,  0,   2,   "qlc"),
-        (ql.qlp,  0,   2,   "qlp"),
-        (ai.ciaf, 0.2, 0.6, "ciaf"),
+        (ai.fr,   0,   2,   "Food ratio"),
+        (ci.msl,  0,   2,   "Material standard of living"),
+        (ql.qlc,  0,   2,   "Quality of life from crowding"),
+        (ql.qlp,  0,   2,   "Quality of life from pollution"),
+        (ai.ciaf, 0.2, 0.6, "Capital investment in agriculture fraction"),
     ]
 
     return variables
@@ -66,8 +66,8 @@ function fig_3(; kwargs...)
     @named nr = NaturalResources.natural_resources()
 
     variables = [
-        (nr.nr,   0, 1e12, "nr"),
-        (nr.nrur, 0, 8e9,  "nrur"),
+        (nr.nr,   0, 1e12, "Natural resources"),
+        (nr.nrur, 0, 8e9,  "Natural resource usage rate"),
     ]
 
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-3", kwargs...)
@@ -79,9 +79,9 @@ function fig_4(; kwargs...)
     @named cid = CapitalInvestment.capital_investment_discard()
 
     variables = [
-        (ci.ci,   0, 20e9,  "ci"),
-        (cig.cig, 0, 400e6, "cig"),
-        (cid.cid, 0, 400e6, "cid"),
+        (ci.ci,   0, 20e9,  "Capital investment"),
+        (cig.cig, 0, 400e6, "Capital investment generation"),
+        (cid.cid, 0, 400e6, "Capital investment discard"),
     ]
 
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-4", kwargs...)
@@ -97,10 +97,10 @@ function fig_7(; kwargs...)
     @named polg = Pollution.pollution_generation()
 
     variables = [
-        (pol.polr,   0, 40,   "polr"),
-        (pola.polat, 0, 16,   "polat"),
-        (polg.polg,  0, 20e9, "polg"),
-        (pola.pola,  0, 20e9, "pola"),
+        (pol.polr,   0, 40,   "Pollution"),
+        (pola.polat, 0, 16,   "Pollution absorption time"),
+        (polg.polg,  0, 20e9, "Pollution generation"),
+        (pola.pola,  0, 20e9, "Pollution absorption"),
     ]
 
     plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; title="Fig. 4-7", kwargs...)
@@ -112,9 +112,9 @@ function fig_8(; kwargs...)
     @named dr = Population.death_rate()
 
     variables = [
-        (pop.p, 0, 8e9, "p"),
-        (br.br, 0, 400e6, "br"),
-        (dr.dr, 0, 400e6, "dr"),
+        (pop.p, 0, 8e9,   "Population"),
+        (br.br, 0, 400e6, "Birth rate"),
+        (dr.dr, 0, 400e6, "Death rate"),
     ]
 
     plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; title="Fig. 4-8", kwargs...)
@@ -128,11 +128,11 @@ function fig_9(; kwargs...)
     @named ql = QualityLife.quality_life()
 
     variables = [
-        (pop.p,    0, 16e9,  "Population"),
-        (nr.nr,    0, 2e12,  "Natural resources"),
-        (ci.ci,    0, 40e9,  "Capital investment"),
-        (pol.polr, 0, 80,    "Pollution"),
-        (ql.ql,    0, 4,     "Quality of life"),
+        (pop.p,    0, 16e9, "Population"),
+        (nr.nr,    0, 2e12, "Natural resources"),
+        (ci.ci,    0, 40e9, "Capital investment"),
+        (pol.polr, 0, 80,   "Pollution"),
+        (ql.ql,    0, 4,    "Quality of life"),
     ]
 
     plotvariables(crowdingsolution(), (t, 1900, 2300), variables; title="Fig. 4-9", kwargs...)
@@ -144,11 +144,11 @@ function fig_10(; kwargs...)
     @named ql = QualityLife.quality_life()
 
     variables = [
-        (ai.fr,   0,   2.5, "fr"),
-        (ci.msl,  0,   2.5, "msl"),
-        (ql.qlc,  0,   2.5, "qlc"),
-        (ql.qlp,  0,   2.5, "qlp"),
-        (ai.ciaf, 0.2, 0.7, "ciaf"),
+        (ai.fr,   0,   2.5, "Food ratio"),
+        (ci.msl,  0,   2.5, "Material standard of living"),
+        (ql.qlc,  0,   2.5, "Quality of life from crowding"),
+        (ql.qlp,  0,   2.5, "Quality of life from pollution"),
+        (ai.ciaf, 0.2, 0.7, "Capital investment in agriculture fraction"),
     ]
 
     plotvariables(crowdingsolution(), (t, 1900, 2300), variables; title="Fig. 4-10", kwargs...)
