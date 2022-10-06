@@ -4,6 +4,18 @@ function nrdepletionsolution()
     return _solution_nrdepletion
 end
 
+function pollutioncrisissolution()
+    isdefined(@__MODULE__, :_solution_pollutioncrisis) && return _solution_pollutioncrisis
+
+    parameters = NaturalResources.getparameters()
+    parameters[:nrun1] = 0.25
+
+    system = natural_resource_depletion(naturalresources_params=parameters)
+
+    global _solution_pollutioncrisis = solve(system, (1900, 2100))
+    return _solution_pollutioncrisis
+end
+
 
 @variables t
 
@@ -25,12 +37,7 @@ function variables_1()
     return variables
 end
 
-
-function fig_1(; kwargs...)
-    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-1", kwargs...)
-end
-
-function fig_2(; kwargs...)
+function variables_2()
     @named ai = AgricultureInvestment.agriculture_investment()
     @named ci = CapitalInvestment.capital_investment()
     @named ql = QualityLife.quality_life()
@@ -43,7 +50,16 @@ function fig_2(; kwargs...)
         (ai.ciaf, 0.2, 0.6, "ciaf"),
     ]
 
-    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-2", kwargs...)
+    return variables
+end
+
+
+function fig_1(; kwargs...)
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-1", kwargs...)
+end
+
+function fig_2(; kwargs...)
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-2", kwargs...)
 end
 
 function fig_3(; kwargs...)
@@ -71,12 +87,6 @@ function fig_4(; kwargs...)
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-4", kwargs...)
 end
 
-function fig_5(; kwargs...)
-    parameters_4_5 = NaturalResources.getparameters()
-    parameters_4_5[:nrun1] = 0.25
+fig_5(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-5", kwargs...)
 
-    system = natural_resource_depletion(naturalresources_params=parameters_4_5)
-    sol = solve(system, (1900, 2100))
-
-    return plotvariables(sol, (t, 1900, 2100), variables_1(); title="Fig. 4-5", kwargs...)
-end
+fig_6(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-6", kwargs...)
