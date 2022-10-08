@@ -196,7 +196,7 @@ end
 """
 function fig_46(; kwargs...)
     cap_tables_3_46 = gettables()
-    cap_tables_3_46[:fcaor] = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.3, 0.3, 0.3)
+    cap_tables_3_46[:fioaa] = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.3, 0.3, 0.3)
 
     system = historicalrun(tables=cap_tables_3_46)
     solution = solve(system, (1900, 2100))
