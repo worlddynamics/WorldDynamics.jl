@@ -9,7 +9,29 @@ An open-source framework written in Julia for world dynamics modeling and simula
 
 ## The World Dynamics Project
 
-The World Dynamics project aims to provide a modern framework to investigate [models of global dynamics](https://en.wikipedia.org/wiki/Integrated_assessment_modelling) focused on sustainable development based on current software engineering and scientific machine learning techniques. Our group is developing a Julia library to allow scientists to easily use and adapt different world models, from [Meadows et al.'s World3](https://en.wikipedia.org/wiki/World3) to recent proposals. By enabling an open, interdisciplinary, and consistent comparative approach to scientific model development, our goal is to supply high-quality information to global policy making on environmental and economic issues.
+The World Dynamics project aims to provide a modern framework to investigate [integrated assessment models](https://en.wikipedia.org/wiki/Integrated_assessment_modelling) of sustainable development, based on current software engineering and scientific machine learning techniques. Our group is developing a Julia library to allow scientists to easily use and adapt different world models, from [Meadows et al.'s World3](https://en.wikipedia.org/wiki/World3) to recent proposals. By enabling an open, interdisciplinary, and consistent comparative approach to scientific model development, our goal is to inform global policy makers on environmental and economic issues.
+
+### Getting started
+
+From the Julia REPL, install the package with 
+```jl
+]add WorldDynamics
+```
+You can now use the package, e.g. for reproducing Figure 7.7 from the book [_Dynamics of growth in a finite world_](https://archive.org/details/dynamicsofgrowth0000unse): 
+```jl
+using WorldDynamics
+World3.fig_7()
+```
+Here is the output superposed to the original picture: 
+![image](https://user-images.githubusercontent.com/2920162/194111344-8682a97f-f4de-4e2d-ba7e-980546e1bfaf.png)
+
+For how to produce different figures (and much more), please see [the documentation](https://natema.github.io/WorldDynamics.jl/stable/).
+
+## Project leaders 
+
+- [Pierluigi Crescenzi](http://www.pilucrescenzi.it/)
+- [Emanuele Natale](http://enatale.name)
+- [Paulo Bruno Serafim](https://paulobruno.github.io/about/)
 
 ### How to cite this work 
 
@@ -28,4 +50,12 @@ The World Dynamics project aims to provide a modern framework to investigate [mo
 }
 ```
 
-## More info coming soon!!!
+### Acknowledgments 
+
+We thank for their support: 
+
+|   |   |   |
+|---|---|---|
+| [<img src="docs/src/assets/logo-i3s.png" width="200" />](https://www.i3s.unice.fr/fr) | [<img src="docs/src/assets/logo-ds4h.png" width="120" />](https://ds4h.univ-cotedazur.eu/about-us/rise) | [<img src="docs/src/assets/logo-idex-ucajedi.png" width="200" />](https://univ-cotedazur.fr/universite/ucajedi-lidex-duniversite-cote-dazur) | 
+| [<img src="docs/src/assets/logo-inria.png" width="200" />](https://www.inria.fr/fr) | [<img src="docs/src/assets/logo-cnrs.png" width="100" />](https://www.cnrs.fr/) | [<img src="docs/src/assets/logo-UniversitadiRomaTorVergata.png" width="120" />](https://ing.uniroma2.it) |
+|   | [<img src="docs/src/assets/logo-gssi.png" width="210" />](https://www.gssi.it/) | |
