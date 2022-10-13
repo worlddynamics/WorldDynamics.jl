@@ -100,6 +100,12 @@ function lesspollution3solution()
     return _solution_lesspollution3
 end
 
+function lesspollution4solution()
+    isdefined(@__MODULE__, :_solution_lesspollution4) && return _solution_lesspollution4
+    global _solution_lesspollution4 = solve(less_pollution4(), (1900, 2100))
+    return _solution_lesspollution4
+end
+
 @variables t
 
 function variables_1()
@@ -453,4 +459,23 @@ end
 """
 function fig_6_4(; kwargs...)
     return plotvariables(lesspollution3solution(), (t, 1900, 2100), variables_2(); title="Fig. 6-4", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-5. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Food productivity is reduced 20% in 1970 along with changes in Fig. 6-3. Population Is
+    lower, quality of life higher.
+"""
+function fig_6_5(; kwargs...)
+    return plotvariables(lesspollution4solution(), (t, 1900, 2100), variables_1(); title="Fig. 6-5", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-6. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for conditions of Fig. 6-5.
+"""
+function fig_6_6(; kwargs...)
+    return plotvariables(lesspollution4solution(), (t, 1900, 2100), variables_2(); title="Fig. 6-6", kwargs...)
 end
