@@ -62,21 +62,21 @@ end
 """
     Reproduce Fig. 4-1. The original figure is presented on Chapter 4.
 """
-function fig_1(; kwargs...)
+function fig_4_1(; kwargs...)
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-1", kwargs...)
 end
 
 """
     Reproduce Fig. 4-2. The original figure is presented on Chapter 4.
 """
-function fig_2(; kwargs...)
+function fig_4_2(; kwargs...)
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-2", kwargs...)
 end
 
 """
     Reproduce Fig. 4-3. The original figure is presented on Chapter 4.
 """
-function fig_3(; kwargs...)
+function fig_4_3(; kwargs...)
     @named nr = NaturalResources.natural_resources()
 
     variables = [
@@ -90,7 +90,7 @@ end
 """
     Reproduce Fig. 4-4. The original figure is presented on Chapter 4.
 """
-function fig_4(; kwargs...)
+function fig_4_4(; kwargs...)
     @named ci = CapitalInvestment.capital_investment()
     @named cig = CapitalInvestment.capital_investment_generation()
     @named cid = CapitalInvestment.capital_investment_discard()
@@ -107,17 +107,17 @@ end
 """
     Reproduce Fig. 4-5. The original figure is presented on Chapter 4.
 """
-fig_5(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-5", kwargs...)
+fig_4_5(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-5", kwargs...)
 
 """
     Reproduce Fig. 4-6. The original figure is presented on Chapter 4.
 """
-fig_6(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-6", kwargs...)
+fig_4_6(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-6", kwargs...)
 
 """
     Reproduce Fig. 4-7. The original figure is presented on Chapter 4.
 """
-function fig_7(; kwargs...)
+function fig_4_7(; kwargs...)
     @named pol = Pollution.pollution()
     @named pola = Pollution.pollution_absorption()
     @named polg = Pollution.pollution_generation()
@@ -135,7 +135,7 @@ end
 """
     Reproduce Fig. 4-8. The original figure is presented on Chapter 4.
 """
-function fig_8(; kwargs...)
+function fig_4_8(; kwargs...)
     @named pop = Population.population()
     @named br = Population.birth_rate()
     @named dr = Population.death_rate()
@@ -152,7 +152,7 @@ end
 """
     Reproduce Fig. 4-9. The original figure is presented on Chapter 4.
 """
-function fig_9(; kwargs...)
+function fig_4_9(; kwargs...)
     @named pop = Population.population()
     @named nr = NaturalResources.natural_resources()
     @named ci = CapitalInvestment.capital_investment()
@@ -173,7 +173,7 @@ end
 """
     Reproduce Fig. 4-10. The original figure is presented on Chapter 4.
 """
-function fig_10(; kwargs...)
+function fig_4_10(; kwargs...)
     @named ai = AgricultureInvestment.agriculture_investment()
     @named ci = CapitalInvestment.capital_investment()
     @named ql = QualityLife.quality_life()
@@ -192,7 +192,7 @@ end
 """
     Reproduce Fig. 4-11. The original figure is presented on Chapter 4.
 """
-function fig_11(; kwargs...)
+function fig_4_11(; kwargs...)
     @named pop = Population.population()
     @named nr = NaturalResources.natural_resources()
     @named ci = CapitalInvestment.capital_investment()
@@ -213,4 +213,4 @@ end
 """
     Reproduce Fig. 4-12. The original figure is presented on Chapter 4.
 """
-fig_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), variables_2(); title="Fig. 4-12", kwargs...)
+fig_4_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), variables_2(); title="Fig. 4-12", kwargs...)
