@@ -61,11 +61,11 @@ end
 
 
 function fig_1(; kwargs...)
-    return plotvariables( nrdepletionsolution(), (t, 1900, 2100), _variables_1(); title="Fig. 4-1", kwargs...)
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), _variables_1(); title="Fig. 4-1", kwargs...)
 end
 
 function fig_2(; kwargs...)
-    return plotvariables( nrdepletionsolution(), (t, 1900, 2100), _variables_2(); title="Fig. 4-2", kwargs...)
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), _variables_2(); title="Fig. 4-2", kwargs...)
 end
 
 function fig_3(; kwargs...)
@@ -76,7 +76,7 @@ function fig_3(; kwargs...)
         (nr.nrur, 0, 8e9,  "Natural resource usage rate"),
     ]
 
-    return plotvariables( nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-3", kwargs...)
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-3", kwargs...)
 end
 
 function fig_4(; kwargs...)
@@ -90,12 +90,12 @@ function fig_4(; kwargs...)
         (cid.cid, 0, 400e6, "Capital investment discard"),
     ]
 
-    return plotvariables( nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-4", kwargs...)
+    return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables; title="Fig. 4-4", kwargs...)
 end
 
-fig_5(; kwargs...) = plotvariables( pollutioncrisissolution(), (t, 1900, 2100), _variables_1(); title="Fig. 4-5", kwargs...)
+fig_5(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), _variables_1(); title="Fig. 4-5", kwargs...)
 
-fig_6(; kwargs...) = plotvariables( pollutioncrisissolution(), (t, 1900, 2100), _variables_2(); title="Fig. 4-6", kwargs...)
+fig_6(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), _variables_2(); title="Fig. 4-6", kwargs...)
 
 function fig_7(; kwargs...)
     @named pol = Pollution.pollution()
@@ -109,7 +109,7 @@ function fig_7(; kwargs...)
         (pola.pola,  0, 20e9, "Pollution absorption"),
     ]
 
-    plotvariables( pollutioncrisissolution(), (t, 1900, 2100), variables; title="Fig. 4-7", kwargs...)
+    plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; title="Fig. 4-7", kwargs...)
 end
 
 function fig_8(; kwargs...)
@@ -123,7 +123,7 @@ function fig_8(; kwargs...)
         (dr.dr, 0, 400e6, "Death rate"),
     ]
 
-    plotvariables( pollutioncrisissolution(), (t, 1900, 2100), variables; title="Fig. 4-8", kwargs...)
+    plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables; title="Fig. 4-8", kwargs...)
 end
 
 function fig_9(; kwargs...)
@@ -141,7 +141,7 @@ function fig_9(; kwargs...)
         (ql.ql,    0, 4,    "Quality of life"),
     ]
 
-    plotvariables( crowdingsolution(), (t, 1900, 2300), variables; title="Fig. 4-9", kwargs...)
+    plotvariables(crowdingsolution(), (t, 1900, 2300), variables; title="Fig. 4-9", kwargs...)
 end
 
 function fig_10(; kwargs...)
@@ -157,7 +157,7 @@ function fig_10(; kwargs...)
         (ai.ciaf, 0.2, 0.7, "Capital investment in agriculture fraction"),
     ]
 
-    plotvariables( crowdingsolution(), (t, 1900, 2300), variables; title="Fig. 4-10", kwargs...)
+    plotvariables(crowdingsolution(), (t, 1900, 2300), variables; title="Fig. 4-10", kwargs...)
 end
 
 function fig_11(; kwargs...)
@@ -175,7 +175,7 @@ function fig_11(; kwargs...)
         (ql.ql,    0, 3,      "Quality of life"),
     ]
 
-    plotvariables( foodshortagesolution(), (t, 1900, 2300), variables; title="Fig. 4-11", kwargs...)
+    plotvariables(foodshortagesolution(), (t, 1900, 2300), variables; title="Fig. 4-11", kwargs...)
 end
 
-fig_12(; kwargs...) = plotvariables( foodshortagesolution(), (t, 1900, 2300), _variables_2(); title="Fig. 4-12", kwargs...)
+fig_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), _variables_2(); title="Fig. 4-12", kwargs...)
