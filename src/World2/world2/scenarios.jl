@@ -188,3 +188,11 @@ function less_pollution(; kwargs...)
 
     return natural_resource_depletion(;pollution_params=pol_parameters, kwargs...)
 end
+
+function higher_agricolture_productivity(; kwargs...)
+
+    agr_parameters = AgricultureInvestment.getparameters()
+    agr_parameters[:fc1] = 1.25
+
+    return natural_resource_depletion(;agriculture_params=agr_parameters, kwargs...)
+end

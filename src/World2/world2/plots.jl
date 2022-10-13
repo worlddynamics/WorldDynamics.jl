@@ -58,6 +58,13 @@ function lesspollutionsolution()
     return _solution_lesspollution
 end
 
+function higheragricoltureproductivitysolution()
+    isdefined(@__MODULE__, :_solution_higheragricoltureproductivity) && return _solution_higheragricoltureproductivity
+    global _solution_higheragricoltureproductivity = solve(higher_agricolture_productivity(), (1900, 2100))
+    return _solution_higheragricoltureproductivity
+end
+
+
 @variables t
 
 function variables_1()
@@ -320,4 +327,14 @@ end
 """
 function fig_5_8(; kwargs...)
     return plotvariables(lesspollutionsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-8", kwargs...)
+end
+
+
+"""
+    Reproduce Fig. 5-9. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Increased food production causes increased population.
+"""
+function fig_5_9(; kwargs...)
+    return plotvariables(higheragricoltureproductivitysolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-9", kwargs...)
 end
