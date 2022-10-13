@@ -292,8 +292,17 @@ end
 """
     Reproduce Fig. 5-6. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
 
-    Caption:A 50% reduction in "normal" birth rate causes growth of population to pause for 20 years, then resume.
+    Caption: A 50% reduction in "normal" birth rate causes growth of population to pause for 20 years, then resume.
 """
 function fig_5_6(; kwargs...)
     return plotvariables(crowdingandreducedbirthrate2solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-6", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-7. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for conditions of Fig. 5-6.
+"""
+function fig_5_7(; kwargs...)
+    return plotvariables(crowdingandreducedbirthrate2solution(), (t, 1900, 2100), variables_2(); title="Fig. 5-7", kwargs...)
 end
