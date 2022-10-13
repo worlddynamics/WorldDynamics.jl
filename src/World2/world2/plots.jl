@@ -88,6 +88,12 @@ function lesspollutionandhigheragricultureincreasedcapitalinvestment3solution()
     return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3
 end
 
+function lesspollution2solution()
+    isdefined(@__MODULE__, :_solution_lesspollution2) && return _solution_lesspollution2
+    global _solution_lesspollution2 = solve(less_pollution2(), (1900, 2100))
+    return _solution_lesspollution2
+end
+
 @variables t
 
 function variables_1()
@@ -404,4 +410,22 @@ end
 """
 function fig_5_14(; kwargs...)
     return plotvariables(lesspollutionandhigheragricultureincreasedcapitalinvestment3solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-14", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-1. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Natural-resource-usage rate and pollution generation are reduced in 1970.
+"""
+function fig_6_1(; kwargs...)
+    return plotvariables(lesspollution2solution(), (t, 1900, 2100), variables_1(); title="Fig. 6-1", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-2. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for conditions of Fig. 6-1.
+"""
+function fig_6_2(; kwargs...)
+    return plotvariables(lesspollution2solution(), (t, 1900, 2100), variables_2(); title="Fig. 6-2", kwargs...)
 end

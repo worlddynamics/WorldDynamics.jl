@@ -303,3 +303,17 @@ function less_pollution_and_higher_agriculture_increased_capital_investment3(; k
         kwargs...
     )
 end
+
+function less_pollution2(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.5
+
+    return natural_resource_depletion(;
+        pollution_params=pol_parameters,
+        naturalresources_params=nr_parameters,
+        kwargs...
+    )
+end
