@@ -338,3 +338,12 @@ end
 function fig_5_9(; kwargs...)
     return plotvariables(higheragricoltureproductivitysolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-9", kwargs...)
 end
+
+"""
+    Reproduce Fig. 5-10. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for the conditions of Fig. 5-9. Higher food productivity causes capital reallocation away from agriculture.
+"""
+function fig_5_10(; kwargs...)
+    return plotvariables(higheragricoltureproductivitysolution(), (t, 1900, 2100), variables_2(); title="Fig. 5-10", kwargs...)
+end
