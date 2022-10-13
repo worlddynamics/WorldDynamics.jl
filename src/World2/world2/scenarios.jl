@@ -142,3 +142,13 @@ function reduced_birth_rate(; kwargs...)
 
     return natural_resource_depletion(; pop_params=parameters, kwargs...)
 end
+
+function pollution_crisis_and_reduce_birth_rate(; kwargs...)
+    pop_parameters = Population.getparameters()
+    pop_parameters[:brn1] = 0.028
+
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    return natural_resource_depletion(; pop_params=pop_parameters,naturalresources_params=nr_parameters, kwargs...)
+end

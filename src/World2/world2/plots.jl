@@ -34,6 +34,12 @@ function reducedbirthratesolution()
     return _solution_reducedbirthrate
 end
 
+function pollutioncrisisandreducebirthratesolution()
+    isdefined(@__MODULE__, :_solution_pollutioncrisisandreducebirthrate) && return _solution_pollutioncrisisandreducebirthrate
+    global _solution_pollutioncrisisandreducebirthrate = solve(pollution_crisis_and_reduce_birth_rate(), (1900, 2100))
+    return _solution_pollutioncrisisandreducebirthrate
+end
+
 @variables t
 
 function variables_1()
@@ -239,7 +245,6 @@ end
     Reproduce Fig. 5-2. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
 
     Caption: Lower birth rate does not affect suppression of growth by falling natural resources.
-    
 """
 function fig_5_2(; kwargs...)
     return plotvariables(reducedbirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-2", kwargs...)
@@ -249,8 +254,16 @@ end
     Reproduce Fig. 5-3. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
 
     Caption: Ratios for the same condition of lower birth rate as in Fig. 5-2.
-    
 """
 function fig_5_3(; kwargs...)
     return plotvariables(reducedbirthratesolution(), (t, 1900, 2100), variables_2(); title="Fig. 5-3", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-4. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Reduced birth rate still leads to the oollution crisis.
+"""
+function fig_5_4(; kwargs...)
+    return plotvariables(pollutioncrisisandreducebirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-4", kwargs...)
 end
