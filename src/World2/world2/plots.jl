@@ -52,6 +52,12 @@ function crowdingandreducedbirthrate2solution()
     return _solution_crowdingandreducedbirthrate2
 end
 
+function lesspollutionsolution()
+    isdefined(@__MODULE__, :_solution_lesspollution) && return _solution_lesspollution
+    global _solution_lesspollution = solve(less_pollution(), (1900, 2100))
+    return _solution_lesspollution
+end
+
 @variables t
 
 function variables_1()
@@ -305,4 +311,13 @@ end
 """
 function fig_5_7(; kwargs...)
     return plotvariables(crowdingandreducedbirthrate2solution(), (t, 1900, 2100), variables_2(); title="Fig. 5-7", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-8. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Reduction of pollution generation allows population and capital investment to increase further before the pollution crisis.
+"""
+function fig_5_8(; kwargs...)
+    return plotvariables(lesspollutionsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-8", kwargs...)
 end

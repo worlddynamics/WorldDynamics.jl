@@ -180,3 +180,11 @@ function crowding_and_reduced_birth_rate2(; kwargs...)
     return natural_resource_depletion(; naturalresources_params=nr_parameters, pollution_params=pol_parameters,
     pop_params=pop_parameters, kwargs...)
 end
+
+function less_pollution(; kwargs...)
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.7
+
+    return natural_resource_depletion(;pollution_params=pol_parameters, kwargs...)
+end
