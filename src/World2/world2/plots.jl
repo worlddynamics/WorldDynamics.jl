@@ -22,6 +22,71 @@ function foodshortagesolution()
     return _solution_foodshortage
 end
 
+function increasedcapitalinvestmentgenerationsolution()
+    isdefined(@__MODULE__, :_solution_increasedcapitalinvestmentgeneration) && return _solution_increasedcapitalinvestmentgeneration
+    global _solution_increasedcapitalinvestmentgeneration = solve(increased_capital_investment_generation(), (1900, 2100))
+    return _solution_increasedcapitalinvestmentgeneration
+end
+
+function reducedbirthratesolution()
+    isdefined(@__MODULE__, :_solution_reducedbirthrate) && return _solution_reducedbirthrate
+    global _solution_reducedbirthrate = solve(reduced_birth_rate(), (1900, 2100))
+    return _solution_reducedbirthrate
+end
+
+function pollutioncrisisandreducebirthratesolution()
+    isdefined(@__MODULE__, :_solution_pollutioncrisisandreducebirthrate) && return _solution_pollutioncrisisandreducebirthrate
+    global _solution_pollutioncrisisandreducebirthrate = solve(pollution_crisis_and_reduce_birth_rate(), (1900, 2100))
+    return _solution_pollutioncrisisandreducebirthrate
+end
+
+function crowdingandreducedbirthratesolution()
+    isdefined(@__MODULE__, :_solution_crowdingandreducedbirthrate) && return _solution_crowdingandreducedbirthrate
+    global _solution_crowdingandreducedbirthrate = solve(crowding_and_reduced_birth_rate(), (1900, 2100))
+    return _solution_crowdingandreducedbirthrate
+end
+
+function crowdingandreducedbirthrate2solution()
+    isdefined(@__MODULE__, :_solution_crowdingandreducedbirthrate2) && return _solution_crowdingandreducedbirthrate2
+    global _solution_crowdingandreducedbirthrate2 = solve(crowding_and_reduced_birth_rate2(), (1900, 2100))
+    return _solution_crowdingandreducedbirthrate2
+end
+
+function lesspollutionsolution()
+    isdefined(@__MODULE__, :_solution_lesspollution) && return _solution_lesspollution
+    global _solution_lesspollution = solve(less_pollution(), (1900, 2100))
+    return _solution_lesspollution
+end
+
+function higheragricultureproductivitysolution()
+    isdefined(@__MODULE__, :_solution_higheragricultureproductivity) && return _solution_higheragricultureproductivity
+    global _solution_higheragricultureproductivity = solve(higher_agriculture_productivity(), (1900, 2100))
+    return _solution_higheragricultureproductivity
+end
+
+function lesspollutionandhigheragricultureproductivitysolution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricultureproductivity) && return _solution_lesspollutionandhigheragricultureproductivity
+    global _solution_lesspollutionandhigheragricultureproductivity = solve(less_pollution_and_higher_agriculture_productivity(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricultureproductivity
+end
+
+function lesspollutionandhigheragricultureincreasedcapitalinvestmentsolution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricultureincreasedcapitalinvestment) && return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment
+    global _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment = solve(less_pollution_and_higher_agriculture_increased_capital_investment(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment
+end
+
+function lesspollutionandhigheragricultureincreasedcapitalinvestment2solution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2) && return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2
+    global _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2 = solve(less_pollution_and_higher_agriculture_increased_capital_investment2(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2
+end
+
+function lesspollutionandhigheragricultureincreasedcapitalinvestment3solution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3) && return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3
+    global _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3 = solve(less_pollution_and_higher_agriculture_increased_capital_investment3(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3
+end
 
 @variables t
 
@@ -62,21 +127,21 @@ end
 """
     Reproduce Fig. 4-1. The original figure is presented on Chapter 4.
 """
-function fig_1(; kwargs...)
+function fig_4_1(; kwargs...)
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-1", kwargs...)
 end
 
 """
     Reproduce Fig. 4-2. The original figure is presented on Chapter 4.
 """
-function fig_2(; kwargs...)
+function fig_4_2(; kwargs...)
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-2", kwargs...)
 end
 
 """
     Reproduce Fig. 4-3. The original figure is presented on Chapter 4.
 """
-function fig_3(; kwargs...)
+function fig_4_3(; kwargs...)
     @named nr = NaturalResources.natural_resources()
 
     variables = [
@@ -90,7 +155,7 @@ end
 """
     Reproduce Fig. 4-4. The original figure is presented on Chapter 4.
 """
-function fig_4(; kwargs...)
+function fig_4_4(; kwargs...)
     @named ci = CapitalInvestment.capital_investment()
     @named cig = CapitalInvestment.capital_investment_generation()
     @named cid = CapitalInvestment.capital_investment_discard()
@@ -107,17 +172,17 @@ end
 """
     Reproduce Fig. 4-5. The original figure is presented on Chapter 4.
 """
-fig_5(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-5", kwargs...)
+fig_4_5(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-5", kwargs...)
 
 """
     Reproduce Fig. 4-6. The original figure is presented on Chapter 4.
 """
-fig_6(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-6", kwargs...)
+fig_4_6(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-6", kwargs...)
 
 """
     Reproduce Fig. 4-7. The original figure is presented on Chapter 4.
 """
-function fig_7(; kwargs...)
+function fig_4_7(; kwargs...)
     @named pol = Pollution.pollution()
     @named pola = Pollution.pollution_absorption()
     @named polg = Pollution.pollution_generation()
@@ -135,7 +200,7 @@ end
 """
     Reproduce Fig. 4-8. The original figure is presented on Chapter 4.
 """
-function fig_8(; kwargs...)
+function fig_4_8(; kwargs...)
     @named pop = Population.population()
     @named br = Population.birth_rate()
     @named dr = Population.death_rate()
@@ -152,7 +217,7 @@ end
 """
     Reproduce Fig. 4-9. The original figure is presented on Chapter 4.
 """
-function fig_9(; kwargs...)
+function fig_4_9(; kwargs...)
     @named pop = Population.population()
     @named nr = NaturalResources.natural_resources()
     @named ci = CapitalInvestment.capital_investment()
@@ -173,7 +238,7 @@ end
 """
     Reproduce Fig. 4-10. The original figure is presented on Chapter 4.
 """
-function fig_10(; kwargs...)
+function fig_4_10(; kwargs...)
     @named ai = AgricultureInvestment.agriculture_investment()
     @named ci = CapitalInvestment.capital_investment()
     @named ql = QualityLife.quality_life()
@@ -192,7 +257,7 @@ end
 """
     Reproduce Fig. 4-11. The original figure is presented on Chapter 4.
 """
-function fig_11(; kwargs...)
+function fig_4_11(; kwargs...)
     @named pop = Population.population()
     @named nr = NaturalResources.natural_resources()
     @named ci = CapitalInvestment.capital_investment()
@@ -213,4 +278,130 @@ end
 """
     Reproduce Fig. 4-12. The original figure is presented on Chapter 4.
 """
-fig_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), variables_2(); title="Fig. 4-12", kwargs...)
+fig_4_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), variables_2(); title="Fig. 4-12", kwargs...)
+
+"""
+    Reproduce Fig. 5-1. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Higher capital-investment generation triggers the pollution crisis.
+"""
+function fig_5_1(; kwargs...)
+    return plotvariables(increasedcapitalinvestmentgenerationsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-1", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-2. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Lower birth rate does not affect suppression of growth by falling natural resources.
+"""
+function fig_5_2(; kwargs...)
+    return plotvariables(reducedbirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-2", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-3. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for the same condition of lower birth rate as in Fig. 5-2.
+"""
+function fig_5_3(; kwargs...)
+    return plotvariables(reducedbirthratesolution(), (t, 1900, 2100), variables_2(); title="Fig. 5-3", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-4. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Reduced birth rate still leads to the pollution crisis.
+"""
+function fig_5_4(; kwargs...)
+    return plotvariables(pollutioncrisisandreducebirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-4", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-5. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: With resource depletion and pollution suppressed, population still climbs even with a 30% reduction in "normal" birth rate.
+"""
+function fig_5_5(; kwargs...)
+    return plotvariables(crowdingandreducedbirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-5", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-6. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: A 50% reduction in "normal" birth rate causes growth of population to pause for 20 years, then resume.
+"""
+function fig_5_6(; kwargs...)
+    return plotvariables(crowdingandreducedbirthrate2solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-6", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-7. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for conditions of Fig. 5-6.
+"""
+function fig_5_7(; kwargs...)
+    return plotvariables(crowdingandreducedbirthrate2solution(), (t, 1900, 2100), variables_2(); title="Fig. 5-7", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-8. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Reduction of pollution generation allows population and capital investment to increase further before the pollution crisis.
+"""
+function fig_5_8(; kwargs...)
+    return plotvariables(lesspollutionsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-8", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-9. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Increased food production causes increased population.
+"""
+function fig_5_9(; kwargs...)
+    return plotvariables(higheragricultureproductivitysolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-9", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-10. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for the conditions of Fig. 5-9. Higher food productivity causes capital reallocation away from agriculture.
+"""
+function fig_5_10(; kwargs...)
+    return plotvariables(higheragricultureproductivitysolution(), (t, 1900, 2100), variables_2(); title="Fig. 5-10", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-11. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Increased food production causes greater population and earlier pollution crisis compared with Fig. 5-8.
+"""
+function fig_5_11(; kwargs...)
+    return plotvariables(lesspollutionandhigheragricultureproductivitysolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-11", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-12. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Compared with Fig. 5-11, increased capital generation causes an earlier pollution crisis.
+"""
+function fig_5_12(; kwargs...)
+    return plotvariables(lesspollutionandhigheragricultureincreasedcapitalinvestmentsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-12", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-13. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Compared with Fig. 5-12, less pollution generation increases peak population and delays the pollution crisis.
+"""
+function fig_5_13(; kwargs...)
+    return plotvariables(lesspollutionandhigheragricultureincreasedcapitalinvestment2solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-13", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-14. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Compared with Fig. 5-12, reduced birth rate lowers the peak population but does not ellminate or delay the pollution crisis.
+"""
+function fig_5_14(; kwargs...)
+    return plotvariables(lesspollutionandhigheragricultureincreasedcapitalinvestment3solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-14", kwargs...)
+end
