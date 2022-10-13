@@ -40,6 +40,13 @@ function pollutioncrisisandreducebirthratesolution()
     return _solution_pollutioncrisisandreducebirthrate
 end
 
+function crowdingandreducedbirthratesolution()
+    isdefined(@__MODULE__, :_solution_crowdingandreducedbirthrate) && return _solution_crowdingandreducedbirthrate
+    global _solution_crowdingandreducedbirthrate = solve(crowding_and_reduced_birth_rate(), (1900, 2100))
+    return _solution_crowdingandreducedbirthrate
+end
+
+
 @variables t
 
 function variables_1()
@@ -262,8 +269,31 @@ end
 """
     Reproduce Fig. 5-4. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
 
-    Caption: Reduced birth rate still leads to the oollution crisis.
+    Caption: Reduced birth rate still leads to the pollution crisis.
 """
 function fig_5_4(; kwargs...)
     return plotvariables(pollutioncrisisandreducebirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-4", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-5. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: With resource depletion and pollution suppressed, population still climbs even with a 30% reduction in "normal" birth rate.
+"""
+function fig_5_5(; kwargs...)
+    @named pop = Population.population()
+    @named nr = NaturalResources.natural_resources()
+    @named ci = CapitalInvestment.capital_investment()
+    @named pol = Pollution.pollution()
+    @named ql = QualityLife.quality_life()
+
+    variables = [
+        (pop.p,    0, 8e9, "Population"),
+        (nr.nr,    0, 1e12, "Natural resources"),
+        (ci.ci,    0, 20e9, "Capital investment"),
+        (pol.polr, 0, 40,   "Pollution"),
+        (ql.ql,    0, 2,    "Quality of life"),
+    ]
+
+    plotvariables(crowdingandreducedbirthratesolution(), (t, 1900, 2100), variables; title="Fig. 5-5", kwargs...)
 end
