@@ -76,7 +76,6 @@ function lesspollutionandhigheragricultureincreasedcapitalinvestmentsolution()
     return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment
 end
 
-
 function lesspollutionandhigheragricultureincreasedcapitalinvestment2solution()
     isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2) && return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2
     global _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2 = solve(less_pollution_and_higher_agriculture_increased_capital_investment2(), (1900, 2100))
@@ -88,9 +87,6 @@ function lesspollutionandhigheragricultureincreasedcapitalinvestment3solution()
     global _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3 = solve(less_pollution_and_higher_agriculture_increased_capital_investment3(), (1900, 2100))
     return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3
 end
-
-
-
 
 @variables t
 
@@ -356,7 +352,6 @@ function fig_5_8(; kwargs...)
     return plotvariables(lesspollutionsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-8", kwargs...)
 end
 
-
 """
     Reproduce Fig. 5-9. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
 
@@ -410,4 +405,3 @@ end
 function fig_5_14(; kwargs...)
     return plotvariables(lesspollutionandhigheragricultureincreasedcapitalinvestment3solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-14", kwargs...)
 end
-
