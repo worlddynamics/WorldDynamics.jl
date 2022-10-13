@@ -317,3 +317,21 @@ function less_pollution2(; kwargs...)
         kwargs...
     )
 end
+
+function less_pollution3(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.5
+
+    ci_parameters = CapitalInvestment.getparameters()
+    ci_parameters[:cign1] = 0.03
+
+    return natural_resource_depletion(;
+        pollution_params=pol_parameters,
+        naturalresources_params=nr_parameters,
+        capital_params=ci_parameters,
+        kwargs...
+    )
+end

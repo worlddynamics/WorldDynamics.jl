@@ -94,6 +94,12 @@ function lesspollution2solution()
     return _solution_lesspollution2
 end
 
+function lesspollution3solution()
+    isdefined(@__MODULE__, :_solution_lesspollution3) && return _solution_lesspollution3
+    global _solution_lesspollution3 = solve(less_pollution3(), (1900, 2100))
+    return _solution_lesspollution3
+end
+
 @variables t
 
 function variables_1()
@@ -428,4 +434,23 @@ end
 """
 function fig_6_2(; kwargs...)
     return plotvariables(lesspollution2solution(), (t, 1900, 2100), variables_2(); title="Fig. 6-2", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-3. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Capital generation is reduced 40% in 1970 in addition to changes in Fig. 6-1. Population
+    stabilizes at a lower level; quality of life is increased.
+"""
+function fig_6_3(; kwargs...)
+    return plotvariables(lesspollution3solution(), (t, 1900, 2100), variables_1(); title="Fig. 6-3", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-4. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for conditions of Fig. 6-3.
+"""
+function fig_6_4(; kwargs...)
+    return plotvariables(lesspollution3solution(), (t, 1900, 2100), variables_2(); title="Fig. 6-4", kwargs...)
 end
