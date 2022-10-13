@@ -214,3 +214,10 @@ end
     Reproduce Fig. 4-12. The original figure is presented on Chapter 4.
 """
 fig_4_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), variables_2(); title="Fig. 4-12", kwargs...)
+
+"""
+    Reproduce Fig. 5-1. The original figure is presented on Chapter 5.
+"""
+function fig_5_1(; kwargs...)
+    return plotvariables(increasedcapitalinvestmentgenerationsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-1", kwargs...)
+end

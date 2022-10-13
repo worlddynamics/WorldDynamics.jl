@@ -128,3 +128,10 @@ function food_shortage(; kwargs...)
 
     return crowding(; pop_tables=tables, kwargs...)
 end
+
+function increased_capital_investment_generation(; kwargs...)
+    parameters = CapitalInvestment.getparameters()
+    parameters[:cign1] = 0.06
+
+    return natural_resource_depletion(; capital_params=parameters, kwargs...)
+end
