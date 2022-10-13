@@ -1,4 +1,4 @@
-tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
+_tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
     :cmi => (0.5, 0.05, -0.1, -0.08, -0.02, 0.05, 0.1, 0.15, 0.2), # Line 27.1 Appendix A
     :fpu => (0.0, 0.2, 0.4, 0.5, 0.58, 0.65, 0.72, 0.78, 0.8), # Line 26.1 Appendix A
     :hsapc => (0.0, 20.0, 50.0, 95.0, 140.0, 175.0, 200.0, 220.0, 230.0), # Line 21.1 Appendix A
@@ -14,7 +14,7 @@ tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
     :fsafc => (0.0, 0.005, 0.015, 0.025, 0.03, 0.035), # Line 48.1 Appendix A
 )
 
-ranges = Dict{Symbol, Tuple{Float64, Float64}}(
+_ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :cmi => (0, 1600), # Line 27 Appendix A
     :fpu => (0, 16e9), # Line 26 Appendix A
     :hsapc => (0.0, 2000.0), # Line 21 Appendix A

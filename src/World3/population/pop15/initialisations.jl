@@ -1,4 +1,4 @@
-inits = Dict{Symbol, Float64}(
+_inits = Dict{Symbol, Float64}(
     :p1 => 5.3e7,
     :p2 => 2.1e8,
     :p3 => 2.2e8,
@@ -16,6 +16,6 @@ inits = Dict{Symbol, Float64}(
     :p15 => 4.8e7,
 )
 
-inits = merge(inits, CommonPop.inits)
+_inits = merge(_inits, CommonPop._inits)
 
-getinitialisations() = copy(inits)
+getinitialisations() = copy(_inits)

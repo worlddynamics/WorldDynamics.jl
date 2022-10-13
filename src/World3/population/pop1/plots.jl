@@ -5,7 +5,7 @@ function historicalrunsolution()
 end
 
 
-function variables_a()
+function _variables_a()
     @named pop = population()
     @named br = birth_rate()
     @named dr = death_rate()
@@ -28,7 +28,7 @@ function variables_a()
     return variables
 end
 
-function variables_b()
+function _variables_b()
     @named dr = death_rate()
 
     variables = [
@@ -43,7 +43,7 @@ function variables_b()
     return variables
 end
 
-function variables_c()
+function _variables_c()
     @named br = birth_rate()
 
     variables = [
@@ -64,17 +64,17 @@ end
 """
     Reproduce Fig 2.84. The original figure is presented on Chapter 2.
 """
-fig_84(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 2.84a", kwargs...)
+fig_84(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), _variables_a(); title="Fig. 2.84a", kwargs...)
 
 """
     Reproduce Fig 2.85. The original figure is presented on Chapter 2.
 """
-fig_85(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 2.85a", kwargs...)
+fig_85(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), _variables_b(); title="Fig. 2.85a", kwargs...)
 
 """
     Reproduce Fig 2.86. The original figure is presented on Chapter 2.
 """
-fig_86(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 2.86a", kwargs...)
+fig_86(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), _variables_c(); title="Fig. 2.86a", kwargs...)
 
 """
     Reproduce Fig 2.87. The original figure is presented on Chapter 2.
@@ -87,7 +87,7 @@ function fig_87(; kwargs...)
     system = historicalrun(params=parameters_2_87)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.87a", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.87a", kwargs...)
 end
 
 """
@@ -104,7 +104,7 @@ function fig_88(; kwargs...)
     system = historicalrun(params=parameters_2_88)
     solution = solve(system, (1900, 2100))
 
-    plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.88a", kwargs...)
+    plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.88a", kwargs...)
 end
 
 """
@@ -117,24 +117,24 @@ function fig_89(; kwargs...)
     system = historicalrun(params=parameters_2_89)
     solution = solve(system, (1900, 2100))
 
-    plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.89a", kwargs...)
+    plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.89a", kwargs...)
 end
 
 
 """
     Reproduce Fig 2.90. The original figure is presented on Chapter 2.
 """
-fig_90(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 2.90a", kwargs...)
+fig_90(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_a(); title="Fig. 2.90a", kwargs...)
 
 """
     Reproduce Fig 2.91. The original figure is presented on Chapter 2.
 """
-fig_91(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 2.91a", kwargs...)
+fig_91(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_b(); title="Fig. 2.91a", kwargs...)
 
 """
     Reproduce Fig 2.93. The original figure is presented on Chapter 2.
 """
-fig_93(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 2.93a", kwargs...)
+fig_93(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_c(); title="Fig. 2.93a", kwargs...)
 
 """
     Reproduce Fig 2.96. The original figure is presented on Chapter 2.
@@ -146,7 +146,7 @@ function fig_96(; kwargs...)
     system = historicalrun(params=parameters_2_96)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.96a", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.96a", kwargs...)
 end
 
 """
@@ -160,7 +160,7 @@ function fig_97(; kwargs...)
     system = historicalrun(params=parameters_2_97)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.97a", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.97a", kwargs...)
 end
 
 """
@@ -173,7 +173,7 @@ function fig_98(; kwargs...)
     system = historicalrun(params=parameters_2_98)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.98a", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.98a", kwargs...)
 end
 
 """
@@ -187,7 +187,7 @@ function fig_99(; kwargs...)
     system = historicalrun(params=parameters_2_99)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.99a", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.99a", kwargs...)
 end
 
 """
@@ -202,7 +202,7 @@ function fig_100(; kwargs...)
     system = historicalrun(params=parameters_2_100)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_a(); title="Fig. 2.100a", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.100a", kwargs...)
 end
 
 function fig103solution()
@@ -224,14 +224,14 @@ end
 """
     Reproduce Fig 2.103a. The original figure is presented on Chapter 2.
 """
-fig_103a(; kwargs...) = plotvariables(fig103solution(), (t, 1900, 2100), variables_a(); title="Fig. 2.103a", kwargs...)
+fig_103a(; kwargs...) = plotvariables(fig103solution(), (t, 1900, 2100), _variables_a(); title="Fig. 2.103a", kwargs...)
 
 """
     Reproduce Fig 2.103b. The original figure is presented on Chapter 2.
 """
-fig_103b(; kwargs...) = plotvariables(fig103solution(), (t, 1900, 2100), variables_b(); title="Fig. 2.103b", kwargs...)
+fig_103b(; kwargs...) = plotvariables(fig103solution(), (t, 1900, 2100), _variables_b(); title="Fig. 2.103b", kwargs...)
 
 """
     Reproduce Fig 2.103c. The original figure is presented on Chapter 2.
 """
-fig_103c(; kwargs...) = plotvariables(fig103solution(), (t, 1900, 2100), variables_c(); title="Fig. 2.103c", kwargs...)
+fig_103c(; kwargs...) = plotvariables(fig103solution(), (t, 1900, 2100), _variables_c(); title="Fig. 2.103c", kwargs...)

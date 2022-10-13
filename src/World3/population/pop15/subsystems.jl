@@ -8,7 +8,7 @@ food = CommonPop.food
 @variables t
 D = Differential(t)
 
-function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function population(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters pet = params[:pet]
 
     @variables le(t) tf(t)

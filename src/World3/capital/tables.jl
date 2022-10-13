@@ -1,4 +1,4 @@
-tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
+_tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
     :fioas2 => (0.3, 0.2, 0.1, 0.05, 0.0), # Line 65.1 Appendix A
     :fioas1 => (0.3, 0.2, 0.1, 0.05, 0.0), # Line 64.1 Appendix A
     :isopc1 => (40.0, 300.0, 640.0, 1000.0, 1220.0, 1450.0, 1650.0, 1800.0, 2000.0), # Line 61.1 Appendix A
@@ -15,7 +15,7 @@ tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
     :al => (9.0, 10.0, 11.0, 13.0, 16.0, 20.0, 23.0, 24.0, 24.0, 24.0, 24.0),
 )
 
-ranges = Dict{Symbol, Tuple{Float64, Float64}}(
+_ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :fioaa => (1900, 2000),
     :fioas2 => (0, 2), # Line 65 Appendix A
     :fioas1 => (0, 2), # Line 64 Appendix A
@@ -32,5 +32,5 @@ ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :fcaor => (1900, 2000),
 )
 
-gettables() = copy(tables)
-getranges() = copy(ranges)
+gettables() = copy(_tables)
+getranges() = copy(_ranges)
