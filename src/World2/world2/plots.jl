@@ -227,7 +227,8 @@ end
 fig_4_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), variables_2(); title="Fig. 4-12", kwargs...)
 
 """
-    Reproduce Fig. 5-1. The original figure is presented on Chapter 5.
+    Reproduce Fig. 5-1. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+    
     Caption: Higher capital-investment generation triggers the pollution crisis.
 """
 function fig_5_1(; kwargs...)
@@ -235,8 +236,10 @@ function fig_5_1(; kwargs...)
 end
 
 """
-    Reproduce Fig. 5-2. The original figure is presented on Chapter 5.
+    Reproduce Fig. 5-2. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
     Caption: Lower birth rate does not affect suppression of growth by falling natural resources.
+    
 """
 function fig_5_2(; kwargs...)
     return plotvariables(reducedbirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-2", kwargs...)
