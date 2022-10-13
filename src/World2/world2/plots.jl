@@ -22,6 +22,17 @@ function foodshortagesolution()
     return _solution_foodshortage
 end
 
+function increasedcapitalinvestmentgenerationsolution()
+    isdefined(@__MODULE__, :_solution_increasedcapitalinvestmentgeneration) && return _solution_increasedcapitalinvestmentgeneration
+    global _solution_increasedcapitalinvestmentgeneration = solve(increased_capital_investment_generation(), (1900, 2100))
+    return _solution_increasedcapitalinvestmentgeneration
+end
+
+function reducedbirthratesolution()
+    isdefined(@__MODULE__, :_solution_reducedbirthrate) && return _solution_reducedbirthrate
+    global _solution_reducedbirthrate = solve(reduced_birth_rate(), (1900, 2100))
+    return _solution_reducedbirthrate
+end
 
 @variables t
 
@@ -217,7 +228,16 @@ fig_4_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), v
 
 """
     Reproduce Fig. 5-1. The original figure is presented on Chapter 5.
+    Caption: Higher capital-investment generation triggers the pollution crisis.
 """
 function fig_5_1(; kwargs...)
     return plotvariables(increasedcapitalinvestmentgenerationsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-1", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-2. The original figure is presented on Chapter 5.
+    Caption: Lower birth rate does not affect suppression of growth by falling natural resources.
+"""
+function fig_5_2(; kwargs...)
+    return plotvariables(reducedbirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-2", kwargs...)
 end

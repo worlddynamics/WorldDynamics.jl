@@ -135,3 +135,10 @@ function increased_capital_investment_generation(; kwargs...)
 
     return natural_resource_depletion(; capital_params=parameters, kwargs...)
 end
+
+function reduced_birth_rate(; kwargs...)
+    parameters = Population.getparameters()
+    parameters[:brn1] = 0.028
+
+    return natural_resource_depletion(; pop_params=parameters, kwargs...)
+end
