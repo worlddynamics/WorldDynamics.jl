@@ -89,6 +89,12 @@ function lesspollutionandhigheragricoltureincreasedcapitalinvestment3solution()
     return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment3
 end
 
+function lesspollution2solution()
+    isdefined(@__MODULE__, :_solution_lesspollution2) && return _solution_lesspollution2
+    global _solution_lesspollution2 = solve(less_pollution2(), (1900, 2100))
+    return _solution_lesspollution2
+end
+
 
 @variables t
 
@@ -407,4 +413,13 @@ end
 """
 function fig_5_14(; kwargs...)
     return plotvariables(lesspollutionandhigheragricoltureincreasedcapitalinvestment3solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-14", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-1. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Reduction of pollution generation allows population and capital investment to increase further before the pollution crisis.
+"""
+function fig_6_1(; kwargs...)
+    return plotvariables(lesspollution2solution(), (t, 1900, 2100), variables_1(); title="Fig. 6-1", kwargs...)
 end
