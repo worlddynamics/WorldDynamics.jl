@@ -64,6 +64,17 @@ function higheragricoltureproductivitysolution()
     return _solution_higheragricoltureproductivity
 end
 
+function lesspollutionandhigheragricoltureproductivitysolution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricoltureproductivity) && return _solution_lesspollutionandhigheragricoltureproductivity
+    global _solution_lesspollutionandhigheragricoltureproductivity = solve(less_pollution_and_higher_agricolture_productivity(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricoltureproductivity
+end
+
+function lesspollutionandhigheragricoltureincreasedcapitalinvestmentsolution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment) && return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment
+    global _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment = solve(less_pollution_and_higher_agricolture_increased_capital_investment(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment
+end
 
 @variables t
 
@@ -347,3 +358,22 @@ end
 function fig_5_10(; kwargs...)
     return plotvariables(higheragricoltureproductivitysolution(), (t, 1900, 2100), variables_2(); title="Fig. 5-10", kwargs...)
 end
+
+"""
+    Reproduce Fig. 5-11. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Increased food production causes greater population and earlier pollution crisis compared with Fig. 5-8.
+"""
+function fig_5_11(; kwargs...)
+    return plotvariables(lesspollutionandhigheragricoltureproductivitysolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-11", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-12. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Compared with Fig. 5-11, increased capital generation causes an earlier pollution crisis.
+"""
+function fig_5_12(; kwargs...)
+    return plotvariables(lesspollutionandhigheragricoltureincreasedcapitalinvestmentsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-12", kwargs...)
+end
+
