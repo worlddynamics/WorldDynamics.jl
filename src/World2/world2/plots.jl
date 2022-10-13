@@ -228,7 +228,7 @@ fig_4_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), v
 
 """
     Reproduce Fig. 5-1. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
-    
+
     Caption: Higher capital-investment generation triggers the pollution crisis.
 """
 function fig_5_1(; kwargs...)
@@ -243,4 +243,14 @@ end
 """
 function fig_5_2(; kwargs...)
     return plotvariables(reducedbirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-2", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-3. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for the same condition of lower birth rate as in Fig. 5-2.
+    
+"""
+function fig_5_3(; kwargs...)
+    return plotvariables(reducedbirthratesolution(), (t, 1900, 2100), variables_2(); title="Fig. 5-3", kwargs...)
 end
