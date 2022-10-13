@@ -76,6 +76,20 @@ function lesspollutionandhigheragricoltureincreasedcapitalinvestmentsolution()
     return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment
 end
 
+
+function lesspollutionandhigheragricoltureincreasedcapitalinvestment2solution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment2) && return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment2
+    global _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment2 = solve(less_pollution_and_higher_agricolture_increased_capital_investment2(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment2
+end
+
+function lesspollutionandhigheragricoltureincreasedcapitalinvestment3solution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment3) && return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment3
+    global _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment3 = solve(less_pollution_and_higher_agricolture_increased_capital_investment3(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment3
+end
+
+
 @variables t
 
 function variables_1()
@@ -377,3 +391,20 @@ function fig_5_12(; kwargs...)
     return plotvariables(lesspollutionandhigheragricoltureincreasedcapitalinvestmentsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-12", kwargs...)
 end
 
+"""
+    Reproduce Fig. 5-13. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Compared with Fig. 5-12, less pollution generation increases peak population and delays the pollution crisis.
+"""
+function fig_5_13(; kwargs...)
+    return plotvariables(lesspollutionandhigheragricoltureincreasedcapitalinvestment2solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-13", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-14. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Compared with Fig. 5-12, reduced birth rate lowers the peak population but does not ellminate or delay the pollution crisis.
+"""
+function fig_5_14(; kwargs...)
+    return plotvariables(lesspollutionandhigheragricoltureincreasedcapitalinvestment3solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-14", kwargs...)
+end
