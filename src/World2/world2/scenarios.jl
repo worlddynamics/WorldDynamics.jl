@@ -166,3 +166,17 @@ function crowding_and_reduced_birth_rate(; kwargs...)
     return natural_resource_depletion(; naturalresources_params=nr_parameters, pollution_params=pol_parameters,
     pop_params=pop_parameters, kwargs...)
 end
+
+function crowding_and_reduced_birth_rate2(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.0
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.1
+
+    pop_parameters = Population.getparameters()
+    pop_parameters[:brn1] = 0.020
+
+    return natural_resource_depletion(; naturalresources_params=nr_parameters, pollution_params=pol_parameters,
+    pop_params=pop_parameters, kwargs...)
+end

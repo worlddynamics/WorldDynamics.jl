@@ -46,6 +46,11 @@ function crowdingandreducedbirthratesolution()
     return _solution_crowdingandreducedbirthrate
 end
 
+function crowdingandreducedbirthrate2solution()
+    isdefined(@__MODULE__, :_solution_crowdingandreducedbirthrate2) && return _solution_crowdingandreducedbirthrate2
+    global _solution_crowdingandreducedbirthrate2 = solve(crowding_and_reduced_birth_rate2(), (1900, 2100))
+    return _solution_crowdingandreducedbirthrate2
+end
 
 @variables t
 
@@ -282,4 +287,13 @@ end
 """
 function fig_5_5(; kwargs...)
     return plotvariables(crowdingandreducedbirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-5", kwargs...)
+end
+
+"""
+    Reproduce Fig. 5-6. The original figure is presented in Chapter 5 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption:A 50% reduction in "normal" birth rate causes growth of population to pause for 20 years, then resume.
+"""
+function fig_5_6(; kwargs...)
+    return plotvariables(crowdingandreducedbirthrate2solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-6", kwargs...)
 end
