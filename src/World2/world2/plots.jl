@@ -281,19 +281,5 @@ end
     Caption: With resource depletion and pollution suppressed, population still climbs even with a 30% reduction in "normal" birth rate.
 """
 function fig_5_5(; kwargs...)
-    @named pop = Population.population()
-    @named nr = NaturalResources.natural_resources()
-    @named ci = CapitalInvestment.capital_investment()
-    @named pol = Pollution.pollution()
-    @named ql = QualityLife.quality_life()
-
-    variables = [
-        (pop.p,    0, 8e9, "Population"),
-        (nr.nr,    0, 1e12, "Natural resources"),
-        (ci.ci,    0, 20e9, "Capital investment"),
-        (pol.polr, 0, 40,   "Pollution"),
-        (ql.ql,    0, 2,    "Quality of life"),
-    ]
-
-    plotvariables(crowdingandreducedbirthratesolution(), (t, 1900, 2100), variables; title="Fig. 5-5", kwargs...)
+    return plotvariables(crowdingandreducedbirthratesolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-5", kwargs...)
 end
