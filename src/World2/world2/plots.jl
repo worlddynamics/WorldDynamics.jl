@@ -58,42 +58,38 @@ function lesspollutionsolution()
     return _solution_lesspollution
 end
 
-function higheragricoltureproductivitysolution()
-    isdefined(@__MODULE__, :_solution_higheragricoltureproductivity) && return _solution_higheragricoltureproductivity
-    global _solution_higheragricoltureproductivity = solve(higher_agricolture_productivity(), (1900, 2100))
-    return _solution_higheragricoltureproductivity
+function higheragricultureproductivitysolution()
+    isdefined(@__MODULE__, :_solution_higheragricultureproductivity) && return _solution_higheragricultureproductivity
+    global _solution_higheragricultureproductivity = solve(higher_agriculture_productivity(), (1900, 2100))
+    return _solution_higheragricultureproductivity
 end
 
-function lesspollutionandhigheragricoltureproductivitysolution()
-    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricoltureproductivity) && return _solution_lesspollutionandhigheragricoltureproductivity
-    global _solution_lesspollutionandhigheragricoltureproductivity = solve(less_pollution_and_higher_agricolture_productivity(), (1900, 2100))
-    return _solution_lesspollutionandhigheragricoltureproductivity
+function lesspollutionandhigheragricultureproductivitysolution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricultureproductivity) && return _solution_lesspollutionandhigheragricultureproductivity
+    global _solution_lesspollutionandhigheragricultureproductivity = solve(less_pollution_and_higher_agriculture_productivity(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricultureproductivity
 end
 
-function lesspollutionandhigheragricoltureincreasedcapitalinvestmentsolution()
-    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment) && return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment
-    global _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment = solve(less_pollution_and_higher_agricolture_increased_capital_investment(), (1900, 2100))
-    return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment
+function lesspollutionandhigheragricultureincreasedcapitalinvestmentsolution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricultureincreasedcapitalinvestment) && return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment
+    global _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment = solve(less_pollution_and_higher_agriculture_increased_capital_investment(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment
 end
 
 
-function lesspollutionandhigheragricoltureincreasedcapitalinvestment2solution()
-    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment2) && return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment2
-    global _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment2 = solve(less_pollution_and_higher_agricolture_increased_capital_investment2(), (1900, 2100))
-    return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment2
+function lesspollutionandhigheragricultureincreasedcapitalinvestment2solution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2) && return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2
+    global _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2 = solve(less_pollution_and_higher_agriculture_increased_capital_investment2(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment2
 end
 
-function lesspollutionandhigheragricoltureincreasedcapitalinvestment3solution()
-    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment3) && return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment3
-    global _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment3 = solve(less_pollution_and_higher_agricolture_increased_capital_investment3(), (1900, 2100))
-    return _solution_lesspollutionandhigheragricoltureincreasedcapitalinvestment3
+function lesspollutionandhigheragricultureincreasedcapitalinvestment3solution()
+    isdefined(@__MODULE__, :_solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3) && return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3
+    global _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3 = solve(less_pollution_and_higher_agriculture_increased_capital_investment3(), (1900, 2100))
+    return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3
 end
 
-function lesspollution2solution()
-    isdefined(@__MODULE__, :_solution_lesspollution2) && return _solution_lesspollution2
-    global _solution_lesspollution2 = solve(less_pollution2(), (1900, 2100))
-    return _solution_lesspollution2
-end
+
 
 
 @variables t
@@ -367,7 +363,7 @@ end
     Caption: Increased food production causes increased population.
 """
 function fig_5_9(; kwargs...)
-    return plotvariables(higheragricoltureproductivitysolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-9", kwargs...)
+    return plotvariables(higheragricultureproductivitysolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-9", kwargs...)
 end
 
 """
@@ -376,7 +372,7 @@ end
     Caption: Ratios for the conditions of Fig. 5-9. Higher food productivity causes capital reallocation away from agriculture.
 """
 function fig_5_10(; kwargs...)
-    return plotvariables(higheragricoltureproductivitysolution(), (t, 1900, 2100), variables_2(); title="Fig. 5-10", kwargs...)
+    return plotvariables(higheragricultureproductivitysolution(), (t, 1900, 2100), variables_2(); title="Fig. 5-10", kwargs...)
 end
 
 """
@@ -385,7 +381,7 @@ end
     Caption: Increased food production causes greater population and earlier pollution crisis compared with Fig. 5-8.
 """
 function fig_5_11(; kwargs...)
-    return plotvariables(lesspollutionandhigheragricoltureproductivitysolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-11", kwargs...)
+    return plotvariables(lesspollutionandhigheragricultureproductivitysolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-11", kwargs...)
 end
 
 """
@@ -394,7 +390,7 @@ end
     Caption: Compared with Fig. 5-11, increased capital generation causes an earlier pollution crisis.
 """
 function fig_5_12(; kwargs...)
-    return plotvariables(lesspollutionandhigheragricoltureincreasedcapitalinvestmentsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-12", kwargs...)
+    return plotvariables(lesspollutionandhigheragricultureincreasedcapitalinvestmentsolution(), (t, 1900, 2100), variables_1(); title="Fig. 5-12", kwargs...)
 end
 
 """
@@ -403,7 +399,7 @@ end
     Caption: Compared with Fig. 5-12, less pollution generation increases peak population and delays the pollution crisis.
 """
 function fig_5_13(; kwargs...)
-    return plotvariables(lesspollutionandhigheragricoltureincreasedcapitalinvestment2solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-13", kwargs...)
+    return plotvariables(lesspollutionandhigheragricultureincreasedcapitalinvestment2solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-13", kwargs...)
 end
 
 """
@@ -412,14 +408,6 @@ end
     Caption: Compared with Fig. 5-12, reduced birth rate lowers the peak population but does not ellminate or delay the pollution crisis.
 """
 function fig_5_14(; kwargs...)
-    return plotvariables(lesspollutionandhigheragricoltureincreasedcapitalinvestment3solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-14", kwargs...)
+    return plotvariables(lesspollutionandhigheragricultureincreasedcapitalinvestment3solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-14", kwargs...)
 end
 
-"""
-    Reproduce Fig. 6-1. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
-
-    Caption: Reduction of pollution generation allows population and capital investment to increase further before the pollution crisis.
-"""
-function fig_6_1(; kwargs...)
-    return plotvariables(lesspollution2solution(), (t, 1900, 2100), variables_1(); title="Fig. 6-1", kwargs...)
-end
