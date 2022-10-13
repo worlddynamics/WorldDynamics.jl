@@ -34,4 +34,15 @@ using WorldDynamics, Test, PlotlyJS
         @test isa(World2.fig_5_14(), PlotlyJS.SyncPlot)
     end
 
+    @testset "Chapter 6" begin
+        @test isa(World2.fig_6_1(), PlotlyJS.SyncPlot)
+        @test isa(World2.fig_6_2(), PlotlyJS.SyncPlot)
+        @test isa(World2.fig_6_3(), PlotlyJS.SyncPlot)
+        @test isa(World2.fig_6_4(), PlotlyJS.SyncPlot)
+        @test isa(World2.fig_6_5(), PlotlyJS.SyncPlot)
+        @test isa(World2.fig_6_6(), PlotlyJS.SyncPlot)
+        @test isa(World2.fig_6_7(), PlotlyJS.SyncPlot)
+        @test isa(World2.fig_6_8(), PlotlyJS.SyncPlot)
+    end
+
 end

@@ -88,6 +88,30 @@ function lesspollutionandhigheragricultureincreasedcapitalinvestment3solution()
     return _solution_lesspollutionandhigheragricultureincreasedcapitalinvestment3
 end
 
+function lesspollution2solution()
+    isdefined(@__MODULE__, :_solution_lesspollution2) && return _solution_lesspollution2
+    global _solution_lesspollution2 = solve(less_pollution2(), (1900, 2100))
+    return _solution_lesspollution2
+end
+
+function lesspollution3solution()
+    isdefined(@__MODULE__, :_solution_lesspollution3) && return _solution_lesspollution3
+    global _solution_lesspollution3 = solve(less_pollution3(), (1900, 2100))
+    return _solution_lesspollution3
+end
+
+function lesspollution4solution()
+    isdefined(@__MODULE__, :_solution_lesspollution4) && return _solution_lesspollution4
+    global _solution_lesspollution4 = solve(less_pollution4(), (1900, 2100))
+    return _solution_lesspollution4
+end
+
+function lesspollution5solution()
+    isdefined(@__MODULE__, :_solution_lesspollution5) && return _solution_lesspollution5
+    global _solution_lesspollution5 = solve(less_pollution5(), (1900, 2100))
+    return _solution_lesspollution5
+end
+
 @variables t
 
 function variables_1()
@@ -125,21 +149,27 @@ function variables_2()
 end
 
 """
-    Reproduce Fig. 4-1. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-1. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Basic behavior of the world model, showing the mode in which industrialization and population are suppressed by falling natural resources.
 """
 function fig_4_1(; kwargs...)
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-1", kwargs...)
 end
 
 """
-    Reproduce Fig. 4-2. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-2. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Original model as in Fig. 4-1. Material standard of living reaches a maximum and then declines as natural resources are depleted.
 """
 function fig_4_2(; kwargs...)
     return plotvariables(nrdepletionsolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-2", kwargs...)
 end
 
 """
-    Reproduce Fig. 4-3. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-3. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Original model as in Fig 4-1. Natural-resource-usage rate reaches a peak about year 2010 and declines as natural resources, population, and capital investment decline.
 """
 function fig_4_3(; kwargs...)
     @named nr = NaturalResources.natural_resources()
@@ -153,7 +183,9 @@ function fig_4_3(; kwargs...)
 end
 
 """
-    Reproduce Fig. 4-4. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-4. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption:Original model as in Fig. 4-1. The rate of capital-investment generation declines after 2010 but does not fall below the rate of capital-investment discard until 2040, at which time the level of capital investment begins to decline.
 """
 function fig_4_4(; kwargs...)
     @named ci = CapitalInvestment.capital_investment()
@@ -170,17 +202,23 @@ function fig_4_4(; kwargs...)
 end
 
 """
-    Reproduce Fig. 4-5. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-5. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Reduced usage rate of natural resources leads to a pollution crisis.
 """
 fig_4_5(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_1(); title="Fig. 4-5", kwargs...)
 
 """
-    Reproduce Fig. 4-6. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-6. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: System ratios during the pollution mode of growth suppression.
 """
 fig_4_6(; kwargs...) = plotvariables(pollutioncrisissolution(), (t, 1900, 2100), variables_2(); title="Fig. 4-6", kwargs...)
 
 """
-    Reproduce Fig. 4-7. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-7. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Dynamics of the pollution sector. A positive-feedback growth in pollution occurs when the pollution-absorption time increases faster than the pollution.
 """
 function fig_4_7(; kwargs...)
     @named pol = Pollution.pollution()
@@ -198,7 +236,9 @@ function fig_4_7(; kwargs...)
 end
 
 """
-    Reproduce Fig. 4-8. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-8. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Population sector during the pollution mode.
 """
 function fig_4_8(; kwargs...)
     @named pop = Population.population()
@@ -215,7 +255,9 @@ function fig_4_8(; kwargs...)
 end
 
 """
-    Reproduce Fig. 4-9. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-9. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Growth suppressed by crowding when natural resources and pollution are inactive.
 """
 function fig_4_9(; kwargs...)
     @named pop = Population.population()
@@ -236,7 +278,9 @@ function fig_4_9(; kwargs...)
 end
 
 """
-    Reproduce Fig. 4-10. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-10. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: System ratios when growth is suppressed by crowding.
 """
 function fig_4_10(; kwargs...)
     @named ai = AgricultureInvestment.agriculture_investment()
@@ -255,7 +299,9 @@ function fig_4_10(; kwargs...)
 end
 
 """
-    Reproduce Fig. 4-11. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-11. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Food shortage as the only remaining pressure to stop population growth.
 """
 function fig_4_11(; kwargs...)
     @named pop = Population.population()
@@ -276,7 +322,9 @@ function fig_4_11(; kwargs...)
 end
 
 """
-    Reproduce Fig. 4-12. The original figure is presented on Chapter 4.
+    Reproduce Fig. 4-12. The original figure is presented in Chapter 4 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: System ratios during the food-shortage mode.
 """
 fig_4_12(; kwargs...) = plotvariables(foodshortagesolution(), (t, 1900, 2300), variables_2(); title="Fig. 4-12", kwargs...)
 
@@ -404,4 +452,77 @@ end
 """
 function fig_5_14(; kwargs...)
     return plotvariables(lesspollutionandhigheragricultureincreasedcapitalinvestment3solution(), (t, 1900, 2100), variables_1(); title="Fig. 5-14", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-1. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Natural-resource-usage rate and pollution generation are reduced in 1970.
+"""
+function fig_6_1(; kwargs...)
+    return plotvariables(lesspollution2solution(), (t, 1900, 2100), variables_1(); title="Fig. 6-1", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-2. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for conditions of Fig. 6-1.
+"""
+function fig_6_2(; kwargs...)
+    return plotvariables(lesspollution2solution(), (t, 1900, 2100), variables_2(); title="Fig. 6-2", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-3. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Capital generation is reduced 40% in 1970 in addition to changes in Fig. 6-1. Population
+    stabilizes at a lower level; quality of life is increased.
+"""
+function fig_6_3(; kwargs...)
+    return plotvariables(lesspollution3solution(), (t, 1900, 2100), variables_1(); title="Fig. 6-3", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-4. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for conditions of Fig. 6-3.
+"""
+function fig_6_4(; kwargs...)
+    return plotvariables(lesspollution3solution(), (t, 1900, 2100), variables_2(); title="Fig. 6-4", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-5. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Food productivity is reduced 20% in 1970 along with changes in Fig. 6-3. Population is lower, quality of life higher.
+"""
+function fig_6_5(; kwargs...)
+    return plotvariables(lesspollution4solution(), (t, 1900, 2100), variables_1(); title="Fig. 6-5", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-6. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for conditions of Fig. 6-5.
+"""
+function fig_6_6(; kwargs...)
+    return plotvariables(lesspollution4solution(), (t, 1900, 2100), variables_2(); title="Fig. 6-6", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-7. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Normal birth rate reduced 30% in 1970 along with changes in Fig. 6-5. Population is lower, quality of life higher again.
+"""
+function fig_6_7(; kwargs...)
+    return plotvariables(lesspollution5solution(), (t, 1900, 2100), variables_1(); title="Fig. 6-7", kwargs...)
+end
+
+"""
+    Reproduce Fig. 6-8. The original figure is presented in Chapter 6 of [WD](https://archive.org/details/worlddynamics00forr).
+
+    Caption: Ratios for conditions of Fig. 6-7.
+"""
+function fig_6_8(; kwargs...)
+    return plotvariables(lesspollution5solution(), (t, 1900, 2100), variables_2(); title="Fig. 6-8", kwargs...)
 end
