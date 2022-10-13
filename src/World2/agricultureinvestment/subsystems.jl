@@ -1,7 +1,7 @@
 @variables t
 D = Differential(t)
 
-function agriculture_investment(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function agriculture_investment(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters fc = params[:fc]
     @parameters fc1 = params[:fc1]
     @parameters swt7 = params[:swt7]

@@ -1,7 +1,7 @@
 @variables t
 D = Differential(t)
 
-function quality_life(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function quality_life(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters qls = params[:qls]
 
     @variables ql(t)

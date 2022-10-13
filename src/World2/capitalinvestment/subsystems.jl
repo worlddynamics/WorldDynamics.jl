@@ -1,7 +1,7 @@
 @variables t
 D = Differential(t)
 
-function capital_investment(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function capital_investment(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters ecirn = params[:ecirn]
     @parameters ciafn = params[:ciafn]
 
@@ -28,7 +28,7 @@ function capital_investment(; name, params=params, inits=inits, tables=tables, r
     ODESystem(eqs; name)
 end
 
-function capital_investment_generation(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function capital_investment_generation(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters cign = params[:cign]
     @parameters cign1 = params[:cign1]
     @parameters swt4 = params[:swt4]
@@ -47,7 +47,7 @@ function capital_investment_generation(; name, params=params, inits=inits, table
     ODESystem(eqs; name)
 end
 
-function capital_investment_discard(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function capital_investment_discard(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters cidn = params[:cidn]
     @parameters cidn1 = params[:cidn1]
     @parameters swt5 = params[:swt5]
