@@ -128,3 +128,257 @@ function food_shortage(; kwargs...)
 
     return crowding(; pop_tables=tables, kwargs...)
 end
+
+function increased_capital_investment_generation(; kwargs...)
+    parameters = CapitalInvestment.getparameters()
+    parameters[:cign1] = 0.06
+
+    return natural_resource_depletion(; capital_params=parameters, kwargs...)
+end
+
+function reduced_birth_rate(; kwargs...)
+    parameters = Population.getparameters()
+    parameters[:brn1] = 0.028
+
+    return natural_resource_depletion(; pop_params=parameters, kwargs...)
+end
+
+function pollution_crisis_and_reduce_birth_rate(; kwargs...)
+    pop_parameters = Population.getparameters()
+    pop_parameters[:brn1] = 0.028
+
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    return natural_resource_depletion(;
+        pop_params=pop_parameters,
+        naturalresources_params=nr_parameters,
+        kwargs...
+    )
+end
+
+function crowding_and_reduced_birth_rate(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.0
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.1
+
+    pop_parameters = Population.getparameters()
+    pop_parameters[:brn1] = 0.028
+
+    return natural_resource_depletion(;
+        naturalresources_params=nr_parameters,
+        pollution_params=pol_parameters,
+        pop_params=pop_parameters,
+        kwargs...
+    )
+end
+
+function crowding_and_reduced_birth_rate2(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.0
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.1
+
+    pop_parameters = Population.getparameters()
+    pop_parameters[:brn1] = 0.020
+
+    return natural_resource_depletion(;
+        naturalresources_params=nr_parameters,
+        pollution_params=pol_parameters,
+        pop_params=pop_parameters,
+        kwargs...
+    )
+end
+
+function less_pollution(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.7
+
+    return natural_resource_depletion(;
+        pollution_params=pol_parameters,
+        naturalresources_params=nr_parameters,
+        kwargs...
+    )
+end
+
+function higher_agriculture_productivity(; kwargs...)
+    agr_parameters = AgricultureInvestment.getparameters()
+    agr_parameters[:fc1] = 1.25
+
+    return natural_resource_depletion(; agriculture_params=agr_parameters, kwargs...)
+end
+
+function less_pollution_and_higher_agriculture_productivity(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.7
+
+    agr_parameters = AgricultureInvestment.getparameters()
+    agr_parameters[:fc1] = 1.25
+
+    return natural_resource_depletion(;
+        naturalresources_params=nr_parameters,
+        pollution_params=pol_parameters,
+        agriculture_params=agr_parameters,
+        kwargs...
+    )
+end
+
+function less_pollution_and_higher_agriculture_increased_capital_investment(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.7
+
+    agr_parameters = AgricultureInvestment.getparameters()
+    agr_parameters[:fc1] = 1.25
+
+    ci_parameters = CapitalInvestment.getparameters()
+    ci_parameters[:cign1] = 0.06
+
+    return natural_resource_depletion(;
+        naturalresources_params=nr_parameters,
+        pollution_params=pol_parameters,
+        agriculture_params=agr_parameters,
+        capital_params=ci_parameters,
+        kwargs...
+    )
+end
+
+function less_pollution_and_higher_agriculture_increased_capital_investment2(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.4
+
+    agr_parameters = AgricultureInvestment.getparameters()
+    agr_parameters[:fc1] = 1.25
+
+    ci_parameters = CapitalInvestment.getparameters()
+    ci_parameters[:cign1] = 0.06
+
+    return natural_resource_depletion(;
+        naturalresources_params=nr_parameters,
+        pollution_params=pol_parameters,
+        agriculture_params=agr_parameters,
+        capital_params=ci_parameters,
+        kwargs...
+    )
+end
+
+function less_pollution_and_higher_agriculture_increased_capital_investment3(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.7
+
+    agr_parameters = AgricultureInvestment.getparameters()
+    agr_parameters[:fc1] = 1.25
+
+    ci_parameters = CapitalInvestment.getparameters()
+    ci_parameters[:cign1] = 0.06
+
+    pop_parameters = Population.getparameters()
+    pop_parameters[:brn1] = 0.028
+
+    return natural_resource_depletion(;
+        naturalresources_params=nr_parameters,
+        pollution_params=pol_parameters,
+        agriculture_params=agr_parameters,
+        capital_params=ci_parameters,
+        pop_params=pop_parameters,
+        kwargs...
+    )
+end
+
+function less_pollution2(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.5
+
+    return natural_resource_depletion(;
+        pollution_params=pol_parameters,
+        naturalresources_params=nr_parameters,
+        kwargs...
+    )
+end
+
+function less_pollution3(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.5
+
+    ci_parameters = CapitalInvestment.getparameters()
+    ci_parameters[:cign1] = 0.03
+
+    return natural_resource_depletion(;
+        pollution_params=pol_parameters,
+        naturalresources_params=nr_parameters,
+        capital_params=ci_parameters,
+        kwargs...
+    )
+end
+
+function less_pollution4(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.5
+
+    ci_parameters = CapitalInvestment.getparameters()
+    ci_parameters[:cign1] = 0.03
+
+    agr_parameters = AgricultureInvestment.getparameters()
+    agr_parameters[:fc1] = 0.8
+
+
+    return natural_resource_depletion(;
+        pollution_params=pol_parameters,
+        naturalresources_params=nr_parameters,
+        capital_params=ci_parameters,
+        agriculture_params=agr_parameters,
+        kwargs...
+    )
+end
+
+function less_pollution5(; kwargs...)
+    nr_parameters = NaturalResources.getparameters()
+    nr_parameters[:nrun1] = 0.25
+
+    pol_parameters = Pollution.getparameters()
+    pol_parameters[:poln1] = 0.5
+
+    ci_parameters = CapitalInvestment.getparameters()
+    ci_parameters[:cign1] = 0.03
+
+    agr_parameters = AgricultureInvestment.getparameters()
+    agr_parameters[:fc1] = 0.8
+
+    pop_parameters = Population.getparameters()
+    pop_parameters[:brn1] = 0.028
+
+    return natural_resource_depletion(;
+        pollution_params=pol_parameters,
+        naturalresources_params=nr_parameters,
+        capital_params=ci_parameters,
+        agriculture_params=agr_parameters,
+        pop_params=pop_parameters,
+        kwargs...
+    )
+end
