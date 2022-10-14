@@ -430,7 +430,7 @@ function fig_22(; kwargs...)
 end
 
 
-function _eqs_23(; name)
+function exponentially_growing_technologies(; name)
     @parameters alpha = 0.04
     @parameters pyear = 1975
 
@@ -458,25 +458,25 @@ function fig_23(; kwargs...)
 
     new_equations = equations(system)
 
-    @named eqs_23 = _eqs_23()
+    @named egt = exponentially_growing_technologies()
 
     @named nr = NonRenewable.non_renewable()
-    new_equations[204] = nr.nruf ~ clip(exp(-eqs_23.expon), nr.nruf1, t, nr.pyear)
+    new_equations[204] = nr.nruf ~ clip(exp(-egt.expon), nr.nruf1, t, nr.pyear)
 
     @named pp = Pollution.persistent_pollution()
-    new_equations[215] = pp.ppgf ~ clip(exp(-eqs_23.expon), pp.ppgf1, t, pp.pyear)
+    new_equations[215] = pp.ppgf ~ clip(exp(-egt.expon), pp.ppgf1, t, pp.pyear)
 
     @named ai = Agriculture.agricultural_inputs()
-    new_equations[177] = ai.lyf ~ clip(exp(eqs_23.expon), ai.lyf1, t, ai.pyear)
+    new_equations[177] = ai.lyf ~ clip(exp(egt.expon), ai.lyf1, t, ai.pyear)
 
     @named leuiu = Agriculture.land_erosion_urban_industrial_use()
-    new_equations[187] = leuiu.llmy ~ clip(leuiu.llmy2, leuiu.llmy1, t, leuiu.pyear) + (1.0 - exp(-eqs_23.expon))
-    new_equations[192] = leuiu.uilr ~ leuiu.uilpc * leuiu.pop * exp(-eqs_23.expon)
+    new_equations[187] = leuiu.llmy ~ clip(leuiu.llmy2, leuiu.llmy1, t, leuiu.pyear) + (1.0 - exp(-egt.expon))
+    new_equations[192] = leuiu.uilr ~ leuiu.uilpc * leuiu.pop * exp(-egt.expon)
 
     @named new_system = ODESystem(new_equations)
 
 
-    new_system = ModelingToolkit.compose(new_system, eqs_23)
+    new_system = ModelingToolkit.compose(new_system, egt)
 
     solution = solve(new_system, (1900, 2100))
 
