@@ -25,12 +25,16 @@ end
 
 
 """
-    Reproduce Fig 5.25. The original figure is presented on Chapter 5.
+    Reproduce Fig 5.25. The original figure is presented in Chapter 5 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 5-1: standard run for the nonrenewable resource sector.
 """
 fig_25(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_nr(); title="Fig. 5.25", kwargs...)
 
 """
-    Reproduce Fig 5.26. The original figure is presented on Chapter 5.
+    Reproduce Fig 5.26. The original figure is presented in Chapter 5 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 5-2: Behavior of the sector with double the initial value of nonrenewable resources.
 """
 function fig_26(; kwargs...)
     parameters_5_26 = getparameters()
@@ -43,7 +47,9 @@ function fig_26(; kwargs...)
 end
 
 """
-    Reproduce Fig 5.28. The original figure is presented on Chapter 5.
+    Reproduce Fig 5.28. The original figure is presented in Chapter 5 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 5-3: The effects of cost-reducing technologies on the behavior of the nonrenewable resource sector.
 """
 function fig_28(; kwargs...)
     tables_5_28 = gettables()
@@ -56,7 +62,9 @@ function fig_28(; kwargs...)
 end
 
 """
-    Reproduce Fig 5.29. The original figure is presented on Chapter 5.
+    Reproduce Fig 5.29. The original figure is presented in Chapter 5 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 5-4: the effects of resource-conserving technologies on the behavior of the nonrenewable resource sector.
 """
 function fig_29(; kwargs...)
     parameters_5_29 = getparameters()
@@ -69,7 +77,9 @@ function fig_29(; kwargs...)
 end
 
 """
-    Reproduce Fig 5.30. The original figure is presented on Chapter 5.
+    Reproduce Fig 5.30. The original figure is presented in Chapter 5 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 5-5: The effects of zero population growth and advanced technological policies on the behavior of the nonrenewable resource sector.
 """
 function fig_30(; kwargs...)
     parameters_5_30 = getparameters()
