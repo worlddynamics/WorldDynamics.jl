@@ -480,7 +480,7 @@ function fig_23(; kwargs...)
 
     solution = solve(new_system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_7(); title="Fig. 7.23", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.23", kwargs...)
 end
 
 """
