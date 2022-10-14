@@ -1,7 +1,7 @@
 @variables t
 D = Differential(t)
 
-function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function population(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @variables pop(t) = inits[:pop]
 
     eqs = [
@@ -11,7 +11,7 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function non_renewable(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @variables pcrum(t) = inits[:pcrum]
 
     eqs = [
@@ -21,7 +21,7 @@ function non_renewable(; name, params=params, inits=inits, tables=tables, ranges
     ODESystem(eqs; name)
 end
 
-function agriculture(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function agriculture(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @variables aiph(t) = inits[:aiph]
     @variables al(t) = inits[:al]
 
@@ -33,7 +33,7 @@ function agriculture(; name, params=params, inits=inits, tables=tables, ranges=r
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function persistent_pollution(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters pyear = params[:pyear]
     @parameters ppgf1 = params[:ppgf1]
     @parameters ppgf21 = params[:ppgf21]
@@ -83,7 +83,7 @@ function persistent_pollution(; name, params=params, inits=inits, tables=tables,
     ODESystem(eqs; name)
 end
 
-function pollution_damage(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function pollution_damage(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters pyear = params[:pyear]
 
     @variables ppolx(t)
@@ -104,7 +104,7 @@ function pollution_damage(; name, params=params, inits=inits, tables=tables, ran
     ODESystem(eqs; name)
 end
 
-function adaptive_technological_control_cards(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function adaptive_technological_control_cards(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters pyear = params[:pyear]
     @parameters tdd = params[:tdd]
     @parameters pd = params[:pd]

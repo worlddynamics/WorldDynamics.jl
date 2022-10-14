@@ -1,7 +1,7 @@
 @variables t
 D = Differential(t)
 
-function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function population(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters popi = params[:popi]
     @parameters exppop = params[:exppop]
     @parameters eyear = params[:eyear]
@@ -17,7 +17,7 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function industrial_output(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters eyear = params[:eyear]
     @parameters ioi = params[:ioi]
 
@@ -34,7 +34,7 @@ function industrial_output(; name, params=params, inits=inits, tables=tables, ra
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function persistent_pollution(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters eyear = params[:eyear]
     @parameters ppolxi = params[:ppolxi]
 
@@ -49,7 +49,7 @@ function persistent_pollution(; name, params=params, inits=inits, tables=tables,
     ODESystem(eqs; name)
 end
 
-function land_development(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function land_development(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters palt = params[:palt]
     @parameters lfh = params[:lfh]
     @parameters pl = params[:pl]
@@ -82,7 +82,7 @@ function land_development(; name, params=params, inits=inits, tables=tables, ran
     ODESystem(eqs; name)
 end
 
-function agricultural_inputs(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function agricultural_inputs(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters pyear = params[:pyear]
     @parameters alai1 = params[:alai1]
     @parameters alai2 = params[:alai2]
@@ -110,7 +110,7 @@ function agricultural_inputs(; name, params=params, inits=inits, tables=tables, 
     ODESystem(eqs; name)
 end
 
-function investment_allocation_decision(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function investment_allocation_decision(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters sd = params[:sd]
 
     @variables ly(t) dcph(t) alai(t) lymc(t) aiph(t)
@@ -126,7 +126,7 @@ function investment_allocation_decision(; name, params=params, inits=inits, tabl
     ODESystem(eqs; name)
 end
 
-function land_erosion_urban_industrial_use(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function land_erosion_urban_industrial_use(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters alln = params[:alln]
     @parameters pyear = params[:pyear]
     @parameters ilf = params[:ilf]
@@ -151,7 +151,7 @@ function land_erosion_urban_industrial_use(; name, params=params, inits=inits, t
     ODESystem(eqs; name)
 end
 
-function land_fertility_degradation(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function land_fertility_degradation(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @variables lfr(t) ppolx(t)
     @variables lfert(t) = inits[:lfert] # Line 121.1 Appendix A
     @variables lfdr(t) lfd(t)
@@ -165,7 +165,7 @@ function land_fertility_degradation(; name, params=params, inits=inits, tables=t
     ODESystem(eqs; name)
 end
 
-function land_fertility_regeneration(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function land_fertility_regeneration(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters ilf = params[:ilf]
 
     @variables lfert(t) falm(t)
@@ -179,7 +179,7 @@ function land_fertility_regeneration(; name, params=params, inits=inits, tables=
     ODESystem(eqs; name)
 end
 
-function discontinuing_land_maintenance(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function discontinuing_land_maintenance(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters sfpc = params[:sfpc]
     @parameters fspd = params[:fspd]
 

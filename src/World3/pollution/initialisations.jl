@@ -1,24 +1,24 @@
-inits = Dict{Symbol, Float64}(
+_inits = Dict{Symbol, Float64}(
     :t0 => 1900,
     :ppol => 2.5e7, # Line 142.1 Appendix A
     :pcti => 1,
 )
 
-inits[:pcrum] = interpolate(inits[:t0], tables[:pcrum], ranges[:pcrum]) * 1e-2
-inits[:pop] = interpolate(inits[:t0], tables[:pop], ranges[:pop]) * 1e8
-inits[:ppgio] = inits[:pcrum] * inits[:pop] * params[:frpm] * params[:imef] * params[:imti]
-inits[:aiph] = interpolate(inits[:t0], tables[:aiph], ranges[:aiph])
-inits[:al] = interpolate(inits[:t0], tables[:al], ranges[:al]) * 1e8
-inits[:ppgao] = inits[:aiph] * inits[:al] * params[:fipm] * params[:amti]
-inits[:ppgr] = (inits[:ppgio] + inits[:ppgao]) * params[:ppgf1]
-inits[:pptd] = clip(params[:pptd2], params[:pptd1], inits[:t0], params[:pyear])
-inits[:ppapr3] = inits[:pptd] * inits[:ppgr] / 3
-inits[:ppgf22] = inits[:pcti]
-inits[:ppolx] = inits[:ppol] / params[:ppol70]
-inits[:lmp1] = interpolate(inits[:ppolx], tables[:lmp1], ranges[:lmp1])
-inits[:lmp2] = interpolate(inits[:ppolx], tables[:lmp2], ranges[:lmp2])
-inits[:lmp] = clip(inits[:lmp2], inits[:lmp1], inits[:t0], params[:pyear])
-inits[:plmp] = inits[:lmp]
+_inits[:pcrum] = interpolate(_inits[:t0], _tables[:pcrum], _ranges[:pcrum]) * 1e-2
+_inits[:pop] = interpolate(_inits[:t0], _tables[:pop], _ranges[:pop]) * 1e8
+_inits[:ppgio] = _inits[:pcrum] * _inits[:pop] * _params[:frpm] * _params[:imef] * _params[:imti]
+_inits[:aiph] = interpolate(_inits[:t0], _tables[:aiph], _ranges[:aiph])
+_inits[:al] = interpolate(_inits[:t0], _tables[:al], _ranges[:al]) * 1e8
+_inits[:ppgao] = _inits[:aiph] * _inits[:al] * _params[:fipm] * _params[:amti]
+_inits[:ppgr] = (_inits[:ppgio] + _inits[:ppgao]) * _params[:ppgf1]
+_inits[:pptd] = clip(_params[:pptd2], _params[:pptd1], _inits[:t0], _params[:pyear])
+_inits[:ppapr3] = _inits[:pptd] * _inits[:ppgr] / 3
+_inits[:ppgf22] = _inits[:pcti]
+_inits[:ppolx] = _inits[:ppol] / _params[:ppol70]
+_inits[:lmp1] = interpolate(_inits[:ppolx], _tables[:lmp1], _ranges[:lmp1])
+_inits[:lmp2] = interpolate(_inits[:ppolx], _tables[:lmp2], _ranges[:lmp2])
+_inits[:lmp] = clip(_inits[:lmp2], _inits[:lmp1], _inits[:t0], _params[:pyear])
+_inits[:plmp] = _inits[:lmp]
 
 
-getinitialisations() = copy(inits)
+getinitialisations() = copy(_inits)

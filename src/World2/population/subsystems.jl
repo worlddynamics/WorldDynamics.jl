@@ -1,7 +1,7 @@
 @variables t
 D = Differential(t)
 
-function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function population(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters la = params[:la]
     @parameters pdn = params[:pdn]
 
@@ -19,7 +19,7 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
     ODESystem(eqs; name)
 end
 
-function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function birth_rate(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters brn = params[:brn]
     @parameters brn1 = params[:brn1]
     @parameters swt1 = params[:swt1]
@@ -47,7 +47,7 @@ function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
     ODESystem(eqs; name)
 end
 
-function death_rate(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function death_rate(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters drn = params[:drn]
     @parameters drn1 = params[:drn1]
     @parameters swt3 = params[:swt3]

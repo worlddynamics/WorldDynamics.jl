@@ -1,5 +1,5 @@
-inits = Dict{Symbol, Float64}(
+_inits = Dict{Symbol, Float64}(
     :nr => 900e9,
 )
 
-getinitialisations() = copy(inits)
+getinitialisations() = copy(_inits)

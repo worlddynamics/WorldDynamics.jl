@@ -5,7 +5,7 @@ function historicalrunsolution()
 end
 
 
-function variables_31()
+function _variables_31()
     @named pp = persistent_pollution()
     @named pd = pollution_damage()
 
@@ -149,7 +149,7 @@ end
 """
     Reproduce Fig 6.31. The original figure is presented on Chapter 6.
 """
-fig_31(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_31(); title="Fig. 6.31", kwargs...)
+fig_31(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_31(); title="Fig. 6.31", kwargs...)
 
 """
     Reproduce Fig 6.32. The original figure is presented on Chapter 6.
@@ -163,7 +163,7 @@ function fig_32(; kwargs...)
     system = historicalrun(params=parameters_6_32)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.32", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.32", kwargs...)
 end
 
 """
@@ -178,7 +178,7 @@ function fig_33(; kwargs...)
     system = historicalrun(params=parameters_6_33)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.33", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.33", kwargs...)
 end
 
 """
@@ -193,7 +193,7 @@ function fig_34(; kwargs...)
     system = historicalrun(params=parameters_6_34)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.34", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.34", kwargs...)
 end
 
 """
@@ -206,7 +206,7 @@ function fig_35(; kwargs...)
     system = historicalrun(tables=tables_6_35)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.35", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.35", kwargs...)
 end
 
 """
@@ -219,7 +219,7 @@ function fig_36(; kwargs...)
     system = historicalrun(tables=tables_6_36)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.36", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.36", kwargs...)
 end
 
 """
@@ -232,7 +232,7 @@ function fig_37(; kwargs...)
     system = historicalrun(params=parameters_6_37)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.37", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.37", kwargs...)
 end
 
 """
@@ -245,7 +245,7 @@ function fig_38(; kwargs...)
     system = historicalrun(tables=tables_6_38)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.38", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.38", kwargs...)
 end
 
 """
@@ -259,7 +259,7 @@ function fig_39(; kwargs...)
     system = historicalrun(tables=tables_6_39)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.39", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.39", kwargs...)
 end
 
 """
@@ -272,7 +272,7 @@ function fig_40(; kwargs...)
     system = historicalrun(params=parameters_6_40)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.40", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.40", kwargs...)
 end
 
 """
@@ -285,7 +285,7 @@ function fig_41(; kwargs...)
     system = historicalrun(params=parameters_6_41)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.41", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.41", kwargs...)
 end
 
 """
@@ -300,7 +300,7 @@ function fig_43(; kwargs...)
     system = historicalrun(params=parameters_6_43)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.43", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.43", kwargs...)
 end
 
 """
@@ -316,7 +316,7 @@ function fig_44(; kwargs...)
     system = historicalrun(tables=tables_6_44)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.44", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.44", kwargs...)
 end
 
 """
@@ -332,7 +332,7 @@ function fig_45(; kwargs...)
     system = historicalrun(tables=tables_6_45)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.45", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.45", kwargs...)
 end
 
 """
@@ -351,5 +351,5 @@ function fig_46(; kwargs...)
     system = historicalrun(params=parameters_6_46, tables=tables_6_46)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_31(); title="Fig. 6.46", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_31(); title="Fig. 6.46", kwargs...)
 end

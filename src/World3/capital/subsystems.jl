@@ -1,7 +1,7 @@
 @variables t
 D = Differential(t)
 
-function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function population(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @variables pop(t) p2(t) p3(t)
 
     eqs = [
@@ -13,7 +13,7 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
     ODESystem(eqs; name)
 end
 
-function agriculture(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function agriculture(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @variables aiph(t) al(t) fioaa(t)
 
     eqs = [
@@ -25,7 +25,7 @@ function agriculture(; name, params=params, inits=inits, tables=tables, ranges=r
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function non_renewable(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @variables fcaor(t)
 
     eqs = [
@@ -35,7 +35,7 @@ function non_renewable(; name, params=params, inits=inits, tables=tables, ranges
     ODESystem(eqs; name)
 end
 
-function industrial_subsector(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function industrial_subsector(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters pyear = params[:pyear]
     @parameters icor1 = params[:icor1]
     @parameters icor2 = params[:icor2]
@@ -67,7 +67,7 @@ function industrial_subsector(; name, params=params, inits=inits, tables=tables,
     ODESystem(eqs; name)
 end
 
-function service_subsector(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function service_subsector(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters pyear = params[:pyear]
     @parameters alsc1 = params[:alsc1]
     @parameters alsc2 = params[:alsc2]
@@ -97,7 +97,7 @@ function service_subsector(; name, params=params, inits=inits, tables=tables, ra
     ODESystem(eqs; name)
 end
 
-function job_subsector(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function job_subsector(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters lfpf = params[:lfpf]
     @parameters lufdt = params[:lufdt]
 
