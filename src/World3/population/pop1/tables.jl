@@ -1,5 +1,5 @@
-tables = CommonPop.tables
-ranges = CommonPop.ranges
+_tables = CommonPop._tables
+_ranges = CommonPop._ranges
 
-gettables() = copy(tables)
-getranges() = copy(ranges)
+gettables() = copy(_tables)
+getranges() = copy(_ranges)

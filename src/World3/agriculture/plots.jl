@@ -1,4 +1,4 @@
-function variables_a()
+function _variables_a()
     @named ld = land_development()
     @named ai = agricultural_inputs()
     @named lfd = land_fertility_degradation()
@@ -14,7 +14,7 @@ function variables_a()
     return variables
 end
 
-function variables_b()
+function _variables_b()
     @named ld = land_development()
     @named leuiu = land_erosion_urban_industrial_use()
 
@@ -30,7 +30,7 @@ function variables_b()
     return variables
 end
 
-function variables_c()
+function _variables_c()
     @named ld = land_development()
     @named iad = investment_allocation_decision()
 
@@ -44,7 +44,7 @@ function variables_c()
     return variables
 end
 
-function variables_d()
+function _variables_d()
     @named lfd = land_fertility_degradation()
     @named dlm = discontinuing_land_maintenance()
     @named lfr = land_fertility_regeneration()
@@ -75,7 +75,7 @@ end
     Caption: Run 4-1: historical run.
     The behavior of land yields and food production.
 """
-fig_69a(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_a(); title="Fig. 4.69a", kwargs...)
+fig_69a(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), _variables_a(); title="Fig. 4.69a", kwargs...)
 
 """
     Reproduce Fig 4.69b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -83,7 +83,7 @@ fig_69a(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), v
     Caption: Run 4-1: historical run.
     The behavior of arable land.
 """
-fig_69b(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_b(); title="Fig. 4.69b", kwargs...)
+fig_69b(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), _variables_b(); title="Fig. 4.69b", kwargs...)
 
 """
     Reproduce Fig 4.69c. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -91,7 +91,7 @@ fig_69b(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), v
     Caption: Run 4-1: historical run.
     The allocation mechanism.
 """
-fig_69c(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_c(); title="Fig. 4.69c", kwargs...)
+fig_69c(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), _variables_c(); title="Fig. 4.69c", kwargs...)
 
 """
     Reproduce Fig 4.69d. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -99,7 +99,7 @@ fig_69c(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), v
     Caption: Run 4-1: historical run.
     The behavior of land fertility.
 """
-fig_69d(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), variables_d(); title="Fig. 4.69d", kwargs...)
+fig_69d(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), _variables_d(); title="Fig. 4.69d", kwargs...)
 
 
 """
@@ -108,7 +108,7 @@ fig_69d(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), v
     Caption: Run 4-2: standard run.
     The behavior of land yields and food production.
 """
-fig_70a(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_a(); title="Fig. 4.70a", kwargs...)
+fig_70a(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.70a", kwargs...)
 
 """
     Reproduce Fig 4.70b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -116,7 +116,7 @@ fig_70a(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), v
     Caption: Run 4-2: standard run.
     The behavior of arable land.
 """
-fig_70b(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_b(); title="Fig. 4.70b", kwargs...)
+fig_70b(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.70b", kwargs...)
 
 """
     Reproduce Fig 4.70c. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -124,7 +124,7 @@ fig_70b(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), v
     Caption: Run 4-2: standard run.
     The allocation mechanism.
 """
-fig_70c(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_c(); title="Fig. 4.70c", kwargs...)
+fig_70c(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_c(); title="Fig. 4.70c", kwargs...)
 
 """
     Reproduce Fig 4.70d. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -132,7 +132,7 @@ fig_70c(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), v
     Caption: Run 4-2: standard run.
     The behavior of land fertility.
 """
-fig_70d(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_d(); title="Fig. 4.70d", kwargs...)
+fig_70d(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_d(); title="Fig. 4.70d", kwargs...)
 
 
 function fig72solution()
@@ -154,7 +154,7 @@ end
     Caption: Run 4-3: sensitivity test of the land yield multiplier from capital table, using the optimistic LYMCT.
     The behavior of land yields and food production.
 """
-fig_72a(; kwargs...) = plotvariables(fig72solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.72a", kwargs...)
+fig_72a(; kwargs...) = plotvariables(fig72solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.72a", kwargs...)
 
 """
     Reproduce Fig 4.72b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -162,7 +162,7 @@ fig_72a(; kwargs...) = plotvariables(fig72solution(), (t, 1900, 2100), variables
     Caption: Run 4-3: sensitivity test of the land yield multiplier from capital table, using the optimistic LYMCT.
     The behavior of arable land.
 """
-fig_72b(; kwargs...) = plotvariables(fig72solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.72b", kwargs...)
+fig_72b(; kwargs...) = plotvariables(fig72solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.72b", kwargs...)
 
 
 function fig73solution()
@@ -184,7 +184,7 @@ end
     Caption: Run 4-4: sensitivity test of the land yield multiplier from capital table, using the pessimistic LYMCT.
     The behavior of land yields and food production.
 """
-fig_73a(; kwargs...) = plotvariables(fig73solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.73a", kwargs...)
+fig_73a(; kwargs...) = plotvariables(fig73solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.73a", kwargs...)
 
 """
     Reproduce Fig 4.73b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -192,7 +192,7 @@ fig_73a(; kwargs...) = plotvariables(fig73solution(), (t, 1900, 2100), variables
     Caption: Run 4-4: sensitivity test of the land yield multiplier from capital table, using the pessimistic LYMCT.
     The behavior of arable land.
 """
-fig_73b(; kwargs...) = plotvariables(fig73solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.73b", kwargs...)
+fig_73b(; kwargs...) = plotvariables(fig73solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.73b", kwargs...)
 
 
 function fig74solution()
@@ -217,7 +217,7 @@ end
     Caption: Run 4-5: sensitivity test with a 35 percent increase in the estimate of the value of potentially arable land total.
     The behavior of land yields and food production.
 """
-fig_74a(; kwargs...) = plotvariables(fig74solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.74a", kwargs...)
+fig_74a(; kwargs...) = plotvariables(fig74solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.74a", kwargs...)
 
 """
     Reproduce Fig 4.74b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -225,7 +225,7 @@ fig_74a(; kwargs...) = plotvariables(fig74solution(), (t, 1900, 2100), variables
     Caption: Run 4-5: sensitivity test with a 35 percent increase in the estimate of the value of potentially arable land total.
     The behavior of arable land.
 """
-fig_74b(; kwargs...) = plotvariables(fig74solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.74b", kwargs...)
+fig_74b(; kwargs...) = plotvariables(fig74solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.74b", kwargs...)
 
 
 function fig75solution()
@@ -250,7 +250,7 @@ end
     Caption: Run 4-6: sensitivity test with a 25 percent decrease in the estimate of the value of potentially arable land total.
     The behavior of land yields and food production.
 """
-fig_75a(; kwargs...) = plotvariables(fig75solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.75a", kwargs...)
+fig_75a(; kwargs...) = plotvariables(fig75solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.75a", kwargs...)
 
 """
     Reproduce Fig 4.75b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -258,7 +258,7 @@ fig_75a(; kwargs...) = plotvariables(fig75solution(), (t, 1900, 2100), variables
     Caption: Run 4-6: sensitivity test with a 25 percent decrease in the estimate of the value of potentially arable land total.
     The behavior of arable land.
 """
-fig_75b(; kwargs...) = plotvariables(fig75solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.75b", kwargs...)
+fig_75b(; kwargs...) = plotvariables(fig75solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.75b", kwargs...)
 
 
 function fig76solution()
@@ -286,7 +286,7 @@ end
     Caption: Run 4-7: sensitivity test with a 35 percent increase in the estimate of the value of potentially arable land total and development costs adjusted to maintain historical behavior.
     The behavior of land yields and food production.
 """
-fig_76a(; kwargs...) = plotvariables(fig76solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.76a", kwargs...)
+fig_76a(; kwargs...) = plotvariables(fig76solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.76a", kwargs...)
 
 """
     Reproduce Fig 4.76b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -294,7 +294,7 @@ fig_76a(; kwargs...) = plotvariables(fig76solution(), (t, 1900, 2100), variables
     Caption: Run 4-7: sensitivity test with a 35 percent increase in the estimate of the value of potentially arable land total and development costs adjusted to maintain historical behavior.
     The behavior of arable land.
 """
-fig_76b(; kwargs...) = plotvariables(fig76solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.76b", kwargs...)
+fig_76b(; kwargs...) = plotvariables(fig76solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.76b", kwargs...)
 
 
 function fig77solution()
@@ -322,7 +322,7 @@ end
     Caption: Run 4-8: sensitivity test with a 35 percent increase in the estimate of the value of potentially arable land total and a 50 percent increase in the upper limit of the land yield multiplier from capital.
     The behavior of land yields and food production.
 """
-fig_77a(; kwargs...) = plotvariables(fig77solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.77a", kwargs...)
+fig_77a(; kwargs...) = plotvariables(fig77solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.77a", kwargs...)
 
 """
     Reproduce Fig 4.77b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -330,7 +330,7 @@ fig_77a(; kwargs...) = plotvariables(fig77solution(), (t, 1900, 2100), variables
     Caption: Run 4-8: sensitivity test with a 35 percent increase in the estimate of the value of potentially arable land total and a 50 percent increase in the upper limit of the land yield multiplier from capital.
     The behavior of arable land.
 """
-fig_77b(; kwargs...) = plotvariables(fig77solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.77b", kwargs...)
+fig_77b(; kwargs...) = plotvariables(fig77solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.77b", kwargs...)
 
 
 function fig78solution()
@@ -358,7 +358,7 @@ end
     Caption: Run 4-9: sensitivity test with a 25 percent decrease in the estimate of the value of potentially arable land total and a 25 percent decrease in the upper limit of the land yield multiplier from capital.
     The behavior of land yields and food production.
 """
-fig_78a(; kwargs...) = plotvariables(fig78solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.78a", kwargs...)
+fig_78a(; kwargs...) = plotvariables(fig78solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.78a", kwargs...)
 
 """
     Reproduce Fig 4.78b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -366,7 +366,7 @@ fig_78a(; kwargs...) = plotvariables(fig78solution(), (t, 1900, 2100), variables
     Caption: Run 4-9: sensitivity test with a 25 percent decrease in the estimate of the value of potentially arable land total and a 25 percent decrease in the upper limit of the land yield multiplier from capital.
     The behavior of arable land.
 """
-fig_78b(; kwargs...) = plotvariables(fig78solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.78b", kwargs...)
+fig_78b(; kwargs...) = plotvariables(fig78solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.78b", kwargs...)
 
 
 function fig82solution()
@@ -392,7 +392,7 @@ end
     Caption: Run 4-10: sensitivity test with optimistic estimates of the cost of land development, the adverse effects of air pollution on yield, and the extent to which high land yield causes land erosion.
     The behavior of land yields and food production.
 """
-fig_82a(; kwargs...) = plotvariables(fig82solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.82a", kwargs...)
+fig_82a(; kwargs...) = plotvariables(fig82solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.82a", kwargs...)
 
 """
     Reproduce Fig 4.82b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -400,7 +400,7 @@ fig_82a(; kwargs...) = plotvariables(fig82solution(), (t, 1900, 2100), variables
     Caption: Run 4-10: sensitivity test with optimistic estimates of the cost of land development, the adverse effects of air pollution on yield, and the extent to which high land yield causes land erosion.
     The behavior of arable land.
 """
-fig_82b(; kwargs...) = plotvariables(fig82solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.82b", kwargs...)
+fig_82b(; kwargs...) = plotvariables(fig82solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.82b", kwargs...)
 
 
 function fig83solution()
@@ -426,7 +426,7 @@ end
     Caption: Run 4-11: sensitivity test with pessimistic estimates of the cost of land development, the adverse effects of air pollution on yield, and the extent to which high land yield causes land erosion.
     The behavior of land yields and food production.
 """
-fig_83a(; kwargs...) = plotvariables(fig83solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.83a", kwargs...)
+fig_83a(; kwargs...) = plotvariables(fig83solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.83a", kwargs...)
 
 """
     Reproduce Fig 4.83b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -434,7 +434,7 @@ fig_83a(; kwargs...) = plotvariables(fig83solution(), (t, 1900, 2100), variables
     Caption: Run 4-11: sensitivity test with pessimistic estimates of the cost of land development, the adverse effects of air pollution on yield, and the extent to which high land yield causes land erosion.
     The behavior of arable land.
 """
-fig_83b(; kwargs...) = plotvariables(fig83solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.83b", kwargs...)
+fig_83b(; kwargs...) = plotvariables(fig83solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.83b", kwargs...)
 
 
 function fig84solution()
@@ -457,7 +457,7 @@ end
     persistent pollutants is completely eliminated in 1975.
     The behavior of land yields and food production.
 """
-fig_84a(; kwargs...) = plotvariables(fig84solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.84a", kwargs...)
+fig_84a(; kwargs...) = plotvariables(fig84solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.84a", kwargs...)
 
 """
     Reproduce Fig 4.84b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -466,7 +466,7 @@ fig_84a(; kwargs...) = plotvariables(fig84solution(), (t, 1900, 2100), variables
     persistent pollutants is completely eliminated in 1975.
     The behavior of arable land.
 """
-fig_84b(; kwargs...) = plotvariables(fig84solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.84b", kwargs...)
+fig_84b(; kwargs...) = plotvariables(fig84solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.84b", kwargs...)
 
 
 function fig85solution()
@@ -489,7 +489,7 @@ end
     Caption: Run 4-13: policy run in which the adverse effects of air pollution on land yield and the impairment of land fertility by persistent pollutants are completely eliminated in 1975.
     The behavior of land yields and food production.
 """
-fig_85a(; kwargs...) = plotvariables(fig85solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.85a", kwargs...)
+fig_85a(; kwargs...) = plotvariables(fig85solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.85a", kwargs...)
 
 """
     Reproduce Fig 4.85b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -497,7 +497,7 @@ fig_85a(; kwargs...) = plotvariables(fig85solution(), (t, 1900, 2100), variables
     Caption: Run 4-13: policy run in which the adverse effects of air pollution on land yield and the impairment of land fertility by persistent pollutants are completely eliminated in 1975.
     The behavior of arable land.
 """
-fig_85b(; kwargs...) = plotvariables(fig85solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.85b", kwargs...)
+fig_85b(; kwargs...) = plotvariables(fig85solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.85b", kwargs...)
 
 
 function fig86solution()
@@ -521,7 +521,7 @@ end
     Caption: Run 4-14: policy run in which efforts to combat land erosion are initiated in 1975, in addition to the previous policies that eliminate the adverse effects of air pollution and persistent pollution.
     The behavior of land yields and food production.
 """
-fig_86a(; kwargs...) = plotvariables(fig86solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.86a", kwargs...)
+fig_86a(; kwargs...) = plotvariables(fig86solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.86a", kwargs...)
 
 """
     Reproduce Fig 4.86b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -529,7 +529,7 @@ fig_86a(; kwargs...) = plotvariables(fig86solution(), (t, 1900, 2100), variables
     Caption: Run 4-14: policy run in which efforts to combat land erosion are initiated in 1975, in addition to the previous policies that eliminate the adverse effects of air pollution and persistent pollution.
     The behavior of arable land.
 """
-fig_86b(; kwargs...) = plotvariables(fig86solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.86b", kwargs...)
+fig_86b(; kwargs...) = plotvariables(fig86solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.86b", kwargs...)
 
 
 function fig87solution()
@@ -560,7 +560,7 @@ end
     Caption: Run 4-15: policy run in which the land required for urban and industrial use is reduced to 25 percent of expected requirements, in addition to the previous policies that combat land erosion and eliminate the adverse effects of air pollution and persistent pollution.
     The behavior of land yields and food production.
 """
-fig_87a(; kwargs...) = plotvariables(fig87solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.87a", kwargs...)
+fig_87a(; kwargs...) = plotvariables(fig87solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.87a", kwargs...)
 
 """
     Reproduce Fig 4.87b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -568,7 +568,7 @@ fig_87a(; kwargs...) = plotvariables(fig87solution(), (t, 1900, 2100), variables
     Caption: Run 4-15: policy run in which the land required for urban and industrial use is reduced to 25 percent of expected requirements, in addition to the previous policies that combat land erosion and eliminate the adverse effects of air pollution and persistent pollution.
     The behavior of arable land.
 """
-fig_87b(; kwargs...) = plotvariables(fig87solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.87b", kwargs...)
+fig_87b(; kwargs...) = plotvariables(fig87solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.87b", kwargs...)
 
 
 function fig88solution()
@@ -590,7 +590,7 @@ end
     Caption: Run 4-16: equilibrium run in which the exogenous inputs level off in the year 2050.
     The behavior of land yields and food production.
 """
-fig_88a(; kwargs...) = plotvariables(fig88solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.88a", kwargs...)
+fig_88a(; kwargs...) = plotvariables(fig88solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.88a", kwargs...)
 
 """
     Reproduce Fig 4.88b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -598,7 +598,7 @@ fig_88a(; kwargs...) = plotvariables(fig88solution(), (t, 1900, 2100), variables
     Caption: Run 4-16: equilibrium run in which the exogenous inputs level off in the year 2050.
     The behavior of arable land.
 """
-fig_88b(; kwargs...) = plotvariables(fig88solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.88b", kwargs...)
+fig_88b(; kwargs...) = plotvariables(fig88solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.88b", kwargs...)
 
 
 function fig89solution()
@@ -620,7 +620,7 @@ end
     Caption: Run 4-17: equilibrium run in which the exogenous inputs level off in the year 2025.
     The behavior of land yields and food production.
 """
-fig_89a(; kwargs...) = plotvariables(fig89solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.89a", kwargs...)
+fig_89a(; kwargs...) = plotvariables(fig89solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.89a", kwargs...)
 
 """
     Reproduce Fig 4.89b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -628,7 +628,7 @@ fig_89a(; kwargs...) = plotvariables(fig89solution(), (t, 1900, 2100), variables
     Caption: Run 4-17: equilibrium run in which the exogenous inputs level off in the year 2025.
     The behavior of arable land.
 """
-fig_89b(; kwargs...) = plotvariables(fig89solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.89b", kwargs...)
+fig_89b(; kwargs...) = plotvariables(fig89solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.89b", kwargs...)
 
 
 function fig90solution()
@@ -650,7 +650,7 @@ end
     Caption: Run 4-18: equilibrium run in which the exogenous inputs level off in the year 2000.
     The behavior of land yields and food production.
 """
-fig_90a(; kwargs...) = plotvariables(fig90solution(), (t, 1900, 2100), variables_a(); title="Fig. 4.90a", kwargs...)
+fig_90a(; kwargs...) = plotvariables(fig90solution(), (t, 1900, 2100), _variables_a(); title="Fig. 4.90a", kwargs...)
 
 """
     Reproduce Fig 4.90b. The original figure is presented in Chapter 4 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -658,4 +658,4 @@ fig_90a(; kwargs...) = plotvariables(fig90solution(), (t, 1900, 2100), variables
     Caption:  Run 4-18: equilibrium run in which the exogenous inputs level off in the year 2000.
     The behavior of arable land.
 """
-fig_90b(; kwargs...) = plotvariables(fig90solution(), (t, 1900, 2100), variables_b(); title="Fig. 4.90b", kwargs...)
+fig_90b(; kwargs...) = plotvariables(fig90solution(), (t, 1900, 2100), _variables_b(); title="Fig. 4.90b", kwargs...)

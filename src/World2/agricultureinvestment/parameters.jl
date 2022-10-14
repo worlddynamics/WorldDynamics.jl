@@ -1,4 +1,4 @@
-params = Dict{Symbol, Float64}(
+_params = Dict{Symbol, Float64}(
     :fc => 1,
     :fc1 => 1,
     :swt7 => 1970,
@@ -6,4 +6,4 @@ params = Dict{Symbol, Float64}(
     :ciaft => 15,
 )
 
-getparameters() = copy(params)
+getparameters() = copy(_params)

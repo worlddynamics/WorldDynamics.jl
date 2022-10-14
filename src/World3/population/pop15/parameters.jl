@@ -1,3 +1,3 @@
-params = CommonPop.params
+_params = CommonPop._params
 
-getparameters() = copy(params)
+getparameters() = copy(_params)

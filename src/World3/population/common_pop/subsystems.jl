@@ -1,7 +1,7 @@
 @variables t
 D = Differential(t)
 
-function death_rate(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function death_rate(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters len = params[:len]
     @parameters sfpc = params[:sfpc]
     @parameters hsid = params[:hsid]
@@ -30,7 +30,7 @@ function death_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
     ODESystem(eqs; name)
 end
 
-function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function birth_rate(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters mtfn = params[:mtfn]
     @parameters lpd = params[:lpd]
     @parameters dcfsn = params[:dcfsn]
@@ -87,7 +87,7 @@ function birth_rate(; name, params=params, inits=inits, tables=tables, ranges=ra
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function industrial_output(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters lt = params[:lt]
     @parameters lt2 = params[:lt2]
     @parameters cio = params[:cio]
@@ -107,7 +107,7 @@ function industrial_output(; name, params=params, inits=inits, tables=tables, ra
     ODESystem(eqs; name)
 end
 
-function service_output(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function service_output(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters lt = params[:lt]
     @parameters lt2 = params[:lt2]
     @parameters cso = params[:cso]
@@ -127,7 +127,7 @@ function service_output(; name, params=params, inits=inits, tables=tables, range
     ODESystem(eqs; name)
 end
 
-function persistent_pollution(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function persistent_pollution(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters ps = params[:ps]
     @parameters pt = params[:pt]
 
@@ -140,7 +140,7 @@ function persistent_pollution(; name, params=params, inits=inits, tables=tables,
     ODESystem(eqs; name)
 end
 
-function food(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function food(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters lt = params[:lt]
     @parameters lt2 = params[:lt2]
     @parameters cfood = params[:cfood]

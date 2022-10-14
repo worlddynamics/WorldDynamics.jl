@@ -1,3 +1,3 @@
-inits = CommonPop.inits
+_inits = CommonPop._inits
 
-getinitialisations() = copy(inits)
+getinitialisations() = copy(_inits)

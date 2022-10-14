@@ -1,7 +1,7 @@
 @variables t
 D = Differential(t)
 
-function pollution(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function pollution(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters pols = params[:pols]
 
     @variables polr(t)
@@ -18,7 +18,7 @@ function pollution(; name, params=params, inits=inits, tables=tables, ranges=ran
     ODESystem(eqs; name)
 end
 
-function pollution_absorption(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function pollution_absorption(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @variables pola(t)
     @variables polat(t)
 
@@ -33,7 +33,7 @@ function pollution_absorption(; name, params=params, inits=inits, tables=tables,
     ODESystem(eqs; name)
 end
 
-function pollution_generation(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function pollution_generation(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters poln = params[:poln]
     @parameters poln1 = params[:poln1]
     @parameters swt6 = params[:swt6]

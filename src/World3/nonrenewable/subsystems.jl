@@ -1,7 +1,7 @@
 @variables t
 D = Differential(t)
 
-function population(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function population(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters gc = params[:gc]
     @parameters pop2 = params[:pop2]
     @parameters popi = params[:popi]
@@ -17,7 +17,7 @@ function population(; name, params=params, inits=inits, tables=tables, ranges=ra
     ODESystem(eqs; name)
 end
 
-function industrial_output(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function industrial_output(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters icor = params[:icor]
 
     @variables ic(t) fcaor(t) pop(t)
@@ -31,7 +31,7 @@ function industrial_output(; name, params=params, inits=inits, tables=tables, ra
     ODESystem(eqs; name)
 end
 
-function industrial_capital(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function industrial_capital(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters fioaa = params[:fioaa]
     @parameters fioas = params[:fioas]
     @parameters fioac = params[:fioac]
@@ -50,7 +50,7 @@ function industrial_capital(; name, params=params, inits=inits, tables=tables, r
     ODESystem(eqs; name)
 end
 
-function non_renewable(; name, params=params, inits=inits, tables=tables, ranges=ranges)
+function non_renewable(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters nri = params[:nri] # Line 129.1 Appendix A
     @parameters nruf1 = params[:nruf1]
     @parameters nruf2 = params[:nruf2]

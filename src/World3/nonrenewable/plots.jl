@@ -5,7 +5,7 @@ function historicalrunsolution()
 end
 
 
-function variables_nr()
+function _variables_nr()
     @named nr = non_renewable()
     @named ic = industrial_capital()
     @named io = industrial_output()
@@ -29,7 +29,7 @@ end
 
     Caption: Run 5-1: standard run for the nonrenewable resource sector.
 """
-fig_25(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), variables_nr(); title="Fig. 5.25", kwargs...)
+fig_25(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_nr(); title="Fig. 5.25", kwargs...)
 
 """
     Reproduce Fig 5.26. The original figure is presented in Chapter 5 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
@@ -43,7 +43,7 @@ function fig_26(; kwargs...)
     system = historicalrun(params=parameters_5_26)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.26", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_nr(); title="Fig. 5.26", kwargs...)
 end
 
 """
@@ -58,7 +58,7 @@ function fig_28(; kwargs...)
     system = historicalrun(tables=tables_5_28)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.28", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_nr(); title="Fig. 5.28", kwargs...)
 end
 
 """
@@ -73,7 +73,7 @@ function fig_29(; kwargs...)
     system = historicalrun(params=parameters_5_29)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.29", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_nr(); title="Fig. 5.29", kwargs...)
 end
 
 """
@@ -92,5 +92,5 @@ function fig_30(; kwargs...)
     system = historicalrun(params=parameters_5_30, tables=tables_5_30)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), variables_nr(); title="Fig. 5.30", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_nr(); title="Fig. 5.30", kwargs...)
 end

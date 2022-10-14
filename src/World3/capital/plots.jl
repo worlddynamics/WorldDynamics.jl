@@ -5,7 +5,7 @@ function historicalrunsolution()
 end
 
 
-function variables_37()
+function _variables_37()
     @named is = industrial_subsector()
     @named ss = service_subsector()
     @named js = job_subsector()
@@ -21,7 +21,7 @@ function variables_37()
     return variables
 end
 
-function variables_40()
+function _variables_40()
     @named is = industrial_subsector()
     @named ss = service_subsector()
     @named js = job_subsector()
@@ -37,7 +37,7 @@ function variables_40()
     return variables
 end
 
-function variables_45()
+function _variables_45()
     @named pop = population()
     @named nr = non_renewable()
     @named ag = agriculture()
@@ -79,7 +79,7 @@ end
 
     Caption: Run 3-1: standard run of the capital sector with exogenous inputs.
 """
-fig_37(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2000), variables_37(); title="Fig. 3.37", kwargs...)
+fig_37(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2000), _variables_37(); title="Fig. 3.37", kwargs...)
 
 
 """
@@ -94,7 +94,7 @@ function fig_38(; kwargs...)
     system = historicalrun(params=parameters_3_38)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.38", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.38", kwargs...)
 end
 
 """
@@ -109,7 +109,7 @@ function fig_39(; kwargs...)
     system = historicalrun(params=parameters_3_39)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.39", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.39", kwargs...)
 end
 
 """
@@ -125,7 +125,7 @@ function fig_40(; kwargs...)
     system = historicalrun(params=parameters_3_40)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_40(); title="Fig. 3.40", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_40(); title="Fig. 3.40", kwargs...)
 end
 
 """
@@ -141,7 +141,7 @@ function fig_41(; kwargs...)
     system = historicalrun(tables=cap_tables_3_41)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_40(); title="Fig. 3.41", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_40(); title="Fig. 3.41", kwargs...)
 end
 
 """
@@ -156,7 +156,7 @@ function fig_42(; kwargs...)
     system = historicalrun(params=parameters_3_42)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.42", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.42", kwargs...)
 end
 
 """
@@ -196,7 +196,7 @@ function fig_44(; kwargs...)
     system = historicalrun(tables=cap_tables_3_44)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.44", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.44", kwargs...)
 end
 
 """
@@ -210,7 +210,7 @@ function fig_45(; kwargs...)
 
     system = historicalrun(tables=cap_tables_3_45)
     solution = solve(system, (1900, 2100))
-    return plotvariables(solution, (t, 1900, 2000), variables_45(); title="Fig. 3.45", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_45(); title="Fig. 3.45", kwargs...)
 end
 
 """
@@ -225,7 +225,7 @@ function fig_46(; kwargs...)
     system = historicalrun(tables=cap_tables_3_46)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.46", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.46", kwargs...)
 end
 
 """
@@ -240,7 +240,7 @@ function fig_47(; kwargs...)
     system = historicalrun(tables=cap_tables_3_47)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_45(); title="Fig. 3.47", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_45(); title="Fig. 3.47", kwargs...)
 end
 
 """
@@ -256,5 +256,5 @@ function fig_48(; kwargs...)
     system = historicalrun(tables=cap_tables_3_48)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.48", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.48", kwargs...)
 end

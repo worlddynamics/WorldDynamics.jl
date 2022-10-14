@@ -1,3 +1,3 @@
-inits = Dict{Symbol, Float64}()
+_inits = Dict{Symbol, Float64}()
 
-getinitialisations() = copy(inits)
+getinitialisations() = copy(_inits)
