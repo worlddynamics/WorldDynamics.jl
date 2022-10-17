@@ -447,13 +447,13 @@ end
     Reproduce Fig 7.23. The original figure is presented on Chapter 7.
 """
 function fig_23(; kwargs...)
-    agr_tables_7_22 = Agriculture.gettables()
-    agr_tables_7_22[:lymap2] = (1.0, 1.0, 0.98, 0.95)
+    agr_tables = Agriculture.gettables()
+    agr_tables[:lymap2] = (1.0, 1.0, 0.98, 0.95)
 
-    cap_tables_7_22 = Capital.gettables()
-    cap_tables_7_22[:cuf] = (1.0, 1.0, 1.0, 1.0, 1.0, 1.0)
+    cap_tables = Capital.gettables()
+    cap_tables[:cuf] = (1.0, 1.0, 1.0, 1.0, 1.0, 1.0)
 
-    system = historicalrun(agriculture_tables=agr_tables_7_22, capital_tables=cap_tables_7_22)
+    system = historicalrun(agriculture_tables=agr_tables, capital_tables=cap_tables)
 
     @named egt = exponentially_growing_technologies()
     @named nr = NonRenewable.non_renewable()
