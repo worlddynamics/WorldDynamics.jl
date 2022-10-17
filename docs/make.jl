@@ -10,6 +10,6 @@ makedocs(sitename="WorldDynamics.jl",
     ]
 )
 
-# deploydocs(
-#     repo = "github.com/natema/WorldDynamics.jl.git",
-# )
+deploydocs(
+    repo = "github.com/natema/WorldDynamics.jl.git",
+)
