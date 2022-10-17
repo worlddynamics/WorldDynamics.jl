@@ -34,7 +34,7 @@ Order   = [:function]
 Pages   = ["solvesystems.jl"]
 ```
 
-## Reproducing figures
+## Reproducing World3 figures
 
 ### Agriculture system
 
