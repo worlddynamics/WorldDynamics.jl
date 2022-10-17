@@ -477,10 +477,105 @@ function fig_23(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.23", kwargs...)
 end
 
+
+function resource_control(nruf1, pyear; name)
+    @parameters dnrur = 2e9
+    @parameters nruf1 = nruf1
+    @parameters pyear = pyear
+
+    @variables nrur(t)
+    @variables nruf2(t) = 1.0
+    @variables nrate(t), nrcm(t)
+
+    D = Differential(t)
+
+    eqs = [
+        D(nruf2) ~ nrate
+        nrate ~ clip(nruf2 * nrcm, 0, t, pyear)
+        nrcm ~ interpolate(1.0 - (nrur / dnrur), (-0.05, 0.0), (-1.0, 0.0))
+    ]
+
+    return ODESystem(eqs; name)
+end
+
+function yield_control(pyear; name)
+    @parameters drf = 3.0
+
+    @variables fr(t)
+    @variables lyf2(t) = 1.0
+    @variables lyf2r(t), lycm(t)
+
+    D = Differential(t)
+
+    eqs = [
+        D(lyf2) ~ lyf2r
+        lyf2r ~ clip(lyf2 * lycm, 0, t, pyear)
+        lycm ~ interpolate(drf - fr, (0.0, 0.05), (0.0, 1.0))
+    ]
+
+    return ODESystem(eqs; name)
+end
+
+function pollution_control(pyear; name)
+    @parameters dpolx = 3.0
+    @parameters pyear = pyear
+
+    @variables ppolx(t)
+    @variables ppgf2(t) = 1.0
+    @variables prate(t), polgfm(t)
+
+    D = Differential(t)
+
+    eqs = [
+        D(ppgf2) ~ prate
+        prate ~ clip(ppgf2 * polgfm, 0, t, pyear)
+        polgfm ~ interpolate(1.0 - (ppolx / dpolx), (-0.05, 0.0), (-1.0, 0.0))
+    ]
+
+    return ODESystem(eqs; name)
+end
+
 """
     Reproduce Fig 7.24. The original figure is presented on Chapter 7.
 """
-fig_24(; kwargs...) = @info "This figure is not implemented yet."
+function fig_24(; kwargs...)
+    nr_tables = NonRenewable.gettables()
+    nr_tables[:fcaor2] = (1.0, 0.2, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05)
+
+    agr_tables = Agriculture.gettables()
+    agr_tables[:llmy2] = (1.2, 1.0, 0.9, 0.8, 0.75, 0.7, 0.67, 0.64, 0.62, 0.6)
+    agr_tables[:lymap2] = (1.0, 1.0, 0.98, 0.95)
+
+    system = historicalrun(nonrenewable_tables=nr_tables, agriculture_tables=agr_tables)
+
+    @named nr = NonRenewable.non_renewable()
+    @named pp = Pollution.persistent_pollution()
+    @named ai = Agriculture.agricultural_inputs()
+    @named dlm = Agriculture.discontinuing_land_maintenance()
+    @named rc = resource_control(NonRenewable._params[:nruf1], 1975)
+    @named yc = yield_control(1975)
+    @named pc = pollution_control(1975)
+
+    connection_eqs = [
+        rc.nrur ~ nr.nrur
+        yc.fr ~ dlm.fr
+        pc.ppolx ~ pp.ppolx
+    ]
+
+    new_equations = equations(system)
+
+    new_equations[204] = nr.nruf ~ clip(rc.nruf2, nr.nruf1, t, nr.pyear)
+    new_equations[177] = ai.lyf ~ clip(yc.lyf2, ai.lyf1, t, ai.pyear)
+    new_equations[215] = pp.ppgf ~ clip(pc.ppgf2, pp.ppgf1, t, pp.pyear)
+
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named new_system = ModelingToolkit.compose(_new_system, rc, yc, pc)
+
+    solution = solve(new_system, (1900, 2100))
+
+    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.24", kwargs...)
+end
+
 
 """
     Reproduce Fig 7.26. The original figure is presented on Chapter 7.
