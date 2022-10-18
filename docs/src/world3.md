@@ -412,7 +412,7 @@ In this page we list the equations, the variables and the parameters of the Worl
 | Population equilibrium time | $\mathtt{pet}$ | $4000$ | `Population` |
 | Processing loss | $\mathtt{pl}$ | $0.1$ | `Agriculture` |
 | `ppgf` before `pyear` | $\mathtt{ppgf1}$ | $1$ | `Pollution` |
-| `ppgf` after `pyear` | $1$ | `Pollution` |
+| `ppgf` after `pyear` | $\mathtt{ppgf2}$ | $1$ | `Pollution` |
 | Persistent pollution in 1970 | $\mathtt{ppol70}$ | $1.36e8$ | `Pollution` |
 | Year new policy is implemented | $\mathtt{pyear}$ | $1975$ |  |
 | Reproductive lifetime | $\mathtt{rlt}$ | $30$ | `Population` |
