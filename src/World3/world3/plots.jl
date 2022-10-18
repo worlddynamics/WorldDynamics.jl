@@ -1038,11 +1038,65 @@ function fig_38(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.38", kwargs...)
 end
 
-
 """
     Reproduce Fig 7.39. The original figure is presented on Chapter 7.
 """
-fig_39(; kwargs...) = @info "This figure is not implemented yet."
+function fig_39(; kwargs...)
+    nr_tables = NonRenewable.gettables()
+    nr_tables[:fcaor2] = (1.0, 0.2, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05)
+
+    agr_tables = Agriculture.gettables()
+    agr_tables[:llmy2] = (1.2, 1.0, 0.9, 0.8, 0.75, 0.7, 0.67, 0.64, 0.62, 0.6)
+    agr_tables[:lymap2] = (1.0, 1.0, 0.98, 0.95)
+
+    pop_params = Pop4.getparameters()
+    pop_params[:zpgt] = 1975
+
+    cap_params = Capital.getparameters()
+    cap_params[:iet] = 1990
+    cap_params[:iopcd] = 320
+
+    system = historicalrun(
+        nonrenewable_tables=nr_tables,
+        agriculture_tables=agr_tables,
+        pop_params=pop_params,
+        capital_params=cap_params,
+    )
+
+    @named nr = NonRenewable.non_renewable()
+    @named pp = Pollution.persistent_pollution()
+    @named ai = Agriculture.agricultural_inputs()
+    @named dlm = Agriculture.discontinuing_land_maintenance()
+    @named is = Capital.industrial_subsector()
+
+    @named drc = delayed_resource_control()
+    @named dyc = delayed_yield_control()
+    @named dpc = delayed_pollution_control()
+    @named tc = technological_costs()
+
+    connection_eqs = [
+        drc.nrur ~ nr.nrur
+        dyc.fr ~ dlm.fr
+        dpc.ppolx ~ pp.ppolx
+        tc.nruf2 ~ drc.nrtd
+        tc.lyf2 ~ dyc.lytd
+        tc.ppgf2 ~ dpc.ptd
+    ]
+
+    new_equations = equations(system)
+
+    new_equations[204] = nr.nruf ~ clip(drc.nruf2, nr.nruf1, t, nr.pyear)
+    new_equations[177] = ai.lyf ~ clip(dyc.lyf2, ai.lyf1, t, ai.pyear)
+    new_equations[215] = pp.ppgf ~ clip(dpc.ppgf2, pp.ppgf1, t, pp.pyear)
+    new_equations[125] = is.icor ~ clip(tc.icor2, is.icor1, t, is.pyear)
+
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named new_system = ModelingToolkit.compose(_new_system, drc, dyc, dpc, tc)
+
+    solution = solve(new_system, (1900, 2100))
+
+    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.39", kwargs...)
+end
 
 """
     Reproduce Fig 7.41. The original figure is presented on Chapter 7.
