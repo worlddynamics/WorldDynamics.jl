@@ -592,11 +592,51 @@ function fig_24(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.24", kwargs...)
 end
 
-
 """
     Reproduce Fig 7.26. The original figure is presented on Chapter 7.
 """
-fig_26(; kwargs...) = @info "This figure is not implemented yet."
+function fig_26(; kwargs...)
+    nr_tables = NonRenewable.gettables()
+    nr_tables[:fcaor2] = (1.0, 0.2, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05)
+
+    agr_tables = Agriculture.gettables()
+    agr_tables[:llmy2] = (1.2, 1.0, 0.9, 0.8, 0.75, 0.7, 0.67, 0.64, 0.62, 0.6)
+    agr_tables[:lymap2] = (1.0, 1.0, 0.98, 0.95)
+
+    system = historicalrun(nonrenewable_tables=nr_tables, agriculture_tables=agr_tables)
+
+
+    rc_tables = Dict([:nrcm => (-0.02, 0.0)])
+    yc_tables = Dict([:lycm => (0.0, 0.02)])
+    pc_tables = Dict([:polgfm => (-0.02, 0.0)])
+
+    @named nr = NonRenewable.non_renewable()
+    @named pp = Pollution.persistent_pollution()
+    @named ai = Agriculture.agricultural_inputs()
+    @named dlm = Agriculture.discontinuing_land_maintenance()
+    @named rc = resource_control(; tables=rc_tables)
+    @named yc = yield_control(; tables=yc_tables)
+    @named pc = pollution_control(; tables=pc_tables)
+
+    connection_eqs = [
+        rc.nrur ~ nr.nrur
+        yc.fr ~ dlm.fr
+        pc.ppolx ~ pp.ppolx
+    ]
+
+    new_equations = equations(system)
+
+    new_equations[204] = nr.nruf ~ clip(rc.nruf2, nr.nruf1, t, nr.pyear)
+    new_equations[177] = ai.lyf ~ clip(yc.lyf2, ai.lyf1, t, ai.pyear)
+    new_equations[215] = pp.ppgf ~ clip(pc.ppgf2, pp.ppgf1, t, pp.pyear)
+
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named new_system = ModelingToolkit.compose(_new_system, rc, yc, pc)
+
+    solution = solve(new_system, (1900, 2100))
+
+    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.26", kwargs...)
+end
 
 """
     Reproduce Fig 7.27. The original figure is presented on Chapter 7.
