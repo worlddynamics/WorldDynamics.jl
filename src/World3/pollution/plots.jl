@@ -24,7 +24,9 @@ end
 
 
 """
-    Reproduce Fig 6.26. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.26. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-1: behavior of the pollution sector in response to a pulse input in persistent pollution generation in 1920.
 """
 function fig_26(; kwargs...)
     @named pp = persistent_pollution()
@@ -55,7 +57,9 @@ function fig_26(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.27. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.27. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-2: behavior of the pollution sector in response to a step increase and decrease in persistent pollution generation.
 """
 function fig_27(; kwargs...)
     @named pp = persistent_pollution()
@@ -86,7 +90,9 @@ function fig_27(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.28. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.28. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Inputs to Run 6-3, the historical run of the pollution sector.
 """
 function fig_28(; kwargs...)
     @named nr = non_renewable()
@@ -106,7 +112,9 @@ function fig_28(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.29. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.29. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-3: historical run of the pollution sector.
 """
 function fig_29(; kwargs...)
     @named pp = persistent_pollution()
@@ -126,7 +134,9 @@ function fig_29(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.30. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.30. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Inputs to Run 6-4 of the pollution sector when continued material growth is assumed.
 """
 function fig_30(; kwargs...)
     @named nr = non_renewable()
@@ -147,12 +157,16 @@ end
 
 
 """
-    Reproduce Fig 6.31. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.31. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-4: behavior of the pollution sector in response to continued material growth.
 """
 fig_31(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_31(); title="Fig. 6.31", kwargs...)
 
 """
-    Reproduce Fig 6.32. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.32. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-5: behavior of the pollution sector with decreased toxicity indices.
 """
 function fig_32(; kwargs...)
     parameters_6_32 = getparameters()
@@ -167,7 +181,9 @@ function fig_32(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.33. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.33. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-6: behavior of the pollution sector when the estimate of the persistent pollution transmission delay is doubled.
 """
 function fig_33(; kwargs...)
     parameters_6_33 = getparameters()
@@ -182,7 +198,9 @@ function fig_33(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.34. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.34. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-7: behavior of the pollution sector when the estimate of the persistent pollution transmission delay is halved.
 """
 function fig_34(; kwargs...)
     parameters_6_34 = getparameters()
@@ -197,7 +215,9 @@ function fig_34(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.35. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.35. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-8: behavior of the pollution sector when the assimilation half-life is assumed to increase twice as fast with a rising index of persistent pollution.
 """
 function fig_35(; kwargs...)
     tables_6_35 = gettables()
@@ -210,7 +230,9 @@ function fig_35(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.36. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.36. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-9: behavior of the pollution sector when the assimilation half-life is assumed to be constant.
 """
 function fig_36(; kwargs...)
     tables_6_36 = gettables()
@@ -223,7 +245,9 @@ function fig_36(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.37. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.37. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-10: behavior of the pollution sector in response to a doubling of the persistent pollution transmission delay in 1975.
 """
 function fig_37(; kwargs...)
     parameters_6_37 = getparameters()
@@ -236,7 +260,9 @@ function fig_37(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.38. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.38. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-11: behavior of the pollution sector in response to an advance in persistent pollution assimilation technology in 1975.
 """
 function fig_38(; kwargs...)
     tables_6_38 = gettables()
@@ -249,7 +275,9 @@ function fig_38(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.39. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.39. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-12: behavior of the pollution sector in response to a 50 percent increase in human health and land fertility technology in 1975.
 """
 function fig_39(; kwargs...)
     tables_6_39 = gettables()
@@ -263,7 +291,9 @@ function fig_39(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.40. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.40. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-13: behavior of the pollution sector in response to a sudden increase in persistent pollution generation control technology in 1975.
 """
 function fig_40(; kwargs...)
     parameters_6_40 = getparameters()
@@ -276,7 +306,9 @@ function fig_40(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.41. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.41. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-14: behavior of the pollution sector in response to adaptive persistent pollution generation control technologies when the persistent pollution transmission delay is assumed to be 20 years.
 """
 function fig_41(; kwargs...)
     parameters_6_41 = getparameters()
@@ -289,7 +321,9 @@ function fig_41(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.43. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.43. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-15: behavior of the pollution sector in response to adaptive persistent pollution generation control technologies when the persistent pollution transmission delay is assumed to be 2 years.
 """
 function fig_43(; kwargs...)
     parameters_6_43 = getparameters()
@@ -304,7 +338,9 @@ function fig_43(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.44. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.44. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-16: behavior of the pollution sector when persistent pollution generation stabilizes in the year 2000.
 """
 function fig_44(; kwargs...)
     tables_6_44 = gettables()
@@ -320,7 +356,9 @@ function fig_44(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.45. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.45. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-17: behavior of the pollution sector when persistent pollution generation stabilizes in the year 2020.
 """
 function fig_45(; kwargs...)
     tables_6_45 = gettables()
@@ -336,7 +374,9 @@ function fig_45(; kwargs...)
 end
 
 """
-    Reproduce Fig 6.46. The original figure is presented on Chapter 6.
+    Reproduce Fig 6.46. The original figure is presented in Chapter 6 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 6-18: behavior of the pollution sector when adaptive persistent pollution generation control technologies are combined with material equilibrium in the year 2020.
 """
 function fig_46(; kwargs...)
     parameters_6_46 = getparameters()
