@@ -478,13 +478,18 @@ function fig_23(; kwargs...)
 end
 
 
-function resource_control(nruf1, pyear; name)
-    @parameters dnrur = 2e9
-    @parameters nruf1 = nruf1
-    @parameters pyear = pyear
+function resource_control(; name,
+    params=Dict([:dnrur => 2e9, :nruf1 => 1, :pyear => 1975]),
+    inits=Dict([:nruf2 => 1.0]),
+    tables=Dict([:nrcm => (-0.05, 0.0)]),
+    ranges=Dict([:nrcm => (-1.0, 0.0)]),
+)
+    @parameters dnrur = params[:dnrur]
+    @parameters nruf1 = params[:nruf1]
+    @parameters pyear = params[:pyear]
 
     @variables nrur(t)
-    @variables nruf2(t) = 1.0
+    @variables nruf2(t) = inits[:nruf2]
     @variables nrate(t), nrcm(t)
 
     D = Differential(t)
@@ -492,17 +497,23 @@ function resource_control(nruf1, pyear; name)
     eqs = [
         D(nruf2) ~ nrate
         nrate ~ clip(nruf2 * nrcm, 0, t, pyear)
-        nrcm ~ interpolate(1.0 - (nrur / dnrur), (-0.05, 0.0), (-1.0, 0.0))
+        nrcm ~ interpolate(1.0 - (nrur / dnrur), tables[:nrcm], ranges[:nrcm])
     ]
 
     return ODESystem(eqs; name)
 end
 
-function yield_control(pyear; name)
-    @parameters drf = 3.0
+function yield_control(; name,
+    params=Dict([:drf => 3, :pyear => 1975]),
+    inits=Dict([:lyf2 => 1.0]),
+    tables=Dict([:lycm => (0.0, 0.05)]),
+    ranges=Dict([:lycm => (0.0, 1.0)]),
+)
+    @parameters drf = params[:drf]
+    @parameters pyear = params[:pyear]
 
     @variables fr(t)
-    @variables lyf2(t) = 1.0
+    @variables lyf2(t) = inits[:lyf2]
     @variables lyf2r(t), lycm(t)
 
     D = Differential(t)
@@ -510,18 +521,23 @@ function yield_control(pyear; name)
     eqs = [
         D(lyf2) ~ lyf2r
         lyf2r ~ clip(lyf2 * lycm, 0, t, pyear)
-        lycm ~ interpolate(drf - fr, (0.0, 0.05), (0.0, 1.0))
+        lycm ~ interpolate(drf - fr, tables[:lycm], ranges[:lycm])
     ]
 
     return ODESystem(eqs; name)
 end
 
-function pollution_control(pyear; name)
-    @parameters dpolx = 3.0
-    @parameters pyear = pyear
+function pollution_control(; name,
+    params=Dict([:dpolx => 3, :pyear => 1975]),
+    inits=Dict([:ppgf2 => 1]),
+    tables=Dict([:polgfm => (-0.05, 0.0)]),
+    ranges=Dict([:polgfm => (-1.0, 0.0)]),
+)
+    @parameters dpolx = params[:dpolx]
+    @parameters pyear = params[:pyear]
 
     @variables ppolx(t)
-    @variables ppgf2(t) = 1.0
+    @variables ppgf2(t) = inits[:ppgf2]
     @variables prate(t), polgfm(t)
 
     D = Differential(t)
@@ -529,7 +545,7 @@ function pollution_control(pyear; name)
     eqs = [
         D(ppgf2) ~ prate
         prate ~ clip(ppgf2 * polgfm, 0, t, pyear)
-        polgfm ~ interpolate(1.0 - (ppolx / dpolx), (-0.05, 0.0), (-1.0, 0.0))
+        polgfm ~ interpolate(1.0 - (ppolx / dpolx), tables[:polgfm], ranges[:polgfm])
     ]
 
     return ODESystem(eqs; name)
@@ -552,9 +568,9 @@ function fig_24(; kwargs...)
     @named pp = Pollution.persistent_pollution()
     @named ai = Agriculture.agricultural_inputs()
     @named dlm = Agriculture.discontinuing_land_maintenance()
-    @named rc = resource_control(NonRenewable._params[:nruf1], 1975)
-    @named yc = yield_control(1975)
-    @named pc = pollution_control(1975)
+    @named rc = resource_control()
+    @named yc = yield_control()
+    @named pc = pollution_control()
 
     connection_eqs = [
         rc.nrur ~ nr.nrur
