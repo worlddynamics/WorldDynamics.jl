@@ -696,7 +696,7 @@ function fig_27(; kwargs...)
         pc.ppolx ~ pp.ppolx
         tc.nruf2 ~ rc.nruf2
         tc.lyf2 ~ yc.lyf2
-        tc.ppgf2 ~ pp.ppgf2
+        tc.ppgf2 ~ pc.ppgf2
     ]
 
     new_equations = equations(system)
