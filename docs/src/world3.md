@@ -373,8 +373,11 @@ In this page we list the equations, the variables and the parameters of the Worl
 | Description | Name 	| Value | System |
 | --- | ------	| -------	| ------ |
 | Assimilation half-life in 1970 | $\mathtt{ahl}70$ | $1.5$ | `Pollution` |
+| `alai` before `pyear` | $\mathtt{alai1}$ | $2$ | `Agriculture` |
+| `alai` after `pyear` | $\mathtt{alai2}$ | $2$ | `Agriculture` |
 | `alic` before `pyear` | $\mathtt{alic1}$ | $14$ | `Capital` |
 | `alic` after `pyear` | $\mathtt{alic2}$ | $14$ | `Capital` |
+| Average life of land normal | $\mathtt{alln}$ | $6000$ | `Agriculture` |
 | `alsc` before `pyear` | $\mathtt{alsc1}$ | $20$ | `Capital` |
 | `alsc` after `pyear` | $\mathtt{alsc2}$ | $20$ | `Capital` |
 | Agricultural materials toxicity index | $\mathtt{amti}$ | $1$ | `Pollution` |
@@ -384,32 +387,42 @@ In this page we list the equations, the variables and the parameters of the Worl
 | `fioac` after `pyear` | $\mathtt{fioac2}$ | $0.43$ | `Capital` |
 | Fraction of inputs as persistent materials | $\mathtt{fipm}$ | $0.001$ | `Pollution` |
 | Fraction of resources as persistent materials | $\mathtt{frpm}$ | $0.02$ | `Pollution` |
+| Food shortage perception delay | $\mathtt{fspd}$ | $2$ | `Agriculture` |
 | Health services impact delay | $\mathtt{hsid}$ | $20$ | `Population` |
 | `icor` before `pyear` | $\mathtt{icor1}$ | $3$ | `Capital` |
 | `icor` after `pyear` | $\mathtt{icor2}$ | $3$ | `Capital` |
 | Income expectation averaging time | $\mathtt{ieat}$ | $3$ | `Population` |
 | Industrial equilibrium time | $\mathtt{iet}$ | $4000$ | `Capital` |
+| Inherent land fertility | $\mathtt{ilf}$ | $600$ | `Agriculture` |
 | Industrial materials emission factor | $\mathtt{imef}$ | $0.1$ | `Pollution` |
 | Industrial materials toxicity index | $\mathtt{imti}$ | $10$ | `Pollution` |
+| Industrial output in 1970 | $\mathtt{io}70$ | $7.9e11$ | `Agriculture` |
 | Industrial output per capita desired | $\mathtt{iopcd}$ | $400$ | `Capital` |
 | Life expectancy normal | $\mathtt{len}$ | $28$ | `Population` |
+| Land fraction harvested | $\mathtt{lfh}$ | $0.7$ | `Agriculture` |
 | Labor force participation fraction | $\mathtt{lfpf}$ | $0.75$ | `Capital` |
 | Lifetime perception delay | $\mathtt{lpd}$ | $20$ | `Population` |
 | Labor utilization fraction delay time | $\mathtt{lufdt}$ | $2$ | `Capital` |
+| `lyf` before `pyear` | $\mathtt{lyf1}$ | $1$ | `Agriculture` |
+| `lyf` after `pyear` | $\mathtt{lyf2}$ | $1$ | `Agriculture` |
 | Maximum total fertility normal | $\mathtt{mtfn}$ | $12$ | `Population` |
 | `nruf` before `pyear` | $\mathtt{nruf1}$ | $1$ | `NonRenewable` |
 | `nruf` after `pyear` | $\mathtt{nruf2}$ | $1$ | `NonRenewable` |
+| Potentially arable land total | $\mathtt{palt}$ | $3.2e9$ | `Agriculture` |
 | Population equilibrium time | $\mathtt{pet}$ | $4000$ | `Population` |
+| Processing loss | $\mathtt{pl}$ | $0.1$ | `Agriculture` |
 | `ppgf` before `pyear` | $\mathtt{ppgf1}$ | $1$ | `Pollution` |
 | `ppgf` after `pyear` | $1$ | `Pollution` |
 | Persistent pollution in 1970 | $\mathtt{ppol70}$ | $1.36e8$ | `Pollution` |
-| Year new policy is implemented | $\mathtt{pyear}$ | $1975$ | `NonRenewable` |
+| Year new policy is implemented | $\mathtt{pyear}$ | $1975$ |  |
 | Reproductive lifetime | $\mathtt{rlt}$ | $30$ | `Population` |
 | Social adjustment delay | $\mathtt{sad}$ | $20$ | `Population` |
+| Social discount | $\mathtt{sd}$ | $0.07$ | `Agriculture` |
 | `scor` before `pyear` | $\mathtt{scor1}$ | $1$ | `Capital` |
 | `scor` after `pyear` | $\mathtt{scor2}$ | $1$ | `Capital` |
-| Subsistence food per capita | $\mathtt{sfpc}$ | $230$ | `Population` |
+| Subsistence food per capita | $\mathtt{sfpc}$ | $230$ | `Agriculture` |
 | Technological development and implementation delay | $\mathtt{tdd}$ | $10$ | `Pollution` |
+| Urban-industrial land development time | $\mathtt{uildt}$ | $10$ | `Agriculture` |
 | Time when desired family size equals 2 children | $\mathtt{zpgt}$ | $4000$ | `NonRenewable` |
 
 ## Tables and ranges
