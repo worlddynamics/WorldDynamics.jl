@@ -714,11 +714,152 @@ function fig_27(; kwargs...)
     return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.27", kwargs...)
 end
 
+
+function delayed_resource_control(; name,
+    params=Dict([:tdd => 10, :dnrur => 2e9, :pyear => 1975]),
+    inits=Dict([:nrtd => 1.0]),
+    tables=Dict([:nrcm => (-0.05, 0.0)]),
+    ranges=Dict([:nrcm => (-1.0, 0.0)]),
+)
+    @parameters tdd = params[:tdd]
+    @parameters dnrur = params[:dnrur]
+    @parameters pyear = params[:pyear]
+
+    @variables nrur(t)
+    @variables nruf2(t) = inits[:nrtd]
+    @variables nruf22(t) = inits[:nrtd]
+    @variables nruf21(t) = inits[:nrtd]
+    @variables nrtd(t) = inits[:nrtd]
+    @variables nrate(t), nrcm(t)
+
+    D = Differential(t)
+
+    eqs = [
+        D(nruf2) ~ 3 * (nruf22 - nruf2) / tdd
+        D(nruf22) ~ 3 * (nruf21 - nruf22) / tdd
+        D(nruf21) ~ 3 * (nrtd - nruf21) / tdd
+        D(nrtd) ~ nrate
+        nrate ~ clip(nrtd * nrcm, 0, t, pyear)
+        nrcm ~ interpolate(1.0 - (nrur / dnrur), tables[:nrcm], ranges[:nrcm])
+    ]
+
+    return ODESystem(eqs; name)
+end
+
+function delayed_yield_control(; name,
+    params=Dict([:tdd => 10, :drf => 3, :pyear => 1975]),
+    inits=Dict([:lytd => 1.0]),
+    tables=Dict([:lycm => (0.0, 0.05)]),
+    ranges=Dict([:lycm => (0.0, 1.0)]),
+)
+    @parameters tdd = params[:tdd]
+    @parameters drf = params[:drf]
+    @parameters pyear = params[:pyear]
+
+    @variables fr(t)
+    @variables lyf2(t) = inits[:lytd]
+    @variables lyf22(t) = inits[:lytd]
+    @variables lyf21(t) = inits[:lytd]
+    @variables lytd(t) = inits[:lytd]
+    @variables lytdr(t), lycm(t)
+
+    D = Differential(t)
+
+    eqs = [
+        D(lyf2) ~ 3 * (lyf22 - lyf2) / tdd
+        D(lyf22) ~ 3 * (lyf21 - lyf22) / tdd
+        D(lyf21) ~ 3 * (lytd - lyf21) / tdd
+        D(lytd) ~ lytdr
+        lytdr ~ clip(lytd * lycm, 0, t, pyear)
+        lycm ~ interpolate(drf - fr, tables[:lycm], ranges[:lycm])
+    ]
+
+    return ODESystem(eqs; name)
+end
+
+function delayed_pollution_control(; name,
+    params=Dict([:tdd => 10, :dpolx => 3, :pyear => 1975]),
+    inits=Dict([:ptd => 1]),
+    tables=Dict([:polgfm => (-0.05, 0.0)]),
+    ranges=Dict([:polgfm => (-1.0, 0.0)]),
+)
+    @parameters tdd = params[:tdd]
+    @parameters dpolx = params[:dpolx]
+    @parameters pyear = params[:pyear]
+
+    @variables ppolx(t)
+    @variables ppgf2(t) = inits[:ptd]
+    @variables ppgf22(t) = inits[:ptd]
+    @variables ppgf21(t) = inits[:ptd]
+    @variables ptd(t) = inits[:ptd]
+    @variables ptdr(t), polgfm(t)
+
+    D = Differential(t)
+
+    eqs = [
+        D(ppgf2) ~ 3 * (ppgf22 - ppgf2) / tdd
+        D(ppgf22) ~ 3 * (ppgf21 - ppgf22) / tdd
+        D(ppgf21) ~ 3 * (ptd - ppgf21) / tdd
+        D(ptd) ~ ptdr
+        ptdr ~ clip(ptd * polgfm, 0, t, pyear)
+        polgfm ~ interpolate(1.0 - (ppolx / dpolx), tables[:polgfm], ranges[:polgfm])
+    ]
+
+    return ODESystem(eqs; name)
+end
+
 """
     Reproduce Fig 7.30. The original figure is presented on Chapter 7.
 """
-fig_30(; kwargs...) = @info "This figure is not implemented yet."
+function fig_30(; kwargs...)
+    nr_tables = NonRenewable.gettables()
+    nr_tables[:fcaor2] = (1.0, 0.2, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05)
 
+    agr_tables = Agriculture.gettables()
+    agr_tables[:llmy2] = (1.2, 1.0, 0.9, 0.8, 0.75, 0.7, 0.67, 0.64, 0.62, 0.6)
+    agr_tables[:lymap2] = (1.0, 1.0, 0.98, 0.95)
+
+    system = historicalrun(nonrenewable_tables=nr_tables, agriculture_tables=agr_tables)
+
+    @named nr = NonRenewable.non_renewable()
+    @named pp = Pollution.persistent_pollution()
+    @named ai = Agriculture.agricultural_inputs()
+    @named dlm = Agriculture.discontinuing_land_maintenance()
+    @named is = Capital.industrial_subsector()
+
+    @named drc = delayed_resource_control()
+    @named dyc = delayed_yield_control()
+    @named dpc = delayed_pollution_control()
+    @named tc = technological_costs()
+
+    connection_eqs = [
+        drc.nrur ~ nr.nrur
+        dyc.fr ~ dlm.fr
+        dpc.ppolx ~ pp.ppolx
+        tc.nruf2 ~ drc.nrtd
+        tc.lyf2 ~ dyc.lytd
+        tc.ppgf2 ~ dpc.ptd
+    ]
+
+    new_equations = equations(system)
+
+    new_equations[204] = nr.nruf ~ clip(drc.nruf2, nr.nruf1, t, nr.pyear)
+    new_equations[177] = ai.lyf ~ clip(dyc.lyf2, ai.lyf1, t, ai.pyear)
+    new_equations[215] = pp.ppgf ~ clip(dpc.ppgf2, pp.ppgf1, t, pp.pyear)
+    new_equations[125] = is.icor ~ clip(tc.icor2, is.icor1, t, is.pyear)
+
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named new_system = ModelingToolkit.compose(_new_system, drc, dyc, dpc, tc)
+
+    solution = solve(new_system, (1900, 2100))
+
+    return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.30", kwargs...)
+end
+
+
+function growth_bias()
+
+end
 """
     Reproduce Fig 7.32. The original figure is presented on Chapter 7.
 """
