@@ -45,3 +45,23 @@ end
 fig_scenario1a(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_a(); title="Scenario 1 - State of the world", kwargs...)
 
 fig_scenario1b(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_b(); title="Scenario 1 - Material standard of living", kwargs...)
+
+function fig_scenario2a(; kwargs...)
+    nr_params = World3.NonRenewable.getparameters()
+    nr_params[:nri] = 2e12
+
+    system = scenario1(nonrenewable_params=nr_params)
+    solution = solve(system, (1900, 2100))
+
+    return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Scenario 2 - State of the World", kwargs...)
+end
+
+function fig_scenario2b(; kwargs...)
+    nr_params = World3.NonRenewable.getparameters()
+    nr_params[:nri] = 2e12
+
+    system = scenario1(nonrenewable_params=nr_params)
+    solution = solve(system, (1900, 2100))
+
+    return plotvariables(solution, (t, 1900, 2100), _variables_b(); title="Scenario 2 - Material standard of living", kwargs...)
+end
