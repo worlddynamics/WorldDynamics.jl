@@ -39,9 +39,23 @@ function _variables_b()
     return variables
 end
 
+function _variables_c()
+    @named hwi = NewEquations.human_welfare_index()
+    @named hef = NewEquations.human_ecological_footprint()
+
+    variables = [
+        (hwi.hwi, 0, 1, "Human welfare index"),
+        (hef.hef, 0, 4, "Human ecological footprint"),
+    ]
+
+    return variables
+end
+
 
 @variables t
 
 fig_scenario1a(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_a(); title="Scenario 1 - State of the World", kwargs...)
 
 fig_scenario1b(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_b(); title="Scenario 1 - Material Standard of Living", kwargs...)
+
+fig_scenario1c(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_c(); title="Scenario 1 - Human Welfare and Footprint", kwargs...)

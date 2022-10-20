@@ -5,8 +5,7 @@ using WorldDynamics, Test, PlotlyJS
     @testset "Standard runs" begin
         @test isa(World3_03.fig_scenario1a(), PlotlyJS.SyncPlot)
         @test isa(World3_03.fig_scenario1b(), PlotlyJS.SyncPlot)
-        @test isa(World3_03.fig_scenario2a(), PlotlyJS.SyncPlot)
-        @test isa(World3_03.fig_scenario2b(), PlotlyJS.SyncPlot)
+        @test isa(World3_03.fig_scenario1c(), PlotlyJS.SyncPlot)
     end
 
 end
