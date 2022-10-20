@@ -13,11 +13,11 @@ function _variables_a()
     @named pp = World3.Pollution.persistent_pollution()
 
     variables = [
-        (nr.nr,    0, 2e12, "resources"),
-        (is.io,    0, 4e12, "industrial output"),
-        (ld.f,     0, 6e12, "food"),
-        (pop.pop,  0, 12e9, "population"),
-        (pp.ppolx, 0, 40,   "pollution"),
+        (nr.nr,    0, 2e12, "Resources"),
+        (is.io,    0, 4e12, "Industrial output"),
+        (ld.f,     0, 6e12, "Food"),
+        (pop.pop,  0, 12e9, "Population"),
+        (pp.ppolx, 0, 40,   "Pollution"),
     ]
 
     return variables
@@ -42,6 +42,6 @@ end
 
 @variables t
 
-fig_scenario1a(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_a(); title="Scenario 1 - State of the world", kwargs...)
+fig_scenario1a(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_a(); title="Scenario 1 - State of the World", kwargs...)
 
-fig_scenario1b(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_b(); title="Scenario 1 - Material standard of living", kwargs...)
+fig_scenario1b(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_b(); title="Scenario 1 - Material Standard of Living", kwargs...)
