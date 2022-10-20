@@ -63,5 +63,5 @@ function fig_scenario2b(; kwargs...)
     system = scenario1(nonrenewable_params=nr_params)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Scenario 2 - Material standard of living", kwargs...)
+    return plotvariables(solution, (t, 1900, 2100), _variables_b(); title="Scenario 2 - Material standard of living", kwargs...)
 end
