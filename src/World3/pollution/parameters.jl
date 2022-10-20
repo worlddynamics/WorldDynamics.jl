@@ -1,4 +1,4 @@
-params = Dict{Symbol, Float64}(
+_params = Dict{Symbol, Float64}(
     :pyear => 1975, # Line 150.1 Appendix A
     :ppgf1 => 1, # Line 138.1 Appendix A
     :ppgf21 => 1, # Line 138.2 Appendix A
@@ -16,3 +16,5 @@ params = Dict{Symbol, Float64}(
     :pcti => 1,
     :pd => 5,
 )
+
+getparameters() = copy(_params)

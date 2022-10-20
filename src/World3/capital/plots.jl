@@ -1,6 +1,3 @@
-include("../../plotvariables.jl")
-
-
 function historicalrunsolution()
     isdefined(@__MODULE__, :_solution_historicalrun) && return _solution_historicalrun
     global _solution_historicalrun = solve(historicalrun(), (1900, 2100))
@@ -8,7 +5,7 @@ function historicalrunsolution()
 end
 
 
-function variables_37()
+function _variables_37()
     @named is = industrial_subsector()
     @named ss = service_subsector()
     @named js = job_subsector()
@@ -24,7 +21,7 @@ function variables_37()
     return variables
 end
 
-function variables_40()
+function _variables_40()
     @named is = industrial_subsector()
     @named ss = service_subsector()
     @named js = job_subsector()
@@ -40,7 +37,7 @@ function variables_40()
     return variables
 end
 
-function variables_45()
+function _variables_45()
     @named pop = population()
     @named nr = non_renewable()
     @named ag = agriculture()
@@ -56,7 +53,9 @@ end
 
 
 """
-    Reproduce Fig 3.36. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.36. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Driving functions for the standard run of the capital sector.
 """
 function fig_36(; kwargs...)
     @named pop = population()
@@ -76,13 +75,17 @@ end
 
 
 """
-    Reproduce Fig 3.37. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.37. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 3-1: standard run of the capital sector with exogenous inputs.
 """
-fig_37(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2000), variables_37(); title="Fig. 3.37", kwargs...)
+fig_37(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2000), _variables_37(); title="Fig. 3.37", kwargs...)
 
 
 """
-    Reproduce Fig 3.38. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.38. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 3-2: behavior of the capital sector when the average lifetime of industrial capital is increased from 14 to 21 years with standard inputs.
 """
 function fig_38(; kwargs...)
     parameters_3_38 = getparameters()
@@ -91,11 +94,13 @@ function fig_38(; kwargs...)
     system = historicalrun(params=parameters_3_38)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.38", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.38", kwargs...)
 end
 
 """
-    Reproduce Fig 3.39. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.39. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run3-3: behaviorofthecapital sector when the capital-output ratio is decreased from 3 to 2 years with standard inputs.
 """
 function fig_39(; kwargs...)
     parameters_3_39 = getparameters()
@@ -104,11 +109,14 @@ function fig_39(; kwargs...)
     system = historicalrun(params=parameters_3_39)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.39", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.39", kwargs...)
 end
 
 """
-    Reproduce Fig 3.40. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.40. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 3-4: behavior of the capital sector when the industrial capital-output ratio is increased from 3 to 4 years with standard inputs.
+    Note: Scales for IOPC, SOPC, and IO have been changed from their normal values.
 """
 function fig_40(; kwargs...)
     parameters_3_40 = getparameters()
@@ -117,11 +125,14 @@ function fig_40(; kwargs...)
     system = historicalrun(params=parameters_3_40)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_40(); title="Fig. 3.40", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_40(); title="Fig. 3.40", kwargs...)
 end
 
 """
-    Reproduce Fig 3.41. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.41. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 3-5: behavior of the capital sector when the fraction of capital allocated to obtaining resources is increased from 0.05 to 0.35 with other inputs at their standard values.
+    Note: Scales for IOPC, SOPC, and IO have been changed from their normal values.
 """
 function fig_41(; kwargs...)
     cap_tables_3_41 = gettables()
@@ -130,11 +141,13 @@ function fig_41(; kwargs...)
     system = historicalrun(tables=cap_tables_3_41)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_40(); title="Fig. 3.41", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_40(); title="Fig. 3.41", kwargs...)
 end
 
 """
-    Reproduce Fig 3.42. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.42. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 3-6: behavior of the capital sector when the service capital-output ratio is increased from 1 to 2 years with standard inputs.
 """
 function fig_42(; kwargs...)
     parameters_3_42 = getparameters()
@@ -143,11 +156,13 @@ function fig_42(; kwargs...)
     system = historicalrun(params=parameters_3_42)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.42", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.42", kwargs...)
 end
 
 """
-    Reproduce Fig 3.43. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.43. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Driving functions for capital sector experiencing increasing resource costs.
 """
 function fig_43(; kwargs...)
     @named pop = population()
@@ -170,7 +185,9 @@ function fig_43(; kwargs...)
 end
 
 """
-    Reproduce Fig 3.44. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.44. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 3-7: behavior of the capital sector when the fraction of capital allocated to obtaining resources increases after 1970.
 """
 function fig_44(; kwargs...)
     cap_tables_3_44 = gettables()
@@ -179,11 +196,13 @@ function fig_44(; kwargs...)
     system = historicalrun(tables=cap_tables_3_44)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.44", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.44", kwargs...)
 end
 
 """
-    Reproduce Fig 3.45. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.45. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Driving functions for capital sector undergoing increasing food. costs
 """
 function fig_45(; kwargs...)
     cap_tables_3_45 = gettables()
@@ -191,24 +210,28 @@ function fig_45(; kwargs...)
 
     system = historicalrun(tables=cap_tables_3_45)
     solution = solve(system, (1900, 2100))
-    return plotvariables(solution, (t, 1900, 2000), variables_45(); title="Fig. 3.45", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_45(); title="Fig. 3.45", kwargs...)
 end
 
 """
-    Reproduce Fig 3.46. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.46. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 3-8: behavior of the capital sector when the fraction of industrial output allocated to agriculture increases after 1970.
 """
 function fig_46(; kwargs...)
     cap_tables_3_46 = gettables()
-    cap_tables_3_46[:fcaor] = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.3, 0.3, 0.3)
+    cap_tables_3_46[:fioaa] = (0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.3, 0.3, 0.3)
 
     system = historicalrun(tables=cap_tables_3_46)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.46", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.46", kwargs...)
 end
 
 """
-    Reproduce Fig 3.47. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.47. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Driving functions for a population decline in the capital sector.
 """
 function fig_47(; kwargs...)
     cap_tables_3_47 = gettables()
@@ -217,11 +240,14 @@ function fig_47(; kwargs...)
     system = historicalrun(tables=cap_tables_3_47)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_45(); title="Fig. 3.47", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_45(); title="Fig. 3.47", kwargs...)
 end
 
 """
-    Reproduce Fig 3.48. The original figure is presented on Chapter 3.
+    Reproduce Fig 3.48. The original figure is presented in Chapter 3 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+    Caption: Run 3-9: behavior of the capital sector when the
+    population declines after 1970.
 """
 function fig_48(; kwargs...)
     cap_tables_3_48 = gettables()
@@ -230,5 +256,5 @@ function fig_48(; kwargs...)
     system = historicalrun(tables=cap_tables_3_48)
     solution = solve(system, (1900, 2100))
 
-    return plotvariables(solution, (t, 1900, 2000), variables_37(); title="Fig. 3.48", kwargs...)
+    return plotvariables(solution, (t, 1900, 2000), _variables_37(); title="Fig. 3.48", kwargs...)
 end

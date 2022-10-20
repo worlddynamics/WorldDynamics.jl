@@ -1,4 +1,4 @@
-params = Dict{Symbol, Float64}(
+_params = Dict{Symbol, Float64}(
     :len => 28, # Line 19.1 Appendix A
     :sfpc => 230,
     :hsid => 20, # Line 22.1 Appendix A

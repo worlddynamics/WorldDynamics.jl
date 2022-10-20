@@ -1,4 +1,4 @@
-tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
+_tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
     :brmm => (1.2, 1.0, 0.85, 0.75, 0.7, 0.7),
     :brcm => (1.05, 1.0, 0.9, 0.7, 0.6, 0.55),
     :brfm => (0.0, 1.0, 1.6, 1.9, 2.0),
@@ -9,7 +9,7 @@ tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
     :drcm => (0.9, 1.0, 1.2, 1.5, 1.9, 3.0),
 )
 
-ranges = Dict{Symbol, Tuple{Float64, Float64}}(
+_ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :brmm => (0, 5),
     :brcm => (0, 5),
     :brfm => (0, 4),
@@ -19,3 +19,6 @@ ranges = Dict{Symbol, Tuple{Float64, Float64}}(
     :drfm => (0, 2),
     :drcm => (0, 5),
 )
+
+gettables() = copy(_tables)
+getranges() = copy(_ranges)

@@ -205,20 +205,18 @@ using WorldDynamics, Test, PlotlyJS
         @test isa(World3.fig_20(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_21(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_22(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_23(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_24(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_26(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_27(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_30(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_32(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_34(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_35(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_36(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_37(), PlotlyJS.SyncPlot)
         @test isa(World3.fig_38(), PlotlyJS.SyncPlot)
-
-        @test_logs (:info, "This figure is not implemented yet.") World3.fig_23()
-        @test_logs (:info, "This figure is not implemented yet.") World3.fig_24()
-        @test_logs (:info, "This figure is not implemented yet.") World3.fig_26()
-        @test_logs (:info, "This figure is not implemented yet.") World3.fig_27()
-        @test_logs (:info, "This figure is not implemented yet.") World3.fig_30()
-        @test_logs (:info, "This figure is not implemented yet.") World3.fig_32()
-        @test_logs (:info, "This figure is not implemented yet.") World3.fig_39()
-        @test_logs (:info, "This figure is not implemented yet.") World3.fig_41()
+        @test isa(World3.fig_39(), PlotlyJS.SyncPlot)
+        @test isa(World3.fig_41(), PlotlyJS.SyncPlot)
     end
-
 end
