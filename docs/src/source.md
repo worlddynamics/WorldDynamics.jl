@@ -36,48 +36,6 @@ Pages   = ["solvesystems.jl"]
 
 ## Reproducing World2 figures
 
-### Agriculture Investment system
-
-```@autodocs
-Modules = [WorldDynamics.World2.AgricultureInvestment]
-Pages   = ["plots.jl"]
-```
-
-### Capital Investment system
-
-```@autodocs
-Modules = [WorldDynamics.World2.CapitalInvestment]
-Pages   = ["plots.jl"]
-```
-
-### Natural Resources system
-
-```@autodocs
-Modules = [WorldDynamics.World2.NaturalResources]
-Pages   = ["plots.jl"]
-```
-
-### Pollution system
-
-```@autodocs
-Modules = [WorldDynamics.World2.Pollution]
-Pages   = ["plots.jl"]
-```
-
-### Population system
-
-```@autodocs
-Modules = [WorldDynamics.World2.Population]
-Pages   = ["plots.jl"]
-```
-
-### Quality Life system
-
-```@autodocs
-Modules = [WorldDynamics.World2.QualityLife]
-Pages   = ["plots.jl"]
-```
-
 ### World2 system
 
 ```@autodocs
