@@ -50,6 +50,13 @@ Modules = [WorldDynamics.World2.CapitalInvestment]
 Pages   = ["plots.jl"]
 ```
 
+### Natural Resources system
+
+```@autodocs
+Modules = [WorldDynamics.World2.NaturalResources]
+Pages   = ["plots.jl"]
+```
+
 ## Reproducing World3 figures
 
 ### Agriculture system
