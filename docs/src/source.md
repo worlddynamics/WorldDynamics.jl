@@ -43,6 +43,13 @@ Modules = [WorldDynamics.World2.AgricultureInvestment]
 Pages   = ["plots.jl"]
 ```
 
+### Capital Investment system
+
+```@autodocs
+Modules = [WorldDynamics.World2.CapitalInvestment]
+Pages   = ["plots.jl"]
+```
+
 ## Reproducing World3 figures
 
 ### Agriculture system
