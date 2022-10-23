@@ -34,6 +34,15 @@ Order   = [:function]
 Pages   = ["solvesystems.jl"]
 ```
 
+## Reproducing World2 figures
+
+### Agriculture Investment system
+
+```@autodocs
+Modules = [WorldDynamics.World2.AgricultureInvestment]
+Pages   = ["plots.jl"]
+```
+
 ## Reproducing World3 figures
 
 ### Agriculture system
