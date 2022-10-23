@@ -64,17 +64,17 @@ Modules = [WorldDynamics.World2.Pollution]
 Pages   = ["plots.jl"]
 ```
 
-### Population system
-
-```@autodocs
-Modules = [WorldDynamics.World2.Population]
-Pages   = ["plots.jl"]
-```
-
 ### Pollution system
 
 ```@autodocs
 Modules = [WorldDynamics.World2.Pollution]
+Pages   = ["plots.jl"]
+```
+
+### Population system
+
+```@autodocs
+Modules = [WorldDynamics.World2.Population]
 Pages   = ["plots.jl"]
 ```
 
