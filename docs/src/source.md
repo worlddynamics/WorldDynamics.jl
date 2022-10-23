@@ -78,6 +78,13 @@ Modules = [WorldDynamics.World2.Population]
 Pages   = ["plots.jl"]
 ```
 
+### Quality Life system
+
+```@autodocs
+Modules = [WorldDynamics.World2.QualityLife]
+Pages   = ["plots.jl"]
+```
+
 ## Reproducing World3 figures
 
 ### Agriculture system
