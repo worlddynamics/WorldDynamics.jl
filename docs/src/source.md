@@ -88,7 +88,7 @@ Pages   = ["plots.jl"]
 ### World2 system
 
 ```@autodocs
-Modules = [WorldDynamics.World2.World2]
+Modules = [WorldDynamics.World2]
 Pages   = ["plots.jl"]
 ```
 
