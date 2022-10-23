@@ -71,6 +71,13 @@ Modules = [WorldDynamics.World2.Population]
 Pages   = ["plots.jl"]
 ```
 
+### Pollution system
+
+```@autodocs
+Modules = [WorldDynamics.World2.Pollution]
+Pages   = ["plots.jl"]
+```
+
 ## Reproducing World3 figures
 
 ### Agriculture system
