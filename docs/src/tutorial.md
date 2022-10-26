@@ -117,7 +117,7 @@ plotvariables(sol, (t, 1900, 2100), reference_variables, title="Fig. 7-13", show
 ```
 
 ### Updating the model with modern data
-The flexible structure of `WorldDynamics` allows the user to feed the model with modern data. For example, in the pollution system, the variable `POP` is assigned in the book the following interpolation table which corresponds to the population number (expressed in $10^8$) for a set of years between 1900 and 2100.
+The flexible structure of `WorldDynamics` allows the user to feed the model with modern data. For example, in the book, the variable `POP` of the pollution system is assigned the following interpolation table which corresponds to the population number (expressed in $10^8$) for a set of years between 1900 and 2100.
 
 ```
 tables[:pop] = (16.0, 19.0, 22.0, 31.0, 42.0, 53.0, 67.0, 86.0, 109.0, 139.0, 176.0);
