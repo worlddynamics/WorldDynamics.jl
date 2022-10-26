@@ -25,9 +25,9 @@ function birth_rate(; name, params=_params, inits=_inits, tables=_tables, ranges
     @parameters swt1 = params[:swt1] [description = "Switch time no. 1"]
 
     @variables br(t) [description = "Birth rate"]
-    @variables brfm(t) [description = "Birth rate from food multiplier"]
     @variables brmm(t) [description = "Birth rate from material multiplier"]
     @variables brcm(t) [description = "Birth rate from crowding multiplier"]
+    @variables brfm(t) [description = "Birth rate from food multiplier"]
     @variables brpm(t) [description = "Birth rate from pollution multiplier"]
 
     @variables p(t) [description = "Population"]
@@ -53,9 +53,9 @@ function death_rate(; name, params=_params, inits=_inits, tables=_tables, ranges
     @parameters swt3 = params[:swt3] [description = "Switch time no. 3"]
 
     @variables dr(t) [description = "Death rate"]
-    @variables drfm(t) [description = "Death rate from food multiplier"]
     @variables drmm(t) [description = "Death rate from material multiplier"]
     @variables drcm(t) [description = "Death rate from crowding multiplier"]
+    @variables drfm(t) [description = "Death rate from food multiplier"]
     @variables drpm(t) [description = "Death rate from pollution multiplier"]
 
     @variables p(t) [description = "Population"]

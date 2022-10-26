@@ -7,8 +7,8 @@ function capital_investment(; name, params=_params, inits=_inits, tables=_tables
 
     @variables msl(t) [description = "Material standard of living"]
     @variables ecir(t) [description = "Effective capital investment ratio"]
-    @variables cir(t) [description = "Capital investment ratio"]
     @variables cira(t) [description = "Capital investment ratio in agriculture"]
+    @variables cir(t) [description = "Capital investment ratio"]
     @variables ci(t) = inits[:ci] [description = "Capital investment"]
 
     @variables ciaf(t) [description = "Capital investment in agriculture fraction"]

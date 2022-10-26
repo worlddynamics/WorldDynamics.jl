@@ -9,8 +9,8 @@ function agriculture_investment(; name, params=_params, inits=_inits, tables=_ta
     @parameters ciaft = params[:ciaft] [description = "Capital investment in agriculture fraction adjustment time"]
 
     @variables fr(t) [description = "Food ratio"]
-    @variables fpci(t) [description = "Food potential from capital investment"]
     @variables fcm(t) [description = "Food from crowding multiplier"]
+    @variables fpci(t) [description = "Food potential from capital investment"]
     @variables fpm(t) [description = "Food from pollution multiplier"]
     @variables ciaf(t) = inits[:ciaf] [description = "Capital investment in agriculture fraction"]
     @variables cfifr(t) [description = "Capital fraction indicated by food ratio"]
