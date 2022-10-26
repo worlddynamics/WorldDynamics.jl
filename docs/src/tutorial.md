@@ -1,6 +1,6 @@
 # A WorldDynamics tutorial
 
-`WorldDynamics` allows the user to *play* with the World3 model introduced in the book *Dynamics of Growth in a Finite World* (1974). Informally speaking, this model is formed by five systems, each containg one or more subsystems. The following picture shows the structure of the model and the connections between the subsystems which share a common variable.
+`WorldDynamics` allows the user to *play* with the World3 model introduced in the book *Dynamics of Growth in a Finite World* (1974). Informally speaking, this model is formed by five systems, each containing one or more subsystems. The following picture shows the structure of the model and the connections between the subsystems which share a common variable.
 
 ![The World3 model](img/world3.png)
 
@@ -103,7 +103,7 @@ plotvariables(sol, (t, 1900, 2100), reference_variables, title="Fig. 7-10", show
 
 ### Modifying an interpolation table
 
-In order to reproduce Figure 7-13, in which the slope of the fraction of industrial output allocated to agriculture is increased, we can modify the two tables `FIOAA1` and `FIOAA2` by getting the table set of the agriculture sector, and by changing the value of these two tables. We then have to solve again the ODE system, by specifying which set of tables has to be used for the agriculture sector. Finally, we can plot the same seven variables of Figure 7-10. This is exactly what we do in the following code.
+In order to reproduce Figure 7-13, in which the slope of the fraction of industrial output allocated to agriculture is increased, we can modify the two tables `FIOAA1` and `FIOAA2` by getting the table set of the agriculture sector, and by changing the value of these two tables. We then have to solve the ODE system again, by specifying which set of tables has to be used for the agriculture sector. Finally, we can plot the same seven variables of Figure 7-10. This is exactly what we do in the following code.
 
 ```
 using WorldDynamics
@@ -124,8 +124,8 @@ tables[:pop] = (16.0, 19.0, 22.0, 31.0, 42.0, 53.0, 67.0, 86.0, 109.0, 139.0, 17
 ranges[:pop] = (1900, 2100)
 ```
 
-Instead, we can extend the above set of years to a much larger one as well as replace any outdated estimations by more recent data available at open-source data catalogs. In the following, we consider past and future projections of the world population, taken from the recognized public database
-[Our World In Data](https://ourworldindata.org/grapher/population-past-future?time=1867..2100). We first have to modify the table `POP` by getting the table set of the pollution sector, and by changing its value. We then have to solve again the ODE system, by specifying which set of tables has to be used for the pollution sector. This is exactly what we do in the following code.
+Instead, we can extend the above set of years to a much larger one as well as replace any outdated estimations with more recent data available at open-source data catalogs. In the following, we consider past and future projections of the world population, taken from the recognized public database
+[Our World In Data](https://ourworldindata.org/grapher/population-past-future?time=1867..2100). We first have to modify the table `POP` by getting the table set of the pollution sector, and by changing its value. We then have to solve the ODE system again, by specifying which set of tables has to be used for the pollution sector. This is exactly what we do in the following code.
 
 
 ```
