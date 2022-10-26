@@ -1,4 +1,4 @@
-# [World 2 equations, variables, and parameters](@id eqs_vars_pars_2) 
+# [World 2 equations, variables, and parameters](@id eqs_vars_pars_2)
 
 In this page we list the equations, the variables and the parameters of the World2 model as described in Chapter 3 and Appendix B of the book *World dynamics* (1973). Even if it is not said explicitily in the book, the World2 model consists of six systems containing several subsystems.
 
@@ -78,7 +78,7 @@ In this page we list the equations, the variables and the parameters of the Worl
 | Effective capital investment ratio | `ecir` | `capital_investment` |  |
 | Food from crowding multiplier | `fcm` | `agriculture_investment` |  |
 | Food potential from capital investment | `fpci` | `agriculture_investment` |  |
-| Food from pollution multiplier | `fpm` | `agriculture_investment` |  | 
+| Food from pollution multiplier | `fpm` | `agriculture_investment` |  |
 | Food ratio | `fr` | `agriculture_investment` | `birth_rate`, `death_rate`, `quality_life` |
 | Material standard of living | `msl` | `capital_investment` | `birth_rate`, `capital_investment_generation`, `death_rate`, `natural_resources_usage_rate`, `quality_life` |
 | Natural resources | `nr` | `natural_resources` |  |
@@ -139,7 +139,7 @@ In this page we list the equations, the variables and the parameters of the Worl
 | Switch time no. 3 for `nrun` | $\mathtt{swt3}$ | $1970$ | `Population` |
 | Switch time no. 4 for `cign` | $\mathtt{swt4}$ | $1970$ | `Capital investment` |
 | Switch time no. 5 for `cidn` | $\mathtt{swt5}$ | $1970$ | `Capital investment` |
-| Switch time no. 5 for `poln` | $\mathtt{swt6}$ | $1970$ | `Pollution` |
+| Switch time no. 6 for `poln` | $\mathtt{swt6}$ | $1970$ | `Pollution` |
 | Switch time no. 7 for `fc` | $\mathtt{swt7}$ | $1970$ | `Population` |
 
 ## Tables and ranges
