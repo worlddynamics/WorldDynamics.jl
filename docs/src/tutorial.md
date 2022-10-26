@@ -1,6 +1,6 @@
 # A WorldDynamics tutorial
 
-`WorldDynamics` allows the user to *play* with the World3 model introduced in the book *Dynamics of Growth in a Finite World* (1974). Informally speaking, this model is formed by five systems, each containg one or more subsystems. The following picture shows the structure of the model and the connections between the subsystems which share a common variable.
+`WorldDynamics` allows the user to *play* with the World3 model introduced in the book *Dynamics of Growth in a Finite World* (1974). Informally speaking, this model is formed by five systems, each containing one or more subsystems. The following picture shows the structure of the model and the connections between the subsystems which share a common variable.
 
 ![The World3 model](img/world3.png)
 
