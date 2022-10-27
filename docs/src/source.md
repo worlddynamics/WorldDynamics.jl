@@ -1,5 +1,12 @@
 # Source code documentation
 
+## Contents
+
+```@contents
+Pages = ["source.md"]
+Depth = 3
+```
+
 ## WorldDynamics constants
 ```@autodocs
 Modules = [WorldDynamics]
