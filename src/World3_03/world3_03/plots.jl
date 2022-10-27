@@ -68,4 +68,14 @@ fig_scenario1a(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100)
 
 fig_scenario1b(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_b(); title="Scenario 1 - Material Standard of Living", kwargs...)
 
+"""
+Reproduce the third subfigure of _Scenario 1_ from Chapter 4, page 169, in [LtG30y](https://web.archive.org/web/20220308214339/https://systemdynamics.org/product/affiliate-limits-to-growth-the-30-year-update/).
+
+Caption: **Scenario 1: A Reference Point**  
+The world society proceeds in a traditional manner without any major deviation from the policies pursued during most of the twentieth century. 
+Population and production increase until growth is halted by increasingly inaccessible nonrenewable resources. 
+Ever more investment is required to maintain resource flows. 
+Finally, lack of investment funds in the other sectors of the economy leads to declining output of both industrial goods and services. 
+As they fall, food and health services are reduced, decreasing life expectancy and raising average death rates.
+"""
 fig_scenario1c(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_c(); title="Scenario 1 - Human Welfare and Footprint", kwargs...)
