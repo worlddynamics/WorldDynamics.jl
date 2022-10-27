@@ -66,6 +66,13 @@ Modules = [WorldDynamics.World3.NonRenewable]
 Pages   = ["plots.jl"]
 ```
 
+### Pollution system
+
+```@autodocs
+Modules = [WorldDynamics.World3.Pollution]
+Pages   = ["plots.jl"]
+```
+
 ### One level population system
 
 ```@autodocs
