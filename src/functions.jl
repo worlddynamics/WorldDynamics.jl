@@ -23,6 +23,17 @@ function interpolate(x, yvalues::Tuple{Vararg{Float64}}, xrange::Tuple{Float64, 
     return y
 end
 
+function interpolate(x, yvalues::Tuple{Vararg{Float64}}, xrange::NTuple{2, Float64})
+   xvalues = LinRange(xrange[1], xrange[2], length(yvalues))
+   interpolate(x, yvalues, xvalues)
+end
+
+function interpolate(x, pairs::Vector{<:NTuple{2, Float64}})
+   xvalues = map(t -> t[1], pairs)
+   yvalues = map(t -> t[end], pairs)
+   interpolate(x, yvalues, xvalues)
+end
+
 """
    `clip(f1, f2, va, th)`
 
