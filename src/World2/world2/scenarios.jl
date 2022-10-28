@@ -1,28 +1,28 @@
 function natural_resource_depletion(;
-    pop_params = Population._params,
-    capital_params = CapitalInvestment._params,
-    agriculture_params = AgricultureInvestment._params,
-    naturalresources_params = NaturalResources._params,
-    pollution_params = Pollution._params,
-    qualitylife_params = QualityLife._params,
-    pop_inits = Population._inits,
-    capital_inits = CapitalInvestment._inits,
-    agriculture_inits = AgricultureInvestment._inits,
-    naturalresources_inits = NaturalResources._inits,
-    pollution_inits = Pollution._inits,
-    qualitylife_inits = QualityLife._inits,
-    pop_tables = Population._tables,
-    capital_tables = CapitalInvestment._tables,
-    agriculture_tables = AgricultureInvestment._tables,
-    naturalresources_tables = NaturalResources._tables,
-    pollution_tables = Pollution._tables,
-    qualitylife_tables = QualityLife._tables,
-    pop_ranges = Population._ranges,
-    capital_ranges = CapitalInvestment._ranges,
-    agriculture_ranges = AgricultureInvestment._ranges,
-    naturalresources_ranges = NaturalResources._ranges,
-    pollution_ranges = Pollution._ranges,
-    qualitylife_ranges = QualityLife._ranges,
+    pop_params=Population._params,
+    capital_params=CapitalInvestment._params,
+    agriculture_params=AgricultureInvestment._params,
+    naturalresources_params=NaturalResources._params,
+    pollution_params=Pollution._params,
+    qualitylife_params=QualityLife._params,
+    pop_inits=Population._inits,
+    capital_inits=CapitalInvestment._inits,
+    agriculture_inits=AgricultureInvestment._inits,
+    naturalresources_inits=NaturalResources._inits,
+    pollution_inits=Pollution._inits,
+    qualitylife_inits=QualityLife._inits,
+    pop_tables=Population._tables,
+    capital_tables=CapitalInvestment._tables,
+    agriculture_tables=AgricultureInvestment._tables,
+    naturalresources_tables=NaturalResources._tables,
+    pollution_tables=Pollution._tables,
+    qualitylife_tables=QualityLife._tables,
+    pop_ranges=Population._ranges,
+    capital_ranges=CapitalInvestment._ranges,
+    agriculture_ranges=AgricultureInvestment._ranges,
+    naturalresources_ranges=NaturalResources._ranges,
+    pollution_ranges=Pollution._ranges,
+    qualitylife_ranges=QualityLife._ranges
 )
     @named pop = Population.population(; params=pop_params, inits=pop_inits, tables=pop_tables, ranges=pop_ranges)
     @named dr = Population.death_rate(; params=pop_params, inits=pop_inits, tables=pop_tables, ranges=pop_ranges)
@@ -54,52 +54,54 @@ function natural_resource_depletion(;
     ]
 
 
-    connection_eqs = [
-        # population
-        pop.br ~ br.br
-        pop.dr ~ dr.dr
-        br.p ~ pop.p
-        br.msl ~ ci.msl
-        br.cr ~ pop.cr
-        br.fr ~ ai.fr
-        br.polr ~ pol.polr
-        dr.p ~ pop.p
-        dr.msl ~ ci.msl
-        dr.cr ~ pop.cr
-        dr.fr ~ ai.fr
-        dr.polr ~ pol.polr
-        # natural resources
-        nr.nrur ~ nrur.nrur
-        nrur.p ~ pop.p
-        nrur.msl ~ ci.msl
-        # capital investment
-        ci.ciaf ~ ai.ciaf
-        ci.nrem ~ nr.nrem
-        ci.p ~ pop.p
-        ci.cig ~ cig.cig
-        ci.cid ~ cid.cid
-        cig.p ~ pop.p
-        cig.msl ~ ci.msl
-        cid.ci ~ ci.ci
-        # agricultural investment
-        ai.cr ~ pop.cr
-        ai.cira ~ ci.cira
-        ai.polr ~ pol.polr
-        ai.qlm ~ ql.qlm
-        ai.qlf ~ ql.qlf
-        # pollution
-        pol.polg ~ polg.polg
-        pol.pola ~ pola.pola
-        pola.pol ~ pol.pol
-        pola.polr ~ pol.polr
-        polg.p ~ pop.p
-        polg.cir ~ ci.cir
-        # quality life
-        ql.msl ~ ci.msl
-        ql.cr ~ pop.cr
-        ql.fr ~ ai.fr
-        ql.polr ~ pol.polr
-    ]
+    # connection_eqs = [
+    #     # population
+    #     pop.br ~ br.br
+    #     pop.dr ~ dr.dr
+    #     br.p ~ pop.p
+    #     br.msl ~ ci.msl
+    #     br.cr ~ pop.cr
+    #     br.fr ~ ai.fr
+    #     br.polr ~ pol.polr
+    #     dr.p ~ pop.p
+    #     dr.msl ~ ci.msl
+    #     dr.cr ~ pop.cr
+    #     dr.fr ~ ai.fr
+    #     dr.polr ~ pol.polr
+    #     # natural resources
+    #     nr.nrur ~ nrur.nrur
+    #     nrur.p ~ pop.p
+    #     nrur.msl ~ ci.msl
+    #     # capital investment
+    #     ci.ciaf ~ ai.ciaf
+    #     ci.nrem ~ nr.nrem
+    #     ci.p ~ pop.p
+    #     ci.cig ~ cig.cig
+    #     ci.cid ~ cid.cid
+    #     cig.p ~ pop.p
+    #     cig.msl ~ ci.msl
+    #     cid.ci ~ ci.ci
+    #     # agricultural investment
+    #     ai.cr ~ pop.cr
+    #     ai.cira ~ ci.cira
+    #     ai.polr ~ pol.polr
+    #     ai.qlm ~ ql.qlm
+    #     ai.qlf ~ ql.qlf
+    #     # pollution
+    #     pol.polg ~ polg.polg
+    #     pol.pola ~ pola.pola
+    #     pola.pol ~ pol.pol
+    #     pola.polr ~ pol.polr
+    #     polg.p ~ pop.p
+    #     polg.cir ~ ci.cir
+    #     # quality life
+    #     ql.msl ~ ci.msl
+    #     ql.cr ~ pop.cr
+    #     ql.fr ~ ai.fr
+    #     ql.polr ~ pol.polr
+    # ]
+
+    connection_eqs::Vector{Equation} = WorldDynamics.variable_connections(systems)
 
     return WorldDynamics.compose(systems, connection_eqs)
 end

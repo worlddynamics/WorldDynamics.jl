@@ -2,6 +2,40 @@ using ModelingToolkit
 using DifferentialEquations
 
 """
+   `variable_connections(systems::Vector{ODESystem})`
+
+Return the set of variable equalities establishing the connections between the variables in the ODE systems included in the vector `systems`. The function assumes that no two distinct variables have the same name (even if they are defined in different ODE systems).
+"""
+function variable_connections(systems::Vector{ODESystem})
+    @variables t
+    @named _model = ODESystem([], t)
+    @named model = ModelingToolkit.compose(_model, systems)
+    connection_eqs::Vector{Equation} = []
+    var2sys::Dict{String,String} = Dict{String,String}()
+    var2fullvar = Dict()
+    g = variable_dependencies(model)
+    al = g.fadjlist
+    for u in 1:lastindex(al)
+        if (length(al[u]) > 0)
+            s, v = split(string(states(model)[u]), "₊")
+            var2sys[v] = s
+            var2fullvar[v] = states(model)[u]
+        end
+    end
+    ed = equation_dependencies(model)
+    for u in 1:lastindex(ed)
+        vl = ed[u]
+        for v in 1:lastindex(vl)
+            subs, var = split(string(vl[v]), "₊")
+            if (var2sys[var] != subs)
+                push!(connection_eqs, vl[v] ~ var2fullvar[var])
+            end
+        end
+    end
+    return connection_eqs
+end
+
+"""
    `compose(systems::Vector{ODESystem}, connection_eqs::Vector{Equation})`
 
 Return the ODE system obtained by composing the ODE systems in the vector `systems` and by making use of the variable equalities in `connection_eqs`. Normally, each ODE systems in `systems` corresponds to a subsystem of a system in the World3 model, and the variable equalities specify which variables are shared between the subsystems.
