@@ -15,11 +15,13 @@ using ModelingToolkit
 @register switch(v1, v2, z)
 @register WorldDynamics.step(t, hght, sttm)
 
+include("World1/World1.jl")
 include("World2/World2.jl")
 include("World3/World3.jl")
 include("World3_91/World3_91.jl")
 include("World3_03/World3_03.jl")
 
+export World1
 export World2
 export World3
 export World3_91
