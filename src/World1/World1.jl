@@ -272,6 +272,25 @@ function _variables_3()
     return variables
 end
 
+function _variables_4()
+    @named w1 = world1()
+
+    variables = [
+        (w1.pop,  0,     4e9,   "Population"),
+        (w1.polr, 0,     20,    "Pollution"),
+        (w1.ci,   0,     8e9,   "Capital investment"),
+        (w1.fr,   0,     8,     "Food ratio"),
+        (w1.cr,   0,     0.12,  "Crowding ratio"),
+        (w1.msl,  0,     80,    "Material standard of living"),
+        (w1.qlm,  0,     8,     "Quality of life from materials"),
+        (w1.ql,   0,     120,   "Quality of life"),
+        (w1.ciaf, 0,     0.8,   "Capital in agriculture"),
+        (w1.nr,   500e9, 900e9, "Natural resources"),
+    ]
+
+    return variables
+end
+
 
 fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="STD", showaxis=false, showlegend=false,kwargs...)
 
@@ -306,6 +325,15 @@ function fig_3(; kwargs...)
     sol = solve(standard_run(inits=new_inits, params=new_params), (1900, 2400))
 
     plotvariables(sol, (t, 1900, 2400), _variables_3(); title="W1-7/5-3", showaxis=false, showlegend=false,kwargs...)
+end
+
+function fig_4(; kwargs...)
+    new_params = copy(_params)
+    new_params[:brn] = 0.025
+
+    sol = solve(standard_run(params=new_params), (1900, 2100))
+
+    plotvariables(sol, (t, 1900, 2100), _variables_4(); title="W1-7/5-4", showaxis=false, showlegend=false,kwargs...)
 end
 
 
