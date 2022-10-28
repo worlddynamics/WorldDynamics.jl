@@ -291,6 +291,25 @@ function _variables_4()
     return variables
 end
 
+function _variables_5()
+    @named w1 = world1()
+
+    variables = [
+        (w1.pop,  0,     8e9,   "Population"),
+        (w1.polr, 0,     40,    "Pollution"),
+        (w1.ci,   0,     8e9,   "Capital investment"),
+        (w1.fr,   0,     8,     "Food ratio"),
+        (w1.cr,   0,     0.2,   "Crowding ratio"),
+        (w1.msl,  0,     80,    "Material standard of living"),
+        (w1.qlm,  0,     8,     "Quality of life from materials"),
+        (w1.ql,   0,     120,   "Quality of life"),
+        (w1.ciaf, 0,     0.8,   "Capital in agriculture"),
+        (w1.nr,   500e9, 900e9, "Natural resources"),
+    ]
+
+    return variables
+end
+
 
 fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="STD", showaxis=false, showlegend=false,kwargs...)
 
@@ -334,6 +353,18 @@ function fig_4(; kwargs...)
     sol = solve(standard_run(params=new_params), (1900, 2100))
 
     plotvariables(sol, (t, 1900, 2100), _variables_4(); title="W1-7/5-4", showaxis=false, showlegend=false,kwargs...)
+end
+
+function fig_5(; kwargs...)
+    new_params = copy(_params)
+    new_params[:brn] = 0.035
+
+    new_inits = copy(_inits)
+    new_inits[:ciaf] = 0.3
+
+    sol = solve(standard_run(params=new_params), (1900, 2100))
+
+    plotvariables(sol, (t, 1900, 2100), _variables_5(); title="W1-7/5-5", showaxis=false, showlegend=false,kwargs...)
 end
 
 
