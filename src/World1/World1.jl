@@ -185,8 +185,8 @@ function world1(; name, params=_params, inits=_inits, tables=_tables, ranges=_ra
     ODESystem(eqs; name)
 end
 
-function standard_run()
-    @named w1 = world1()
+function standard_run(; kwargs...)
+    @named w1 = world1(; kwargs...)
     return w1
 end
 
@@ -196,7 +196,7 @@ function standardrunsolution()
     return _solution_standardrun
 end
 
-function _variables()
+function _variables_std()
     @named w1 = world1()
 
     variables = [
@@ -215,6 +215,35 @@ function _variables()
     return variables
 end
 
-fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables(); title="STD", showaxis=false, showlegend=false,kwargs...)
+function _variables_1()
+    @named w1 = world1()
+
+    variables = [
+        (w1.pop,  0,     8e9,   "Population"),
+        (w1.polr, 0,     1.2,   "Pollution"),
+        (w1.ci,   0,     4e9,   "Capital investment"),
+        (w1.fr,   1.15,  1.35,  "Food ratio"),
+        (w1.cr,   0,     0.2,   "Crowding ratio"),
+        (w1.msl,  0,     0.4,   "Material standard of living"),
+        (w1.qlm,  0.25,  0.45,  "Quality of life from materials"),
+        (w1.ql,   0.9,   1.7,   "Quality of life"),
+        (w1.ciaf, 0.15,  0.55,  "Capital in agriculture"),
+        (w1.nr,   500e9, 900e9, "Natural resources"),
+    ]
+
+    return variables
+end
+
+
+fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="STD", showaxis=false, showlegend=false,kwargs...)
+
+function fig_1(; kwargs...)
+    new_params = copy(_params)
+    new_params[:cigc] = 0.5
+
+    sol = solve(standard_run(params=new_params), (1900, 2100))
+
+    plotvariables(sol, (t, 1900, 2100), _variables_1(); title="W1-7/5-1", showaxis=false, showlegend=false,kwargs...)
+end
 
 end
