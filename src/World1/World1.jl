@@ -533,5 +533,22 @@ function fig_11(; kwargs...)
     plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-11", showaxis=false, showlegend=false,kwargs...)
 end
 
+function fig_12(; kwargs...)
+    new_params = copy(_params)
+    new_params[:pdn] = 26.5
+    new_params[:brn] = 0.06
+
+    new_tables = copy(_tables)
+    new_tables[:cipc] = (0.02, 0.05, 0.1, 0.14, 0.16, 0.18)
+    new_tables[:polat] = (0.5, 1.0, 1.6, 2.4, 3.2, 4.0, 4.8)
+
+    new_inits = copy(_inits)
+    new_inits[:ciaf] = 0.3
+
+    sol = solve(standard_run(params=new_params, inits=new_inits, tables=new_tables), (1900, 2100))
+
+    plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-12", showaxis=false, showlegend=false,kwargs...)
+end
+
 
 end
