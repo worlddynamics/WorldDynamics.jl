@@ -35,7 +35,7 @@ function interpolate(x, pairs::Vector{<:NTuple{2, Float64}})
 end
 
 """
-   `clip(f1, f2, v, th)`
+   `clip(f1, f2, va, th)`
 
 Return `f1` if the value `v` is greater than the threshold `th`, `f2` otherwise. This function correspond to the `CLIP` (also called `FIFGE`) function in the `DYNAMO` language.
 """
