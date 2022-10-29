@@ -35,7 +35,7 @@ function interpolate(x, pairs::Vector{<:NTuple{2, Float64}})
 end
 
 """
-   `clip(f1, f2, va, th)`
+   `clip(f1, f2, v, th)`
 
 Return `f1` if the value `v` is greater than the threshold `th`, `f2` otherwise. This function correspond to the `CLIP` (also called `FIFGE`) function in the `DYNAMO` language.
 """
@@ -49,8 +49,22 @@ Return `0` if the value `t` is smaller than the threshold `sttm`, `hght` otherwi
 step(inputvalue, returnifgte, threshold) = clip(returnifgte, zero(returnifgte), inputvalue, threshold)
 
 """
+   `step2(t, hght, sttm1, sttm2)`
+
+Return `0` if the value `t` is either smaller than the threshold `sttm1` or larger than the threshold `sttm2`, `hght` otherwise. This function correspond to the `STEP` function in the `VENSIM` language.
+"""
+step2(inputvalue, returnifgte, threshold1, threshold2) = IfElse.ifelse(inputvalue ≥ threshold1 & inputvalue ≤ threshold2, returnifgte, zero(returnifgte))
+
+"""
    `switch(v1, v2, z)`
 
 Return `v1` if the value `z` is approximately `0` with tolerance `1e-16`, `v2` otherwise. This function correspond to the `SWITCH` (also called `FIFZE`) function in the `DYNAMO` language.
 """
 switch(returnifzero, returnifnotzero, inputvalue) = IfElse.ifelse(isapprox(inputvalue, zero(inputvalue); atol=1e-16), returnifzero, returnifnotzero)
+
+"""
+   `ramp(slope, startslope, endslope)`
+
+Return `0` until the `startslope` and then slopes upward until `endslope` and then holds constant. This function correspond to the `RAMP` function in the `VENSIM` language.
+"""
+ramp(inputvalue, slope, startslope, endslope) = IfElse.ifelse(inputvalue ≥ startslope, IfElse.ifelse(inputvalue ≤ endslope, slope * (inputvalue - startslope), slope * (endslope - startslope)), zero(startslope))
