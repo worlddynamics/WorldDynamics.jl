@@ -34,7 +34,7 @@ _tables = Dict{Symbol, Tuple{Vararg{Float64}}}(
     :nrem => (0.0, 0.15, 0.50, 0.85, 1.0),
     :drmm => (2.0, 1.4, 1.0, 0.8, 0.7, 0.6, 0.53, 0.5, 0.5, 0.5, 0.5),
     :drpm => (1.0, 1.1, 1.3, 1.6, 2.2, 3.4, 6.0),
-    :drfm => (30.0, 2.4, 1.5, 1.2, 1.0, 0.9, 0.8, 0.73, 0.7), #30.0
+    :drfm => (30.0, 2.4, 1.5, 1.2, 1.0, 0.9, 0.8, 0.73, 0.7),
     :drcm => (1.0, 1.1, 1.3, 1.6, 2.1, 3.0),
     :brcm => (1.0, 0.95, 0.8, 0.7, 0.65, 0.65),
     :brfm => (0.0, 0.4, 1.0, 1.8, 3.0),
@@ -173,7 +173,7 @@ function world1(; name, params=_params, inits=_inits, tables=_tables, ranges=_ra
         polcm ~ interpolate(cir, tables[:polcm], ranges[:polcm])
         pola ~ pol / polat
         polat ~ interpolate(polr, tables[:polat], ranges[:polat])
-        D(ciaf) ~ (cfifr - ciaf) / ciaft #
+        D(ciaf) ~ (cfifr - ciaf) / ciaft
         cfifr ~ interpolate(fr, tables[:cfifr], ranges[:cfifr])
         ql ~ qls * qlm * qlc * qlf * qlp
         qlm ~ interpolate(msl, tables[:qlm], ranges[:qlm])
@@ -406,7 +406,7 @@ function _variables_10()
 end
 
 
-fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="STD", showaxis=false, showlegend=false,kwargs...)
+fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="WORLD1-STD", showaxis=false, showlegend=false,kwargs...)
 
 function fig_1(; kwargs...)
     new_params = copy(_params)
