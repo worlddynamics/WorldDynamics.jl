@@ -63,7 +63,7 @@ Return `v1` if the value `z` is approximately `0` with tolerance `1e-16`, `v2` o
 switch(returnifzero, returnifnotzero, inputvalue) = IfElse.ifelse(isapprox(inputvalue, zero(inputvalue); atol=1e-16), returnifzero, returnifnotzero)
 
 """
-   `ramp(slope, startslope, endslope)`
+   `ramp(t, slope, startslope, endslope)`
 
 Return `0` until the `startslope` and then slopes upward until `endslope` and then holds constant. This function correspond to the `RAMP` function in the `VENSIM` language.
 """
