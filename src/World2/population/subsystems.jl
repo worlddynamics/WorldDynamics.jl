@@ -2,14 +2,14 @@
 D = Differential(t)
 
 function population(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
-    @parameters la = params[:la]
-    @parameters pdn = params[:pdn]
+    @parameters la = params[:la] [description = "Land area"]
+    @parameters pdn = params[:pdn] [description = "Population density normal"]
 
-    @variables p(t) = inits[:p]
-    @variables cr(t)
+    @variables p(t) = inits[:p] [description = "Population"]
+    @variables cr(t) [description = "Crowding ratio"]
 
-    @variables br(t)
-    @variables dr(t)
+    @variables br(t) [description = "Birth rate"]
+    @variables dr(t) [description = "Death rate"]
 
     eqs = [
         D(p) ~ br - dr
@@ -20,21 +20,21 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
 end
 
 function birth_rate(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
-    @parameters brn = params[:brn]
-    @parameters brn1 = params[:brn1]
-    @parameters swt1 = params[:swt1]
+    @parameters brn = params[:brn] [description = "Birth rate normal"]
+    @parameters brn1 = params[:brn1] [description = "Birth rate normal no. 1"]
+    @parameters swt1 = params[:swt1] [description = "Switch time no. 1"]
 
-    @variables br(t)
-    @variables brfm(t)
-    @variables brmm(t)
-    @variables brcm(t)
-    @variables brpm(t)
+    @variables br(t) [description = "Birth rate"]
+    @variables brmm(t) [description = "Birth rate from material multiplier"]
+    @variables brcm(t) [description = "Birth rate from crowding multiplier"]
+    @variables brfm(t) [description = "Birth rate from food multiplier"]
+    @variables brpm(t) [description = "Birth rate from pollution multiplier"]
 
-    @variables p(t)
-    @variables msl(t)
-    @variables cr(t)
-    @variables fr(t)
-    @variables polr(t)
+    @variables p(t) [description = "Population"]
+    @variables msl(t) [description = "Material standard of living"]
+    @variables cr(t) [description = "Crowding ratio"]
+    @variables fr(t) [description = "Food ratio"]
+    @variables polr(t) [description = "Pollution ratio"]
 
     eqs = [
         br ~ p * clip(brn, brn1, swt1, t) * brfm * brmm * brcm * brpm
@@ -48,21 +48,21 @@ function birth_rate(; name, params=_params, inits=_inits, tables=_tables, ranges
 end
 
 function death_rate(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
-    @parameters drn = params[:drn]
-    @parameters drn1 = params[:drn1]
-    @parameters swt3 = params[:swt3]
+    @parameters drn = params[:drn] [description = "Death rate normal"]
+    @parameters drn1 = params[:drn1] [description = "Death rate normal no. 1"]
+    @parameters swt3 = params[:swt3] [description = "Switch time no. 3"]
 
-    @variables dr(t)
-    @variables drfm(t)
-    @variables drmm(t)
-    @variables drcm(t)
-    @variables drpm(t)
+    @variables dr(t) [description = "Death rate"]
+    @variables drmm(t) [description = "Death rate from material multiplier"]
+    @variables drcm(t) [description = "Death rate from crowding multiplier"]
+    @variables drfm(t) [description = "Death rate from food multiplier"]
+    @variables drpm(t) [description = "Death rate from pollution multiplier"]
 
-    @variables p(t)
-    @variables msl(t)
-    @variables cr(t)
-    @variables fr(t)
-    @variables polr(t)
+    @variables p(t) [description = "Population"]
+    @variables msl(t) [description = "Material standard of living"]
+    @variables cr(t) [description = "Crowding ratio"]
+    @variables fr(t) [description = "Food ratio"]
+    @variables polr(t) [description = "Pollution ratio"]
 
     eqs = [
         dr ~ p * clip(drn, drn1, swt3, t) * drfm * drmm * drcm * drpm
