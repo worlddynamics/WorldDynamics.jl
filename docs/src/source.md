@@ -1,5 +1,12 @@
 # Source code documentation
 
+## Contents
+
+```@contents
+Pages = ["source.md"]
+Depth = 3
+```
+
 ## WorldDynamics constants
 ```@autodocs
 Modules = [WorldDynamics]
@@ -63,6 +70,13 @@ Pages   = ["plots.jl"]
 
 ```@autodocs
 Modules = [WorldDynamics.World3.NonRenewable]
+Pages   = ["plots.jl"]
+```
+
+### Pollution system
+
+```@autodocs
+Modules = [WorldDynamics.World3.Pollution]
 Pages   = ["plots.jl"]
 ```
 
