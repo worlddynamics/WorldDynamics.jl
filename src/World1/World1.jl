@@ -386,6 +386,25 @@ function _variables_9()
     return variables
 end
 
+function _variables_10()
+    @named w1 = world1()
+
+    variables = [
+        (w1.pop,  0,     4e9,   "Population"),
+        (w1.polr, 0,     12,    "Pollution"),
+        (w1.ci,   0,     4e9,   "Capital investment"),
+        (w1.fr,   0,     2,     "Food ratio"),
+        (w1.cr,   0,     0.8,   "Crowding ratio"),
+        (w1.msl,  0,     8,     "Material standard of living"),
+        (w1.qlm,  0,     8,     "Quality of life from materials"),
+        (w1.ql,   0,     20,    "Quality of life"),
+        (w1.ciaf, 0.25,  0.65,  "Capital in agriculture"),
+        (w1.nr,   500e9, 900e9, "Natural resources"),
+    ]
+
+    return variables
+end
+
 
 fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="STD", showaxis=false, showlegend=false,kwargs...)
 
@@ -483,6 +502,19 @@ function fig_9(; kwargs...)
     sol = solve(standard_run(params=new_params, tables=new_tables), (1900, 2100))
 
     plotvariables(sol, (t, 1900, 2100), _variables_9(); title="W1-7/5-9", showaxis=false, showlegend=false,kwargs...)
+end
+
+function fig_10(; kwargs...)
+    new_params = copy(_params)
+    new_params[:pdn] = 26.5
+
+    new_tables = copy(_tables)
+    new_tables[:cipc] = (0.02, 0.05, 0.1, 0.14, 0.16, 0.18)
+    new_tables[:polat] = (0.5, 1.0, 1.6, 2.4, 3.2, 4.0, 4.8)
+
+    sol = solve(standard_run(params=new_params, tables=new_tables), (1900, 2100))
+
+    plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-10", showaxis=false, showlegend=false,kwargs...)
 end
 
 
