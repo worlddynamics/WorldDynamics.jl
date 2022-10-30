@@ -860,6 +860,24 @@ inits[:CO2_from_energy_production_GtCO2_per_y] = inits[:Use_of_fossil_fuels_Mtoe
 inits[:Introduction_period_for_policy_y] = IfElse.ifelse(p[Exogenous_introduction_period_] > 0, p[Exogenous_introduction_period_y], inits[:Reform_delay_y])
 inits[:Govmnt_cash_inflow_G__per_y] = inits[:Govmnt_net_income_G__per_y] - inits[:Cash_flow_from_govmnt_to_banks_G__per_y]
 
+inits[:Number_of_doublings_in_reg_ag__1_] = log(( inits[:Regenerative_agriculture_area_Mha] + p[Experience_gained_before_2022_Mha] ) / p[Experience_gained_before_2022_Mha]) / 0.693
+inits[:Traditional_fertilizer_use_in_conv_ag_kgN_per_ha_per_y] = interpolate(inits[:Desired_crop_yield_in_conv_ag_t_crop_per_ha_per_y], ((1,0),(2,40),(2.5,50),(3,60),(3.5,70),(4.5,100),(6.5,200),(10,600)))
+inits[:Fertilizer_productivity_index__19801_] = exp(p[ROC_in_fertilizer_productivity_1_per_y] * ( p[INITIAL_TIME__] - 1980))
+inits[:Traditional_per_person_use_of_fossil_fuels_for_non_el_use_before_EE_toe_per_p_per_y] = interpolate(inits[:GDP_per_person_k__per_p_per_y], ((0,0.3),(15,2),(25,3.1),(35,4),(50,5)))
+inits[:Extra_energy_productivity_index_20221] = p[Extra_energy_productivity_index_in_2022__1_]
+inits[:Addition_of_fossil_el_capacity_GW_per_y] = max(0, inits[:Desired_fossil_el_capacity_change_GW_per_y])
+inits[:CAPEX_renewable_el___per_W] = p[CAPEX_renewable_el_in_1980___per_W] * inits[:Cost_index_for_sun_and_wind_capacity__1_]
+inits[:Addition_of_renewable_el_capacity_GW_per_y] = max(0, ( inits[:Desired_renewable_el_capacity_change_GW] / p[Renewable_el_construction_time_y] ) + ( inits[:Discard_of_renewable_el_capacity_GW_per_y] ))
+inits[:Nuclear_capacity_GW] = interpolate(p[INITIAL_TIME__], ((1980,75),(2000,310),(2020,310),(2098.9,310)))
+inits[:Fossil_electricity_capacity_GW] = p[Fossil_el_capacity_in_1980_GW]
+inits[:Fossil_capacity_up_time_kh_per_y] = inits[:Demand_for_fossil_electricity_TWh_per_y] / inits[:Fossil_electricity_capacity_GW]
+inits[:Renewable_electricity_capacity_GW] = p[Renewable_el_capacity_in_1980_GW]
+inits[:Non_fossil_CO2_per_person_tCO2_per_p_per_y] = p[Max_non_fossil_CO2_per_person_tCO2_per_p_per_y] * ( 1 - exp(-(inits[:GDP_per_person_k__per_p_per_y] / 10)))
+inits[:Use_of_fossil_fuels_Mtoe_per_y] = inits[:Demand_for_fossil_fuel_for_non_el_use_Mtoe_per_y] + inits[:Fossil_fuels_for_electricity_Mtoe_per_y]
+inits[:Reform_delay_y] = inits[:Indicated_reform_delay_y]
+inits[:Govmnt_net_income_G__per_y] = inits[:Govmnt_gross_income_G__per_y] - inits[:Transfer_payments_G__per_y] + inits[:Sales_tax_G__per_y]
+inits[:Cash_flow_from_govmnt_to_banks_G__per_y] = inits[:Govmnt_interest_cost_G__per_y] + inits[:Govmnt_payback_G__per_y] - inits[:Govmnt_new_debt_G__per_y]
+
 @variables Effective_purchasing_power_G__per_y(t) = inits[:Demand_in_1980_G__per_y]
 @variables Passing_40_Mp_per_y(t) = p[Passing_40_in_1980_Mp_per_y]
 @variables Embedded_CLR_kcu_per_ftj(t) = p[CLR_in_1980_kcu_per_ftj]
