@@ -890,7 +890,7 @@ inits[:Transfer_payments_G__per_y] = inits[:Govmnt_gross_income_G__per_y] * init
 inits[:Sales_tax_G__per_y] = inits[:Sales_tax_workers_G__per_y] + inits[:Sales_tax_owners_G__per_y]
 inits[:Govmnt_interest_cost_G__per_y] = inits[:Govmnt_debt_G_] * inits[:Govmnt_borrowing_cost_1_per_y]
 inits[:Govmnt_payback_G__per_y] = inits[:Govmnt_debt_G_] / p[Govmnt_payback_period_y]
-inits[:Govmnt_new_debt_G__per_y] = max(0, ( inits[:Max_govmnt_debt_G_] - inits[:Govmnt_debt_G_] ) / p[Govmnt_drawdown_period_y]) +  STEP(p[Govmnt_stimulus_from_2022__share_of_NI_], 2022 ) * inits[:National_income_G__per_y]
+inits[:Govmnt_new_debt_G__per_y] = max(0, ( inits[:Max_govmnt_debt_G_] - inits[:Govmnt_debt_G_] ) / p[Govmnt_drawdown_period_y]) +  step(t, p[Govmnt_stimulus_from_2022__share_of_NI_], 2022 ) * inits[:National_income_G__per_y]
 
 @variables Effective_purchasing_power_G__per_y(t) = inits[:Demand_in_1980_G__per_y]
 @variables Passing_40_Mp_per_y(t) = p[Passing_40_in_1980_Mp_per_y]
@@ -1484,7 +1484,7 @@ Observed_fertility_1 ~ Desired_no_of_children_1 * Fraction_achieving_desired_fam
 Demand_for_fossil_electricity_TWh_per_y ~ max(0, Demand_for_electricity_TWh_per_y - Low_carbon_el_production_TWh_per_y),
 Extra_increase_in_demand_for_electricity_from_NE_TWh_per_y ~ Extra_reduction_in_demand_for_non_el_fossil_fuel_from_NE_Mtoe_per_y * Extra_use_of_electricity_per_reduced_use_of_non_el_FF_MWh_per_toe,
 D(Forestry_land_Mha) ~ New_forestry_land_Mha_per_y-Cropland_expansion_Mha_per_y,
-Increase_in_extra_energy_productivity_index_1_per_y ~ Extra_energy_productivity_index_20221 * 0 + STEP(Extra_ROC_in_energy_productivity_after_2022_1_per_y, 2022),
+Increase_in_extra_energy_productivity_index_1_per_y ~ Extra_energy_productivity_index_20221 * 0 + step(t, Extra_ROC_in_energy_productivity_after_2022_1_per_y, 2022),
 Workers_debt_in_1980_G_ ~ 18992 * Mult_to_avoid_transient_in_worker_finance,
 CO2_from_energy_production_GtCO2_per_y ~ Use_of_fossil_fuels_Mtoe_per_y * ( tCO2_per_toe / 1000 ) *  ( 1 - Fraction_of_CO2_sources_with_CCS__1_ ),
 Installed_CCS_capacity_GtCO2_per_y ~ Fraction_of_CO2_sources_with_CCS__1_ * ( CO2_from_non_fossil_industrial_processes_GtCO2_per_y +CO2_from_energy_production_GtCO2_per_y ) / (1 - Fraction_of_CO2_sources_with_CCS__1_ ),
@@ -1849,7 +1849,7 @@ Inflation_rate_1_per_y ~ sINVeoIN_0 * ( Perceived_relative_inventory__1_ / Minim
 Capacity_initiation_PIS_Gcu_per_y ~ max(( Investment_in_new_capacity_PIS_G__per_y + Off_balance_sheet_govmnt_inv_in_PIS__share_of_GDP_ * GDP_G__per_y )  / Cost_of_capacity___per_cu , 0),
 Death_rate_1_per_y ~ Deaths_Mp_per_y / Population_Mp,
 Melting_rate_deep_ice_1_per_y ~ Melting_rate_surface_1_per_y / Surface_vs_deep_rate__1_,
-Govmnt_new_debt_G__per_y ~ max(0, ( Max_govmnt_debt_G_ - Govmnt_debt_G_ ) / Govmnt_drawdown_period_y) +  STEP( Govmnt_stimulus_from_2022__share_of_NI_, 2022 ) * National_income_G__per_y,
+Govmnt_new_debt_G__per_y ~ max(0, ( Max_govmnt_debt_G_ - Govmnt_debt_G_ ) / Govmnt_drawdown_period_y) +  step(t, Govmnt_stimulus_from_2022__share_of_NI_, 2022) * National_income_G__per_y,
 Crop_supply__after_20___waste__Mt_crop_per_y ~ Average_crop_yield_t_crop_per_ha_per_y * Cropland_Mha,
 D(Grazing_land_Mha) ~ New_grazing_land_Mha_per_y,
 Number_of_doublings_in_reg_ag__1_ ~ log(( Regenerative_agriculture_area_Mha + Experience_gained_before_2022_Mha ) / Experience_gained_before_2022_Mha) / 0.693,
