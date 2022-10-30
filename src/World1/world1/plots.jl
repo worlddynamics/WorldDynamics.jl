@@ -265,7 +265,7 @@ function fig_5(; kwargs...)
     new_inits = copy(_inits)
     new_inits[:ciaf] = 0.3
 
-    sol = solve(standard_run(params=new_params), (1900, 2100))
+    sol = solve(standard_run(inits=new_inits, params=new_params), (1900, 2100))
 
     plotvariables(sol, (t, 1900, 2100), _variables_5(); title="W1-7/5-5", showaxis=false, showlegend=true, kwargs...)
 end
@@ -277,7 +277,7 @@ function fig_6(; kwargs...)
     new_inits = copy(_inits)
     new_inits[:ciaf] = 0.3
 
-    sol = solve(standard_run(params=new_params), (1900, 2100))
+    sol = solve(standard_run(inits=new_inits, params=new_params), (1900, 2100))
 
     plotvariables(sol, (t, 1900, 2000), _variables_6(); title="W1-7/5-6", showaxis=false, showlegend=true, kwargs...)
 end
