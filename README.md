@@ -1,7 +1,7 @@
 # WorldDynamics.jl
 
-[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://natema.github.io/WorldDynamics.jl/stable)
-[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://natema.github.io/WorldDynamics.jl/dev)
+[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://worlddynamics.github.io/WorldDynamics.jl/stable/)
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://worlddynamics.github.io/WorldDynamics.jl/dev/)
 [![DOI](https://zenodo.org/badge/425565525.svg)](https://zenodo.org/badge/latestdoi/425565525)
 
 
@@ -25,7 +25,7 @@ World3.fig_7()
 Here is the output superposed to the original picture: 
 ![image](https://user-images.githubusercontent.com/2920162/194111344-8682a97f-f4de-4e2d-ba7e-980546e1bfaf.png)
 
-For how to produce different figures (and much more), please see [the documentation](https://natema.github.io/WorldDynamics.jl/stable/).
+For how to produce different figures (and much more), please see [the documentation](https://worlddynamics.github.io/WorldDynamics.jl/stable/).
 
 ## Project leaders 
 
