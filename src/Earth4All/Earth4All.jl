@@ -878,6 +878,20 @@ inits[:Reform_delay_y] = inits[:Indicated_reform_delay_y]
 inits[:Govmnt_net_income_G__per_y] = inits[:Govmnt_gross_income_G__per_y] - inits[:Transfer_payments_G__per_y] + inits[:Sales_tax_G__per_y]
 inits[:Cash_flow_from_govmnt_to_banks_G__per_y] = inits[:Govmnt_interest_cost_G__per_y] + inits[:Govmnt_payback_G__per_y] - inits[:Govmnt_new_debt_G__per_y]
 
+inits[:Desired_crop_yield_in_conv_ag_t_crop_per_ha_per_y] = inits[:Desired_crop_supply_conv_ag_Mt_crop_per_y] / ( inits[:Cropland_Mha] * ( 1 - inits[:Fraction_regenerative_agriculture__1_] ))
+inits[:Desired_fossil_el_capacity_change_GW_per_y] = ( inits[:Desired_fossil_el_capacity_GW] - inits[:Fossil_electricity_capacity_GW] ) / p[Fossil_el_cap_construction_time_y] + inits[:Discard_of_fossil_el_capacity_GW_per_y]
+inits[:Cost_index_for_sun_and_wind_capacity__1_] = ( 1 - Cost_reduction_per_doubling_of_sun_and_wind_capacity__1_ ) ^ Number_of_doublings_in_sun_and_wind_capacity__1_
+inits[:Desired_renewable_el_capacity_change_GW] = inits[:Desired_renewable_el_capacity_GW] - inits[:Renewable_electricity_capacity_GW]
+inits[:Discard_of_renewable_el_capacity_GW_per_y] = inits[:Renewable_electricity_capacity_GW] / p[Life_of_renewable_el_capacity_y]
+inits[:Demand_for_fossil_electricity_TWh_per_y] = max(0, inits[:Demand_for_electricity_TWh_per_y] - inits[:Low_carbon_el_production_TWh_per_y])
+inits[:Fossil_fuels_for_electricity_Mtoe_per_y] = inits[:Fossil_electricity_production_TWh_per_y] / inits[:four_TWh_el_per_Mtoe]
+inits[:Govmnt_gross_income_G__per_y] = inits[:Worker_taxes_G__per_y] + inits[:Owner_taxes_G__per_y] + inits[:Sales_tax_workers_G__per_y] + inits[:Sales_tax_owners_G__per_y] + inits[:Income_from_commons_from_2022_G__per_y]
+inits[:Transfer_payments_G__per_y] = inits[:Govmnt_gross_income_G__per_y] * inits[:Fraction_of_govmnt_budget_to_workers__1_]
+inits[:Sales_tax_G__per_y] = inits[:Sales_tax_workers_G__per_y] + inits[:Sales_tax_owners_G__per_y]
+inits[:Govmnt_interest_cost_G__per_y] = inits[:Govmnt_debt_G_] * inits[:Govmnt_borrowing_cost_1_per_y]
+inits[:Govmnt_payback_G__per_y] = inits[:Govmnt_debt_G_] / p[Govmnt_payback_period_y]
+inits[:Govmnt_new_debt_G__per_y] = max(0, ( inits[:Max_govmnt_debt_G_] - inits[:Govmnt_debt_G_] ) / p[Govmnt_drawdown_period_y]) +  STEP(p[Govmnt_stimulus_from_2022__share_of_NI_], 2022 ) * inits[:National_income_G__per_y]
+
 @variables Effective_purchasing_power_G__per_y(t) = inits[:Demand_in_1980_G__per_y]
 @variables Passing_40_Mp_per_y(t) = p[Passing_40_in_1980_Mp_per_y]
 @variables Embedded_CLR_kcu_per_ftj(t) = p[CLR_in_1980_kcu_per_ftj]
@@ -1960,7 +1974,7 @@ CUC_PIS_in_1980_Gcu ~ ( CAP_PIS_in_1980_Gcu / Life_of_capacity_PIS_in_1980_y ) *
 Traditional_fertilizer_use_in_conv_ag_kgN_per_ha_per_y ~ interpolate(Desired_crop_yield_in_conv_ag_t_crop_per_ha_per_y, ((1,0),(2,40),(2.5,50),(3,60),(3.5,70),(4.5,100),(6.5,200),(10,600))),
 Indicated_signal_rate_1_per_y ~ Normal_signal_rate_1_per_y * ( 1 + sINeoSR_0 * (Perceived_inflation_CB_1_per_y / Inflation_target_1_per_y - 1) + sUNeoSR_0 * (Perceived_unemployment_CB__1_ / Unemployment_target__1_ - 1) ),
 Desired_renewable_el_capacity_GW ~ Desired_supply_of_renewable_electricity_TWh_per_y / Renewable_capacity_up_time_kh_per_y,
-Govmnt_payback_G__per_y ~ Govmnt_debt_G_ /Govmnt_payback_period_y,
+Govmnt_payback_G__per_y ~ Govmnt_debt_G_ / Govmnt_payback_period_y,
 ]
 
 @named sys = ODESystem(eqs)
