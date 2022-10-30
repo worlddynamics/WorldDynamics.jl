@@ -214,6 +214,9 @@ function _variables_10()
 end
 
 
+"""
+    Reproduce Fig. WORLD1-STD. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="WORLD1-STD", showaxis=false, showlegend=true, kwargs...)
 
 """
