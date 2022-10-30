@@ -216,6 +216,9 @@ end
 
 fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="WORLD1-STD", showaxis=false, showlegend=true, kwargs...)
 
+"""
+    Reproduce Fig. W1-7/5-1. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_1(; kwargs...)
     new_params = copy(_params)
     new_params[:cigc] = 0.5
@@ -225,6 +228,9 @@ function fig_1(; kwargs...)
     plotvariables(sol, (t, 1900, 2100), _variables_1(); title="W1-7/5-1", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-2. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_2(; kwargs...)
     new_params = copy(_params)
     new_params[:cigc] = 0.5
@@ -237,6 +243,9 @@ function fig_2(; kwargs...)
     plotvariables(sol, (t, 1900, 2100), _variables_2(); title="W1-7/5-2", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-3. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_3(; kwargs...)
     new_params = copy(_params)
     new_params[:cigc] = 0.5
@@ -249,6 +258,9 @@ function fig_3(; kwargs...)
     plotvariables(sol, (t, 1900, 2400), _variables_3(); title="W1-7/5-3", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-4. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_4(; kwargs...)
     new_params = copy(_params)
     new_params[:brn] = 0.025
@@ -258,6 +270,9 @@ function fig_4(; kwargs...)
     plotvariables(sol, (t, 1900, 2100), _variables_4(); title="W1-7/5-4", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-5. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_5(; kwargs...)
     new_params = copy(_params)
     new_params[:brn] = 0.035
@@ -270,6 +285,9 @@ function fig_5(; kwargs...)
     plotvariables(sol, (t, 1900, 2100), _variables_5(); title="W1-7/5-5", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-6. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_6(; kwargs...)
     new_params = copy(_params)
     new_params[:brn] = 0.032
@@ -282,6 +300,9 @@ function fig_6(; kwargs...)
     plotvariables(sol, (t, 1900, 2000), _variables_6(); title="W1-7/5-6", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-7. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_7(; kwargs...)
     new_params = copy(_params)
     new_params[:pols] = 10e9
@@ -291,6 +312,9 @@ function fig_7(; kwargs...)
     plotvariables(sol, (t, 1900, 2100), _variables_7(); title="W1-7/5-7", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-8. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_8(; kwargs...)
     new_params = copy(_params)
     new_params[:pdn] = 26.5
@@ -300,6 +324,9 @@ function fig_8(; kwargs...)
     plotvariables(sol, (t, 1900, 2100), _variables_8(); title="W1-7/5-8", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-9. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_9(; kwargs...)
     new_params = copy(_params)
     new_params[:pdn] = 26.5
@@ -312,6 +339,9 @@ function fig_9(; kwargs...)
     plotvariables(sol, (t, 1900, 2100), _variables_9(); title="W1-7/5-9", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-10. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_10(; kwargs...)
     new_params = copy(_params)
     new_params[:pdn] = 26.5
@@ -325,6 +355,9 @@ function fig_10(; kwargs...)
     plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-10", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-11. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_11(; kwargs...)
     new_params = copy(_params)
     new_params[:pdn] = 26.5
@@ -341,6 +374,9 @@ function fig_11(; kwargs...)
     plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-11", showaxis=false, showlegend=true, kwargs...)
 end
 
+"""
+    Reproduce Fig. W1-7/5-12. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+"""
 function fig_12(; kwargs...)
     new_params = copy(_params)
     new_params[:pdn] = 26.5
