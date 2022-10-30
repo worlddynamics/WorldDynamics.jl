@@ -4,9 +4,8 @@ using IfElse
 interpolate(x, x₁, xₙ, y₁, yₙ) = y₁ + (x - x₁) * ((yₙ - y₁) / (xₙ - x₁))
 
 """
-   `interpolate(x, y, xs)`
-
-Return the value of a function with input `x`, by linearly interpolating the function itself through the table `y` and the range `xs`. If `x` is out of the range, the value at the corresponding extremity is returned. This function correspond to the `TABHL` function in the `DYNAMO` language. This latter function receives a table (that is, `y`), a value (that is, `x`), a left and a right extreme of an interval (that is, `xs`), and an increment value.
+   `interpolate(x, yvalues, xrange)`
+Returns the value of a function with input `x`, by linearly interpolating the function itself through the table `yvalues` and the range `xrange`. If `x` is out of the range, the value at the corresponding extremity is returned. This function corresponds to the `TABHL` function in the `DYNAMO` language. This latter function receives a table (that is, `yvalues`), a value (that is, `x`), a left and a right extreme of an interval (that is, `xrange`), and an increment value.
 """
 function interpolate(x, yvalues::Tuple{Vararg{Float64}}, xrange::Tuple{Float64, Float64})
     xvalues = LinRange(xrange[1], xrange[2], length(yvalues))
@@ -30,45 +29,33 @@ function interpolate(x, pairs::Vector{<:NTuple{2, Float64}})
 end
 
 """
-   `clip(f1, f2, va, th)`
-
-Return `f1` if the value `v` is greater than the threshold `th`, `f2` otherwise. This function corresponds to the `CLIP` (also called `FIFGE`) function in the `DYNAMO` language.
+   `clip(returnifgte, returniflt, inputvalue, threshold)`
+Returns `returnifgte` if the value `inputvalue` is greater than the threshold `threshold`, `returniflt` otherwise. This function corresponds to the `CLIP` (also called `FIFGE`) function in the `DYNAMO` language.
 """
 clip(returnifgte, returniflt, inputvalue, threshold) = IfElse.ifelse(inputvalue ≥ threshold, returnifgte, returniflt)
 
 """
-   `step(t, hght, sttm)`
-
-Return `0` if the value `t` is smaller than the threshold `sttm`, `hght` otherwise. This function corresponds to the `STEP` function in the `DYNAMO` language.
+   `step(inputvalue, returnifgte, threshold)`
+Returns `0` if the value `inputvalue` is smaller than the threshold `threshold`, `returnifgte` otherwise. This function corresponds to the `STEP` function in the `DYNAMO` and `VENSIM` languages.
 """
 step(inputvalue, returnifgte, threshold) = clip(returnifgte, zero(returnifgte), inputvalue, threshold)
 
 """
-   `step2(t, hght, sttm1, sttm2)`
-
-Return `0` if the value `t` is either smaller than the threshold `sttm1` or larger than the threshold `sttm2`, `hght` otherwise. This function corresponds to the `STEP` function in the `VENSIM` language.
-"""
-step2(inputvalue, returnifgte, threshold1, threshold2) = IfElse.ifelse(inputvalue ≥ threshold1 & inputvalue ≤ threshold2, returnifgte, zero(returnifgte))
-
-"""
-   `switch(v1, v2, z)`
-
-Return `v1` if the value `z` is approximately `0` with tolerance `1e-16`, `v2` otherwise. This function corresponds to the `SWITCH` (also called `FIFZE`) function in the `DYNAMO` language.
+   `switch(returnifzero, returnifnotzero, inputvalue)`
+Returns `returnifzero` if the value `inputvalue` is approximately `0` with tolerance `1e-16`, `returnifnotzero` otherwise. This function corresponds to the `SWITCH` (also called `FIFZE`) function in the `DYNAMO` language.
 """
 switch(returnifzero, returnifnotzero, inputvalue) = IfElse.ifelse(isapprox(inputvalue, zero(inputvalue); atol=1e-16), returnifzero, returnifnotzero)
 
 """
-   `ramp(t, slope, startslope, endslope)`
+   `ramp(inputvalue, slope, startslope, endslope)`
 
-Return `0` until the `startslope` and then slopes upward until `endslope` and then holds constant. This function corresponds to the `RAMP` function in the `VENSIM` language.
+Returns `0` until the `startslope` and then slopes upward until `endslope` and then holds constant. This function corresponds to the `RAMP` function in the `VENSIM` language.
 """
 ramp(inputvalue, slope, startslope, endslope) = IfElse.ifelse(inputvalue ≥ startslope, IfElse.ifelse(inputvalue ≤ endslope, slope * (inputvalue - startslope), slope * (endslope - startslope)), zero(startslope))
 
 """
-   `pulse(t, start, width)`
+   `pulse(inputvalue, start, width)`
 
-Return 1.0, starting at time start, and lasting for interval width; 0.0 is returned at all other times. If width is passed as 0 it will be treated as though it were the current value of TIME STEP. This function corresponds to the `PULSE` function in the `VENSIM` language.
-
-. This function correspond to the `PULSE` function in the `VENSIM` language.
+Returns 1.0, starting at time start, and lasting for interval width; 0.0 is returned at all other times. If width is passed as 0 it will be treated as though it were the current value of TIME STEP. This function corresponds to the `PULSE` function in the `VENSIM` language.
 """
 pulse(inputvalue, start, width) = IfElse.ifelse(inputvalue > start & inputvalue < (start + width), one(startslope), zero(startslope))
