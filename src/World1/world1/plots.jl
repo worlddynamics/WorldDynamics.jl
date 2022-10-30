@@ -214,7 +214,7 @@ function _variables_10()
 end
 
 
-fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="WORLD1-STD", showaxis=false, showlegend=true,kwargs...)
+fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="WORLD1-STD", showaxis=false, showlegend=true, kwargs...)
 
 function fig_1(; kwargs...)
     new_params = copy(_params)
@@ -222,7 +222,7 @@ function fig_1(; kwargs...)
 
     sol = solve(standard_run(params=new_params), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2100), _variables_1(); title="W1-7/5-1", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2100), _variables_1(); title="W1-7/5-1", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_2(; kwargs...)
@@ -234,7 +234,7 @@ function fig_2(; kwargs...)
 
     sol = solve(standard_run(inits=new_inits, params=new_params), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2100), _variables_2(); title="W1-7/5-2", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2100), _variables_2(); title="W1-7/5-2", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_3(; kwargs...)
@@ -246,7 +246,7 @@ function fig_3(; kwargs...)
 
     sol = solve(standard_run(inits=new_inits, params=new_params), (1900, 2400))
 
-    plotvariables(sol, (t, 1900, 2400), _variables_3(); title="W1-7/5-3", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2400), _variables_3(); title="W1-7/5-3", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_4(; kwargs...)
@@ -255,7 +255,7 @@ function fig_4(; kwargs...)
 
     sol = solve(standard_run(params=new_params), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2100), _variables_4(); title="W1-7/5-4", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2100), _variables_4(); title="W1-7/5-4", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_5(; kwargs...)
@@ -267,7 +267,7 @@ function fig_5(; kwargs...)
 
     sol = solve(standard_run(params=new_params), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2100), _variables_5(); title="W1-7/5-5", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2100), _variables_5(); title="W1-7/5-5", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_6(; kwargs...)
@@ -279,7 +279,7 @@ function fig_6(; kwargs...)
 
     sol = solve(standard_run(params=new_params), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2000), _variables_6(); title="W1-7/5-6", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2000), _variables_6(); title="W1-7/5-6", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_7(; kwargs...)
@@ -288,7 +288,7 @@ function fig_7(; kwargs...)
 
     sol = solve(standard_run(params=new_params), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2100), _variables_7(); title="W1-7/5-7", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2100), _variables_7(); title="W1-7/5-7", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_8(; kwargs...)
@@ -297,7 +297,7 @@ function fig_8(; kwargs...)
 
     sol = solve(standard_run(params=new_params), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2100), _variables_8(); title="W1-7/5-8", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2100), _variables_8(); title="W1-7/5-8", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_9(; kwargs...)
@@ -309,7 +309,7 @@ function fig_9(; kwargs...)
 
     sol = solve(standard_run(params=new_params, tables=new_tables), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2100), _variables_9(); title="W1-7/5-9", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2100), _variables_9(); title="W1-7/5-9", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_10(; kwargs...)
@@ -322,7 +322,7 @@ function fig_10(; kwargs...)
 
     sol = solve(standard_run(params=new_params, tables=new_tables), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-10", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-10", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_11(; kwargs...)
@@ -338,7 +338,7 @@ function fig_11(; kwargs...)
 
     sol = solve(standard_run(params=new_params, inits=new_inits, tables=new_tables), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-11", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-11", showaxis=false, showlegend=true, kwargs...)
 end
 
 function fig_12(; kwargs...)
@@ -355,5 +355,5 @@ function fig_12(; kwargs...)
 
     sol = solve(standard_run(params=new_params, inits=new_inits, tables=new_tables), (1900, 2100))
 
-    plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-12", showaxis=false, showlegend=true,kwargs...)
+    plotvariables(sol, (t, 1900, 2100), _variables_10(); title="W1-7/5-12", showaxis=false, showlegend=true, kwargs...)
 end
