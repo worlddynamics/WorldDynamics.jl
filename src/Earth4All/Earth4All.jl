@@ -892,6 +892,24 @@ inits[:Govmnt_interest_cost_G__per_y] = inits[:Govmnt_debt_G_] * inits[:Govmnt_b
 inits[:Govmnt_payback_G__per_y] = inits[:Govmnt_debt_G_] / p[Govmnt_payback_period_y]
 inits[:Govmnt_new_debt_G__per_y] = max(0, ( inits[:Max_govmnt_debt_G_] - inits[:Govmnt_debt_G_] ) / p[Govmnt_drawdown_period_y]) +  step(t, p[Govmnt_stimulus_from_2022__share_of_NI_], 2022 ) * inits[:National_income_G__per_y]
 
+inits[:Desired_crop_supply_conv_ag_Mt_crop_per_y] = inits[:Desired_crop_supply_Mt_crop_per_y] - inits[:Crop_supply_reg_ag_Mt_crop_per_y]
+inits[:Fraction_regenerative_agriculture__1_] = ramp(p[INITIAL_TIME__], p[Goal_for_fraction_regenerative_agriculture__1_] / inits[:Introduction_period_for_policy_y], 2022, 2020 + inits[:Introduction_period_for_policy_y])
+inits[:Desired_fossil_el_capacity_GW] = inits[:Demand_for_fossil_electricity_TWh_per_y] / p[eight_khours_per_year]
+inits[:Discard_of_fossil_el_capacity_GW_per_y] = inits[:Fossil_electricity_capacity_GW] / inits[:Life_of_fossil_el_capacity_y]
+inits[:Desired_renewable_el_capacity_GW] = inits[:Desired_supply_of_renewable_electricity_TWh_per_y] / p[Renewable_capacity_up_time_kh_per_y]
+inits[:Demand_for_electricity_TWh_per_y] = inits[:Demand_for_electricity_before_NE_TWh_per_y] + inits[:Extra_increase_in_demand_for_electricity_from_NE_TWh_per_y]
+inits[:Low_carbon_el_production_TWh_per_y] = inits[:Renewable_electricity_production_TWh_per_y] + inits[:Nuclear_electricity_production_TWh_per_y]
+inits[:four_TWh_el_per_Mtoe] = inits[:TWh_el_per_EJ___engineering_equivalent] / p[Mtoe_per_EJ___calorific_equivalent]
+inits[:Worker_taxes_G__per_y] = inits[:Income_tax_workers__1_] + inits[:Extra_taxes_from_2022_G__per_y] * ( 1 - p[Fraction_of_extra_taxes_paid_by_owners__1_] )
+inits[:Owner_taxes_G__per_y] = inits[:Income_tax_owners__1_] + inits[:Extra_taxes_from_2022_G__per_y] * p[Fraction_of_extra_taxes_paid_by_owners__1_]
+inits[:Sales_tax_workers_G__per_y] = inits[:Worker_consumption_demand_G__per_y] * p[Sales_tax_rate__1_]
+inits[:Sales_tax_owners_G__per_y] = inits[:Owner_consumption_G__per_y] * p[Sales_tax_rate__1_]
+inits[:Income_from_commons_from_2022_G__per_y] = inits[:National_income_G__per_y] * IfElse.ifelse(p[INITIAL_TIME__] > 2022,  ramp(p[INITIAL_TIME__], p[Goal_for_extra_income_from_commons__share_of_NI_] / inits[:Introduction_period_for_policy_y] , 2022, 2020 + inits[:Introduction_period_for_policy_y]) , 0)
+inits[:Fraction_of_govmnt_budget_to_workers__1_] = inits[:Goal_for_fraction_of_govmnt_budget_to_workers__1_]
+inits[:Govmnt_debt_G_] = inits[:Govmnt_debt_in_1980_G_]
+inits[:Govmnt_borrowing_cost_1_per_y] = inits[:threem_interest_rate_1_per_y]
+inits[:Max_govmnt_debt_G_] = inits[:National_income_G__per_y] * p[Max_govmnt_debt_burden_y]
+
 @variables Effective_purchasing_power_G__per_y(t) = inits[:Demand_in_1980_G__per_y]
 @variables Passing_40_Mp_per_y(t) = p[Passing_40_in_1980_Mp_per_y]
 @variables Embedded_CLR_kcu_per_ftj(t) = p[CLR_in_1980_kcu_per_ftj]
@@ -988,7 +1006,7 @@ inits[:Govmnt_new_debt_G__per_y] = max(0, ( inits[:Max_govmnt_debt_G_] - inits[:
 @variables Total_man_made_forcing_W_per_m2(t)
 @variables Perceived_surplus_workforce__1_(t)
 @variables Man_made_forcing_W_per_m2(t)
-@variables Extra_taxes_from_2022_G__per_y(t) = int[:Goal_for_extra_taxes_from_2022_G__per_y]
+@variables Extra_taxes_from_2022_G__per_y(t) = inits[:Goal_for_extra_taxes_from_2022_G__per_y]
 @variables Average_hours_worked_in_1980_kh_per_y(t)
 @variables ROC_in_WSO___Table_1_per_y(t)
 @variables kg_N2O_emission_per_kg_fertiliser(t)
