@@ -931,6 +931,8 @@ inits[:Permanent_worker_cash_inflow_G__per_y] = p[WFI_in_1980]
 inits[:Permanent_owner_cash_inflow_G__per_y] = p[OCI_in_1980]
 inits[:Owner_consumptin_fraction__1_] = 1 - inits[:Owner_savings_fraction__1_]
 
+inits[:Owner_savings_fraction__1_] = p[Owner_savings_fraction_in_1980]  *  ( 1 + p[sGDPeoOSR_0] *  ( inits[:Effective_GDP_per_person_k__per_p_per_y] / p[GDP_per_person_in_1980_k__per_p_per_y] - 1 ))
+
 @variables Effective_purchasing_power_G__per_y(t) = inits[:Demand_in_1980_G__per_y]
 @variables Passing_40_Mp_per_y(t) = p[Passing_40_in_1980_Mp_per_y]
 @variables Embedded_CLR_kcu_per_ftj(t) = p[CLR_in_1980_kcu_per_ftj]
@@ -983,7 +985,7 @@ inits[:Owner_consumptin_fraction__1_] = 1 - inits[:Owner_savings_fraction__1_]
 @variables Optimal_ouput___value_G__per_y(t)
 @variables Grazing_land_yied_in_1980_kg_red_meat_per_ha_per_y(t)
 @variables Govmnt_net_income_as_share_of_NI__1_(t)
-@variables Recent_sales_Gu_per_y(t) = inits[Demand_in_1980_G__per_y]
+@variables Recent_sales_Gu_per_y(t) = inits[:Demand_in_1980_G__per_y]
 @variables Crop_demand_Mt_crop_per_y(t)
 @variables LE_at_60_y(t)
 @variables Worker_income_G__per_y(t)
