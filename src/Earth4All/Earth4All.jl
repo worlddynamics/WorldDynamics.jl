@@ -923,6 +923,14 @@ inits[:Income_tax_owners__1_] = inits[:Basic_income_tax_rate_owners__1_] * inits
 inits[:Worker_consumption_demand_G__per_y] = inits[:Permanent_worker_cash_inflow_G__per_y] * p[Worker_consumption_fraction__1_]
 inits[:Owner_consumption_G__per_y] = inits[:Permanent_owner_cash_inflow_G__per_y] * inits[:Owner_consumptin_fraction__1_]
 
+inits[:Desired_renewable_electricity_share__1_] = p[Renewable_el_fraction_in_1980__1_] + ramp(p[INITIAL_TIME__],(p[Renewable_el_fraction_in_2022__1_] - p[Renewable_el_fraction_in_1980__1_] ) / 42, 1980, 2022) + ramp(p[INITIAL_TIME__],(p[Goal_for_renewable_el_fraction__1_] - p[Renewable_el_fraction_in_2022__1_] ) / inits[:Introduction_period_for_policy_y], 2022, 2022 + inits[:Introduction_period_for_policy_y] )
+inits[:FCUTeoLOFC__1_] = 1 + p[sFCUTeoLOFC_0] * ( (inits[:Fossil_capacity_up_time_kh_per_y] / p[eight_khours_per_year] ) - 1 )
+inits[:Traditional_per_person_use_of_electricity_before_EE_MWh_per_p_per_y] = interpolate(inits[:GDP_per_person_k__per_p_per_y], ((0,0),(10,4),(20,7),(30,9),(50,12),(65,13)))
+inits[:Basic_income_tax_rate_owners__1_] = min(1, p[Income_tax_rate_owners_in_1980__1_] + ramp(p[INITIAL_TIME__],(p[Income_tax_rate_owners_in_2022__1_] - p[Income_tax_rate_owners_in_1980__1_] ) / 42, 1980, 2022) + ramp(p[INITIAL_TIME__],(p[Goal_for_income_tax_rate_owners__1_] - p[Income_tax_rate_owners_in_2022__1_] ) / 78, 2022, 2100) )
+inits[:Permanent_worker_cash_inflow_G__per_y] = p[WFI_in_1980]
+inits[:Permanent_owner_cash_inflow_G__per_y] = p[OCI_in_1980]
+inits[:Owner_consumptin_fraction__1_] = 1 - inits[:Owner_savings_fraction__1_]
+
 @variables Effective_purchasing_power_G__per_y(t) = inits[:Demand_in_1980_G__per_y]
 @variables Passing_40_Mp_per_y(t) = p[Passing_40_in_1980_Mp_per_y]
 @variables Embedded_CLR_kcu_per_ftj(t) = p[CLR_in_1980_kcu_per_ftj]
