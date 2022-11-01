@@ -779,8 +779,6 @@ inits[:Renewable_electricity_production_TWh_per_y] = inits[:Renewable_electricit
 inits[:four_TWh_el_per_Mtoe] = inits[:TWh_el_per_EJ___engineering_equivalent] / p[:Mtoe_per_EJ___calorific_equivalent]
 inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits[:Worker_share_of_output__1_] / p[:WSO_in_1980__1_] - 1 )
 
-#miam
-
 @variables Effective_purchasing_power_G__per_y(t)
 @variables Passing_40_Mp_per_y(t)
 @variables Embedded_CLR_kcu_per_ftj(t)
@@ -807,19 +805,19 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Cost_of_food_G__per_y(t)
 @variables Extra_CO2_absorption_in_reg_ag_GtCO2_per_y(t)
 @variables GHG_EMISSIONS_GtCO2e_per_y(t)
-@variables Cost_of_capital_for_secured_debt_1_per_y(t) = inits[:threem_interest_rate_1_per_y]+p[:Normal_bank_operating_margin_1_per_y]
+@variables Cost_of_capital_for_secured_debt_1_per_y(t)
 @variables Investment_share_of_GDP__1_(t)
 @variables Delivery_delay___index__1_(t) = 1
 @variables Perceived_crop_balance__1_(t)
 @variables Transfer_payments_G__per_y(t)
-@variables N2O_in_atmosphere_GtN2O(t) = p[:N2O_in_atm_in_1980_GtN2O]
-@variables TFP_excluding_effect_of_5TAs__1_(t) = p[:TFP_in_1980__1_]
+@variables N2O_in_atmosphere_GtN2O(t)
+@variables TFP_excluding_effect_of_5TAs__1_(t)
 @variables Demand_for_red_meat_per_person_kg_red_meat_per_p_per_y(t)
 @variables Cost_of_fossil_fuel_for_non_el_use_G__per_y(t)
 @variables Observed_fertility_1(t)
 @variables Demand_for_fossil_electricity_TWh_per_y(t)
 @variables Extra_increase_in_demand_for_electricity_from_NE_TWh_per_y(t)
-@variables Forestry_land_Mha(t) = p[:Forestry_land_in_1980_Mha]
+@variables Forestry_land_Mha(t)
 @variables Increase_in_extra_energy_productivity_index_1_per_y(t)
 @variables Workers_debt_in_1980_G_(t)
 @variables CO2_from_energy_production_GtCO2_per_y(t)
@@ -827,13 +825,13 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Transfer_rate_for_heat_going_to_abyss_1_per_y(t)
 @variables Fertilizer_use_in_conv_ag_kgN_per_ha_per_y(t)
 @variables OWeoLOC__1_(t)
-@variables Perceived_unemployment_CB__1_(t) = inits[:Unemployment_rate__1_]
+@variables Perceived_unemployment_CB__1_(t)
 @variables OWeoCOC__1_(t)
 @variables Life_of_fossil_el_capacity_y(t)
 @variables Optimal_ouput___value_G__per_y(t)
 @variables Grazing_land_yied_in_1980_kg_red_meat_per_ha_per_y(t)
 @variables Govmnt_net_income_as_share_of_NI__1_(t)
-@variables Recent_sales_Gu_per_y(t) = inits[:Demand_in_1980_G__per_y]
+@variables Recent_sales_Gu_per_y(t)
 @variables Crop_demand_Mt_crop_per_y(t)
 @variables LE_at_60_y(t)
 @variables Worker_income_G__per_y(t)
@@ -841,9 +839,9 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Labour_productivity_in_1980___per_ph(t)
 @variables Hours_worked_mult_from_GDPpp__1_(t)
 @variables Extra_warming_from_forcing_ZJ_per_y(t)
-@variables Passing_60_Mp_per_y(t) = p[:Passing_60_in_1980_Mp_per_y]
-@variables Permanent_owner_cash_inflow_G__per_y(t) = p[:OCI_in_1980]
-@variables Permanent_govmnt_cash_inflow_G__per_y(t) = p[:GCI_in_1980]
+@variables Passing_60_Mp_per_y(t)
+@variables Permanent_owner_cash_inflow_G__per_y(t)
+@variables Permanent_govmnt_cash_inflow_G__per_y(t)
 @variables Deliveries_Gu_per_y(t)
 @variables Land_erosion_rate_1_per_y(t)
 @variables Green_hydrogen_MtH2_per_y(t)
@@ -860,16 +858,16 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Indicated_reform_delay_y(t)
 @variables Total_purchasing_power_G__per_y(t)
 @variables Traditional_per_person_use_of_electricity_before_EE_MWh_per_p_per_y(t)
-@variables Fossil_electricity_capacity_GW(t) = p[:Fossil_el_capacity_in_1980_GW]
+@variables Fossil_electricity_capacity_GW(t)
 @variables Owner_income_G__per_y(t)
 @variables Capacity_discard_PIS_Gcu_per_y(t)
-@variables Perceived_warming_deg_C(t) = inits[:Observed_warming_deg_C]
+@variables Perceived_warming_deg_C(t)
 @variables CO2_absorption_in_forestry_land_tCO2_per_ha_per_y(t)
 @variables Govmnt_debt_in_1980_G_(t)
 @variables Pink_noise_in_sales__1_(t)
 @variables Discard_of_renewable_el_capacity_GW_per_y(t)
 @variables Crop_supply_reg_ag_Mt_crop_per_y(t)
-@variables Fraction_of_govmnt_budget_to_workers__1_(t) = inits[:Goal_for_fraction_of_govmnt_budget_to_workers__1_]
+@variables Fraction_of_govmnt_budget_to_workers__1_(t)
 @variables CO2_emissions_GtCO2_per_y(t)
 @variables Change_in_signal_rate_1_per_yy(t)
 @variables Acceptable_loss_of_forestry_land__1_(t)
@@ -877,13 +875,13 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Total_man_made_forcing_W_per_m2(t)
 @variables Perceived_surplus_workforce__1_(t)
 @variables Man_made_forcing_W_per_m2(t)
-@variables Extra_taxes_from_2022_G__per_y(t) = inits[:Goal_for_extra_taxes_from_2022_G__per_y]
+@variables Extra_taxes_from_2022_G__per_y(t)
 @variables Average_hours_worked_in_1980_kh_per_y(t)
 @variables ROC_in_WSO___Table_1_per_y(t)
 @variables kg_N2O_emission_per_kg_fertiliser(t)
 @variables Extra_normal_LPR_from_2022__1_(t)
 @variables Observed_rate_of_progress_1_per_y(t) = 0
-@variables Reduction_in_TFP_from_unprofitable_activity__1_(t) = p[:Productivity_loss_from_unprofitable_activity__1_]
+@variables Reduction_in_TFP_from_unprofitable_activity__1_(t)
 @variables Govmnt_spending_G__per_y(t)
 @variables Social_tension__1_(t)
 @variables ten_yr_govmnt_interest_rate_1_per_y(t)
@@ -896,9 +894,9 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Public_spending_effect_on_social_trust__1_(t)
 @variables ENERGY_USE_Mtoe_per_y(t)
 @variables Govmnt_share_of_GDP__1_(t)
-@variables Perceived_unemployment_rate__1_(t) = p[:Unemployment_rate_in_1980__1_]
+@variables Perceived_unemployment_rate__1_(t)
 @variables OWeoTFP(t)
-@variables Passing_20_Mp_per_y(t) = p[:Passing_20_in_1980_Mp_per_y]
+@variables Passing_20_Mp_per_y(t)
 @variables Population_below_15_k__per_p_per_y_Mp(t)
 @variables Births_Mp_per_y(t)
 @variables IIASA_Fossil_energy_production_EJ_per_yr(t)
@@ -906,7 +904,7 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Control___C_G_S__per_NI_(t)
 @variables Fertility_multiplier__1_(t)
 @variables CAPEX_renewable_el_G__per_y(t)
-@variables Aged_40_60_Mp(t) = p[:Aged_40_60_in_1980_Mp]
+@variables Aged_40_60_Mp(t)
 @variables Water_vapor_concentration_g_per_kg(t)
 @variables Urban_expansion_Mha_per_y(t)
 @variables Desired_renewable_electricity_share__1_(t)
@@ -926,20 +924,20 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Available_workforce_Mp(t)
 @variables Demand_for_electricity_TWh_per_y(t)
 @variables Sales_tax_owners_G__per_y(t)
-@variables Aged_60___Mp(t) = p[:Aged_60__in_1980_Mp]
-@variables CO2_in_atmosphere_GtCO2(t) = p[:CO2_in_atm_in_1980_GtCO2]
+@variables Aged_60___Mp(t)
+@variables CO2_in_atmosphere_GtCO2(t)
 @variables Owner_savings_G__per_y(t)
 @variables Govmnt_net_income_G__per_y(t)
-@variables Past_GDP_per_person_k__per_y(t) = p[:GDP_per_person_in_1980_k__per_p_per_y]*p[:Factor_to_avoid_transient_in_growth_rate__1_]
+@variables Past_GDP_per_person_k__per_y(t)
 @variables Pension_age_y(t)
-@variables Perceived_inflation_CB_1_per_y(t) = p[:Inflation_in_1980__1_per_y_]
+@variables Perceived_inflation_CB_1_per_y(t)
 @variables Worker_taxes_G__per_y(t)
-@variables Reform_delay_y(t) = inits[:Indicated_reform_delay_y]
+@variables Reform_delay_y(t)
 @variables Bank_cash_inflow_from_lending_G__per_y(t)
-@variables Deaths_Mp_per_y(t) = p[:Dying_in_1980_Mp_per_y]
+@variables Deaths_Mp_per_y(t)
 @variables Demand_pulse_2020_25__1_(t)
 @variables Change_in_workforce_Mp_per_y(t)
-@variables Old_growth_forest_area_Mha_1(t) = p[:Old_growth_forest_in_1980_Mha]
+@variables Old_growth_forest_area_Mha_1(t)
 @variables Grazing_land_yield_kg_red_meat_per_ha_per_y(t)
 @variables Logistic_k__1_(t)
 @variables Social_trust_effect_on_reform_delay__1_(t)
@@ -948,7 +946,7 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Potential_red_meat_from_grazing_land_Mt_red_meat_per_y(t)
 @variables Fraction_regenerative_agriculture__1_(t)
 @variables Demand_for_fossil_fuel_for_non_el_use_before_NE_Mtoe_per_y(t)
-@variables Govmnt_debt_G_(t) = inits[:Govmnt_debt_in_1980_G_]
+@variables Govmnt_debt_G_(t)
 @variables Food_sector_productivity_index__19801_(t)
 @variables Aged_20_pension_age_Mp(t)
 @variables Capacity_addition_PUS_Gcu_per_y(t)
@@ -965,9 +963,9 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Income_tax_owners__1_(t)
 @variables Corporate_borrowing_cost_1_per_y(t)
 @variables Unemployment_rate__1_(t)
-@variables Output_last_year_G__per_y(t) = inits[:Optimal_output_in_1980_Gu_per_y]/(1+p[:Output_growth_in_1980_1_per_y__to_avoid_transient_])
-@variables Urban_land_Mha(t) = p[:Urban_land_in_1980_Mha]
-@variables Soil_quality_index_in_conv_ag__19801_(t) = p[:Soil_quality_index_in_1980__1_]
+@variables Output_last_year_G__per_y(t)
+@variables Urban_land_Mha(t)
+@variables Soil_quality_index_in_conv_ag__19801_(t)
 @variables GDP_G__per_y(t)
 @variables Dependency_ratio_p_per_p(t)
 @variables Owner_taxes_G__per_y(t)
@@ -984,11 +982,11 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Worker_savings_G__per_y(t)
 @variables Extra_pension_age_y(t)
 @variables Public_services_per_person_k__per_p_per_y(t)
-@variables Extra_energy_productivity_index_20221(t) = p[:Extra_energy_productivity_index_in_2022__1_]
+@variables Extra_energy_productivity_index_20221(t)
 @variables FOOD_FOOTPRINT_INDEX__19801_(t)
 @variables Old_growth_removal_rate_1_per_y(t)
 @variables Traditional_use_of_crops_ex_red_meat_per_person_kg_crop_per_p_per_y(t)
-@variables Normal_hours_worked_kh_per_ftj_per_y(t) = p[:Normal_hours_worked_in_1980_kh_per_ftj_per_y]
+@variables Normal_hours_worked_kh_per_ftj_per_y(t)
 @variables Average_wellbeing_from_progress__1_(t)
 @variables Workers_new_debt_G__per_y(t)
 @variables Fossil_electricity_production_TWh_per_y(t)
@@ -1003,7 +1001,7 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Number_of_doublings_in_sun_and_wind_capacity__1_(t)
 @variables Inequity_effect_on_logistic_k__1_(t)
 @variables Demand_in_1980_G__per_y(t)
-@variables Output_growth_rate_1_per_y(t) = p[:Output_growth_in_1980_1_per_y__to_avoid_transient_]
+@variables Output_growth_rate_1_per_y(t)
 @variables OPEX_renewable_el_G__per_y(t)
 @variables Govmnt_cash_inflow_G__per_y(t)
 @variables Extra_cooling_from_ice_melt_ZJ_per_y(t)
@@ -1012,7 +1010,7 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Desired_fossil_el_capacity_change_GW_per_y(t)
 @variables xExtra_cost_of_TAs_as_share_of_GDP__1_(t)
 @variables Price_per_unit___per_u(t)
-@variables Social_trust__1_(t) = p[:Social_trust_in_1980__1_]
+@variables Social_trust__1_(t)
 @variables Cost_of_electricity_G__per_y(t)
 @variables Govmnt_spending_as_share_of_GDP(t)
 @variables Traditional_use_of_crops_per_person_kg_crop_per_p_per_y(t)
@@ -1035,9 +1033,9 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Traditional_use_of_feed_for_red_meat_Mt_crop_per_y(t)
 @variables Indicated_social_trust__1_(t)
 @variables Worker_debt_burden_y(t)
-@variables Capacity_PIS_Gcu(t) = p[:CAP_PIS_in_1980_Gcu]
+@variables Capacity_PIS_Gcu(t)
 @variables Red_meat_from_feedlots_Mt_red_meat_per_y(t)
-@variables Aged_20_40_years_Mp(t):p[:Aged_20_40_in_1980_Mp]
+@variables Aged_20_40_years_Mp(t)
 @variables Warming_effect_on_land_yield__1_(t)
 @variables Cash_flow_from_govmnt_to_banks_G__per_y(t)
 @variables Optimal_real_output_Gu_per_y(t)
@@ -1047,7 +1045,7 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Govmnt_purchases_G__per_y(t)
 @variables Food_footprint_in_1980(t)
 @variables Govmnt_investment_in_public_capacity_G__per_y(t)
-@variables Fraction_of_available_capital_to_new_capacity__1_(t) = p[:FRA_in_1980__1_]*inits[:FRACA_mult_from_GDPpp___Line__1_]*(inits[:WSO_effect_on_flow_to_capacity_addition__1_]+inits[:CBC_effect_on_flow_to_capacity_addion__1_]+inits[:ED_effect_on_flow_to_capacity_addition__1_])/3
+@variables Fraction_of_available_capital_to_new_capacity__1_(t)
 @variables Capacity_Gcu(t)
 @variables Green_hydrogen_Mtoe_per_y(t)
 @variables ROC_in_ECLR_1_per_y(t)
@@ -1066,13 +1064,13 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables ED_effect_on_flow_to_capacity_addition__1_(t)
 @variables Consumption_share_of_GDP__1_(t)
 @variables Addition_of_renewable_el_capacity_GW_per_y(t)
-@variables Wage_effect_on_optimal_CLR__1_(t) = inits[:Indicated_wage_effect_on_optimal_CLR__1_]
+@variables Wage_effect_on_optimal_CLR__1_(t)
 @variables Feed_for_red_meat_Mt_crop_per_y(t)
 @variables Cost_of_food_and_energy_TAs_G__per_y(t)
 @variables Perceived_excess_demand__1_(t) = 1
 @variables Indicated_TFP__1_(t)
-@variables Expected_long_term_inflation_1_per_y(t) = p[:Inflation_in_1980__1_per_y_]
-@variables Shifts_worked___index__1_(t) = inits[:Desired_shifts_worked___index__1_]
+@variables Expected_long_term_inflation_1_per_y(t)
+@variables Shifts_worked___index__1_(t)
 @variables Inequality__1_(t)
 @variables Desired_crop_supply_Mt_crop_per_y(t)
 @variables Red_meat_supply_per_person_kg_red_meat_per_p_per_y(t)
@@ -1099,25 +1097,25 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Inequity_effect_on_social_trust__1_(t)
 @variables Cost_index_for_Regenerative_agriculture__1_(t)
 @variables Fertilizer_productivity_index__19801_(t)
-@variables Ice_and_snow_cover_excl_G_A_Mkm2(t) = p[:Ice_and_snow_cover_excl_Greenland_and_Antarctica_in_1980_Mkm2]
+@variables Ice_and_snow_cover_excl_G_A_Mkm2(t)
 @variables kg_CH4_emission_per_kg_crop(t)
 @variables Fossil_capacity_up_time_kh_per_y(t)
 @variables Natural_CH4_emissions_GtCH4_per_y(t)
 @variables New_grazing_land_Mha_per_y(t)
-@variables Worker_share_of_output__1_(t) = p[:WSO_in_1980__1_]
+@variables Worker_share_of_output__1_(t)
 @variables Albedo_in_1980__1_(t)
 @variables Average_wellbeing_from_disposable_income__1_(t)
 @variables CAPEX_fossil_el_G__per_y(t)
 @variables Cropland_loss_Mha_per_y(t)
 @variables Worker_interest_cost_G__per_y(t)
-@variables Permanent_worker_cash_inflow_G__per_y(t) = p[:WFI_in_1980]
+@variables Permanent_worker_cash_inflow_G__per_y(t)
 @variables Desired_shifts_worked___index__1_(t)
 @variables Observed_warming_deg_C(t)
 @variables Extra_reduction_in_demand_for_non_el_fossil_fuel_from_NE_Mtoe_per_y(t)
-@variables Capacity_under_construction_PIS_Gcu(t) = inits[:CUC_PIS_in_1980_Gcu]
+@variables Capacity_under_construction_PIS_Gcu(t)
 @variables Fraction_below_15_k__per_p_per_y__1_(t)
 @variables CAPEX_renewable_el___per_W(t)
-@variables Labour_participation_rate__1_(t) = inits[:Indicated_labour_participation_rate__1_]
+@variables Labour_participation_rate__1_(t)
 @variables Nuclear_capacity_GW(t)
 @variables Crop_use_per_person_t_crop_per_p_per_y(t)
 @variables CO2_concentration_in_atm_ppm(t)
@@ -1138,17 +1136,17 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Desired_supply_of_renewable_electricity_TWh_per_y(t)
 @variables Discard_of_fossil_el_capacity_GW_per_y(t)
 @variables ROC_in_DDI_1_per_y(t)
-@variables Workforce_Mp(t) = p[:Workforce_in_1980_Mp]
+@variables Workforce_Mp(t)
 @variables OPEX_fossil_el_G__per_y(t)
-@variables Effective_GDP_per_person_k__per_p_per_y(t) = p[:GDP_per_person_in_1980_k__per_p_per_y]
+@variables Effective_GDP_per_person_k__per_p_per_y(t)
 @variables Food_footprint(t)
 @variables Long_term_erosion_of_wso_1_per_y(t)
 @variables INV_in_1980_Gu(t)
 @variables Public_spending_as_share_of_GDP(t)
 @variables INEQUALITY_INDEX__19801_(t)
-@variables Inventory_Gu(t) = inits[:INV_in_1980_Gu]
+@variables Inventory_Gu(t)
 @variables Life_of_extra_CO2_in_atm_y(t)
-@variables Capacity_under_construction_PUS_Gcu(t) = inits[:CUC_PUS_in_1980_Gcu]
+@variables Capacity_under_construction_PUS_Gcu(t)
 @variables Indicated_wage_effect_on_optimal_CLR__1_(t)
 @variables Desired_crop_supply_conv_ag_Mt_crop_per_y(t)
 @variables Consumption_demand_G__per_y(t)
@@ -1160,7 +1158,7 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Melting_rate_deep_ice_1_per_y(t)
 @variables Govmnt_new_debt_G__per_y(t)
 @variables Crop_supply__after_20___waste__Mt_crop_per_y(t)
-@variables Grazing_land_Mha(t) = p[:Grazing_land_in_1980_Mha]
+@variables Grazing_land_Mha(t)
 @variables Number_of_doublings_in_reg_ag__1_(t)
 @variables Savings_share_of_GDP__1_(t)
 @variables Wellbeing_effect_of_participation__1_(t)
@@ -1173,7 +1171,7 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables TFP_including_effect_of_5TAs__1_(t)
 @variables Average_gross_income_per_worker_k__per_p_per_y(t)
 @variables Normal_corporate_credit_risk_1_per_y(t)
-@variables Past_AWI__1_(t) = p[:AWI_in_1980__1_]
+@variables Past_AWI__1_(t)
 @variables Owner_tax_rate__1_(t)
 @variables Traditional_use_of_crops_Mt_per_y(t)
 @variables CO2_from_CH4_GtCO2_per_y(t)
@@ -1184,7 +1182,7 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Life_of_capacity_PIS_y(t)
 @variables Change_in_soil_quality_in_conv_ag_t_crop_per_ha_per_y_per_y(t)
 @variables Wage_rate_erosion_rate_1_per_y(t)
-@variables CH4_in_atmosphere_GtCH4(t) = p[:CH4_in_atm_in_1980_GtCH4]
+@variables CH4_in_atmosphere_GtCH4(t)
 @variables Cost_of_new_electrification_G__per_y(t)
 @variables Fraction_fossil_plus_nuclear_electricity__1_(t)
 @variables CBC_effect_on_flow_to_capacity_addion__1_(t)
@@ -1199,14 +1197,14 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Man_made_N2O_emissions_GtN2O_per_y(t)
 @variables OWeoLoCO2(t)
 @variables Lambda(t)
-@variables Accumulated_sun_and_wind_capacity_from_1980_GW(t) = p[:Sun_and_wind_capacity_in_1980_GW]
+@variables Accumulated_sun_and_wind_capacity_from_1980_GW(t)
 @variables Capacity_addition_PIS_Gcu_per_y(t)
 @variables Imported_ROTA_1_per_y(t)
 @variables Workers_payback_G__per_y(t)
 @variables FFLReoOGRR(t)
 @variables GDPppeoROCCLR(t)
-@variables Aged_0_20_years_Mp(t) = p[:Aged_0_20_in_1980_Mp]
-@variables Central_bank_signal_rate_1_per_y(t) = p[:Normal_signal_rate_1_per_y]
+@variables Aged_0_20_years_Mp(t)
+@variables Central_bank_signal_rate_1_per_y(t)
 @variables Life_expectancy_y(t)
 @variables Govmnt_gross_income__as_share_of_NI_(t)
 @variables Forcing_from_CO2_W_per_m2(t)
@@ -1233,18 +1231,18 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Productivity_loss_from_unprofitable_activity__1_(t)
 @variables CO2_emissions_from_LULUC_GtCO2_per_y(t)
 @variables IIASA_Renewable_energy_production_EJ_per_yr(t)
-@variables Cropland_Mha(t) = p[:Cropland_in_1980_Mha]
+@variables Cropland_Mha(t)
 @variables Fraction_forestry_land_remaining__1_(t)
 @variables Forcing_from_N2O_W_per_m2(t)
-@variables Workers_debt_G_(t) = inits[:Workers_debt_in_1980_G_]
-@variables Perceived_relative_inventory__1_(t) = inits[:Inventory_coverage_y]/p[:Desired_inventory_coverage_y]
+@variables Workers_debt_G_(t)
+@variables Perceived_relative_inventory__1_(t)
 @variables Barren_land_Mha(t) = 3000
 @variables Worker_borrowing_cost_1_per_y(t)
 @variables ROC_in_CLR_1_per_y(t)
 @variables Traditional_cost_of_energy_as_share_of_GDP__1_(t)
-@variables Embedded_CLR_k__per_j(t) = p[:CLR_in_1980_k__per_j]
+@variables Embedded_CLR_k__per_j(t)
 @variables Life_of_capacity_PUS_in_1980_y(t)
-@variables Embedded_TFP__1_(t) = p[:Embedded_TFP_in_1980__1_]
+@variables Embedded_TFP__1_(t)
 @variables Crop_balance__1_(t)
 @variables Nuclear_electricity_production_TWh_per_y(t)
 @variables Warming_effect_on_life_expectancy__1_(t)
@@ -1258,7 +1256,7 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Albedo__1_(t)
 @variables Inventory_coverage_y(t)
 @variables Sales_G__per_y(t)
-@variables Wage_rate___per_ph(t) = inits[:Wage_rate_in_1980___per_ph]
+@variables Wage_rate___per_ph(t)
 @variables Govmnt_gross_income_G__per_y(t)
 @variables CO2_release_from_forest_cut_GtCO2_per_y(t)
 @variables Capacity_renewal_rate_1_per_y(t)
@@ -1272,57 +1270,54 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables Traditional_cost_of_electricity_G__per_y(t)
 @variables Time_to_change_tooling_y(t)
 @variables Domestic_rate_of_technological_advance_1_per_y(t)
-@variables Renewable_electricity_capacity_GW(t) = p[:Renewable_el_capacity_in_1980_GW]
+@variables Renewable_electricity_capacity_GW(t)
 @variables CO2_from_non_fossil_industrial_processes_GtCO2_per_y(t)
 @variables FRACA_mult_from_GDPpp___Line__1_(t)
 @variables Old_growth_removal_rate_multiplier__1_(t)
 @variables Cost_of_fertilizer_G__per_y(t)
-@variables Price_Index__19801_(t) = p[:Price_Index_in_1980__1_]
-@variables Extra_heat_in_surface_ZJ(t) = p[:Extra_heat_in_1980_ZJ]
+@variables Price_Index__19801_(t)
+@variables Extra_heat_in_surface_ZJ(t)
 @variables CUC_PIS_in_1980_Gcu(t)
 @variables Traditional_fertilizer_use_in_conv_ag_kgN_per_ha_per_y(t)
 @variables Indicated_signal_rate_1_per_y(t)
 @variables Desired_renewable_el_capacity_GW(t)
 @variables Govmnt_payback_G__per_y(t)
-@variables Passing_40_Mp_per_y1(t) = p[:Passing_40_in_1980_Mp_per_y]
-@variables Passing_40_Mp_per_y2(t) = p[:Passing_40_in_1980_Mp_per_y]
-@variables Passing_40_Mp_per_y3(t) = p[:Passing_40_in_1980_Mp_per_y]
-@variables Passing_40_Mp_per_y4(t) = p[:Passing_40_in_1980_Mp_per_y]
-@variables Passing_40_Mp_per_y5(t) = p[:Passing_40_in_1980_Mp_per_y]
-@variables Passing_40_Mp_per_y6(t) = p[:Passing_40_in_1980_Mp_per_y]
-@variables Passing_40_Mp_per_y7(t) = p[:Passing_40_in_1980_Mp_per_y]
-@variables Passing_40_Mp_per_y8(t) = p[:Passing_40_in_1980_Mp_per_y]
-@variables Passing_40_Mp_per_y9(t) = p[:Passing_40_in_1980_Mp_per_y]
-
-@variables Passing_60_Mp_per_y1(t) = p[:Passing_60_in_1980_Mp_per_y]
-@variables Passing_60_Mp_per_y2(t) = p[:Passing_60_in_1980_Mp_per_y]
-@variables Passing_60_Mp_per_y3(t) = p[:Passing_60_in_1980_Mp_per_y]
-@variables Passing_60_Mp_per_y4(t) = p[:Passing_60_in_1980_Mp_per_y]
-@variables Passing_60_Mp_per_y5(t) = p[:Passing_60_in_1980_Mp_per_y]
-@variables Passing_60_Mp_per_y6(t) = p [Passing_60_in_1980_Mp_per_y]
-@variables Passing_60_Mp_per_y7(t) = p[:Passing_60_in_1980_Mp_per_y]
-@variables Passing_60_Mp_per_y8(t) = p[:Passing_60_in_1980_Mp_per_y]
-@variables Passing_60_Mp_per_y9(t) = p[:Passing_60_in_1980_Mp_per_y]
-
-@variables Passing_20_Mp_per_y1(t) = p[:Passing_20_in_1980_Mp_per_y]
-@variables Passing_20_Mp_per_y2(t) = p[:Passing_20_in_1980_Mp_per_y]
-@variables Passing_20_Mp_per_y3(t) = p[:Passing_20_in_1980_Mp_per_y]
-@variables Passing_20_Mp_per_y4(t) = p[:Passing_20_in_1980_Mp_per_y]
-@variables Passing_20_Mp_per_y5(t) = p[:Passing_20_in_1980_Mp_per_y]
-@variables Passing_20_Mp_per_y6(t) = p[:Passing_20_in_1980_Mp_per_y]
-@variables Passing_20_Mp_per_y7(t) = p[:Passing_20_in_1980_Mp_per_y]
-@variables Passing_20_Mp_per_y8(t) = p[:Passing_20_in_1980_Mp_per_y]
-@variables Passing_20_Mp_per_y9(t) = p[:Passing_20_in_1980_Mp_per_y]
-
-@variables Deaths_Mp_per_y1(t) = p[:Dying_in_1980_Mp_per_y]
-@variables Deaths_Mp_per_y2(t) = p[:Dying_in_1980_Mp_per_y]
-@variables Deaths_Mp_per_y3(t) = p[:Dying_in_1980_Mp_per_y]
-@variables Deaths_Mp_per_y4(t) = p[:Dying_in_1980_Mp_per_y]
-@variables Deaths_Mp_per_y5(t) = p[:Dying_in_1980_Mp_per_y]
-@variables Deaths_Mp_per_y6(t) = p[:Dying_in_1980_Mp_per_y]
-@variables Deaths_Mp_per_y7(t) = p[:Dying_in_1980_Mp_per_y]
-@variables Deaths_Mp_per_y8(t) = p[:Dying_in_1980_Mp_per_y]
-@variables Deaths_Mp_per_y9(t) = p[:Dying_in_1980_Mp_per_y]
+@variables Passing_40_Mp_per_y1(t)
+@variables Passing_40_Mp_per_y2(t)
+@variables Passing_40_Mp_per_y3(t)
+@variables Passing_40_Mp_per_y4(t)
+@variables Passing_40_Mp_per_y5(t)
+@variables Passing_40_Mp_per_y6(t)
+@variables Passing_40_Mp_per_y7(t)
+@variables Passing_40_Mp_per_y8(t)
+@variables Passing_40_Mp_per_y9(t)
+@variables Passing_60_Mp_per_y1(t)
+@variables Passing_60_Mp_per_y2(t)
+@variables Passing_60_Mp_per_y3(t)
+@variables Passing_60_Mp_per_y4(t)
+@variables Passing_60_Mp_per_y5(t)
+@variables Passing_60_Mp_per_y6(t)
+@variables Passing_60_Mp_per_y7(t)
+@variables Passing_60_Mp_per_y8(t)
+@variables Passing_60_Mp_per_y9(t)
+@variables Passing_20_Mp_per_y1(t)
+@variables Passing_20_Mp_per_y2(t)
+@variables Passing_20_Mp_per_y3(t)
+@variables Passing_20_Mp_per_y4(t)
+@variables Passing_20_Mp_per_y5(t)
+@variables Passing_20_Mp_per_y6(t)
+@variables Passing_20_Mp_per_y7(t)
+@variables Passing_20_Mp_per_y8(t)
+@variables Passing_20_Mp_per_y9(t)
+@variables Deaths_Mp_per_y1(t)
+@variables Deaths_Mp_per_y2(t)
+@variables Deaths_Mp_per_y3(t)
+@variables Deaths_Mp_per_y4(t)
+@variables Deaths_Mp_per_y5(t)
+@variables Deaths_Mp_per_y6(t)
+@variables Deaths_Mp_per_y7(t)
+@variables Deaths_Mp_per_y8(t)
+@variables Deaths_Mp_per_y9(t)
 
 eqs = [
 D(Effective_purchasing_power_G__per_y) ~ ((Total_purchasing_power_G__per_y - Effective_purchasing_power_G__per_y) /  Demand_adjustment_time_y) *  (1 +  Demand_pulse_2020_25__1_),
