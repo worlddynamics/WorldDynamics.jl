@@ -22,7 +22,7 @@ function interpolate(x, yvalues::Tuple{Vararg{Float64}}, xrange::Tuple{Float64, 
     return y
 end
 
-function interpolate(x, pairs::Vector{<:NTuple{2, Float64}})
+function interpolate(x, pairs::Tuple{Vararg{<:NTuple{2, Float64}}})
    xvalues = map(t -> t[1], pairs)
    yvalues = map(t -> t[end], pairs)
    interpolate(x, yvalues, xvalues)
