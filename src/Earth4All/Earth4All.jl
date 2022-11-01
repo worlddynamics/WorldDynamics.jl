@@ -729,6 +729,7 @@ inits = Dict{Symbol, Float64}(
     :CUC_PIS_in_1980_Gcu => ( p[:CAP_PIS_in_1980_Gcu] / p[:Life_of_capacity_PIS_in_1980_y] ) * p[:Construction_time_PIS_y] * p[:Extra_mult_on_CUC__to_avoid_initial_transient_in_Investment_share_of_GDP],
     :Delivery_delay___index__1_ => 1,
     :Effective_GDP_per_person_k__per_p_per_y => p[:GDP_per_person_in_1980_k__per_p_per_y],
+    :Embedded_CLR_kcu_per_ftj = p[:CLR_in_1980_kcu_per_ftj],
     :Embedded_TFP__1_ => p[:Embedded_TFP_in_1980__1_],
     :Extra_cost_of_TAs_as_share_of_GDP__1_ => p[:xExtra_TA_cost_in_2022__share_of_GDP_] + ramp(p[:INITIAL_TIME__],(p[:xExtra_TA_cost_in_2100__share_of_GDP_] - p[:xExtra_TA_cost_in_2022__share_of_GDP_])/78, 2022, 2022 + 78)
     :Extra_energy_productivity_index_20221 => p[:Extra_energy_productivity_index_in_2022__1_],
@@ -740,10 +741,11 @@ inits = Dict{Symbol, Float64}(
     :Lambda => 1 - p[:Kappa],
     :Life_expectancy_multipler__1_ => IfElse.ifelse(p[:SSP2_family_action_from_2022___1_] > 0,  IfElse.ifelse(p[:INITIAL_TIME__] > 2022, 1 + ramp(p[:INITIAL_TIME__],(p[:Max_life_expectancy_multiplier__1_] - 1 )/78, 2022, 2100), 1),  1),
     :Normal_hours_worked_kh_per_ftj_per_y => p[:Normal_hours_worked_in_1980_kh_per_ftj_per_y],
-    :Nuclear_capacity_GW => interpolate(p[:INITIAL_TIME__], ((1980.0,75.0),(2000.0,310.0),(2020.0,310.0),(2098.9,310.0))),
+    :Nuclear_capacity_GW => interpolate(p[:INITIAL_TIME__], [(1980.0,75.0),(2000.0,310.0),(2020.0,310.0),(2098.9,310.0)]),
     :Observed_rate_of_progress_1_per_y => 0,
     :Optimal_output_in_1980_Gu_per_y => p[:CAP_PIS_in_1980_Gcu] / p[:PCOR_PIS_cu_per_u_per_y] + p[:CAP_PUS_in_1980_Gcu] / p[:PCOR_PUS_cu_per_u_per_y],
     :Output_growth_rate_1_per_y => p[:Output_growth_in_1980_1_per_y__to_avoid_transient_],
+    :Passing_40_Mp_per_y = p[:Passing_40_in_1980_Mp_per_y],
     :Perceived_excess_demand__1_ => 1,
     :Permanent_owner_cash_inflow_G__per_y => p[:OCI_in_1980],
     :Permanent_worker_cash_inflow_G__per_y => p[:WFI_in_1980],
@@ -779,9 +781,9 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 
 #miam
 
-@variables Effective_purchasing_power_G__per_y(t) = inits[:Demand_in_1980_G__per_y]
-@variables Passing_40_Mp_per_y(t) = p[:Passing_40_in_1980_Mp_per_y]
-@variables Embedded_CLR_kcu_per_ftj(t) = p[:CLR_in_1980_kcu_per_ftj]
+@variables Effective_purchasing_power_G__per_y(t)
+@variables Passing_40_Mp_per_y(t)
+@variables Embedded_CLR_kcu_per_ftj(t)
 @variables Extra_cost_of_Food_Turnaround_G__per_y(t)
 @variables Total_savings_G__per_y(t)
 @variables Participation__1_(t)
@@ -797,7 +799,7 @@ inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits
 @variables N2O_concentration_in_atm_ppm(t)
 @variables Labour_use_in_1980_Gph_per_y(t)
 @variables Output_Gu_per_y(t)
-@variables Capacity_PUS_Gcu(t) = p[:CAP_PUS_in_1980_Gcu]
+@variables Capacity_PUS_Gcu(t)
 @variables Loss_of_forest_land_Mha_per_y(t)
 @variables Embedded_labour_productivity_in_1980_k__per_p_per_y(t)
 @variables Public_spending_per_person_k__per_p_per_y(t)
@@ -1341,7 +1343,7 @@ Participation__1_ ~ Labour_participation_rate__1_ * ( 1 - Perceived_unemployment
 Optimal_output_in_1980_Gu_per_y ~ CAP_PIS_in_1980_Gcu / PCOR_PIS_cu_per_u_per_y + CAP_PUS_in_1980_Gcu / PCOR_PUS_cu_per_u_per_y,
 Consumption_per_person_G__per_y ~ Consumption_demand_G__per_y /  Population_Mp,
 Cost_of_food_and_energy_as_share_of_GDP__1_ ~ Cost_of_food_and_energy_G__per_y / GDP_G__per_y,
-Forcing_from_other_gases_W_per_m2 ~ interpolate(t, ((1980.0,0.18),(2000.0,0.36),(2020.0,0.39),(2050.0,0.37),(2100.0,0.0))),
+Forcing_from_other_gases_W_per_m2 ~ interpolate(t, [(1980.0,0.18),(2000.0,0.36),(2020.0,0.39),(2050.0,0.37),(2100.0,0.0)]),
 Basic_income_tax_rate_owners__1_ ~ min(1, Income_tax_rate_owners_in_1980__1_ + ramp(t,(Income_tax_rate_owners_in_2022__1_ - Income_tax_rate_owners_in_1980__1_ ) / 42, 1980, 2022) + ramp(t,(Goal_for_income_tax_rate_owners__1_ - Income_tax_rate_owners_in_2022__1_ ) / 78, 2022, 2100) ),
 Indicated_labour_participation_rate__1_ ~ Normal_LPR__1_ - Perceived_surplus_workforce__1_,
 Traditional_cost_of_energy_G__per_y ~ Traditional_cost_of_electricity_G__per_y + Traditional_cost_of_fossil_fuel_for_non_el_use_G__per_y + Traditional_grid_cost_G__per_y,
@@ -1419,7 +1421,7 @@ Old_growth_removal_Mha_per_y ~ Old_growth_forest_area_Mha_1 * Old_growth_removal
 Cost_of_regenerative_agriculture_G__per_y ~ ( Extra_cost_of_reg_ag___per_ha_per_y * Regenerative_agriculture_area_Mha ) / 1000,
 Indicated_reform_delay_y ~ Normal_reform_delay_y  * Social_trust_effect_on_reform_delay__1_ * Social_tension_effect_on_reform_delay__1_,
 Total_purchasing_power_G__per_y ~ Worker_cash_inflow_G__per_y + Govmnt_cash_inflow_G__per_y + Owner_cash_inflow_G__per_y - Sales_tax_G__per_y,
-Traditional_per_person_use_of_electricity_before_EE_MWh_per_p_per_y ~ interpolate(GDP_per_person_k__per_p_per_y, ((0.0,0.0),(10.0,4.0),(20.0,7.0),(30.0,9.0),(50.0,12.0),(65.0,13.0))),
+Traditional_per_person_use_of_electricity_before_EE_MWh_per_p_per_y ~ interpolate(GDP_per_person_k__per_p_per_y, [(0.0,0.0),(10.0,4.0),(20.0,7.0),(30.0,9.0),(50.0,12.0),(65.0,13.0)]),
 D(Fossil_electricity_capacity_GW) ~ Addition_of_fossil_el_capacity_GW_per_y-Discard_of_fossil_el_capacity_GW_per_y,
 Owner_income_G__per_y ~ National_income_G__per_y * ( 1 - Worker_share_of_output__1_),
 Capacity_discard_PIS_Gcu_per_y ~ Capacity_PIS_Gcu / Life_of_capacity_PIS_y,
@@ -1439,7 +1441,7 @@ Perceived_surplus_workforce__1_ ~ Acceptable_unemployment_rate__1_ * ( 1 + sPUNe
 Man_made_forcing_W_per_m2 ~ Forcing_from_CO2_W_per_m2 + Forcing_from_CH4_W_per_m2 + Forcing_from_N2O_W_per_m2 + Forcing_from_other_gases_W_per_m2,
 D(Extra_taxes_from_2022_G__per_y) ~ (Goal_for_extra_taxes_from_2022_G__per_y - Extra_taxes_from_2022_G__per_y) /  Time_to_implement_new_taxes_y,
 Average_hours_worked_in_1980_kh_per_y ~ Normal_hours_worked_in_1980_kh_per_ftj_per_y / Persons_per_full_time_job_in_1980_p_per_ftj,
-ROC_in_WSO___Table_1_per_y ~ interpolate(Perceived_unemployment_rate__1_ / Acceptable_unemployment_rate__1_, ((0.0,0.06),(0.5,0.02),(1.0,0.0),(1.5,-0.007),(2.0,-0.01))),
+ROC_in_WSO___Table_1_per_y ~ interpolate(Perceived_unemployment_rate__1_ / Acceptable_unemployment_rate__1_, [(0.0,0.06),(0.5,0.02),(1.0,0.0),(1.5,-0.007),(2.0,-0.01)]),
 kg_N2O_emission_per_kg_fertiliser ~ kg_N2O_per_kg_fertilizer_in_1980 *   exp(-(Rate_of_decline_in_N2O_per_kg_fertiliser_1_per_y)  * ( t - 1980)) * IfElse.ifelse(t > 2022, exp(-(Extra_rate_of_decline_in_N2O_per_kg_fertilizer_from_2022_1_per_y)  * ( t - 2022)), 1),
 Extra_normal_LPR_from_2022__1_ ~ ramp(t,Goal_for_extra_normal_LPR__1_ / Introduction_period_for_policy_y, 2022, 2022 + Introduction_period_for_policy_y),
 D(Observed_rate_of_progress_1_per_y) ~ (( (( AVERAGE_WELLBEING_INDEX__1_ - Past_AWI__1_) / AVERAGE_WELLBEING_INDEX__1_) / Average_wellbeing_perception_delay_y) - Observed_rate_of_progress_1_per_y) / Average_wellbeing_perception_delay_y,
@@ -1453,7 +1455,7 @@ Low_carbon_el_production_TWh_per_y ~ Renewable_electricity_production_TWh_per_y 
 Energy_use_per_person_toe_per_p_per_y ~ ENERGY_USE_Mtoe_per_y / Population_Mp,
 Crops_for_biofuel_Mt_crop_per_y ~ Biofuels_use_Mtoe_per_y * Ton_crops_per_toe_biofuel,
 Cost_of_TAs_G__per_y ~ Cost_of_food_and_energy_TAs_G__per_y,
-Public_spending_effect_on_social_trust__1_ ~ interpolate(Public_spending_as_share_of_GDP / Satisfactory_public_spending__1_, ((0.0,0.0),(1.0,1.0))),
+Public_spending_effect_on_social_trust__1_ ~ interpolate(Public_spending_as_share_of_GDP / Satisfactory_public_spending__1_, [(0.0,0.0),(1.0,1.0)]),
 ENERGY_USE_Mtoe_per_y ~ Demand_for_fossil_fuel_for_non_el_use_Mtoe_per_y + Electricity_production_TWh_per_y / four_TWh_el_per_Mtoe + Renewable_heat_production_Mtoe_per_y,
 Govmnt_share_of_GDP__1_ ~ Govmnt_spending_G__per_y / National_income_G__per_y,
 D(Perceived_unemployment_rate__1_) ~ (Unemployment_rate__1_ - Perceived_unemployment_rate__1_) / Unemployment_perception_time_y,
@@ -1536,7 +1538,7 @@ Direct_air_capture_of_CO2_GtCO2_per_y ~ IfElse.ifelse(t > 2022,  ramp(t,(Direct_
 Melting_rate_surface_1_per_y ~ Melting_rate_surface_in_1980_1_per_y * ( Observed_warming_deg_C / Warming_in_1980_deg_C ),
 Owner_operating_income_after_tax_G__per_y ~ Owner_income_G__per_y - Owner_taxes_G__per_y,
 Rate_of_technological_advance_1_per_y ~ ( Domestic_rate_of_technological_advance_1_per_y + 0 ) * Reduction_in_ROTA_from_inequality_1_per_y + Imported_ROTA_1_per_y,
-N2O_forcing_per_ppm_W_per_m2_per_ppm ~ interpolate(t, ((1980.0,0.43),(2000.0,0.64),(2010.0,0.73),(2020.0,0.8),(2100.0,1.0))),
+N2O_forcing_per_ppm_W_per_m2_per_ppm ~ interpolate(t, [(1980.0,0.43),(2000.0,0.64),(2010.0,0.73),(2020.0,0.8),(2100.0,1.0)]),
 New_forestry_land_Mha_per_y ~ Old_growth_removal_Mha_per_y * ( 1 - Fraction_cleared_for_grazing__1_),
 Extra_taxes_for_TAs_from_2022_G__per_y ~ IfElse.ifelse(t > 2022, Extra_cost_of_TAs_from_2022_G__per_y * Fraction_of_extra_TA_cost_paid_by_extra_taxes__1_ , 0 ),
 Traditional_grid_cost_G__per_y ~ Demand_for_electricity_before_NE_TWh_per_y * Transmission_cost___per_kWh,
@@ -1550,7 +1552,7 @@ GDP_G__per_y ~ Output_Gu_per_y * Price_per_unit___per_u,
 Dependency_ratio_p_per_p ~ ( Aged_0_20_years_Mp + Aged_60___Mp ) / ( Aged_20_40_years_Mp + Aged_40_60_Mp ),
 Owner_taxes_G__per_y ~ Income_tax_owners__1_ + Extra_taxes_from_2022_G__per_y * Fraction_of_extra_taxes_paid_by_owners__1_,
 Owner_cash_inflow_G__per_y ~ Owner_operating_income_after_tax_G__per_y,
-Natural_N2O_emissions_GtN2O_per_y ~ interpolate(t, ((1980.0,0.009),(2020.0,0.009),(2099.27,0.0))),
+Natural_N2O_emissions_GtN2O_per_y ~ interpolate(t, [(1980.0,0.009),(2020.0,0.009),(2099.27,0.0)]),
 Indicated_urban_land_Mha ~ Population_Mp * Urban_land_per_population_ha_per_p,
 Desired_crop_yield_in_conv_ag_t_crop_per_ha_per_y ~ Desired_crop_supply_conv_ag_Mt_crop_per_y / ( Cropland_Mha * ( 1 - Fraction_regenerative_agriculture__1_ )),
 Traditional_use_of_crops_ex_red_meat_Mt_per_y ~ ( Traditional_use_of_crops_Mt_per_y - Traditional_use_of_feed_for_red_meat_Mt_crop_per_y ) / Food_sector_productivity_index__19801_,
@@ -1571,7 +1573,7 @@ Average_wellbeing_from_progress__1_ ~ ( 1 + sROPeoAW_0 * ( Observed_rate_of_prog
 Workers_new_debt_G__per_y ~ max(0, ( Max_workers_debt_G_ - Workers_debt_G_ ) / Workers_drawdown_period_y),
 Fossil_electricity_production_TWh_per_y ~ Fossil_electricity_capacity_GW * Fossil_capacity_up_time_kh_per_y,
 Worker_tax_rate__1_ ~ Worker_taxes_G__per_y / Worker_income_G__per_y,
-CO2_forcing_per_ppm_W_per_m2_per_ppm ~ interpolate(t, ((1980.0,0.0032),(1990.0,0.0041),(2000.0,0.0046),(2020.0,0.0051),(2100.0,0.006))),
+CO2_forcing_per_ppm_W_per_m2_per_ppm ~ interpolate(t, [(1980.0,0.0032),(1990.0,0.0041),(2000.0,0.0046),(2020.0,0.0051),(2100.0,0.006)]),
 tCO2_per_toe ~ 2.8*exp(ROC_in_tCO2_per_toe_1_per_y * (t -1980)),
 Traditional_cost_of_fossil_fuel_for_non_el_use_G__per_y ~ ( Demand_for_fossil_fuel_for_non_el_use_before_NE_Mtoe_per_y * Traditional_cost_of_fossil_fuel_for_non_el_use___per_toe / 1000 ) * Adjustment_factor_to_make_costs_match_1980_2022__1_,
 Cost_of_energy_as_share_of_GDP__1_ ~ Cost_of_energy_G__per_y / GDP_G__per_y,
@@ -1593,7 +1595,7 @@ Price_per_unit___per_u ~ Cost_per_unit_in_1980___per_u * ( 1 + Margin_in_1980__1
 D(Social_trust__1_) ~ (Indicated_social_trust__1_ - Social_trust__1_) / Time_to_establish_social_trust_y,
 Cost_of_electricity_G__per_y ~ Cost_of_fossil_electricity_G__per_y + Cost_of_renewable_electricity_G__per_y + Cost_of_nuclear_electricity_G__per_y,
 Govmnt_spending_as_share_of_GDP ~ Govmnt_spending_G__per_y / GDP_G__per_y,
-Traditional_use_of_crops_per_person_kg_crop_per_p_per_y ~ interpolate(GDP_per_person_k__per_p_per_y, ((0.0,400.0),(6.1,680.0),(8.7,780.0),(13.9,950.0),(20.0,1050.0),(30.0,1150.0),(40.0,1250.0),(60.0,1350.0),(100.0,1550.0))),
+Traditional_use_of_crops_per_person_kg_crop_per_p_per_y ~ interpolate(GDP_per_person_k__per_p_per_y, [(0.0,400.0),(6.1,680.0),(8.7,780.0),(13.9,950.0),(20.0,1050.0),(30.0,1150.0),(40.0,1250.0),(60.0,1350.0),(100.0,1550.0)]),
 Worker_income_after_tax_G__per_y ~ Worker_income_G__per_y - Worker_taxes_G__per_y + Transfer_payments_G__per_y,
 N2O_conc_in_1980_ppm ~ N2O_in_atm_in_1980_GtN2O / Mass_of_atmosphere_Zt,
 Average_hours_worked_kh_per_y ~ Normal_hours_worked_kh_per_ftj_per_y / Persons_per_full_time_job_p_per_ftj,
@@ -1601,13 +1603,13 @@ Fertilizer_use_per_person_kg_per_p_per_y ~ ( Fertilizer_use_Mt_per_y / Populatio
 Labour_productivity___per_ph ~ ( Output_Gu_per_y * Price_per_unit___per_u ) / Labour_use_Gph_per_y,
 Worker_disposable_income_k__per_p_per_y ~ Permanent_worker_cash_inflow_G__per_y / Workforce_Mp,
 Goal_for_extra_taxes_from_2022_G__per_y ~ Extra_general_tax_from_2022_G__per_y + Extra_taxes_for_TAs_from_2022_G__per_y,
-FRACA_mult_from_GDPpp___Table__1_ ~ interpolate(GDP_per_person_k__per_p_per_y / GDP_per_person_in_1980, ((0.0,1.0),(1.0,1.0),(2.0,0.85),(2.1,0.84),(4.0,0.65),(8.0,0.55),(16.0,0.5))),
+FRACA_mult_from_GDPpp___Table__1_ ~ interpolate(GDP_per_person_k__per_p_per_y / GDP_per_person_in_1980, [(0.0,1.0),(1.0,1.0),(2.0,0.85),(2.1,0.84),(4.0,0.65),(8.0,0.55),(16.0,0.5)]),
 Change_in_wso_1_per_y ~ Worker_share_of_output__1_ * ROC_in_WSO___Table_1_per_y,
 CH4_forcing_per_ppm_W_per_m2_per_ppm ~ interpolate(t, ((1980.0,0.82),(2000.0,0.94),(2020.0,1.01),(2100.0,1.1))),
 Labour_use_Gph_per_y ~ Workforce_Mp * Average_hours_worked_kh_per_y,
 CO2_absorption_GtCO2_per_y ~ ( CO2_in_atmosphere_GtCO2 - CO2_in_atm_in_1850_GtCO2 ) / Life_of_extra_CO2_in_atm_y,
 Sales_tax_workers_G__per_y ~ Worker_consumption_demand_G__per_y * Sales_tax_rate__1_,
-Traditional_per_person_use_of_fossil_fuels_for_non_el_use_before_EE_toe_per_p_per_y ~ interpolate(GDP_per_person_k__per_p_per_y, ((0.0,0.3),(15.0,2.0),(25.0,3.1),(35.0,4.0),(50.0,5.0))),
+Traditional_per_person_use_of_fossil_fuels_for_non_el_use_before_EE_toe_per_p_per_y ~ interpolate(GDP_per_person_k__per_p_per_y, [(0.0,0.3),(15.0,2.0),(25.0,3.1),(35.0,4.0),(50.0,5.0)]),
 Renewable_heat_production_Mtoe_per_y ~ Biomass_energy_Mtoe_per_y + Green_hydrogen_Mtoe_per_y,
 Govmnt_interest_cost_G__per_y ~ Govmnt_debt_G_ * Govmnt_borrowing_cost_1_per_y,
 Traditional_use_of_feed_for_red_meat_Mt_crop_per_y ~ (((Traditional_use_of_red_meat_per_person_kg_red_meat_per_p_per_y / 1000) * Population_Mp ) - Red_meat_from_grazing_land_Mt_red_meat_per_y )*kg_crop_per_kg_red_meat,
@@ -1674,7 +1676,7 @@ Fertilizer_cost_reduction_G__per_y ~ ( Amount_of_fertilizer_saved_in_reg_ag_kgN_
 CH4_conc_in_1980_ppm ~ CH4_in_atm_in_1980_GtCH4 / Mass_of_atmosphere_Zt,
 Addition_of_fossil_el_capacity_GW_per_y ~ max(0, Desired_fossil_el_capacity_change_GW_per_y),
 Worker_finance_cost_as_share_of_income__1_ ~ Cash_flow_from_workers_to_banks_G__per_y / Worker_income_after_tax_G__per_y,
-Inequity_effect_on_social_trust__1_ ~ interpolate(Inequality__1_/ Acceptable_inequality__1_, ((0.0,1.0),(1.0,1.0),(2.0,0.0))),
+Inequity_effect_on_social_trust__1_ ~ interpolate(Inequality__1_/ Acceptable_inequality__1_, [(0.0,1.0),(1.0,1.0),(2.0,0.0)]),
 Cost_index_for_Regenerative_agriculture__1_ ~ ( 1 - Cost_reduction_per_doubling_in_Regenerative_agriculture__1_ ) ^ Number_of_doublings_in_reg_ag__1_,
 Fertilizer_productivity_index__19801_ ~ exp(ROC_in_fertilizer_productivity_1_per_y * ( t - 1980)),
 D(Ice_and_snow_cover_excl_G_A_Mkm2) ~ -Melting_Mha_per_y,
@@ -1696,10 +1698,10 @@ D(Capacity_under_construction_PIS_Gcu) ~ Capacity_initiation_PIS_Gcu_per_y-Capac
 Fraction_below_15_k__per_p_per_y__1_ ~ 1 - ( 1 / ( 1 + exp( - Logistic_k__1_ * ( GDP_per_person_k__per_p_per_y - 14)))),
 CAPEX_renewable_el___per_W ~ CAPEX_renewable_el_in_1980___per_W * Cost_index_for_sun_and_wind_capacity__1_,
 D(Labour_participation_rate__1_) ~ (Indicated_labour_participation_rate__1_ - Labour_participation_rate__1_) / Time_to_enter_per_leave_labor_market_y,
-Nuclear_capacity_GW ~ interpolate(t, ((1980.0,75.0),(2000.0,310.0),(2020.0,310.0),(2098.9,310.0))),
+Nuclear_capacity_GW ~ interpolate(t, [(1980.0,75.0),(2000.0,310.0),(2020.0,310.0),(2098.9,310.0)]),
 Crop_use_per_person_t_crop_per_p_per_y ~ Crop_use_Mt_per_y / Population_Mp,
 CO2_concentration_in_atm_ppm ~ CO2_in_atmosphere_GtCO2 / GtCO2_per_ppm,
-Traditional_use_of_red_meat_per_person_kg_red_meat_per_p_per_y ~ interpolate(GDP_per_person_k__per_p_per_y, ((0.0,0.0),(6.1,6.0),(8.8,8.5),(14.0,13.0),(30.0,27.0),(40.0,32.0),(50.0,33.0),(100.0,25.0))),
+Traditional_use_of_red_meat_per_person_kg_red_meat_per_p_per_y ~ interpolate(GDP_per_person_k__per_p_per_y, [(0.0,0.0),(6.1,6.0),(8.8,8.5),(14.0,13.0),(30.0,27.0),(40.0,32.0),(50.0,33.0),(100.0,25.0)]),
 Effect_of_capacity_renewal_1_per_y ~ ( Indicated_TFP__1_ - Embedded_TFP__1_ ) * Capacity_renewal_rate_1_per_y,
 Sales_tax_G__per_y ~ Sales_tax_workers_G__per_y + Sales_tax_owners_G__per_y,
 Off_balance_sheet_govmnt_inv_in_PUS__share_of_GDP_ ~ IfElse.ifelse(t > 2022, 0.01 + Unconventional_stimulus_in_PUS_from_2022__share_of_GDP_, 0.01),
@@ -1788,7 +1790,7 @@ D(Central_bank_signal_rate_1_per_y) ~ Change_in_signal_rate_1_per_yy,
 Life_expectancy_y ~ ( ( LEmax - (LEmax - LE_in_1980) * exp(- LEgamma * (Effective_GDP_per_person_k__per_p_per_y - GDP_per_person_in_1980_k__per_p_per_y)) ) * ( 1 + LEalfa * ( Effective_GDP_per_person_k__per_p_per_y - GDP_per_person_in_1980_k__per_p_per_y )) ) * Warming_effect_on_life_expectancy__1_ * Life_expectancy_multipler__1_,
 Govmnt_gross_income__as_share_of_NI_ ~ Govmnt_gross_income_G__per_y / National_income_G__per_y,
 Forcing_from_CO2_W_per_m2 ~ CO2_concentration_in_atm_ppm * CO2_forcing_per_ppm_W_per_m2_per_ppm,
-Risk_of_extreme_heat_event__1_ ~ interpolate(Observed_warming_deg_C, ((0.0,1.0),(1.2,4.8),(2.0,8.6),(2.9,14.0),(5.2,40.0))),
+Risk_of_extreme_heat_event__1_ ~ interpolate(Observed_warming_deg_C, [(0.0,1.0),(1.2,4.8),(2.0,8.6),(2.9,14.0),(5.2,40.0)]),
 Pensioners_per_worker_p_per_p ~ On_pension_Mp / Aged_20_pension_age_Mp,
 Cost_of_fossil_electricity_G__per_y ~ CAPEX_fossil_el_G__per_y + OPEX_fossil_el_G__per_y,
 RATE_OF_GROWTH_IN_GDP_PER_PERSON_1_per_y ~ (( GDP_per_person_k__per_p_per_y - Past_GDP_per_person_k__per_y ) / Past_GDP_per_person_k__per_y) / Time_to_establish_growth_rate_y,
@@ -1858,7 +1860,7 @@ Cost_of_fertilizer_G__per_y ~ Fertilizer_use_Mt_per_y * Cost_per_ton_fertilizer_
 D(Price_Index__19801_) ~ Change_in_Price_Index_1_per_y,
 D(Extra_heat_in_surface_ZJ) ~ Extra_warming_from_forcing_ZJ_per_y-Extra_cooling_from_ice_melt_ZJ_per_y-Heat_to_deep_ocean_ZJ_per_y-Heat_to_space_ZJ_per_y,
 CUC_PIS_in_1980_Gcu ~ ( CAP_PIS_in_1980_Gcu / Life_of_capacity_PIS_in_1980_y ) * Construction_time_PIS_y * Extra_mult_on_CUC__to_avoid_initial_transient_in_Investment_share_of_GDP,
-Traditional_fertilizer_use_in_conv_ag_kgN_per_ha_per_y ~ interpolate(Desired_crop_yield_in_conv_ag_t_crop_per_ha_per_y, ((1.0,0.0),(2.0,40.0),(2.5,50.0),(3.0,60.0),(3.5,70.0),(4.5,100.0),(6.5,200.0),(10.0,600.0))),
+Traditional_fertilizer_use_in_conv_ag_kgN_per_ha_per_y ~ interpolate(Desired_crop_yield_in_conv_ag_t_crop_per_ha_per_y, [(1.0,0.0),(2.0,40.0),(2.5,50.0),(3.0,60.0),(3.5,70.0),(4.5,100.0),(6.5,200.0),(10.0,600.0)]),
 Indicated_signal_rate_1_per_y ~ Normal_signal_rate_1_per_y * ( 1 + sINeoSR_0 * (Perceived_inflation_CB_1_per_y / Inflation_target_1_per_y - 1) + sUNeoSR_0 * (Perceived_unemployment_CB__1_ / Unemployment_target__1_ - 1) ),
 Desired_renewable_el_capacity_GW ~ Desired_supply_of_renewable_electricity_TWh_per_y / Renewable_capacity_up_time_kh_per_y,
 Govmnt_payback_G__per_y ~ Govmnt_debt_G_ / Govmnt_payback_period_y,
