@@ -796,8 +796,8 @@ inits = Dict{Symbol, Float64}(
     :Passing_60_Mp_per_y9 => p[:Passing_60_in_1980_Mp_per_y],
     :Past_AWI__1_ => p[:AWI_in_1980__1_],
     :Perceived_excess_demand__1_ => 1,
-    :Perceived_unemployment_rate__1_(t) = p[:Unemployment_rate_in_1980__1_],
-    :Permanent_govmnt_cash_inflow_G__per_y(t) = p[:GCI_in_1980],
+    :Perceived_unemployment_rate__1_ = p[:Unemployment_rate_in_1980__1_],
+    :Permanent_govmnt_cash_inflow_G__per_y = p[:GCI_in_1980],
     :Permanent_owner_cash_inflow_G__per_y => p[:OCI_in_1980],
     :Permanent_worker_cash_inflow_G__per_y => p[:WFI_in_1980],
     :Pink_noise_in_sales__1_ => rand(PinkGaussian(1, p[:Sampling_time_y])),
@@ -834,6 +834,21 @@ inits[:Discard_of_renewable_el_capacity_GW_per_y] = inits[:Renewable_electricity
 inits[:Renewable_electricity_production_TWh_per_y] = inits[:Renewable_electricity_capacity_GW] * p[:Renewable_capacity_up_time_kh_per_y]
 inits[:four_TWh_el_per_Mtoe] = inits[:TWh_el_per_EJ___engineering_equivalent] / p[:Mtoe_per_EJ___calorific_equivalent]
 inits[:Indicated_wage_effect_on_optimal_CLR__1_] = 1 + p[:sWSOeoCLR_0] * ( inits[:Worker_share_of_output__1_] / p[:WSO_in_1980__1_] - 1 )
+inits[:Owner_savings_fraction__1_] = p[:Owner_savings_fraction_in_1980]  *  ( 1 + p[:sGDPeoOSR_0] *  ( inits[:Effective_GDP_per_person_k__per_p_per_y] / p[:GDP_per_person_in_1980_k__per_p_per_y] - 1 ))
+inits[:INV_in_1980_Gu] = inits[:Optimal_output_in_1980_Gu_per_y] * p[:SWI_in_1980__1_] * p[:Desired_inventory_coverage_y]
+inits[:Perceived_surplus_workforce__1_] = p[:Acceptable_unemployment_rate__1_] * ( 1 + p[:sPUNeoLPR_0] * ( inits[:Perceived_unemployment_rate__1_] / p[:Acceptable_unemployment_rate__1_]  - 1 ))
+inits[:Govmnt_purchases_G__per_y] = inits[:Permanent_govmnt_cash_inflow_G__per_y] * p[:Government_consumption_fraction__1_]
+inits[:Social_trust_effect_on_reform_delay__1_] = 1 + p[:sSTReoRD_0] * ( inits[:Social_trust__1_] / p[:Social_trust_in_1980__1_] - 1 )
+inits[:Workers_debt_G_] = inits[:Workers_debt_in_1980_G_]
+inits[:Food_sector_productivity_index__19801_] = exp(p[:ROC_in_food_sector_productivity_1_per_y] * ( p[:INITIAL_TIME__] - 1980)) * IfElse.ifelse(p[:INITIAL_TIME__] > 2022, exp( p[:ROC_in_food_sector_productivity_1_per_y]* ( p[:INITIAL_TIME__] - 2022)), 1)
+inits[:Biofuels_use_Mtoe_per_y] = interpolate(p[:INITIAL_TIME__], [(1980.0,0.0),(1990.0,0.0),(2000.0,0.0),(2020.0,0.0),(2100.0,0.0)])
+inits[:Observed_warming_deg_C] = p[:Warming_in_1980_deg_C] + ( inits[:Extra_heat_in_surface_ZJ] - p[:Extra_heat_in_1980_ZJ] ) * p[:Warming_from_extra_heat_deg_per_ZJ]
+inits[:CH4_breakdown_GtCH4_per_y] = inits[:CH4_in_atmosphere_GtCH4] / p[:Life_of_CH4_in_atm_y]
+inits[:Old_growth_removal_rate_1_per_y] = p[:OGRR_in_1980_1_per_y] * p[:FFLReoOGRR]
+inits[:Old_growth_removal_rate_multiplier__1_] = IfElse.ifelse(p[:INITIAL_TIME__] > 2022,  1 - p[:SSP2_land_management_action_from_2022___1_] * ramp(p[:INITIAL_TIME__],(1 - 0 )/78, 2022, 2100), 1)
+inits[:Cropland_expansion_multiplier__1_] = IfElse.ifelse(p[:INITIAL_TIME__] > 2022,  1 - p[:SSP2_land_management_action_from_2022___1_] * ramp(p[:INITIAL_TIME__],(1 - 0 )/78, 2022, 2100), 1)
+inits[:Forest_absorption_multipler__1_] = IfElse.ifelse(p[:INITIAL_TIME__] > 2022, 1 + p[:SSP2_land_management_action_from_2022___1_]* ramp(p[:INITIAL_TIME__],(p[:Max_forest_absorption_multiplier__1_] - 1)/78, 2022, 2100), 1)
+inits[:Fraction_forestry_land_remaining__1_] = max(0, inits[:Forestry_land_Mha] / p[:Forestry_land_in_1980_Mha] )
 
 @variables Effective_purchasing_power_G__per_y(t)
 @variables Passing_40_Mp_per_y(t)
@@ -1656,7 +1671,7 @@ Worker_disposable_income_k__per_p_per_y ~ Permanent_worker_cash_inflow_G__per_y 
 Goal_for_extra_taxes_from_2022_G__per_y ~ Extra_general_tax_from_2022_G__per_y + Extra_taxes_for_TAs_from_2022_G__per_y,
 FRACA_mult_from_GDPpp___Table__1_ ~ interpolate(GDP_per_person_k__per_p_per_y / GDP_per_person_in_1980, [(0.0,1.0),(1.0,1.0),(2.0,0.85),(2.1,0.84),(4.0,0.65),(8.0,0.55),(16.0,0.5)]),
 Change_in_wso_1_per_y ~ Worker_share_of_output__1_ * ROC_in_WSO___Table_1_per_y,
-CH4_forcing_per_ppm_W_per_m2_per_ppm ~ interpolate(t, ((1980.0,0.82),(2000.0,0.94),(2020.0,1.01),(2100.0,1.1))),
+CH4_forcing_per_ppm_W_per_m2_per_ppm ~ interpolate(t, [(1980.0,0.82),(2000.0,0.94),(2020.0,1.01),(2100.0,1.1)]),
 Labour_use_Gph_per_y ~ Workforce_Mp * Average_hours_worked_kh_per_y,
 CO2_absorption_GtCO2_per_y ~ ( CO2_in_atmosphere_GtCO2 - CO2_in_atm_in_1850_GtCO2 ) / Life_of_extra_CO2_in_atm_y,
 Sales_tax_workers_G__per_y ~ Worker_consumption_demand_G__per_y * Sales_tax_rate__1_,
@@ -1733,7 +1748,7 @@ Fertilizer_productivity_index__19801_ ~ exp(ROC_in_fertilizer_productivity_1_per
 D(Ice_and_snow_cover_excl_G_A_Mkm2) ~ -Melting_Mha_per_y,
 kg_CH4_emission_per_kg_crop ~ kg_CH4_per_kg_crop_in_1980  *   exp(-(Rate_of_decline_in_CH4_per_kg_crop_1_per_y)  * ( t - 1980)) *IfElse.ifelse(t > 2022, exp(-(Extra_rate_of_decline_in_CH4_pr_kg_crop_after_2022_1_per_y)  * ( t - 2022)), 1),
 Fossil_capacity_up_time_kh_per_y ~ Demand_for_fossil_electricity_TWh_per_y / Fossil_electricity_capacity_GW,
-Natural_CH4_emissions_GtCH4_per_y ~ interpolate(t, ((1980.0,0.19),(2020.0,0.19),(2100.0,0.19))),
+Natural_CH4_emissions_GtCH4_per_y ~ interpolate(t, [(1980.0,0.19),(2020.0,0.19),(2100.0,0.19)]),
 New_grazing_land_Mha_per_y ~ Old_growth_removal_Mha_per_y * Fraction_cleared_for_grazing__1_,
 D(Worker_share_of_output__1_) ~ Change_in_wso_1_per_y-Long_term_erosion_of_wso_1_per_y,
 Albedo_in_1980__1_ ~ ( Ice_and_snow_cover_excl_Greenland_and_Antarctica_in_1980_Mkm2 * Albedo_ice_and_snow__1_ + ( Global_surface_Mkm2 - Ice_and_snow_cover_excl_Greenland_and_Antarctica_in_1980_Mkm2 ) * Albedo_global_average__1_ ) / Global_surface_Mkm2,
@@ -1851,7 +1866,7 @@ Goal_for_fraction_of_govmnt_budget_to_workers__1_ ~ Fraction_transferred_in_1980
 Regenerative_agriculture_area_Mha ~ Cropland_Mha * Fraction_regenerative_agriculture__1_,
 CH4_emissions_GtCH4_per_y ~ Man_made_CH4_emissions_GtCH4_per_y + Natural_CH4_emissions_GtCH4_per_y,
 Population_Mp ~ Aged_0_20_years_Mp + Aged_20_40_years_Mp + Aged_40_60_Mp + Aged_60___Mp,
-Biofuels_use_Mtoe_per_y ~ interpolate(t, ((1980.0,0.0),(1990.0,0.0),(2000.0,0.0),(2020.0,0.0),(2100.0,0.0))),
+Biofuels_use_Mtoe_per_y ~ interpolate(t, [(1980.0,0.0),(1990.0,0.0),(2000.0,0.0),(2020.0,0.0),(2100.0,0.0)]),
 Cost_of_grid_G__per_y ~ Electricity_production_TWh_per_y * Transmission_cost___per_kWh,
 Extra_fertility_reduction__1_ ~ ramp(t,Goal_for_extra_fertility_reduction__1_ / Introduction_period_for_policy_y , 2022, 2022 + Introduction_period_for_policy_y),
 Forest_absorption_multipler__1_ ~ IfElse.ifelse(t > 2022, 1 + SSP2_land_management_action_from_2022___1_* ramp(t,(Max_forest_absorption_multiplier__1_ - 1)/78, 2022, 2100), 1),
