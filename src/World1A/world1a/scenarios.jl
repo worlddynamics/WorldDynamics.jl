@@ -1,5 +1,5 @@
 function standard_run(; kwargs...)
-    @named w1 = World1.world1(params=_params, inits=_inits, tables=_tables, ranges=_ranges)
+    @named w1 = World1.standard_run(params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @named w1a = world1a()
 
     systems = [w1, w1a]
