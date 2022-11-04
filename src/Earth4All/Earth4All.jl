@@ -1,5 +1,3 @@
-module Earth4All
-
 using WorldDynamics
 using ModelingToolkit
 using IfElse, Random, SignalAnalysis
@@ -2135,5 +2133,3 @@ D(CO2_in_atmosphere_GtCO2) ~ CO2_emissions_GtCO2_per_y + CO2_from_CH4_GtCO2_per_
 #sys = structural_simplify(sys)
 
 solution = solve(sys, (1980, 2100))
-
-end
