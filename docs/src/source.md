@@ -1,5 +1,12 @@
 # Source code documentation
 
+## Contents
+
+```@contents
+Pages = ["source.md"]
+Depth = 3
+```
+
 ## WorldDynamics constants
 ```@autodocs
 Modules = [WorldDynamics]
@@ -34,6 +41,15 @@ Order   = [:function]
 Pages   = ["solvesystems.jl"]
 ```
 
+## Reproducing World2 figures
+
+### World2 system
+
+```@autodocs
+Modules = [WorldDynamics.World2]
+Pages   = ["plots.jl"]
+```
+
 ## Reproducing World3 figures
 
 ### Agriculture system
@@ -54,6 +70,13 @@ Pages   = ["plots.jl"]
 
 ```@autodocs
 Modules = [WorldDynamics.World3.NonRenewable]
+Pages   = ["plots.jl"]
+```
+
+### Pollution system
+
+```@autodocs
+Modules = [WorldDynamics.World3.Pollution]
 Pages   = ["plots.jl"]
 ```
 

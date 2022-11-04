@@ -2,13 +2,13 @@
 D = Differential(t)
 
 function pollution(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
-    @parameters pols = params[:pols]
+    @parameters pols = params[:pols] [description = "Pollution standard"]
 
-    @variables polr(t)
-    @variables pol(t) = inits[:pol]
+    @variables polr(t) [description = "Pollution ratio"]
+    @variables pol(t) = inits[:pol] [description = "Pollution"]
 
-    @variables polg(t)
-    @variables pola(t)
+    @variables polg(t) [description = "Pollution generation	"]
+    @variables pola(t) [description = "Pollution absorption"]
 
     eqs = [
         polr ~ pol / pols
@@ -19,11 +19,11 @@ function pollution(; name, params=_params, inits=_inits, tables=_tables, ranges=
 end
 
 function pollution_absorption(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
-    @variables pola(t)
-    @variables polat(t)
+    @variables pola(t) [description = "Pollution absorption"]
+    @variables polat(t) [description = "Pollution absorption time"]
 
-    @variables pol(t)
-    @variables polr(t)
+    @variables pol(t) [description = "Pollution"]
+    @variables polr(t) [description = "Pollution ratio"]
 
     eqs = [
         pola ~ pol / polat
@@ -34,15 +34,15 @@ function pollution_absorption(; name, params=_params, inits=_inits, tables=_tabl
 end
 
 function pollution_generation(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
-    @parameters poln = params[:poln]
-    @parameters poln1 = params[:poln1]
-    @parameters swt6 = params[:swt6]
+    @parameters poln = params[:poln] [description = "Pollution normal"]
+    @parameters poln1 = params[:poln1] [description = "Pollution normal no. 1"]
+    @parameters swt6 = params[:swt6] [description = "Switch time no. 6"]
 
-    @variables polg(t)
-    @variables polcm(t)
+    @variables polg(t) [description = "Pollution generation"]
+    @variables polcm(t) [description = "Pollution from capital multiplier"]
 
-    @variables p(t)
-    @variables cir(t)
+    @variables p(t) [description = "Population"]
+    @variables cir(t) [description = "Capital investment ratio"]
 
     eqs = [
         polg ~ p * clip(poln, poln1, swt6, t) * polcm

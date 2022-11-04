@@ -2,25 +2,25 @@
 D = Differential(t)
 
 function agriculture_investment(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
-    @parameters fc = params[:fc]
-    @parameters fc1 = params[:fc1]
-    @parameters swt7 = params[:swt7]
-    @parameters fn = params[:fn]
-    @parameters ciaft = params[:ciaft]
+    @parameters fc = params[:fc] [description = "Food coefficient"]
+    @parameters fc1 = params[:fc1] [description = "Food coefficient no. 1"]
+    @parameters swt7 = params[:swt7] [description = "Switch time no. 7"]
+    @parameters fn = params[:fn] [description = "Food normal"]
+    @parameters ciaft = params[:ciaft] [description = "Capital investment in agriculture fraction adjustment time"]
 
-    @variables fr(t)
-    @variables fpci(t)
-    @variables fcm(t)
-    @variables fpm(t)
-    @variables ciaf(t) = inits[:ciaf]
-    @variables cfifr(t)
-    @variables ciqr(t)
+    @variables fr(t) [description = "Food ratio"]
+    @variables fcm(t) [description = "Food from crowding multiplier"]
+    @variables fpci(t) [description = "Food potential from capital investment"]
+    @variables fpm(t) [description = "Food from pollution multiplier"]
+    @variables ciaf(t) = inits[:ciaf] [description = "Capital investment in agriculture fraction"]
+    @variables cfifr(t) [description = "Capital fraction indicated by food ratio"]
+    @variables ciqr(t) [description = "Capital investment from quality ratio"]
 
-    @variables cr(t)
-    @variables cira(t)
-    @variables polr(t)
-    @variables qlm(t)
-    @variables qlf(t)
+    @variables cr(t) [description = "Crowding ratio"]
+    @variables cira(t) [description = "Capital investment ratio in agriculture"]
+    @variables polr(t) [description = "Pollution ratio"]
+    @variables qlm(t) [description = "Quality of life from material"]
+    @variables qlf(t) [description = "Quality of life from food"]
 
     eqs = [
         fr ~ fpci * fcm * fpm * clip(fc, fc1, swt7, t) / fn

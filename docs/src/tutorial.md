@@ -1,6 +1,6 @@
 # A WorldDynamics tutorial
 
-`WorldDynamics` allows the user to *play* with the World3 model introduced in the book *Dynamics of Growth in a Finite World* (1974). Informally speaking, this model is formed by five systems, each containg one or more subsystems. The following picture shows the structure of the model and the connections between the subsystems which share a common variable.
+`WorldDynamics` allows the user to *play* with the World3 model introduced in the book *Dynamics of Growth in a Finite World* (1974). Informally speaking, this model is formed by five systems, each containing one or more subsystems. The following picture shows the structure of the model and the connections between the subsystems which share a common variable.
 
 ![The World3 model](img/world3.png)
 
@@ -103,7 +103,7 @@ plotvariables(sol, (t, 1900, 2100), reference_variables, title="Fig. 7-10", show
 
 ### Modifying an interpolation table
 
-In order to reproduce Figure 7-13, in which the slope of the fraction of industrial output allocated to agriculture is increased, we can modify the two tables `FIOAA1` and `FIOAA2` by getting the table set of the agriculture sector, and by changing the value of these two tables. We then have to solve again the ODE system, by specifying which set of tables has to be used for the agriculture sector. Finally, we can plot the same seven variables of Figure 7-10. This is exactly what we do in the following code.
+In order to reproduce Figure 7-13, in which the slope of the fraction of industrial output allocated to agriculture is increased, we can modify the two tables `FIOAA1` and `FIOAA2` by getting the table set of the agriculture sector, and by changing the value of these two tables. We then have to solve the ODE system again, by specifying which set of tables has to be used for the agriculture sector. Finally, we can plot the same seven variables of Figure 7-10. This is exactly what we do in the following code.
 
 ```
 using WorldDynamics
@@ -115,3 +115,27 @@ system = World3.historicalrun(agriculture_tables=agriculture_tables_7_13);
 sol = WorldDynamics.solve(system, (1900, 2100));
 plotvariables(sol, (t, 1900, 2100), reference_variables, title="Fig. 7-13", showlegend=true, colored=true)
 ```
+
+### Updating the model with modern data
+The flexible structure of `WorldDynamics` allows the user to feed the model with modern data. For example, in the book, the variable `POP` of the pollution system is assigned the following interpolation table which corresponds to the population number (expressed in $10^8$) for a set of years between 1900 and 2100.
+
+```
+tables[:pop] = (16.0, 19.0, 22.0, 31.0, 42.0, 53.0, 67.0, 86.0, 109.0, 139.0, 176.0);
+ranges[:pop] = (1900, 2100)
+```
+
+Instead, we can extend the above set of years to a much larger one as well as replace any outdated estimations with more recent data available at open-source data catalogs. In the following, we consider past and future projections of the world population, taken from the recognized public database
+[Our World In Data](https://ourworldindata.org/grapher/population-past-future?time=1867..2100). We first have to modify the table `POP` by getting the table set of the pollution sector, and by changing its value. We then have to solve the ODE system again, by specifying which set of tables has to be used for the pollution sector. This is exactly what we do in the following code.
+
+
+```
+using WorldDynamics
+
+tables = Pollution.gettables();
+tables[:pop] = (16.47,16.59,16.73,16.87,17.02,17.16,17.31,17.47,17.62,17.77,17.93,18.05,18.18,18.30,18.43,18.56,18.69,18.82,18.95,19.09,19.26,19.40,19.56,19.73,19.90,20.08,20.26,20.44,20.63,20.82,21.04,21.22,21.44,21.66,21.88,22.10,22.33,22.57,22.80,23.03,23.27,23.45,23.64,23.82,24.00,24.17,24.35,24.54,24.75,25.01,24.99,25.43,25.90,26.40,26.92,27.46,28.01,28.58,29.16,29.70,30.19,30.68,31.27,31.96,32.67,33.37,34.06,34.75,35.47,36.21,36.95,37.70,38.45,39.20,39.96,40.69,41.43,42.16,42.90,43.66,44.44,45.25,46.08,46.92,47.76,48.62,49.50,50.41,51.32,52.24,53.16,54.06,54.93,55.77,56.61,57.43,58.25,59.06,59.87,60.68,61.49,62.31,63.12,63.94,64.76,65.58,66.41,67.26,68.12,68.98,69.86,70.73,71.62,72.51,73.39,74.27,75.13,76.00,76.84,77.65,78.41,79.09,79.75,80.45,81.19,81.92,82.64,83.36,84.07,84.77,85.46,86.15,86.82,87.49,88.15,88.79,89.43,90.06,90.68,91.29,91.88,92.47,93.04,93.60,94.14,94.68,95.19,95.69,96.18,96.65,97.09,97.53,97.94,98.34,98.72,99.08,99.43,99.76,100.08,100.39,100.68,100.96,101.22,101.48,101.73,101.96,102.18,102.40,102.60,102.79,102.97,103.14,103.30,103.45,103.59,103.71,103.82,103.92,104.01,104.08,104.15,104.20,104.24,104.27,104.29,104.31,104.31,104.30,104.29,104.27,104.24,104.20,104.15,104.09,104.03,103.96,103.89,103.80,103.70,103.60,103.49);
+
+system = World3.Pollution.historicalrun(tables=tables);
+sol = WorldDynamics.solve(system, (1900, 2100))
+```
+
+Finally, we can compare the model updated with new data against the one with outdated data by reproducing the figures from the book (as described within the [Replicating book runs](@ref Replicating-book-runs) section).
