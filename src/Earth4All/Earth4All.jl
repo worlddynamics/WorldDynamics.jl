@@ -797,7 +797,9 @@ inits = Dict{Symbol, Float64}(
     :Passing_60_Mp_per_y8 => p[:Passing_60_in_1980_Mp_per_y],
     :Passing_60_Mp_per_y9 => p[:Passing_60_in_1980_Mp_per_y],
     :Past_AWI__1_ => p[:AWI_in_1980__1_],
+    :Past_GDP_per_person_k__per_y => p[:GDP_per_person_in_1980_k__per_p_per_y] * p[:Factor_to_avoid_transient_in_growth_rate__1_],
     :Perceived_excess_demand__1_ => 1,
+    :Perceived_inflation_CB_1_per_y => p[:Inflation_in_1980__1_per_y_],
     :Perceived_unemployment_rate__1_ => p[:Unemployment_rate_in_1980__1_],
     :Permanent_govmnt_cash_inflow_G__per_y => p[:GCI_in_1980],
     :Permanent_owner_cash_inflow_G__per_y => p[:OCI_in_1980],
@@ -851,6 +853,8 @@ inits[:Cropland_expansion_multiplier__1_] = IfElse.ifelse(p[:INITIAL_TIME__] > 2
 inits[:Forest_absorption_multipler__1_] = IfElse.ifelse(p[:INITIAL_TIME__] > 2022, 1 + p[:SSP2_land_management_action_from_2022___1_]* ramp(p[:INITIAL_TIME__],(p[:Max_forest_absorption_multiplier__1_] - 1)/78, 2022, 2100), 1)
 inits[:Fraction_forestry_land_remaining__1_] = max(0, inits[:Forestry_land_Mha] / p[:Forestry_land_in_1980_Mha] )
 inits[:Reduction_in_TFP_from_unprofitable_activity__1_] = inits[:Productivity_loss_from_unprofitable_activity__1_]
+inits[:Output_last_year_G__per_y] = inits[:Optimal_output_in_1980_Gu_per_y] / ( 1 + p[:Output_growth_in_1980_1_per_y__to_avoid_transient_] )
+inits[:Capacity_under_construction_PIS_Gcu] = inits[:CUC_PIS_in_1980_Gcu]
 
 # Level 2
 inits[:FFLReoOGRR] = max(1, 1 + p[:sFFLReoOGRR_0] * ( inits[:Fraction_forestry_land_remaining__1_] - p[:Threshold_FFLR__1_] ))
@@ -879,6 +883,8 @@ inits[:CO2_from_CH4_GtCO2_per_y] = inits[:CH4_breakdown_GtCH4_per_y] * p[:tCO2_p
 inits[:CO2_absorption_in_forestry_land_tCO2_per_ha_per_y] = 1.6 * inits[:Forest_absorption_multipler__1_]
 inits[:Acceptable_loss_of_forestry_land__1_] = 1 - exp(-inits[:Fraction_forestry_land_remaining__1_] / p[:Threshold_FFLR__1_])
 inits[:Corporate_borrowing_cost_in_1980_1_per_y] = p[:Normal_signal_rate_1_per_y] + p[:Normal_basic_bank_margin_1_per_y] + p[:Normal_bank_operating_margin_1_per_y] + inits[:Normal_corporate_credit_risk_1_per_y]
+inits[:Perceived_warming_deg_C] =  inits[:Observed_warming_deg_C]
+inits[:Wage_effect_on_optimal_CLR__1_] = inits[:Indicated_wage_effect_on_optimal_CLR__1_]
 
 # Level 3
 inits[:Inventory_coverage_y] = inits[:Inventory_Gu] / inits[:Recent_sales_Gu_per_y]
@@ -1040,7 +1046,8 @@ inits[:Govmnt_gross_income_G__per_y] = inits[:Worker_taxes_G__per_y] + inits[:Ow
 inits[:Transfer_payments_G__per_y] = inits[:Govmnt_gross_income_G__per_y] * inits[:Fraction_of_govmnt_budget_to_workers__1_]
 inits[:Govmnt_net_income_G__per_y] = inits[:Govmnt_gross_income_G__per_y] - inits[:Transfer_payments_G__per_y] + inits[:Sales_tax_G__per_y]
 inits[:Govmnt_cash_inflow_G__per_y] = inits[:Govmnt_net_income_G__per_y] - inits[:Cash_flow_from_govmnt_to_banks_G__per_y]
-
+inits[:Perceived_unemployment_CB__1_] = inits[:Unemployment_rate__1_]
+inits[:Fraction_of_available_capital_to_new_capacity__1_] = p[:FRA_in_1980__1_] * inits[:FRACA_mult_from_GDPpp___Line__1_] * ( inits[:WSO_effect_on_flow_to_capacity_addition__1_]  +  inits[:CBC_effect_on_flow_to_capacity_addion__1_]  +  inits[:ED_effect_on_flow_to_capacity_addition__1_]  ) / 3
 
 @variables Effective_purchasing_power_G__per_y(t) = inits[:Effective_purchasing_power_G__per_y]
 @variables Passing_40_Mp_per_y(t) = inits[:Passing_40_Mp_per_y]
