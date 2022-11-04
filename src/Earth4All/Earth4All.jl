@@ -2132,20 +2132,8 @@ D(CO2_in_atmosphere_GtCO2) ~ CO2_emissions_GtCO2_per_y + CO2_from_CH4_GtCO2_per_
 ]
 
 @named sys = ODESystem(eqs)
-sys = structural_simplify(sys)
-
-# println(sys)
+#sys = structural_simplify(sys)
 
 solution = solve(sys, (1980, 2100))
-
-function _variables_a()
-    variables = [
-        (ten_yr_govmnt_interest_rate_1_per_y, 0, 1, "10-yr govnmt interest rate 1/y"),
-    ]
-
-    return variables
-end
-
-plotvariables(solution, (t, 1900, 2100), _variables_a(); title="10-yr govnmt interest rate 1/y")
 
 end
