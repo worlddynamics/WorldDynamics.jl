@@ -5,359 +5,6 @@ using IfElse, Random, SignalAnalysis
 @variables t
 D = Differential(t)
 
-@parameters Satisfactory_public_spending__1_
-@parameters Exogenous_introduction_period_
-@parameters Fossil_el_capacity_in_1980_GW
-@parameters CO2_release_per_ha_of_forest_cut_tCO2_per_ha
-@parameters Ton_crops_per_toe_biofuel
-@parameters DDI_in_1980_y
-@parameters tCO2e_per_tCH4
-@parameters kg_crop_per_kg_red_meat
-@parameters Unemployment_rate_in_1980__1_
-@parameters Time_to_adapt_to_higher_income_y
-@parameters Forests_cleared_Mha_per_y
-@parameters State_capacity_in_1980__fraction_of_GDP_
-@parameters FRACA_min
-@parameters Goal_for_fraction_new_red_meat__1_
-@parameters Fraction_new_electrification_in_1980__1_
-@parameters Grazing_land_in_1980_Mha
-@parameters Sufficient_relative_inventory__1_
-@parameters sWVeoWVF_0
-@parameters Workers_payback_period_y
-@parameters Persons_per_full_time_job_in_1980_p_per_ftj
-@parameters Cost_reduction_per_doubling_of_sun_and_wind_capacity__1_
-@parameters sCO2CeoACY_0
-@parameters Sales_averaging_time_y
-@parameters Global_surface_Mkm2
-@parameters Embedded_TFP_in_1980__1_
-@parameters Threshold_disposable_income_k__per_p_per_y
-@parameters DNCgamma
-@parameters Normal_bank_operating_margin_1_per_y
-@parameters Desired_inventory_coverage_y
-@parameters Agriculture_as_fraction_of_GDP__1_
-@parameters GtCO2_per_ppm
-@parameters Extra_pension_age_in_2022_y
-@parameters Fossil_el_cap_construction_time_y
-@parameters Output_growth_in_1980_1_per_y__to_avoid_transient_
-@parameters FRA_in_1980__1_
-@parameters sOWeoWV_0
-@parameters TFP_in_1980__1_
-@parameters sWSOeoLPR_0
-@parameters Life_of_renewable_el_capacity_y
-@parameters Sun_and_wind_capacity_in_1980_GW
-@parameters Normal_signal_rate_1_per_y
-@parameters Passing_40_in_1980_Mp_per_y
-@parameters sTIeoNHW_0
-@parameters CO2_concentration_in_1980_ppm
-@parameters Extra_mult_on_CUC__to_avoid_initial_transient_in_Investment_share_of_GDP
-@parameters Fraction_of_extra_taxes_paid_by_owners__1_
-@parameters sEDeoFRA_0
-@parameters Govmnt_payback_period_y
-@parameters INITIAL_TIME__
-@parameters Factor_to_avoid_transient_in_growth_rate__1_
-@parameters OPEX_renewable_el___per_kWh
-@parameters tCO2_per_tCH4
-@parameters Infrastructure_purchases_ratio_in_1980_y
-@parameters Sustainable_fertiliser_use_kgN_per_ha_per_y
-@parameters Inventory_coverage_perception_time_y
-@parameters Amount_of_ice_in_1980_Mkm3
-@parameters CAP_PUS_in_1980_Gcu
-@parameters Order
-@parameters Cost_of_CCS___per_tCO2
-@parameters Threshold_public_spending_k__per_p_per_y
-@parameters Albedo_ice_and_snow__1_
-@parameters Mass_of_atmosphere_Zt
-@parameters sIIEeoROTA_0
-@parameters Extra_heat_in_1980_ZJ
-@parameters Warming_from_extra_heat_deg_per_ZJ
-@parameters Mult_to_avoid_transient_in_govmnt_finance
-@parameters CO2_in_atm_in_1980_GtCO2
-@parameters Goal_for_renewable_el_fraction__1_
-@parameters Passing_60_in_1980_Mp_per_y
-@parameters Observed_warming_in_2022_deg_C
-@parameters Worker_consumption_fraction__1_
-@parameters Time_to_establish_social_trust_y
-@parameters DNC_in_1980
-@parameters Water_vapor_feedback_in_1980_W_per_m2
-@parameters Govmnt_stimulus_from_2022__share_of_NI_
-@parameters Max_life_expectancy_multiplier__1_
-@parameters DNCalfa_0
-@parameters tCO2e_per_tCO2
-@parameters CO2_absorbed_in_reg_ag_tCO2_per_ha_per_y
-@parameters Time_to_join_per_leave_job_market_y
-@parameters kg_CH4_per_kg_crop_in_1980
-@parameters PCOR_PIS_cu_per_u_per_y
-@parameters Cost_of_capacity_in_1980___per_cu
-@parameters Jobs_in_1980_M_ftj
-@parameters Finance_sector_response_time_y
-@parameters ROC_in_ECLR_in_1980_1_per_y
-@parameters GDPpp_of_technology_leader_k__per_p_per_y
-@parameters CAPEX_fossil_el___per_W
-@parameters sGDPppeoFRACA_0
-@parameters toe_per_tH2
-@parameters CH4_from_production_of_fossil_fuels_GtCH4_per_y
-@parameters Extra_rate_of_decline_in_N2O_per_kg_fertilizer_from_2022_1_per_y
-@parameters Threshold_progress_rate_1_per_y
-@parameters Ice_and_snow_cover_excl_Greenland_and_Antarctica_in_1980_Mkm2
-@parameters ROC_in_embedded_TFP_1_per_y
-@parameters xExtra_TA_cost_in_2022__share_of_GDP_
-@parameters Renewable_el_capacity_in_1980_GW
-@parameters Fraction_women__1_
-@parameters Threshold_inequality__1_
-@parameters CLR_in_1980_kcu_per_ftj
-@parameters Fraction_NASJ_in_1980__1_
-@parameters sINEeoLOK_0
-@parameters kg_CH4_per___of_GDP
-@parameters tCO2e_per_tN2O
-@parameters Time_to_adjust_shifts_y
-@parameters ROC_in_food_sector_productivity_1_per_y
-@parameters Fraction_achieving_desired_family_size__1_
-@parameters Unemployment_perception_time_CB_y
-@parameters sOWeoMR_0
-@parameters Melting_rate_surface_in_1980_1_per_y
-@parameters Income_tax_rate_owners_in_1980__1_
-@parameters Cost_reduction_per_doubling_in_Regenerative_agriculture__1_
-@parameters Inflation_perception_time_CB_y
-@parameters Max_non_fossil_CO2_per_person_tCO2_per_p_per_y
-@parameters Water_vapour_concentration_1980_g_per_kg
-@parameters Social_tension_in_1980__1_
-@parameters Aged_40_60_in_1980_Mp
-@parameters Heat_required_to_melt_ice_kJ_per_kg
-@parameters CO2_in_atm_in_1850_GtCO2
-@parameters Time_to_implement_new_taxes_y
-@parameters Max_workers_debt_burden_y
-@parameters sSCeoROTA_0
-@parameters Max_forest_absorption_multiplier__1_
-@parameters Domestic_ROTA_in_1980_1_per_y
-@parameters Desired_reserve_capacity__1_
-@parameters Dying_in_1980_Mp_per_y
-@parameters Direct_air_capture_of_CO2_in_2100_GtCO2_per_y
-@parameters Extra_empowerment_tax_from_2022__share_of_NI_
-@parameters Extra_transfer_of_govmnt_budget_to_workers__1_
-@parameters Surface_vs_deep_rate__1_
-@parameters Traditional_cost_of_electricity___per_kWh
-@parameters Fraction_transferred_in_1980__1_
-@parameters Govmnt_drawdown_period_y
-@parameters sOWeoCOC_0
-@parameters Fraction_cleared_for_grazing__1_
-@parameters GDP_per_person_in_1980
-@parameters Acceptable_unemployment_rate__1_
-@parameters TIME_STEP__
-@parameters Goal_for_extra_fertility_reduction__1_
-@parameters Excess_demand_in_1980__1_
-@parameters Unemployment_target__1_
-@parameters Extra_pension_tax_from_2022__share_of_NI_
-@parameters sWSOeoCLR_0
-@parameters Normal_LPR_in_1980__1_
-@parameters LEmax
-@parameters Threshold_FFLR__1_
-@parameters Construction_time_PIS_y
-@parameters sCBCeoFRA_0
-@parameters sINVeoDDI_0
-@parameters Cost_of_Max_fertility_reduction__share_of_GDP_
-@parameters kWh_el_per_kgH2
-@parameters LEalfa
-@parameters Desired_relative_inventory__1_
-@parameters Fraction_Aged_20_pension_age_wanting_paid_work_in_1980__1_
-@parameters Efficiency_of_fossil_power_plant_TWh_el_per_TWh_heat
-@parameters Price_Index_in_1980__1_
-@parameters Ton_per_m3_ice
-@parameters Exogenous_introduction_period_y
-@parameters Workforce_in_1980_Mp
-@parameters WSO_in_1980__1_
-@parameters Output_u_per_y
-@parameters GtCH4_per_ppm
-@parameters Goal_for_extra_income_from_commons__share_of_NI_
-@parameters Time_for_people_to_prepare_for_paid_work_y
-@parameters Fraction_of_extra_TA_cost_paid_by_extra_taxes__1_
-@parameters Goal_for_extra_normal_LPR__1_
-@parameters sROPeoAW_0
-@parameters Normal_hours_worked_in_1980_kh_per_ftj_per_y
-@parameters Perception_delay_y
-@parameters N2O_in_atm_in_1980_GtN2O
-@parameters Transfer_rate_surface_space_in_1980_1_per_y
-@parameters Time_to_change_reform_delay_y
-@parameters TWh_heat_per_EJ___calorific_equivalent
-@parameters Aged_20_40_in_1980_Mp
-@parameters Extra_rate_of_decline_in_CH4_pr_kg_crop_after_2022_1_per_y
-@parameters sINVeoSWI_0
-@parameters sOWeoLOC_0
-@parameters Passing_20_in_1980_Mp_per_y
-@parameters sLEeoPa_0
-@parameters Fraction_of_inflation_compensated__1_
-@parameters Normal_unemployment_rate__1_
-@parameters SSP2_land_management_action_from_2022___1_
-@parameters Normal__1_
-@parameters sUNeoWSO_0
-@parameters Diminishing_return_public_spending__1_
-@parameters sINeoSR_0
-@parameters Foreign_capital_inflow_G__per_y
-@parameters Extra_cost_per_reduced_use_of_non_el_FF___per_toe
-@parameters Renewable_el_fraction_in_1980__1_
-@parameters Sampling_time_y
-@parameters Experience_gained_before_2022_Mha
-@parameters sFCUTeoLOFC_0
-@parameters sOWeoLoCO2_0
-@parameters sFFLReoOGRR_0
-@parameters CAP_PIS_in_1980_Gcu
-@parameters Goal_for_extra_pension_age_y
-@parameters Investment_planning_time_y
-@parameters Demand_adjustment_time_y
-@parameters Forcing_from_CO2_in_1980_W_per_m2
-@parameters Pension_age_in_1980_y
-@parameters Fraction_of_CO2_sources_with_CCS_in_2022__1_
-@parameters Normal_basic_bank_margin_1_per_y
-@parameters sUNeoSR_0
-@parameters Inflation_target_1_per_y
-@parameters Crop_yield_in_reg_ag_t_crop_per_ha_per_y
-@parameters sOWeoTFP_0
-@parameters Government_consumption_fraction__1_
-@parameters Inflation_in_1980__1_per_y_
-@parameters Time_to_adjust_budget_y
-@parameters Urban_development_time_y
-@parameters sIPReoVPSS_0
-@parameters Pulse_height__1_
-@parameters Time_to_adjust_worker_consumption_y
-@parameters LEgamma
-@parameters sEHeoOW_0
-@parameters sSTReoRD_0
-@parameters Renewable_el_fraction_in_2022__1_
-@parameters ROC_in_tCO2_per_toe_1_per_y
-@parameters Goal_for_fraction_regenerative_agriculture__1_
-@parameters Life_of_capacity_PIS_in_1980_y
-@parameters DNCmin
-@parameters sFUeoSQ_0
-@parameters CAPEX_renewable_el_in_1980___per_W
-@parameters sGReoCR_0
-@parameters Extra_energy_productivity_index_in_2022__1_
-@parameters Mtoe_per_EJ___calorific_equivalent
-@parameters Extra_ROC_in_energy_productivity_after_2022_1_per_y
-@parameters Renewable_el_construction_time_y
-@parameters Persons_per_full_time_job_p_per_ftj
-@parameters OPEX_fossil_el___per_kWh
-@parameters MEMO_Fraction_of_non_el_fossil_fuels_use_in_hard_to_abate_sectors_HTAS__1_
-@parameters xExtra_TA_cost_in_2100__share_of_GDP_
-@parameters Extra_cost_of_reg_ag_in_2022___per_ha_per_y
-@parameters sPUNeoPEW_0
-@parameters Mult_to_avoid_transient_in_worker_finance
-@parameters Life_of_N2O_in_atm_y
-@parameters sINVeoIN_0
-@parameters Diminishing_return_disposable_income__1_
-@parameters Min_wellbeing_from_global_warming__1_
-@parameters Max_imported_ROTA_from_2022_1_per_y
-@parameters sWSOeoWPR_0
-@parameters Goal_for_income_tax_rate_owners__1_
-@parameters Max_fertility_multiplier__1_
-@parameters Albedo_global_average__1_
-@parameters Cropland_in_1980_Mha
-@parameters Fertilizer_use_in_1980_Mt_per_y
-@parameters Cost_per_ton_fertilizer___per_t
-@parameters CLR_in_1980_k__per_j
-@parameters Biomass_energy_Mtoe_per_y
-@parameters Income_tax_rate_owners_in_2022__1_
-@parameters sIIeoAW_0
-@parameters Normal_increase_in_energy_efficiency_1_per_y
-@parameters Fraction_of_renewable_electricity_to_hydrogen__1_
-@parameters Life_of_extra_CO2_in_atm_in_1980_y
-@parameters ten_yr_loop_delay_y
-@parameters Normal_life_of_fossil_el_capacity_y
-@parameters Goal_for_fraction_new_electrification__1_
-@parameters Fraction_of_govmnt_debt_cancelled_in_2022_1_per_y
-@parameters OCI_in_1980
-@parameters OGRR_in_1980_1_per_y
-@parameters Multiplier_to_avoid_transient_in_unemployment
-@parameters Max_govmnt_debt_burden_y
-@parameters ROC_in_fertilizer_productivity_1_per_y
-@parameters Cost_of_TAs_in_2022_G__per_y
-@parameters Sales_tax_rate__1_
-@parameters Signal_rate_adjustment_time_y
-@parameters Normal_reform_delay_y
-@parameters Fraction_unprofitable_activity_in_TAs__1_
-@parameters PCOR_PUS_cu_per_u_per_y
-@parameters WFI_in_1980
-@parameters Adjustment_factor_to_make_costs_match_1980_2022__1_
-@parameters Cost_per_unit_in_1980___per_u
-@parameters GCI_in_1980
-@parameters Unconventional_stimulus_in_PUS_from_2022__share_of_GDP_
-@parameters Goal_for_fraction_of_CO2_sources_with_CCS__1_
-@parameters sGDPppeoROCCLR_0
-@parameters sSTEeoRD_0
-@parameters SWI_in_1980__1_
-@parameters xTFP_observation_time_y
-@parameters sGDPeoOSR_0
-@parameters Rate_of_decline_in_N2O_per_kg_fertiliser_1_per_y
-@parameters Old_growth_forest_in_1980_Mha
-@parameters Renewable_capacity_up_time_kh_per_y
-@parameters Public_services_per_person_in_1980_k__per_p_per_y
-@parameters Time_to_observe_excess_demand_y
-@parameters Urban_land_per_population_ha_per_p
-@parameters Basic_income_tax_rate_workers__1_
-@parameters Acceptable_inequality__1_
-@parameters eight_khours_per_year
-@parameters Soil_quality_index_in_1980__1_
-@parameters Extra_use_of_electricity_per_reduced_use_of_non_el_FF_MWh_per_toe
-@parameters Transfer_rate_surface_abyss_in_1980_1_per_y
-@parameters CO2_concentration_in_2022_ppm
-@parameters Nuclear_capacity_up_time_kh_per_y
-@parameters Land_erosion_rate_in_1980_1_per_y
-@parameters LE_in_1980
-@parameters Average_wellbeing_perception_delay_y
-@parameters Time_to_adjust_owner_consumption_y
-@parameters Real_wage_erosion_rate_1_per_y
-@parameters sFBeoCLE_0
-@parameters sPPReoSTE_0
-@parameters Cost_of_nuclear_el___per_kWh
-@parameters Time_to_enter_per_leave_labor_market_y
-@parameters Time_to_adjust_hours_worked_y
-@parameters Kappa
-@parameters Forestry_land_in_1980_Mha
-@parameters Workers_drawdown_period_y
-@parameters Traditional_cost_of_fossil_fuel_for_non_el_use___per_toe
-@parameters Job_creation_delay_y
-@parameters sOWeoLE_0
-@parameters Urban_land_in_1980_Mha
-@parameters Time_to_establish_growth_rate_y
-@parameters sGWeoAW_0
-@parameters sOWeoACY_0
-@parameters sLPeoAWP_0
-@parameters sFUeoLER_0
-@parameters Construction_time_PUS_y
-@parameters FINAL_TIME__
-@parameters Warming_in_1980_deg_C
-@parameters ROC_in_CLR_in_1980_1_per_y
-@parameters Margin_in_1980__1_
-@parameters Inequality_in_1980__1_
-@parameters Minimum_relative_inventory_without_inflation__1_
-@parameters STD_in_fluctuation_around_normal__1_
-@parameters Aged_60__in_1980_Mp
-@parameters Aged_0_20_in_1980_Mp
-@parameters Unconventional_stimulus_in_PIS_from_2022__share_of_GDP_
-@parameters Threshold_participation__1_
-@parameters Rate_of_decline_in_CH4_per_kg_crop_1_per_y
-@parameters SSP2_family_action_from_2022___1_
-@parameters kg_N2O_per_kg_fertilizer_in_1980
-@parameters GDP_per_person_in_1980_k__per_p_per_y
-@parameters Threshold_warming_deg_C
-@parameters Normal_k__1_
-@parameters AWI_in_1980__1_
-@parameters Life_of_CH4_in_atm_y
-@parameters Extra_ROC_in_food_sector_productivity_from_2022_1_per_y
-@parameters Inflation_expectation_formation_time_y
-@parameters GtN2O_per_ppm
-@parameters Extra_general_tax_rate_from_2022__1_
-@parameters Social_trust_in_1980__1_
-@parameters sEDeoLOC_0
-@parameters CH4_in_atm_in_1980_GtCH4
-@parameters Owner_savings_fraction_in_1980
-@parameters Fertile_period_y
-@parameters Transmission_cost___per_kWh
-@parameters Extra_domestic_ROTA_from_2022_1_per_y
-@parameters sPUNeoLPR_0
-@parameters Acceptable_progress_1_per_y
-@parameters sWSOeoFRA_0
-@parameters Goal_for_crop_waste_reduction__1_
-@parameters Fraction_new_electrification_in_2022__1_
-
 p = Dict{Symbol, Float64}(
     :Satisfactory_public_spending__1_ => 0.3,
     :Exogenous_introduction_period_ => 0,
@@ -712,6 +359,359 @@ p = Dict{Symbol, Float64}(
     :Goal_for_crop_waste_reduction__1_ => 0.2,
     :Fraction_new_electrification_in_2022__1_ => 0.03,
 )
+
+@parameters Satisfactory_public_spending__1_ = p[:Satisfactory_public_spending__1_]
+@parameters Exogenous_introduction_period_ = p[:Exogenous_introduction_period_]
+@parameters Fossil_el_capacity_in_1980_GW = p[:Fossil_el_capacity_in_1980_GW]
+@parameters CO2_release_per_ha_of_forest_cut_tCO2_per_ha = p[:CO2_release_per_ha_of_forest_cut_tCO2_per_ha]
+@parameters Ton_crops_per_toe_biofuel = p[:Ton_crops_per_toe_biofuel]
+@parameters DDI_in_1980_y = p[:DDI_in_1980_y]
+@parameters tCO2e_per_tCH4 = p[:tCO2e_per_tCH4]
+@parameters kg_crop_per_kg_red_meat = p[:kg_crop_per_kg_red_meat]
+@parameters Unemployment_rate_in_1980__1_ = p[:Unemployment_rate_in_1980__1_]
+@parameters Time_to_adapt_to_higher_income_y = p[:Time_to_adapt_to_higher_income_y]
+@parameters Forests_cleared_Mha_per_y = p[:Forests_cleared_Mha_per_y]
+@parameters State_capacity_in_1980__fraction_of_GDP_ = p[:State_capacity_in_1980__fraction_of_GDP_]
+@parameters FRACA_min = p[:FRACA_min]
+@parameters Goal_for_fraction_new_red_meat__1_ = p[:Goal_for_fraction_new_red_meat__1_]
+@parameters Fraction_new_electrification_in_1980__1_ = p[:Fraction_new_electrification_in_1980__1_]
+@parameters Grazing_land_in_1980_Mha = p[:Grazing_land_in_1980_Mha]
+@parameters Sufficient_relative_inventory__1_ = p[:Sufficient_relative_inventory__1_]
+@parameters sWVeoWVF_0 = p[:sWVeoWVF_0]
+@parameters Workers_payback_period_y = p[:Workers_payback_period_y]
+@parameters Persons_per_full_time_job_in_1980_p_per_ftj = p[:Persons_per_full_time_job_in_1980_p_per_ftj]
+@parameters Cost_reduction_per_doubling_of_sun_and_wind_capacity__1_ = p[:Cost_reduction_per_doubling_of_sun_and_wind_capacity__1_]
+@parameters sCO2CeoACY_0 = p[:sCO2CeoACY_0]
+@parameters Sales_averaging_time_y = p[:Sales_averaging_time_y]
+@parameters Global_surface_Mkm2 = p[:Global_surface_Mkm2]
+@parameters Embedded_TFP_in_1980__1_ = p[:Embedded_TFP_in_1980__1_]
+@parameters Threshold_disposable_income_k__per_p_per_y = p[:Threshold_disposable_income_k__per_p_per_y]
+@parameters DNCgamma = p[:DNCgamma]
+@parameters Normal_bank_operating_margin_1_per_y = p[:Normal_bank_operating_margin_1_per_y]
+@parameters Desired_inventory_coverage_y = p[:Desired_inventory_coverage_y]
+@parameters Agriculture_as_fraction_of_GDP__1_ = p[:Agriculture_as_fraction_of_GDP__1_]
+@parameters GtCO2_per_ppm = p[:GtCO2_per_ppm]
+@parameters Extra_pension_age_in_2022_y = p[:Extra_pension_age_in_2022_y]
+@parameters Fossil_el_cap_construction_time_y = p[:Fossil_el_cap_construction_time_y]
+@parameters Output_growth_in_1980_1_per_y__to_avoid_transient_ = p[:Output_growth_in_1980_1_per_y__to_avoid_transient_]
+@parameters FRA_in_1980__1_ = p[:FRA_in_1980__1_]
+@parameters sOWeoWV_0 = p[:sOWeoWV_0]
+@parameters TFP_in_1980__1_ = p[:TFP_in_1980__1_]
+@parameters sWSOeoLPR_0 = p[:sWSOeoLPR_0]
+@parameters Life_of_renewable_el_capacity_y = p[:Life_of_renewable_el_capacity_y]
+@parameters Sun_and_wind_capacity_in_1980_GW = p[:Sun_and_wind_capacity_in_1980_GW]
+@parameters Normal_signal_rate_1_per_y = p[:Normal_signal_rate_1_per_y]
+@parameters Passing_40_in_1980_Mp_per_y = p[:Passing_40_in_1980_Mp_per_y]
+@parameters sTIeoNHW_0 = p[:sTIeoNHW_0]
+@parameters CO2_concentration_in_1980_ppm = p[:CO2_concentration_in_1980_ppm]
+@parameters Extra_mult_on_CUC__to_avoid_initial_transient_in_Investment_share_of_GDP = p[:Extra_mult_on_CUC__to_avoid_initial_transient_in_Investment_share_of_GDP]
+@parameters Fraction_of_extra_taxes_paid_by_owners__1_ = p[:Fraction_of_extra_taxes_paid_by_owners__1_]
+@parameters sEDeoFRA_0 = p[:sEDeoFRA_0]
+@parameters Govmnt_payback_period_y = p[:Govmnt_payback_period_y]
+@parameters INITIAL_TIME__ = p[:INITIAL_TIME__]
+@parameters Factor_to_avoid_transient_in_growth_rate__1_ = p[:Factor_to_avoid_transient_in_growth_rate__1_]
+@parameters OPEX_renewable_el___per_kWh = p[:OPEX_renewable_el___per_kWh]
+@parameters tCO2_per_tCH4 = p[:tCO2_per_tCH4]
+@parameters Infrastructure_purchases_ratio_in_1980_y = p[:Infrastructure_purchases_ratio_in_1980_y]
+@parameters Sustainable_fertiliser_use_kgN_per_ha_per_y = p[:Sustainable_fertiliser_use_kgN_per_ha_per_y]
+@parameters Inventory_coverage_perception_time_y = p[:Inventory_coverage_perception_time_y]
+@parameters Amount_of_ice_in_1980_Mkm3 = p[:Amount_of_ice_in_1980_Mkm3]
+@parameters CAP_PUS_in_1980_Gcu = p[:CAP_PUS_in_1980_Gcu]
+@parameters Order = p[:Order]
+@parameters Cost_of_CCS___per_tCO2 = p[:Cost_of_CCS___per_tCO2]
+@parameters Threshold_public_spending_k__per_p_per_y = p[:Threshold_public_spending_k__per_p_per_y]
+@parameters Albedo_ice_and_snow__1_ = p[:Albedo_ice_and_snow__1_]
+@parameters Mass_of_atmosphere_Zt = p[:Mass_of_atmosphere_Zt]
+@parameters sIIEeoROTA_0 = p[:sIIEeoROTA_0]
+@parameters Extra_heat_in_1980_ZJ = p[:Extra_heat_in_1980_ZJ]
+@parameters Warming_from_extra_heat_deg_per_ZJ = p[:Warming_from_extra_heat_deg_per_ZJ]
+@parameters Mult_to_avoid_transient_in_govmnt_finance = p[:Mult_to_avoid_transient_in_govmnt_finance]
+@parameters CO2_in_atm_in_1980_GtCO2 = p[:CO2_in_atm_in_1980_GtCO2]
+@parameters Goal_for_renewable_el_fraction__1_ = p[:Goal_for_renewable_el_fraction__1_]
+@parameters Passing_60_in_1980_Mp_per_y = p[:Passing_60_in_1980_Mp_per_y]
+@parameters Observed_warming_in_2022_deg_C = p[:Observed_warming_in_2022_deg_C]
+@parameters Worker_consumption_fraction__1_ = p[:Worker_consumption_fraction__1_]
+@parameters Time_to_establish_social_trust_y = p[:Time_to_establish_social_trust_y]
+@parameters DNC_in_1980 = p[:DNC_in_1980]
+@parameters Water_vapor_feedback_in_1980_W_per_m2 = p[:Water_vapor_feedback_in_1980_W_per_m2]
+@parameters Govmnt_stimulus_from_2022__share_of_NI_ = p[:Govmnt_stimulus_from_2022__share_of_NI_]
+@parameters Max_life_expectancy_multiplier__1_ = p[:Max_life_expectancy_multiplier__1_]
+@parameters DNCalfa_0 = p[:DNCalfa_0]
+@parameters tCO2e_per_tCO2 = p[:tCO2e_per_tCO2]
+@parameters CO2_absorbed_in_reg_ag_tCO2_per_ha_per_y = p[:CO2_absorbed_in_reg_ag_tCO2_per_ha_per_y]
+@parameters Time_to_join_per_leave_job_market_y = p[:Time_to_join_per_leave_job_market_y]
+@parameters kg_CH4_per_kg_crop_in_1980 = p[:kg_CH4_per_kg_crop_in_1980]
+@parameters PCOR_PIS_cu_per_u_per_y = p[:PCOR_PIS_cu_per_u_per_y]
+@parameters Cost_of_capacity_in_1980___per_cu = p[:Cost_of_capacity_in_1980___per_cu]
+@parameters Jobs_in_1980_M_ftj = p[:Jobs_in_1980_M_ftj]
+@parameters Finance_sector_response_time_y = p[:Finance_sector_response_time_y]
+@parameters ROC_in_ECLR_in_1980_1_per_y = p[:ROC_in_ECLR_in_1980_1_per_y]
+@parameters GDPpp_of_technology_leader_k__per_p_per_y = p[:GDPpp_of_technology_leader_k__per_p_per_y]
+@parameters CAPEX_fossil_el___per_W = p[:CAPEX_fossil_el___per_W]
+@parameters sGDPppeoFRACA_0 = p[:sGDPppeoFRACA_0]
+@parameters toe_per_tH2 = p[:toe_per_tH2]
+@parameters CH4_from_production_of_fossil_fuels_GtCH4_per_y = p[:CH4_from_production_of_fossil_fuels_GtCH4_per_y]
+@parameters Extra_rate_of_decline_in_N2O_per_kg_fertilizer_from_2022_1_per_y = p[:Extra_rate_of_decline_in_N2O_per_kg_fertilizer_from_2022_1_per_y]
+@parameters Threshold_progress_rate_1_per_y = p[:Threshold_progress_rate_1_per_y]
+@parameters Ice_and_snow_cover_excl_Greenland_and_Antarctica_in_1980_Mkm2 = p[:Ice_and_snow_cover_excl_Greenland_and_Antarctica_in_1980_Mkm2]
+@parameters ROC_in_embedded_TFP_1_per_y = p[:ROC_in_embedded_TFP_1_per_y]
+@parameters xExtra_TA_cost_in_2022__share_of_GDP_ = p[:xExtra_TA_cost_in_2022__share_of_GDP_]
+@parameters Renewable_el_capacity_in_1980_GW = p[:Renewable_el_capacity_in_1980_GW]
+@parameters Fraction_women__1_ = p[:Fraction_women__1_]
+@parameters Threshold_inequality__1_ = p[:Threshold_inequality__1_]
+@parameters CLR_in_1980_kcu_per_ftj = p[:CLR_in_1980_kcu_per_ftj]
+@parameters Fraction_NASJ_in_1980__1_ = p[:Fraction_NASJ_in_1980__1_]
+@parameters sINEeoLOK_0 = p[:sINEeoLOK_0]
+@parameters kg_CH4_per___of_GDP = p[:kg_CH4_per___of_GDP]
+@parameters tCO2e_per_tN2O = p[:tCO2e_per_tN2O]
+@parameters Time_to_adjust_shifts_y = p[:Time_to_adjust_shifts_y]
+@parameters ROC_in_food_sector_productivity_1_per_y = p[:ROC_in_food_sector_productivity_1_per_y]
+@parameters Fraction_achieving_desired_family_size__1_ = p[:Fraction_achieving_desired_family_size__1_]
+@parameters Unemployment_perception_time_CB_y = p[:Unemployment_perception_time_CB_y]
+@parameters sOWeoMR_0 = p[:sOWeoMR_0]
+@parameters Melting_rate_surface_in_1980_1_per_y = p[:Melting_rate_surface_in_1980_1_per_y]
+@parameters Income_tax_rate_owners_in_1980__1_ = p[:Income_tax_rate_owners_in_1980__1_]
+@parameters Cost_reduction_per_doubling_in_Regenerative_agriculture__1_ = p[:Cost_reduction_per_doubling_in_Regenerative_agriculture__1_]
+@parameters Inflation_perception_time_CB_y = p[:Inflation_perception_time_CB_y]
+@parameters Max_non_fossil_CO2_per_person_tCO2_per_p_per_y = p[:Max_non_fossil_CO2_per_person_tCO2_per_p_per_y]
+@parameters Water_vapour_concentration_1980_g_per_kg = p[:Water_vapour_concentration_1980_g_per_kg]
+@parameters Social_tension_in_1980__1_ = p[:Social_tension_in_1980__1_]
+@parameters Aged_40_60_in_1980_Mp = p[:Aged_40_60_in_1980_Mp]
+@parameters Heat_required_to_melt_ice_kJ_per_kg = p[:Heat_required_to_melt_ice_kJ_per_kg]
+@parameters CO2_in_atm_in_1850_GtCO2 = p[:CO2_in_atm_in_1850_GtCO2]
+@parameters Time_to_implement_new_taxes_y = p[:Time_to_implement_new_taxes_y]
+@parameters Max_workers_debt_burden_y = p[:Max_workers_debt_burden_y]
+@parameters sSCeoROTA_0 = p[:sSCeoROTA_0]
+@parameters Max_forest_absorption_multiplier__1_ = p[:Max_forest_absorption_multiplier__1_]
+@parameters Domestic_ROTA_in_1980_1_per_y = p[:Domestic_ROTA_in_1980_1_per_y]
+@parameters Desired_reserve_capacity__1_ = p[:Desired_reserve_capacity__1_]
+@parameters Dying_in_1980_Mp_per_y = p[:Dying_in_1980_Mp_per_y]
+@parameters Direct_air_capture_of_CO2_in_2100_GtCO2_per_y = p[:Direct_air_capture_of_CO2_in_2100_GtCO2_per_y]
+@parameters Extra_empowerment_tax_from_2022__share_of_NI_ = p[:Extra_empowerment_tax_from_2022__share_of_NI_]
+@parameters Extra_transfer_of_govmnt_budget_to_workers__1_ = p[:Extra_transfer_of_govmnt_budget_to_workers__1_]
+@parameters Surface_vs_deep_rate__1_ = p[:Surface_vs_deep_rate__1_]
+@parameters Traditional_cost_of_electricity___per_kWh = p[:Traditional_cost_of_electricity___per_kWh]
+@parameters Fraction_transferred_in_1980__1_ = p[:Fraction_transferred_in_1980__1_]
+@parameters Govmnt_drawdown_period_y = p[:Govmnt_drawdown_period_y]
+@parameters sOWeoCOC_0 = p[:sOWeoCOC_0]
+@parameters Fraction_cleared_for_grazing__1_ = p[:Fraction_cleared_for_grazing__1_]
+@parameters GDP_per_person_in_1980 = p[:GDP_per_person_in_1980]
+@parameters Acceptable_unemployment_rate__1_ = p[:Acceptable_unemployment_rate__1_]
+@parameters TIME_STEP__ = p[:TIME_STEP__]
+@parameters Goal_for_extra_fertility_reduction__1_ = p[:Goal_for_extra_fertility_reduction__1_]
+@parameters Excess_demand_in_1980__1_ = p[:Excess_demand_in_1980__1_]
+@parameters Unemployment_target__1_ = p[:Unemployment_target__1_]
+@parameters Extra_pension_tax_from_2022__share_of_NI_ = p[:Extra_pension_tax_from_2022__share_of_NI_]
+@parameters sWSOeoCLR_0 = p[:sWSOeoCLR_0]
+@parameters Normal_LPR_in_1980__1_ = p[:Normal_LPR_in_1980__1_]
+@parameters LEmax = p[:LEmax]
+@parameters Threshold_FFLR__1_ = p[:Threshold_FFLR__1_]
+@parameters Construction_time_PIS_y = p[:Construction_time_PIS_y]
+@parameters sCBCeoFRA_0 = p[:sCBCeoFRA_0]
+@parameters sINVeoDDI_0 = p[:sINVeoDDI_0]
+@parameters Cost_of_Max_fertility_reduction__share_of_GDP_ = p[:Cost_of_Max_fertility_reduction__share_of_GDP_]
+@parameters kWh_el_per_kgH2 = p[:kWh_el_per_kgH2]
+@parameters LEalfa = p[:LEalfa]
+@parameters Desired_relative_inventory__1_ = p[:Desired_relative_inventory__1_]
+@parameters Fraction_Aged_20_pension_age_wanting_paid_work_in_1980__1_ = p[:Fraction_Aged_20_pension_age_wanting_paid_work_in_1980__1_]
+@parameters Efficiency_of_fossil_power_plant_TWh_el_per_TWh_heat = p[:Efficiency_of_fossil_power_plant_TWh_el_per_TWh_heat]
+@parameters Price_Index_in_1980__1_ = p[:Price_Index_in_1980__1_]
+@parameters Ton_per_m3_ice = p[:Ton_per_m3_ice]
+@parameters Exogenous_introduction_period_y = p[:Exogenous_introduction_period_y]
+@parameters Workforce_in_1980_Mp = p[:Workforce_in_1980_Mp]
+@parameters WSO_in_1980__1_ = p[:WSO_in_1980__1_]
+@parameters Output_u_per_y = p[:Output_u_per_y]
+@parameters GtCH4_per_ppm = p[:GtCH4_per_ppm]
+@parameters Goal_for_extra_income_from_commons__share_of_NI_ = p[:Goal_for_extra_income_from_commons__share_of_NI_]
+@parameters Time_for_people_to_prepare_for_paid_work_y = p[:Time_for_people_to_prepare_for_paid_work_y]
+@parameters Fraction_of_extra_TA_cost_paid_by_extra_taxes__1_ = p[:Fraction_of_extra_TA_cost_paid_by_extra_taxes__1_]
+@parameters Goal_for_extra_normal_LPR__1_ = p[:Goal_for_extra_normal_LPR__1_]
+@parameters sROPeoAW_0 = p[:sROPeoAW_0]
+@parameters Normal_hours_worked_in_1980_kh_per_ftj_per_y = p[:Normal_hours_worked_in_1980_kh_per_ftj_per_y]
+@parameters Perception_delay_y = p[:Perception_delay_y]
+@parameters N2O_in_atm_in_1980_GtN2O = p[:N2O_in_atm_in_1980_GtN2O]
+@parameters Transfer_rate_surface_space_in_1980_1_per_y = p[:Transfer_rate_surface_space_in_1980_1_per_y]
+@parameters Time_to_change_reform_delay_y = p[:Time_to_change_reform_delay_y]
+@parameters TWh_heat_per_EJ___calorific_equivalent = p[:TWh_heat_per_EJ___calorific_equivalent]
+@parameters Aged_20_40_in_1980_Mp = p[:Aged_20_40_in_1980_Mp]
+@parameters Extra_rate_of_decline_in_CH4_pr_kg_crop_after_2022_1_per_y = p[:Extra_rate_of_decline_in_CH4_pr_kg_crop_after_2022_1_per_y]
+@parameters sINVeoSWI_0 = p[:sINVeoSWI_0]
+@parameters sOWeoLOC_0 = p[:sOWeoLOC_0]
+@parameters Passing_20_in_1980_Mp_per_y = p[:Passing_20_in_1980_Mp_per_y]
+@parameters sLEeoPa_0 = p[:sLEeoPa_0]
+@parameters Fraction_of_inflation_compensated__1_ = p[:Fraction_of_inflation_compensated__1_]
+@parameters Normal_unemployment_rate__1_ = p[:Normal_unemployment_rate__1_]
+@parameters SSP2_land_management_action_from_2022___1_ = p[:SSP2_land_management_action_from_2022___1_]
+@parameters Normal__1_ = p[:Normal__1_]
+@parameters sUNeoWSO_0 = p[:sUNeoWSO_0]
+@parameters Diminishing_return_public_spending__1_ = p[:Diminishing_return_public_spending__1_]
+@parameters sINeoSR_0 = p[:sINeoSR_0]
+@parameters Foreign_capital_inflow_G__per_y = p[:Foreign_capital_inflow_G__per_y]
+@parameters Extra_cost_per_reduced_use_of_non_el_FF___per_toe = p[:Extra_cost_per_reduced_use_of_non_el_FF___per_toe]
+@parameters Renewable_el_fraction_in_1980__1_ = p[:Renewable_el_fraction_in_1980__1_]
+@parameters Sampling_time_y = p[:Sampling_time_y]
+@parameters Experience_gained_before_2022_Mha = p[:Experience_gained_before_2022_Mha]
+@parameters sFCUTeoLOFC_0 = p[:sFCUTeoLOFC_0]
+@parameters sOWeoLoCO2_0 = p[:sOWeoLoCO2_0]
+@parameters sFFLReoOGRR_0 = p[:sFFLReoOGRR_0]
+@parameters CAP_PIS_in_1980_Gcu = p[:CAP_PIS_in_1980_Gcu]
+@parameters Goal_for_extra_pension_age_y = p[:Goal_for_extra_pension_age_y]
+@parameters Investment_planning_time_y = p[:Investment_planning_time_y]
+@parameters Demand_adjustment_time_y = p[:Demand_adjustment_time_y]
+@parameters Forcing_from_CO2_in_1980_W_per_m2 = p[:Forcing_from_CO2_in_1980_W_per_m2]
+@parameters Pension_age_in_1980_y = p[:Pension_age_in_1980_y]
+@parameters Fraction_of_CO2_sources_with_CCS_in_2022__1_ = p[:Fraction_of_CO2_sources_with_CCS_in_2022__1_]
+@parameters Normal_basic_bank_margin_1_per_y = p[:Normal_basic_bank_margin_1_per_y]
+@parameters sUNeoSR_0 = p[:sUNeoSR_0]
+@parameters Inflation_target_1_per_y = p[:Inflation_target_1_per_y]
+@parameters Crop_yield_in_reg_ag_t_crop_per_ha_per_y = p[:Crop_yield_in_reg_ag_t_crop_per_ha_per_y]
+@parameters sOWeoTFP_0 = p[:sOWeoTFP_0]
+@parameters Government_consumption_fraction__1_ = p[:Government_consumption_fraction__1_]
+@parameters Inflation_in_1980__1_per_y_ = p[:Inflation_in_1980__1_per_y_]
+@parameters Time_to_adjust_budget_y = p[:Time_to_adjust_budget_y]
+@parameters Urban_development_time_y = p[:Urban_development_time_y]
+@parameters sIPReoVPSS_0 = p[:sIPReoVPSS_0]
+@parameters Pulse_height__1_ = p[:Pulse_height__1_]
+@parameters Time_to_adjust_worker_consumption_y = p[:Time_to_adjust_worker_consumption_y]
+@parameters LEgamma = p[:LEgamma]
+@parameters sEHeoOW_0 = p[:sEHeoOW_0]
+@parameters sSTReoRD_0 = p[:sSTReoRD_0]
+@parameters Renewable_el_fraction_in_2022__1_ = p[:Renewable_el_fraction_in_2022__1_]
+@parameters ROC_in_tCO2_per_toe_1_per_y = p[:ROC_in_tCO2_per_toe_1_per_y]
+@parameters Goal_for_fraction_regenerative_agriculture__1_ = p[:Goal_for_fraction_regenerative_agriculture__1_]
+@parameters Life_of_capacity_PIS_in_1980_y = p[:Life_of_capacity_PIS_in_1980_y]
+@parameters DNCmin = p[:DNCmin]
+@parameters sFUeoSQ_0 = p[:sFUeoSQ_0]
+@parameters CAPEX_renewable_el_in_1980___per_W = p[:CAPEX_renewable_el_in_1980___per_W]
+@parameters sGReoCR_0 = p[:sGReoCR_0]
+@parameters Extra_energy_productivity_index_in_2022__1_ = p[:Extra_energy_productivity_index_in_2022__1_]
+@parameters Mtoe_per_EJ___calorific_equivalent = p[:Mtoe_per_EJ___calorific_equivalent]
+@parameters Extra_ROC_in_energy_productivity_after_2022_1_per_y = p[:Extra_ROC_in_energy_productivity_after_2022_1_per_y]
+@parameters Renewable_el_construction_time_y = p[:Renewable_el_construction_time_y]
+@parameters Persons_per_full_time_job_p_per_ftj = p[:Persons_per_full_time_job_p_per_ftj]
+@parameters OPEX_fossil_el___per_kWh = p[:OPEX_fossil_el___per_kWh]
+@parameters MEMO_Fraction_of_non_el_fossil_fuels_use_in_hard_to_abate_sectors_HTAS__1_ = p[:MEMO_Fraction_of_non_el_fossil_fuels_use_in_hard_to_abate_sectors_HTAS__1_]
+@parameters xExtra_TA_cost_in_2100__share_of_GDP_ = p[:xExtra_TA_cost_in_2100__share_of_GDP_]
+@parameters Extra_cost_of_reg_ag_in_2022___per_ha_per_y = p[:Extra_cost_of_reg_ag_in_2022___per_ha_per_y]
+@parameters sPUNeoPEW_0 = p[:sPUNeoPEW_0]
+@parameters Mult_to_avoid_transient_in_worker_finance = p[:Mult_to_avoid_transient_in_worker_finance]
+@parameters Life_of_N2O_in_atm_y = p[:Life_of_N2O_in_atm_y]
+@parameters sINVeoIN_0 = p[:sINVeoIN_0]
+@parameters Diminishing_return_disposable_income__1_ = p[:Diminishing_return_disposable_income__1_]
+@parameters Min_wellbeing_from_global_warming__1_ = p[:Min_wellbeing_from_global_warming__1_]
+@parameters Max_imported_ROTA_from_2022_1_per_y = p[:Max_imported_ROTA_from_2022_1_per_y]
+@parameters sWSOeoWPR_0 = p[:sWSOeoWPR_0]
+@parameters Goal_for_income_tax_rate_owners__1_ = p[:Goal_for_income_tax_rate_owners__1_]
+@parameters Max_fertility_multiplier__1_ = p[:Max_fertility_multiplier__1_]
+@parameters Albedo_global_average__1_ = p[:Albedo_global_average__1_]
+@parameters Cropland_in_1980_Mha = p[:Cropland_in_1980_Mha]
+@parameters Fertilizer_use_in_1980_Mt_per_y = p[:Fertilizer_use_in_1980_Mt_per_y]
+@parameters Cost_per_ton_fertilizer___per_t = p[:Cost_per_ton_fertilizer___per_t]
+@parameters CLR_in_1980_k__per_j = p[:CLR_in_1980_k__per_j]
+@parameters Biomass_energy_Mtoe_per_y = p[:Biomass_energy_Mtoe_per_y]
+@parameters Income_tax_rate_owners_in_2022__1_ = p[:Income_tax_rate_owners_in_2022__1_]
+@parameters sIIeoAW_0 = p[:sIIeoAW_0]
+@parameters Normal_increase_in_energy_efficiency_1_per_y = p[:Normal_increase_in_energy_efficiency_1_per_y]
+@parameters Fraction_of_renewable_electricity_to_hydrogen__1_ = p[:Fraction_of_renewable_electricity_to_hydrogen__1_]
+@parameters Life_of_extra_CO2_in_atm_in_1980_y = p[:Life_of_extra_CO2_in_atm_in_1980_y]
+@parameters ten_yr_loop_delay_y = p[:ten_yr_loop_delay_y]
+@parameters Normal_life_of_fossil_el_capacity_y = p[:Normal_life_of_fossil_el_capacity_y]
+@parameters Goal_for_fraction_new_electrification__1_ = p[:Goal_for_fraction_new_electrification__1_]
+@parameters Fraction_of_govmnt_debt_cancelled_in_2022_1_per_y = p[:Fraction_of_govmnt_debt_cancelled_in_2022_1_per_y]
+@parameters OCI_in_1980 = p[:OCI_in_1980]
+@parameters OGRR_in_1980_1_per_y = p[:OGRR_in_1980_1_per_y]
+@parameters Multiplier_to_avoid_transient_in_unemployment = p[:Multiplier_to_avoid_transient_in_unemployment]
+@parameters Max_govmnt_debt_burden_y = p[:Max_govmnt_debt_burden_y]
+@parameters ROC_in_fertilizer_productivity_1_per_y = p[:ROC_in_fertilizer_productivity_1_per_y]
+@parameters Cost_of_TAs_in_2022_G__per_y = p[:Cost_of_TAs_in_2022_G__per_y]
+@parameters Sales_tax_rate__1_ = p[:Sales_tax_rate__1_]
+@parameters Signal_rate_adjustment_time_y = p[:Signal_rate_adjustment_time_y]
+@parameters Normal_reform_delay_y = p[:Normal_reform_delay_y]
+@parameters Fraction_unprofitable_activity_in_TAs__1_ = p[:Fraction_unprofitable_activity_in_TAs__1_]
+@parameters PCOR_PUS_cu_per_u_per_y = p[:PCOR_PUS_cu_per_u_per_y]
+@parameters WFI_in_1980 = p[:WFI_in_1980]
+@parameters Adjustment_factor_to_make_costs_match_1980_2022__1_ = p[:Adjustment_factor_to_make_costs_match_1980_2022__1_]
+@parameters Cost_per_unit_in_1980___per_u = p[:Cost_per_unit_in_1980___per_u]
+@parameters GCI_in_1980 = p[:GCI_in_1980]
+@parameters Unconventional_stimulus_in_PUS_from_2022__share_of_GDP_ = p[:Unconventional_stimulus_in_PUS_from_2022__share_of_GDP_]
+@parameters Goal_for_fraction_of_CO2_sources_with_CCS__1_ = p[:Goal_for_fraction_of_CO2_sources_with_CCS__1_]
+@parameters sGDPppeoROCCLR_0 = p[:sGDPppeoROCCLR_0]
+@parameters sSTEeoRD_0 = p[:sSTEeoRD_0]
+@parameters SWI_in_1980__1_ = p[:SWI_in_1980__1_]
+@parameters xTFP_observation_time_y = p[:xTFP_observation_time_y]
+@parameters sGDPeoOSR_0 = p[:sGDPeoOSR_0]
+@parameters Rate_of_decline_in_N2O_per_kg_fertiliser_1_per_y = p[:Rate_of_decline_in_N2O_per_kg_fertiliser_1_per_y]
+@parameters Old_growth_forest_in_1980_Mha = p[:Old_growth_forest_in_1980_Mha]
+@parameters Renewable_capacity_up_time_kh_per_y = p[:Renewable_capacity_up_time_kh_per_y]
+@parameters Public_services_per_person_in_1980_k__per_p_per_y = p[:Public_services_per_person_in_1980_k__per_p_per_y]
+@parameters Time_to_observe_excess_demand_y = p[:Time_to_observe_excess_demand_y]
+@parameters Urban_land_per_population_ha_per_p = p[:Urban_land_per_population_ha_per_p]
+@parameters Basic_income_tax_rate_workers__1_ = p[:Basic_income_tax_rate_workers__1_]
+@parameters Acceptable_inequality__1_ = p[:Acceptable_inequality__1_]
+@parameters eight_khours_per_year = p[:eight_khours_per_year]
+@parameters Soil_quality_index_in_1980__1_ = p[:Soil_quality_index_in_1980__1_]
+@parameters Extra_use_of_electricity_per_reduced_use_of_non_el_FF_MWh_per_toe = p[:Extra_use_of_electricity_per_reduced_use_of_non_el_FF_MWh_per_toe]
+@parameters Transfer_rate_surface_abyss_in_1980_1_per_y = p[:Transfer_rate_surface_abyss_in_1980_1_per_y]
+@parameters CO2_concentration_in_2022_ppm = p[:CO2_concentration_in_2022_ppm]
+@parameters Nuclear_capacity_up_time_kh_per_y = p[:Nuclear_capacity_up_time_kh_per_y]
+@parameters Land_erosion_rate_in_1980_1_per_y = p[:Land_erosion_rate_in_1980_1_per_y]
+@parameters LE_in_1980 = p[:LE_in_1980]
+@parameters Average_wellbeing_perception_delay_y = p[:Average_wellbeing_perception_delay_y]
+@parameters Time_to_adjust_owner_consumption_y = p[:Time_to_adjust_owner_consumption_y]
+@parameters Real_wage_erosion_rate_1_per_y = p[:Real_wage_erosion_rate_1_per_y]
+@parameters sFBeoCLE_0 = p[:sFBeoCLE_0]
+@parameters sPPReoSTE_0 = p[:sPPReoSTE_0]
+@parameters Cost_of_nuclear_el___per_kWh = p[:Cost_of_nuclear_el___per_kWh]
+@parameters Time_to_enter_per_leave_labor_market_y = p[:Time_to_enter_per_leave_labor_market_y]
+@parameters Time_to_adjust_hours_worked_y = p[:Time_to_adjust_hours_worked_y]
+@parameters Kappa = p[:Kappa]
+@parameters Forestry_land_in_1980_Mha = p[:Forestry_land_in_1980_Mha]
+@parameters Workers_drawdown_period_y = p[:Workers_drawdown_period_y]
+@parameters Traditional_cost_of_fossil_fuel_for_non_el_use___per_toe = p[:Traditional_cost_of_fossil_fuel_for_non_el_use___per_toe]
+@parameters Job_creation_delay_y = p[:Job_creation_delay_y]
+@parameters sOWeoLE_0 = p[:sOWeoLE_0]
+@parameters Urban_land_in_1980_Mha = p[:Urban_land_in_1980_Mha]
+@parameters Time_to_establish_growth_rate_y = p[:Time_to_establish_growth_rate_y]
+@parameters sGWeoAW_0 = p[:sGWeoAW_0]
+@parameters sOWeoACY_0 = p[:sOWeoACY_0]
+@parameters sLPeoAWP_0 = p[:sLPeoAWP_0]
+@parameters sFUeoLER_0 = p[:sFUeoLER_0]
+@parameters Construction_time_PUS_y = p[:Construction_time_PUS_y]
+@parameters FINAL_TIME__ = p[:FINAL_TIME__]
+@parameters Warming_in_1980_deg_C = p[:Warming_in_1980_deg_C]
+@parameters ROC_in_CLR_in_1980_1_per_y = p[:ROC_in_CLR_in_1980_1_per_y]
+@parameters Margin_in_1980__1_ = p[:Margin_in_1980__1_]
+@parameters Inequality_in_1980__1_ = p[:Inequality_in_1980__1_]
+@parameters Minimum_relative_inventory_without_inflation__1_ = p[:Minimum_relative_inventory_without_inflation__1_]
+@parameters STD_in_fluctuation_around_normal__1_ = p[:STD_in_fluctuation_around_normal__1_]
+@parameters Aged_60__in_1980_Mp = p[:Aged_60__in_1980_Mp]
+@parameters Aged_0_20_in_1980_Mp = p[:Aged_0_20_in_1980_Mp]
+@parameters Unconventional_stimulus_in_PIS_from_2022__share_of_GDP_ = p[:Unconventional_stimulus_in_PIS_from_2022__share_of_GDP_]
+@parameters Threshold_participation__1_ = p[:Threshold_participation__1_]
+@parameters Rate_of_decline_in_CH4_per_kg_crop_1_per_y = p[:Rate_of_decline_in_CH4_per_kg_crop_1_per_y]
+@parameters SSP2_family_action_from_2022___1_ = p[:SSP2_family_action_from_2022___1_]
+@parameters kg_N2O_per_kg_fertilizer_in_1980 = p[:kg_N2O_per_kg_fertilizer_in_1980]
+@parameters GDP_per_person_in_1980_k__per_p_per_y = p[:GDP_per_person_in_1980_k__per_p_per_y]
+@parameters Threshold_warming_deg_C = p[:Threshold_warming_deg_C]
+@parameters Normal_k__1_ = p[:Normal_k__1_]
+@parameters AWI_in_1980__1_ = p[:AWI_in_1980__1_]
+@parameters Life_of_CH4_in_atm_y = p[:Life_of_CH4_in_atm_y]
+@parameters Extra_ROC_in_food_sector_productivity_from_2022_1_per_y = p[:Extra_ROC_in_food_sector_productivity_from_2022_1_per_y]
+@parameters Inflation_expectation_formation_time_y = p[:Inflation_expectation_formation_time_y]
+@parameters GtN2O_per_ppm = p[:GtN2O_per_ppm]
+@parameters Extra_general_tax_rate_from_2022__1_ = p[:Extra_general_tax_rate_from_2022__1_]
+@parameters Social_trust_in_1980__1_ = p[:Social_trust_in_1980__1_]
+@parameters sEDeoLOC_0 = p[:sEDeoLOC_0]
+@parameters CH4_in_atm_in_1980_GtCH4 = p[:CH4_in_atm_in_1980_GtCH4]
+@parameters Owner_savings_fraction_in_1980 = p[:Owner_savings_fraction_in_1980]
+@parameters Fertile_period_y = p[:Fertile_period_y]
+@parameters Transmission_cost___per_kWh = p[:Transmission_cost___per_kWh]
+@parameters Extra_domestic_ROTA_from_2022_1_per_y = p[:Extra_domestic_ROTA_from_2022_1_per_y]
+@parameters sPUNeoLPR_0 = p[:sPUNeoLPR_0]
+@parameters Acceptable_progress_1_per_y = p[:Acceptable_progress_1_per_y]
+@parameters sWSOeoFRA_0 = p[:sWSOeoFRA_0]
+@parameters Goal_for_crop_waste_reduction__1_ = p[:Goal_for_crop_waste_reduction__1_]
+@parameters Fraction_new_electrification_in_2022__1_ = p[:Fraction_new_electrification_in_2022__1_]
 
 inits = Dict{Symbol, Float64}(
     :Accumulated_sun_and_wind_capacity_from_1980_GW => p[:Sun_and_wind_capacity_in_1980_GW],
