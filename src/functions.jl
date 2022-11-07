@@ -65,4 +65,4 @@ ramp(inputvalue, slope, startslope, endslope) = IfElse.ifelse(inputvalue ≥ sta
 
 Returns 1.0, starting at time start, and lasting for interval width; 0.0 is returned at all other times. If width is passed as 0 it will be treated as though it were the current value of TIME STEP. This function corresponds to the `PULSE` function in the `VENSIM` language.
 """
-pulse(inputvalue, start, width) = IfElse.ifelse(inputvalue > start && inputvalue < (start + width), one(startslope), zero(startslope))
+pulse(inputvalue, start, width) = IfElse.ifelse(inputvalue > start && inputvalue < (start + width), 1.0, 0.0)
