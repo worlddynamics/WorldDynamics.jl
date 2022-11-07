@@ -1970,7 +1970,7 @@ Off_balance_sheet_govmnt_inv_in_PUS__share_of_GDP_ ~ IfElse.ifelse(t > 2022, 0.0
 Average_wellbeing_from_inequality__1_ ~ 1 + sIIeoAW_0 * ( Inequality__1_ / Threshold_inequality__1_ - 1 ),
 Change_in_wage_rate___per_ph_per_y ~ Wage_rate___per_ph * ROC_in_WSO___Table_1_per_y,
 Fraction_new_electrification__1_ ~ Fraction_new_electrification_in_1980__1_ + ramp(t,(Fraction_new_electrification_in_2022__1_ - Fraction_new_electrification_in_1980__1_ ) / 42, 1980, 2022) + ramp(t,( Goal_for_fraction_new_electrification__1_ - Fraction_new_electrification_in_2022__1_ ) / Introduction_period_for_policy_y , 2022, 2022 + Introduction_period_for_policy_y),
-Productivity_of_public_purchases__1_ ~ max(0, 1 + sIPReoVPSS_0* log(Infrastructure_purchases_ratio_y/Infrastructure_purchases_ratio_in_1980_y)),
+Productivity_of_public_purchases__1_ ~ max(0, 1 + sIPReoVPSS_0 * log(Infrastructure_purchases_ratio_y/Infrastructure_purchases_ratio_in_1980_y)),
 Demand_for_red_meat_Mt_red_meat_per_y ~ ( ( Population_Mp * Demand_for_red_meat_per_person_kg_red_meat_per_p_per_y ) / 1000 ) * ( 1 - Fraction_new_red_meat__1_ ),
 AVERAGE_WELLBEING_INDEX__1_ ~ ( 0.5 * Average_wellbeing_from_disposable_income__1_ + 0.5 * Average_wellbeing_from_public_spending__1_) * Average_wellbeing_from_inequality__1_ * Average_wellbeing_from_global_warming__1_ * Average_wellbeing_from_progress__1_,
 Income_tax_workers__1_ ~ Basic_income_tax_rate_workers__1_  * National_income_G__per_y * Worker_share_of_output__1_,
@@ -2130,6 +2130,5 @@ D(CO2_in_atmosphere_GtCO2) ~ CO2_emissions_GtCO2_per_y + CO2_from_CH4_GtCO2_per_
 ]
 
 @named sys = ODESystem(eqs)
-#sys = structural_simplify(sys)
 
 solution = solve(sys, (1980, 2100))
