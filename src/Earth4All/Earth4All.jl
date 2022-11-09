@@ -802,7 +802,7 @@ inits = Dict{Symbol, Float64}(
     :Permanent_govmnt_cash_inflow_G__per_y => p[:GCI_in_1980],
     :Permanent_owner_cash_inflow_G__per_y => p[:OCI_in_1980],
     :Permanent_worker_cash_inflow_G__per_y => p[:WFI_in_1980],
-    :Pink_noise_in_sales__1_ => rand(PinkGaussian(1, p[:Sampling_time_y]))[1],
+    :Pink_noise_in_sales__1_ => 1,
     :Price_Index__19801_ => p[:Price_Index_in_1980__1_],
     :Price_per_unit___per_u => p[:Cost_per_unit_in_1980___per_u] * ( 1 + p[:Margin_in_1980__1_] ),
     :Renewable_electricity_capacity_GW => p[:Renewable_el_capacity_in_1980_GW],
@@ -982,7 +982,7 @@ inits[:Unemployment_rate__1_] = inits[:Unemployed_Mp] / inits[:Available_workfor
 inits[:Cost_of_fossil_fuel_for_non_el_use_G__per_y] = (inits[:Demand_for_fossil_fuel_for_non_el_use_Mtoe_per_y] *  p[:Traditional_cost_of_fossil_fuel_for_non_el_use___per_toe] ) /1000
 inits[:Demand_for_electricity_TWh_per_y] = inits[:Demand_for_electricity_before_NE_TWh_per_y] + inits[:Extra_increase_in_demand_for_electricity_from_NE_TWh_per_y]
 inits[:Red_meat_from_feedlots_Mt_red_meat_per_y] = inits[:Demand_for_red_meat_Mt_red_meat_per_y] - inits[:Red_meat_from_grazing_land_Mt_red_meat_per_y]
-inits[:Traditional_use_of_feed_for_red_meat_Mt_crop_per_y] = (((inits[:Traditional_use_of_crops_per_person_kg_crop_per_p_per_y] / 1000) * inits[:Population_Mp] ) - inits[:Red_meat_from_grazing_land_Mt_red_meat_per_y] )*p[:kg_crop_per_kg_red_meat]
+inits[:Traditional_use_of_feed_for_red_meat_Mt_crop_per_y] = (((inits[:Traditional_use_of_red_meat_per_person_kg_red_meat_per_p_per_y] / 1000) * inits[:Population_Mp] ) - inits[:Red_meat_from_grazing_land_Mt_red_meat_per_y] )*p[:kg_crop_per_kg_red_meat]
 inits[:Demand_for_fossil_electricity_TWh_per_y] = max(0, inits[:Demand_for_electricity_TWh_per_y] - inits[:Low_carbon_el_production_TWh_per_y])
 inits[:Desired_supply_of_renewable_electricity_TWh_per_y] = inits[:Demand_for_electricity_TWh_per_y] * inits[:Desired_renewable_electricity_share__1_]
 inits[:Feed_for_red_meat_Mt_crop_per_y] = inits[:Red_meat_from_feedlots_Mt_red_meat_per_y] * p[:kg_crop_per_kg_red_meat]
@@ -1367,7 +1367,7 @@ inits[:Fraction_of_available_capital_to_new_capacity__1_] = p[:FRA_in_1980__1_] 
 @variables Fertilizer_productivity_index__19801_(t)
 @variables Ice_and_snow_cover_excl_G_A_Mkm2(t) = inits[:Ice_and_snow_cover_excl_G_A_Mkm2]
 @variables kg_CH4_emission_per_kg_crop(t)
-@variables Fossil_capacity_up_time_kh_per_y(t)
+@variables Fossil_capacity_up_time_kh_per_y(t) = inits[:Fossil_capacity_up_time_kh_per_y]
 @variables Natural_CH4_emissions_GtCH4_per_y(t)
 @variables New_grazing_land_Mha_per_y(t)
 @variables Worker_share_of_output__1_(t) = inits[:Worker_share_of_output__1_]
@@ -1691,7 +1691,7 @@ Capacity_discard_PIS_Gcu_per_y ~ Capacity_PIS_Gcu / Life_of_capacity_PIS_y,
 D(Perceived_warming_deg_C) ~ (Observed_warming_deg_C - Perceived_warming_deg_C) /  Perception_delay_y,
 CO2_absorption_in_forestry_land_tCO2_per_ha_per_y ~ 1.6 * Forest_absorption_multipler__1_,
 Govmnt_debt_in_1980_G_ ~ 28087 * Mult_to_avoid_transient_in_govmnt_finance,
-Pink_noise_in_sales__1_ ~ rand(PinkGaussian(1, p[:Sampling_time_y]))[1],
+Pink_noise_in_sales__1_ ~ 1,
 Discard_of_renewable_el_capacity_GW_per_y ~ Renewable_electricity_capacity_GW / Life_of_renewable_el_capacity_y,
 Crop_supply_reg_ag_Mt_crop_per_y ~ Crop_yield_in_reg_ag_t_crop_per_ha_per_y * Cropland_Mha * Fraction_regenerative_agriculture__1_,
 D(Fraction_of_govmnt_budget_to_workers__1_) ~ (Goal_for_fraction_of_govmnt_budget_to_workers__1_ - Fraction_of_govmnt_budget_to_workers__1_) / Time_to_implement_new_taxes_y,
