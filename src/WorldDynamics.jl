@@ -6,14 +6,16 @@ include("functions.jl")
 
 export plotvariables
 export solve
-export interpolate, clip, switch
+export interpolate, clip, switch, ramp, pulse
 
 using ModelingToolkit
 
 @register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
-@register clip(f1, f2, va, th)
-@register switch(v1, v2, z)
-@register WorldDynamics.step(t, hght, sttm)
+@register clip(returnifgte, returniflt, inputvalue, threshold)
+@register switch(returnifzero, returnifnotzero, inputvalue)
+@register WorldDynamics.step(inputvalue, returnifgte, threshold)
+@register ramp(inputvalue, slope, startslope, endslope)
+@register pulse(inputvalue, start, width)
 
 export World1
 export World1A
