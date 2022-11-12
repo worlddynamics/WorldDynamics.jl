@@ -1192,7 +1192,7 @@ inits[:Fraction_of_available_capital_to_new_capacity__1_] = p[:FRA_in_1980__1_] 
 @variables Available_workforce_Mp(t)
 @variables Demand_for_electricity_TWh_per_y(t)
 @variables Sales_tax_owners_G__per_y(t)
-@variables Aged_60___Mp(t)
+@variables Aged_60___Mp(t) = inits[:Aged_60___Mp]
 @variables CO2_in_atmosphere_GtCO2(t) = inits[:CO2_in_atmosphere_GtCO2]
 @variables Owner_savings_G__per_y(t)
 @variables Govmnt_net_income_G__per_y(t)
