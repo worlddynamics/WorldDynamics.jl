@@ -1760,7 +1760,7 @@ Cost_of_extra_fertility_reduction__share_of_GDP_ ~ Cost_of_Max_fertility_reducti
 Available_workforce_Mp ~ Working_age_population_Mp * Labour_participation_rate__1_,
 Demand_for_electricity_TWh_per_y ~ Demand_for_electricity_before_NE_TWh_per_y + Extra_increase_in_demand_for_electricity_from_NE_TWh_per_y,
 Sales_tax_owners_G__per_y ~ Owner_consumption_G__per_y * Sales_tax_rate__1_,
-Aged_60___Mp ~ Passing_60_Mp_per_y-Deaths_Mp_per_y,
+D(Aged_60___Mp) ~ Passing_60_Mp_per_y-Deaths_Mp_per_y,
 Owner_savings_G__per_y ~ Permanent_owner_cash_inflow_G__per_y - Owner_consumption_G__per_y,
 Govmnt_net_income_G__per_y ~ Govmnt_gross_income_G__per_y - Transfer_payments_G__per_y + Sales_tax_G__per_y,
 D(Past_GDP_per_person_k__per_y) ~ (GDP_per_person_k__per_p_per_y - Past_GDP_per_person_k__per_y) / Time_to_establish_growth_rate_y,
