@@ -1,6 +1,6 @@
 using WorldDynamics
 using ModelingToolkit
-using IfElse, Random, SignalAnalysis
+using IfElse, Random
 
 @variables t
 D = Differential(t)
