@@ -1108,8 +1108,8 @@ inits[:Fraction_of_available_capital_to_new_capacity__1_] = p[:FRA_in_1980__1_] 
 @variables Hours_worked_mult_from_GDPpp__1_(t)
 @variables Extra_warming_from_forcing_ZJ_per_y(t)
 @variables Passing_60_Mp_per_y(t) = inits[:Passing_60_Mp_per_y]
-@variables Permanent_owner_cash_inflow_G__per_y(t)
-@variables Permanent_govmnt_cash_inflow_G__per_y(t)
+@variables Permanent_owner_cash_inflow_G__per_y(t) = inits[:Permanent_owner_cash_inflow_G__per_y]
+@variables Permanent_govmnt_cash_inflow_G__per_y(t) = inits[:Permanent_govmnt_cash_inflow_G__per_y]
 @variables Deliveries_Gu_per_y(t)
 @variables Land_erosion_rate_1_per_y(t)
 @variables Green_hydrogen_MtH2_per_y(t)
@@ -1667,8 +1667,8 @@ D(Passing_60_Mp_per_y7) ~ 10 * (Passing_60_Mp_per_y6 - Passing_60_Mp_per_y7) / 2
 D(Passing_60_Mp_per_y8) ~ 10 * (Passing_60_Mp_per_y7 - Passing_60_Mp_per_y8) / 20,
 D(Passing_60_Mp_per_y9) ~ 10 * (Passing_60_Mp_per_y8 - Passing_60_Mp_per_y9) / 20,
 D(Passing_60_Mp_per_y) ~ 10 * (Passing_60_Mp_per_y9 - Passing_60_Mp_per_y) / 20,
-Permanent_owner_cash_inflow_G__per_y ~ (Owner_cash_inflow_G__per_y - Permanent_owner_cash_inflow_G__per_y) / Time_to_adjust_owner_consumption_y,
-Permanent_govmnt_cash_inflow_G__per_y ~ (Govmnt_cash_inflow_G__per_y - Permanent_govmnt_cash_inflow_G__per_y) / Time_to_adjust_budget_y,
+D(Permanent_owner_cash_inflow_G__per_y) ~ (Owner_cash_inflow_G__per_y - Permanent_owner_cash_inflow_G__per_y) / Time_to_adjust_owner_consumption_y,
+D(Permanent_govmnt_cash_inflow_G__per_y) ~ (Govmnt_cash_inflow_G__per_y - Permanent_govmnt_cash_inflow_G__per_y) / Time_to_adjust_budget_y,
 Deliveries_Gu_per_y ~ ( ( Effective_purchasing_power_G__per_y / Price_per_unit___per_u ) / ( Delivery_delay___index__1_ / DDI_in_1980_y ) ) * IfElse.ifelse(t > 1984, Pink_noise_in_sales__1_, 1),
 Land_erosion_rate_1_per_y ~ Land_erosion_rate_in_1980_1_per_y * Fertilizer_effect_on_erosion_rate__1_ * Land_erosion_multiplier__1_,
 Green_hydrogen_MtH2_per_y ~ Renewable_electricity_production_TWh_per_y * Fraction_of_renewable_electricity_to_hydrogen__1_ / kWh_el_per_kgH2,
