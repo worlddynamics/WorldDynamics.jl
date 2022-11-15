@@ -58,11 +58,11 @@ switch(returnifzero, returnifnotzero, inputvalue) = IfElse.ifelse(isapprox(input
 
 Returns `0` until the `startslope` and then slopes upward until `endslope` and then holds constant. This function corresponds to the `RAMP` function in the `VENSIM` language.
 """
-ramp(inputvalue, slope, startslope, endslope) = IfElse.ifelse(inputvalue ≥ startslope, IfElse.ifelse(inputvalue ≤ endslope, slope * (inputvalue - startslope), slope * (endslope - startslope)), zero(startslope))
+ramp(inputvalue, slope, startslope, endslope) = IfElse.ifelse(inputvalue > startslope, IfElse.ifelse(inputvalue ≤ endslope, slope * (inputvalue - startslope), slope * (endslope - startslope)), zero(startslope))
 
 """
    `pulse(inputvalue, start, width)`
 
 Returns 1.0, starting at time start, and lasting for interval width; 0.0 is returned at all other times. If width is passed as 0 it will be treated as though it were the current value of TIME STEP. This function corresponds to the `PULSE` function in the `VENSIM` language.
 """
-pulse(inputvalue, start, width) = IfElse.ifelse(inputvalue > start && inputvalue < (start + width), 1.0, 0.0)
+pulse(inputvalue, start, width) = IfElse.ifelse(inputvalue > start && inputvalue < (start + width), one(inputvalue), zero(inputvalue))
