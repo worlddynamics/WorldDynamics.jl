@@ -1737,7 +1737,7 @@ Population_below_15_k__per_p_per_y_Mp ~ Population_Mp * Fraction_below_15_k__per
 Births_Mp_per_y ~ Aged_20_40_years_Mp * Fraction_women__1_ * ( Observed_fertility_1 / Fertile_period_y ),
 IIASA_Fossil_energy_production_EJ_per_yr ~ Use_of_fossil_fuels_Mtoe_per_y / Mtoe_per_EJ___calorific_equivalent,
 Cropland_expansion_Mha_per_y ~ IfElse.ifelse(Forestry_land_Mha>0, Cropland_Mha * Cropland_expansion_rate_1_per_y, 0)  * Acceptable_loss_of_forestry_land__1_ * Cropland_expansion_multiplier__1_,
-Control___C_G_S__per_NI_ ~ 1,
+Control___C_G_S__per_NI_ ~ Consumption_share_of_GDP__1_ + Govmnt_share_of_GDP__1_ + Savings_share_of_GDP__1_,
 Fertility_multiplier__1_ ~ IfElse.ifelse(SSP2_family_action_from_2022___1_ > 0,  IfElse.ifelse(t > 2022, 1 + ramp(t,(Max_fertility_multiplier__1_ - 1 )/78, 2022, 2100), 1),  1),
 CAPEX_renewable_el_G__per_y ~ CAPEX_renewable_el___per_W * Addition_of_renewable_el_capacity_GW_per_y,
 D(Aged_40_60_Mp) ~ Passing_40_Mp_per_y-Passing_60_Mp_per_y,
