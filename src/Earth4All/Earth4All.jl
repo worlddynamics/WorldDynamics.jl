@@ -54,7 +54,7 @@ p = Dict{Symbol, Float64}(
     :Fraction_of_extra_taxes_paid_by_owners_1 => 0.8,
     :sEDeoFRA_greater_than_0 => 5,
     :Govmnt_payback_period_y => 200,
-    :INITIAL_TIME => 1980,
+    :Initial_time => 1980,
     :Factor_to_avoid_transient_in_growth_rate_1 => 0.93,
     :OPEX_renewable_el_dollar_per_kWh => 0.001,
     :tCO2_per_tCH4 => 2.75,
@@ -408,7 +408,7 @@ p = Dict{Symbol, Float64}(
 @parameters Fraction_of_extra_taxes_paid_by_owners_1 = p[:Fraction_of_extra_taxes_paid_by_owners_1]
 @parameters sEDeoFRA_greater_than_0 = p[:sEDeoFRA_greater_than_0]
 @parameters Govmnt_payback_period_y = p[:Govmnt_payback_period_y]
-@parameters INITIAL_TIME = p[:INITIAL_TIME]
+@parameters Initial_time = p[:Initial_time]
 @parameters Factor_to_avoid_transient_in_growth_rate_1 = p[:Factor_to_avoid_transient_in_growth_rate_1]
 @parameters OPEX_renewable_el_dollar_per_kWh = p[:OPEX_renewable_el_dollar_per_kWh]
 @parameters tCO2_per_tCH4 = p[:tCO2_per_tCH4]
@@ -721,7 +721,7 @@ inits = Dict{Symbol, Float64}(
     :Aged_60_plus_Mp => p[:Aged_60_plus_in_1980_Mp],
     :Average_hours_worked_in_1980_kh_per_y => p[:Normal_hours_worked_in_1980_kh_per_ftj_per_y] / p[:Persons_per_full_time_job_in_1980_p_per_ftj],
     :Barren_land_Mha => 3000,
-    :Basic_income_tax_rate_owners_1 => min(1, p[:Income_tax_rate_owners_in_1980_1] + ramp(p[:INITIAL_TIME], (p[:Income_tax_rate_owners_in_2022_1] - p[:Income_tax_rate_owners_in_1980_1] ) / 42, 1980, 2022) + ramp(p[:INITIAL_TIME],(p[:Goal_for_income_tax_rate_owners_1] - p[:Income_tax_rate_owners_in_2022_1] ) / 78, 2022, 2100) ),
+    :Basic_income_tax_rate_owners_1 => min(1, p[:Income_tax_rate_owners_in_1980_1] + ramp(p[:Initial_time], (p[:Income_tax_rate_owners_in_2022_1] - p[:Income_tax_rate_owners_in_1980_1] ) / 42, 1980, 2022) + ramp(p[:Initial_time],(p[:Goal_for_income_tax_rate_owners_1] - p[:Income_tax_rate_owners_in_2022_1] ) / 78, 2022, 2100) ),
     :Capacity_PIS_Gcu => p[:CAP_PIS_in_1980_Gcu],
     :Capacity_PUS_Gcu => p[:CAP_PUS_in_1980_Gcu],
     :Central_bank_signal_rate_1_per_y => p[:Normal_signal_rate_1_per_y],
@@ -745,21 +745,21 @@ inits = Dict{Symbol, Float64}(
     :Embedded_CLR_kcu_per_ftj => p[:CLR_in_1980_kcu_per_ftj],
     :Embedded_TFP_1 => p[:Embedded_TFP_in_1980_1],
     :Expected_long_term_inflation_1_per_y => p[:Inflation_in_1980_1_per_y],
-    :Extra_cost_of_TAs_as_share_of_GDP_1 => p[:xExtra_TA_cost_in_2022_share_of_GDP] + ramp(p[:INITIAL_TIME],(p[:xExtra_TA_cost_in_2100_share_of_GDP] - p[:xExtra_TA_cost_in_2022_share_of_GDP])/78, 2022, 2022 + 78),
+    :Extra_cost_of_TAs_as_share_of_GDP_1 => p[:xExtra_TA_cost_in_2022_share_of_GDP] + ramp(p[:Initial_time],(p[:xExtra_TA_cost_in_2100_share_of_GDP] - p[:xExtra_TA_cost_in_2022_share_of_GDP])/78, 2022, 2022 + 78),
     :Extra_energy_productivity_index_2022_equal_1 => p[:Extra_energy_productivity_index_in_2022_1],
     :Extra_heat_in_surface_ZJ => p[:Extra_heat_in_1980_ZJ],
-    :Fertilizer_productivity_index_1980_equal_1 => exp(p[:ROC_in_fertilizer_productivity_1_per_y] * ( p[:INITIAL_TIME] - 1980)),
+    :Fertilizer_productivity_index_1980_equal_1 => exp(p[:ROC_in_fertilizer_productivity_1_per_y] * ( p[:Initial_time] - 1980)),
     :Forestry_land_Mha => p[:Forestry_land_in_1980_Mha],
     :Fossil_electricity_capacity_GW => p[:Fossil_el_capacity_in_1980_GW],
-    :Goal_for_fraction_of_govmnt_budget_to_workers_1 => p[:Fraction_transferred_in_1980_1] + IfElse.ifelse(p[:INITIAL_TIME] > 2022, p[:Extra_transfer_of_govmnt_budget_to_workers_1], 0),
+    :Goal_for_fraction_of_govmnt_budget_to_workers_1 => p[:Fraction_transferred_in_1980_1] + IfElse.ifelse(p[:Initial_time] > 2022, p[:Extra_transfer_of_govmnt_budget_to_workers_1], 0),
     :Govmnt_debt_in_1980_G_dollar => 28087 * p[:Mult_to_avoid_transient_in_govmnt_finance],
     :Grazing_land_Mha => p[:Grazing_land_in_1980_Mha],
     :Ice_and_snow_cover_excl_G_and_A_Mkm2 => p[:Ice_and_snow_cover_excl_Greenland_and_Antarctica_in_1980_Mkm2],
     :Lambda => 1 - p[:Kappa],
-    :Life_expectancy_multipler_1 => IfElse.ifelse(p[:SSP2_family_action_from_2022_1] > 0,  IfElse.ifelse(p[:INITIAL_TIME] > 2022, 1 + ramp(p[:INITIAL_TIME],(p[:Max_life_expectancy_multiplier_1] - 1 )/78, 2022, 2100), 1),  1),
+    :Life_expectancy_multipler_1 => IfElse.ifelse(p[:SSP2_family_action_from_2022_1] > 0,  IfElse.ifelse(p[:Initial_time] > 2022, 1 + ramp(p[:Initial_time],(p[:Max_life_expectancy_multiplier_1] - 1 )/78, 2022, 2100), 1),  1),
     :N2O_in_atmosphere_GtN2O => p[:N2O_in_atm_in_1980_GtN2O],
     :Normal_hours_worked_kh_per_ftj_per_y => p[:Normal_hours_worked_in_1980_kh_per_ftj_per_y],
-    :Nuclear_capacity_GW => interpolate(p[:INITIAL_TIME], [(1980.0,75.0),(2000.0,310.0),(2020.0,310.0),(2098.9,310.0)]),
+    :Nuclear_capacity_GW => interpolate(p[:Initial_time], [(1980.0,75.0),(2000.0,310.0),(2020.0,310.0),(2098.9,310.0)]),
     :Observed_rate_of_progress_1_per_y => 0,
     :Old_growth_forest_area_Mha_1 => p[:Old_growth_forest_in_1980_Mha],
     :Optimal_output_in_1980_Gu_per_y => p[:CAP_PIS_in_1980_Gcu] / p[:PCOR_PIS_cu_per_u_per_y] + p[:CAP_PUS_in_1980_Gcu] / p[:PCOR_PUS_cu_per_u_per_y],
@@ -808,7 +808,7 @@ inits = Dict{Symbol, Float64}(
     :Renewable_electricity_capacity_GW => p[:Renewable_el_capacity_in_1980_GW],
     :Social_trust_1 => p[:Social_trust_in_1980_1],
     :Soil_quality_index_in_conv_ag_1980_equal_1 => p[:Soil_quality_index_in_1980_1],
-    :tCO2_per_toe => 2.8*exp(p[:ROC_in_tCO2_per_toe_1_per_y] * (p[:INITIAL_TIME] -1980)),
+    :tCO2_per_toe => 2.8*exp(p[:ROC_in_tCO2_per_toe_1_per_y] * (p[:Initial_time] -1980)),
     :TFP_excluding_effect_of_5TAs_1 => p[:TFP_in_1980_1],
     :TWh_el_per_EJ_engineering_equivalent => p[:TWh_heat_per_EJ_calorific_equivalent] * p[:Efficiency_of_fossil_power_plant_TWh_el_per_TWh_heat],
     :Urban_land_Mha => p[:Urban_land_in_1980_Mha],
@@ -843,12 +843,12 @@ inits[:Perceived_surplus_workforce_1] = p[:Acceptable_unemployment_rate_1] * ( 1
 inits[:Govmnt_purchases_G_dollar_per_y] = inits[:Permanent_govmnt_cash_inflow_G_dollar_per_y] * p[:Government_consumption_fraction_1]
 inits[:Social_trust_effect_on_reform_delay_1] = 1 + p[:sSTReoRD_less_than_0] * ( inits[:Social_trust_1] / p[:Social_trust_in_1980_1] - 1 )
 inits[:Workers_debt_G_dollar] = inits[:Workers_debt_in_1980_G_dollar]
-inits[:Food_sector_productivity_index_1980_equal_1] = exp(p[:ROC_in_food_sector_productivity_1_per_y] * ( p[:INITIAL_TIME] - 1980)) * IfElse.ifelse(p[:INITIAL_TIME] > 2022, exp( p[:ROC_in_food_sector_productivity_1_per_y]* ( p[:INITIAL_TIME] - 2022)), 1)
-inits[:Biofuels_use_Mtoe_per_y] = interpolate(p[:INITIAL_TIME], [(1980.0,0.0),(1990.0,0.0),(2000.0,0.0),(2020.0,0.0),(2100.0,0.0)])
+inits[:Food_sector_productivity_index_1980_equal_1] = exp(p[:ROC_in_food_sector_productivity_1_per_y] * ( p[:Initial_time] - 1980)) * IfElse.ifelse(p[:Initial_time] > 2022, exp( p[:ROC_in_food_sector_productivity_1_per_y]* ( p[:Initial_time] - 2022)), 1)
+inits[:Biofuels_use_Mtoe_per_y] = interpolate(p[:Initial_time], [(1980.0,0.0),(1990.0,0.0),(2000.0,0.0),(2020.0,0.0),(2100.0,0.0)])
 inits[:CH4_breakdown_GtCH4_per_y] = inits[:CH4_in_atmosphere_GtCH4] / p[:Life_of_CH4_in_atm_y]
-inits[:Old_growth_removal_rate_multiplier_1] = IfElse.ifelse(p[:INITIAL_TIME] > 2022,  1 - p[:SSP2_land_management_action_from_2022_1] * ramp(p[:INITIAL_TIME],(1 - 0 )/78, 2022, 2100), 1)
-inits[:Cropland_expansion_multiplier_1] = IfElse.ifelse(p[:INITIAL_TIME] > 2022,  1 - p[:SSP2_land_management_action_from_2022_1] * ramp(p[:INITIAL_TIME],(1 - 0 )/78, 2022, 2100), 1)
-inits[:Forest_absorption_multipler_1] = IfElse.ifelse(p[:INITIAL_TIME] > 2022, 1 + p[:SSP2_land_management_action_from_2022_1]* ramp(p[:INITIAL_TIME],(p[:Max_forest_absorption_multiplier_1] - 1)/78, 2022, 2100), 1)
+inits[:Old_growth_removal_rate_multiplier_1] = IfElse.ifelse(p[:Initial_time] > 2022,  1 - p[:SSP2_land_management_action_from_2022_1] * ramp(p[:Initial_time],(1 - 0 )/78, 2022, 2100), 1)
+inits[:Cropland_expansion_multiplier_1] = IfElse.ifelse(p[:Initial_time] > 2022,  1 - p[:SSP2_land_management_action_from_2022_1] * ramp(p[:Initial_time],(1 - 0 )/78, 2022, 2100), 1)
+inits[:Forest_absorption_multipler_1] = IfElse.ifelse(p[:Initial_time] > 2022, 1 + p[:SSP2_land_management_action_from_2022_1]* ramp(p[:Initial_time],(p[:Max_forest_absorption_multiplier_1] - 1)/78, 2022, 2100), 1)
 inits[:Fraction_forestry_land_remaining_1] = max(0, inits[:Forestry_land_Mha] / p[:Forestry_land_in_1980_Mha] )
 inits[:Reduction_in_TFP_from_unprofitable_activity_1] = inits[:Productivity_loss_from_unprofitable_activity_1]
 inits[:Output_last_year_G_dollar_per_y] = inits[:Optimal_output_in_1980_Gu_per_y] / ( 1 + p[:Output_growth_in_1980_1_per_y_to_avoid_transient] )
@@ -860,10 +860,10 @@ inits[:Cost_of_capital_for_secured_debt_1_per_y] = inits[:three_m_interest_rate_
 inits[:Govmnt_borrowing_cost_1_per_y] = inits[:three_m_interest_rate_1_per_y]
 inits[:Labour_productivity_in_1980_dollar_per_ph] = ( inits[:Optimal_output_in_1980_Gu_per_y] * p[:Cost_per_unit_in_1980_dollar_per_u] ) / inits[:Labour_use_in_1980_Gph_per_y]
 inits[:Cost_index_for_sun_and_wind_capacity_1] = ( 1 - p[:Cost_reduction_per_doubling_of_sun_and_wind_capacity_1] ) ^ inits[:Number_of_doublings_in_sun_and_wind_capacity_1]
-inits[:OWeoLOC_1] = IfElse.ifelse(p[:INITIAL_TIME] > 2022, 1 + p[:sOWeoLOC_less_than_0] * ( inits[:Observed_warming_deg_C] / p[:Observed_warming_in_2022_deg_C] - 1 ), 1)
-inits[:Warming_effect_on_land_yield_1] = IfElse.ifelse(p[:INITIAL_TIME] > 2022, 1 + p[:sOWeoACY_less_than_0] * ( inits[:Observed_warming_deg_C] / p[:Observed_warming_in_2022_deg_C] - 1 ), 1)
-inits[:OWeoLoCO2] = IfElse.ifelse(p[:INITIAL_TIME] > 2022, 1 + p[:sOWeoLoCO2_greater_than_0] * ( inits[:Observed_warming_deg_C] / p[:Observed_warming_in_2022_deg_C] - 1 ), 1)
-inits[:Warming_effect_on_life_expectancy_1] = IfElse.ifelse(p[:INITIAL_TIME] > 2022, max(0, 1 + p[:sOWeoLE_less_than_0] *  ( inits[:Observed_warming_deg_C] / p[:Observed_warming_in_2022_deg_C] - 1 )), 1 )
+inits[:OWeoLOC_1] = IfElse.ifelse(p[:Initial_time] > 2022, 1 + p[:sOWeoLOC_less_than_0] * ( inits[:Observed_warming_deg_C] / p[:Observed_warming_in_2022_deg_C] - 1 ), 1)
+inits[:Warming_effect_on_land_yield_1] = IfElse.ifelse(p[:Initial_time] > 2022, 1 + p[:sOWeoACY_less_than_0] * ( inits[:Observed_warming_deg_C] / p[:Observed_warming_in_2022_deg_C] - 1 ), 1)
+inits[:OWeoLoCO2] = IfElse.ifelse(p[:Initial_time] > 2022, 1 + p[:sOWeoLoCO2_greater_than_0] * ( inits[:Observed_warming_deg_C] / p[:Observed_warming_in_2022_deg_C] - 1 ), 1)
+inits[:Warming_effect_on_life_expectancy_1] = IfElse.ifelse(p[:Initial_time] > 2022, max(0, 1 + p[:sOWeoLE_less_than_0] *  ( inits[:Observed_warming_deg_C] / p[:Observed_warming_in_2022_deg_C] - 1 )), 1 )
 inits[:Govmnt_payback_G_dollar_per_y] = inits[:Govmnt_debt_G_dollar] / p[:Govmnt_payback_period_y]
 inits[:Labour_use_Gph_per_y] = inits[:Workforce_Mp] * inits[:Average_hours_worked_kh_per_y]
 inits[:Cost_of_nuclear_electricity_G_dollar_per_y] = inits[:Nuclear_electricity_production_TWh_per_y] * p[:Cost_of_nuclear_el_dollar_per_kWh]
@@ -900,7 +900,7 @@ inits[:Old_growth_removal_rate_1_per_y] = p[:OGRR_in_1980_1_per_y] * inits[:FFLR
 inits[:Life_expectancy_y] = ( ( p[:LEmax] - (p[:LEmax] - p[:LE_in_1980]) * exp(- p[:LEgamma] * (inits[:Effective_GDP_per_person_k_dollar_per_p_per_y] - p[:GDP_per_person_in_1980_k_dollar_per_p_per_y])) ) * ( 1 + p[:LEalfa] * ( inits[:Effective_GDP_per_person_k_dollar_per_p_per_y] - p[:GDP_per_person_in_1980_k_dollar_per_p_per_y] )) ) * inits[:Warming_effect_on_life_expectancy_1] * inits[:Life_expectancy_multipler_1]
 inits[:Perceived_relative_inventory_1] = inits[:Inventory_coverage_y] / p[:Desired_inventory_coverage_y]
 inits[:Reform_delay_y] = inits[:Indicated_reform_delay_y]
-inits[:Deliveries_Gu_per_y] = ( ( inits[:Effective_purchasing_power_G_dollar_per_y] / inits[:Price_per_unit_dollar_per_u] ) / ( inits[:Delivery_delay_index_1] / p[:DDI_in_1980_y] ) ) * IfElse.ifelse(p[:INITIAL_TIME] > 1984, inits[:Pink_noise_in_sales_1], 1)
+inits[:Deliveries_Gu_per_y] = ( ( inits[:Effective_purchasing_power_G_dollar_per_y] / inits[:Price_per_unit_dollar_per_u] ) / ( inits[:Delivery_delay_index_1] / p[:DDI_in_1980_y] ) ) * IfElse.ifelse(p[:Initial_time] > 1984, inits[:Pink_noise_in_sales_1], 1)
 inits[:CBC_effect_on_flow_to_capacity_addion_1] = 1 + p[:sCBCeoFRA_less_than_0] * (inits[:Corporate_borrowing_cost_1_per_y] / inits[:Corporate_borrowing_cost_in_1980_1_per_y] - 1 )
 inits[:CUC_PUS_in_1980_Gcu] = ( p[:CAP_PUS_in_1980_Gcu] / inits[:Life_of_capacity_PUS_in_1980_y] ) * p[:Construction_time_PUS_y] * p[:Extra_mult_on_CUC_comma_to_avoid_initial_transient_in_Investment_share_of_GDP]
 inits[:Wage_rate_dollar_per_ph] = inits[:Wage_rate_in_1980_dollar_per_ph]
@@ -911,20 +911,20 @@ inits[:CO2_concentration_in_atm_ppm] = inits[:CO2_in_atmosphere_GtCO2] / p[:GtCO
 inits[:Old_growth_removal_Mha_per_y] = inits[:Old_growth_forest_area_Mha_1] * inits[:Old_growth_removal_rate_1_per_y] * inits[:Old_growth_removal_rate_multiplier_1]
 inits[:Desired_shifts_worked_index_1] = 1 + p[:sINVeoSWI_less_than_0] * (inits[:Perceived_relative_inventory_1] / p[:Desired_relative_inventory_1] - 1 )
 inits[:Introduction_period_for_policy_y] = IfElse.ifelse(p[:Exogenous_introduction_period] > 0, p[:Exogenous_introduction_periody], inits[:Reform_delay_y])
-inits[:Crop_waste_reduction_1] = ramp(p[:INITIAL_TIME], p[:Goal_for_crop_waste_reduction_1] / inits[:Introduction_period_for_policy_y] , 2022, 2022 + inits[:Introduction_period_for_policy_y] )
+inits[:Crop_waste_reduction_1] = ramp(p[:Initial_time], p[:Goal_for_crop_waste_reduction_1] / inits[:Introduction_period_for_policy_y] , 2022, 2022 + inits[:Introduction_period_for_policy_y] )
 inits[:Sales_G_dollar_per_y] = inits[:Deliveries_Gu_per_y] * inits[:Price_per_unit_dollar_per_u]
 inits[:Capacity_under_construction_PUS_Gcu] = inits[:CUC_PUS_in_1980_Gcu]
 inits[:Sales_tax_G_dollar_per_y] = inits[:Sales_tax_workers_G_dollar_per_y] + inits[:Sales_tax_owners_G_dollar_per_y]
-inits[:CO2_effect_on_land_yield_1] = IfElse.ifelse(p[:INITIAL_TIME] > 2022, 1 + p[:sCO2CeoACY_greater_than_0] * ( inits[:CO2_concentration_in_atm_ppm] / p[:CO2_concentration_in_2022_ppm] - 1 ), 1)
+inits[:CO2_effect_on_land_yield_1] = IfElse.ifelse(p[:Initial_time] > 2022, 1 + p[:sCO2CeoACY_greater_than_0] * ( inits[:CO2_concentration_in_atm_ppm] / p[:CO2_concentration_in_2022_ppm] - 1 ), 1)
 inits[:Shifts_worked_index_1] = inits[:Desired_shifts_worked_index_1]
-inits[:Extra_pension_age_y] = ramp(p[:INITIAL_TIME], (p[:Goal_for_extra_pension_age_y] - p[:Extra_pension_age_in_2022_y] ) / inits[:Introduction_period_for_policy_y], 2022, 22022 + inits[:Introduction_period_for_policy_y])
-inits[:Fraction_of_CO2_sources_with_CCS_1] = p[:Fraction_of_CO2_sources_with_CCS_in_2022_1] + ramp(p[:INITIAL_TIME],(p[:Goal_for_fraction_of_CO2_sources_with_CCS_1] - p[:Fraction_of_CO2_sources_with_CCS_in_2022_1] ) / inits[:Introduction_period_for_policy_y] , 2022 , 2022 + inits[:Introduction_period_for_policy_y])
-inits[:Fraction_new_electrification_1] = p[:Fraction_new_electrification_in_1980_1] + ramp(p[:INITIAL_TIME],(p[:Fraction_new_electrification_in_2022_1] - p[:Fraction_new_electrification_in_1980_1] ) / 42, 1980, 2022) + ramp(p[:INITIAL_TIME],( p[:Goal_for_fraction_new_electrification_1] - p[:Fraction_new_electrification_in_2022_1] ) / inits[:Introduction_period_for_policy_y] , 2022, 2022 + inits[:Introduction_period_for_policy_y])
-inits[:Direct_air_capture_of_CO2_GtCO2_per_y] = IfElse.ifelse(p[:INITIAL_TIME] > 2022,  ramp(p[:INITIAL_TIME],(p[:Direct_air_capture_of_CO2_in_2100_GtCO2_per_y] ) / inits[:Introduction_period_for_policy_y] , 2022, 2022 + inits[:Introduction_period_for_policy_y]) , 0 )
-inits[:Fraction_regenerative_agriculture_1] = ramp(p[:INITIAL_TIME], p[:Goal_for_fraction_regenerative_agriculture_1] / inits[:Introduction_period_for_policy_y], 2022, 2020 + inits[:Introduction_period_for_policy_y])
-inits[:Desired_renewable_electricity_share_1] = p[:Renewable_el_fraction_in_1980_1] + ramp(p[:INITIAL_TIME],(p[:Renewable_el_fraction_in_2022_1] - p[:Renewable_el_fraction_in_1980_1] ) / 42, 1980, 2022) + ramp(p[:INITIAL_TIME],(p[:Goal_for_renewable_el_fraction_1] - p[:Renewable_el_fraction_in_2022_1] ) / inits[:Introduction_period_for_policy_y], 2022, 2022 + inits[:Introduction_period_for_policy_y] )
-inits[:Fraction_new_red_meat_1] = ramp(p[:INITIAL_TIME], p[:Goal_for_fraction_new_red_meat_1] / inits[:Introduction_period_for_policy_y], 2022, 2022 + inits[:Introduction_period_for_policy_y])
-inits[:Extra_normal_LPR_from_2022_1] = ramp(p[:INITIAL_TIME], p[:Goal_for_extra_normal_LPR_1] / inits[:Introduction_period_for_policy_y], 2022, 2022 + inits[:Introduction_period_for_policy_y])
+inits[:Extra_pension_age_y] = ramp(p[:Initial_time], (p[:Goal_for_extra_pension_age_y] - p[:Extra_pension_age_in_2022_y] ) / inits[:Introduction_period_for_policy_y], 2022, 22022 + inits[:Introduction_period_for_policy_y])
+inits[:Fraction_of_CO2_sources_with_CCS_1] = p[:Fraction_of_CO2_sources_with_CCS_in_2022_1] + ramp(p[:Initial_time],(p[:Goal_for_fraction_of_CO2_sources_with_CCS_1] - p[:Fraction_of_CO2_sources_with_CCS_in_2022_1] ) / inits[:Introduction_period_for_policy_y] , 2022 , 2022 + inits[:Introduction_period_for_policy_y])
+inits[:Fraction_new_electrification_1] = p[:Fraction_new_electrification_in_1980_1] + ramp(p[:Initial_time],(p[:Fraction_new_electrification_in_2022_1] - p[:Fraction_new_electrification_in_1980_1] ) / 42, 1980, 2022) + ramp(p[:Initial_time],( p[:Goal_for_fraction_new_electrification_1] - p[:Fraction_new_electrification_in_2022_1] ) / inits[:Introduction_period_for_policy_y] , 2022, 2022 + inits[:Introduction_period_for_policy_y])
+inits[:Direct_air_capture_of_CO2_GtCO2_per_y] = IfElse.ifelse(p[:Initial_time] > 2022,  ramp(p[:Initial_time],(p[:Direct_air_capture_of_CO2_in_2100_GtCO2_per_y] ) / inits[:Introduction_period_for_policy_y] , 2022, 2022 + inits[:Introduction_period_for_policy_y]) , 0 )
+inits[:Fraction_regenerative_agriculture_1] = ramp(p[:Initial_time], p[:Goal_for_fraction_regenerative_agriculture_1] / inits[:Introduction_period_for_policy_y], 2022, 2020 + inits[:Introduction_period_for_policy_y])
+inits[:Desired_renewable_electricity_share_1] = p[:Renewable_el_fraction_in_1980_1] + ramp(p[:Initial_time],(p[:Renewable_el_fraction_in_2022_1] - p[:Renewable_el_fraction_in_1980_1] ) / 42, 1980, 2022) + ramp(p[:Initial_time],(p[:Goal_for_renewable_el_fraction_1] - p[:Renewable_el_fraction_in_2022_1] ) / inits[:Introduction_period_for_policy_y], 2022, 2022 + inits[:Introduction_period_for_policy_y] )
+inits[:Fraction_new_red_meat_1] = ramp(p[:Initial_time], p[:Goal_for_fraction_new_red_meat_1] / inits[:Introduction_period_for_policy_y], 2022, 2022 + inits[:Introduction_period_for_policy_y])
+inits[:Extra_normal_LPR_from_2022_1] = ramp(p[:Initial_time], p[:Goal_for_extra_normal_LPR_1] / inits[:Introduction_period_for_policy_y], 2022, 2022 + inits[:Introduction_period_for_policy_y])
 inits[:National_income_G_dollar_per_y] = inits[:Sales_G_dollar_per_y]
 inits[:Grazing_land_yied_in_1980_kg_red_meat_per_ha_per_y] = 14 * inits[:CO2_effect_on_land_yield_1] * inits[:Warming_effect_on_land_yield_1]
 inits[:CO2_absorption_in_forestry_land_GtCO2_per_y] = inits[:Forestry_land_Mha]  * (inits[:CO2_absorption_in_forestry_land_tCO2_per_ha_per_y] / 1000 ) * inits[:CO2_effect_on_land_yield_1] * inits[:Warming_effect_on_land_yield_1]
@@ -934,8 +934,8 @@ inits[:Cost_of_air_capture_G_dollar_per_y] = inits[:Direct_air_capture_of_CO2_Gt
 inits[:Crop_supply_reg_ag_Mt_crop_per_y] = p[:Crop_yield_in_reg_ag_t_crop_per_ha_per_y] * inits[:Cropland_Mha] * inits[:Fraction_regenerative_agriculture_1]
 inits[:Regenerative_agriculture_area_Mha] = inits[:Cropland_Mha] * inits[:Fraction_regenerative_agriculture_1]
 inits[:Normal_LPR_1] = (p[:Normal_LPR_in_1980_1]  * (1 + p[:sWSOeoLPR_greater_than_0] * ( inits[:Worker_share_of_output_1] / p[:WSO_in_1980_1] - 1 ))) + inits[:Extra_normal_LPR_from_2022_1]
-inits[:Extra_general_tax_from_2022_G_dollar_per_y] = IfElse.ifelse(p[:INITIAL_TIME] > 2022, p[:Extra_general_tax_rate_from_2022_1] + p[:Extra_empowerment_tax_from_2022_share_of_NI] + p[:Extra_pension_tax_from_2022_share_of_NI], 0) * inits[:National_income_G_dollar_per_y]
-inits[:Income_from_commons_from_2022_G_dollar_per_y] = inits[:National_income_G_dollar_per_y] * IfElse.ifelse(p[:INITIAL_TIME] > 2022,  ramp(p[:INITIAL_TIME], p[:Goal_for_extra_income_from_commons_share_of_NI] / inits[:Introduction_period_for_policy_y] , 2022, 2020 + inits[:Introduction_period_for_policy_y]) , 0)
+inits[:Extra_general_tax_from_2022_G_dollar_per_y] = IfElse.ifelse(p[:Initial_time] > 2022, p[:Extra_general_tax_rate_from_2022_1] + p[:Extra_empowerment_tax_from_2022_share_of_NI] + p[:Extra_pension_tax_from_2022_share_of_NI], 0) * inits[:National_income_G_dollar_per_y]
+inits[:Income_from_commons_from_2022_G_dollar_per_y] = inits[:National_income_G_dollar_per_y] * IfElse.ifelse(p[:Initial_time] > 2022,  ramp(p[:Initial_time], p[:Goal_for_extra_income_from_commons_share_of_NI] / inits[:Introduction_period_for_policy_y] , 2022, 2020 + inits[:Introduction_period_for_policy_y]) , 0)
 inits[:Max_govmnt_debt_G_dollar] = inits[:National_income_G_dollar_per_y] * p[:Max_govmnt_debt_burden_y]
 inits[:Income_tax_workers_1] = p[:Basic_income_tax_rate_workers_1]  * inits[:National_income_G_dollar_per_y] * inits[:Worker_share_of_output_1]
 inits[:Income_tax_owners_1] = inits[:Basic_income_tax_rate_owners_1] * inits[:National_income_G_dollar_per_y] * ( 1 - inits[:Worker_share_of_output_1])
@@ -946,7 +946,7 @@ inits[:On_pension_Mp] = inits[:Aged_60_plus_Mp] * (inits[:Life_expectancy_y] - i
 inits[:Extra_CO2_absorption_in_reg_ag_GtCO2_per_y] = inits[:Regenerative_agriculture_area_Mha] * p[:CO2_absorbed_in_reg_ag_tCO2_per_ha_per_y] / 1000
 inits[:Number_of_doublings_in_reg_ag_1] = log(( inits[:Regenerative_agriculture_area_Mha] + p[:Experience_gained_before_2022_Mha] ) / p[:Experience_gained_before_2022_Mha]) / 0.693
 inits[:Indicated_labour_participation_rate_1] = inits[:Normal_LPR_1] - inits[:Perceived_surplus_workforce_1]
-inits[:Govmnt_new_debt_G_dollar_per_y] = max(0, ( inits[:Max_govmnt_debt_G_dollar] - inits[:Govmnt_debt_G_dollar] ) / p[:Govmnt_drawdown_period_y]) + WorldDynamics.step(p[:INITIAL_TIME], p[:Govmnt_stimulus_from_2022_share_of_NI], 2022 ) * inits[:National_income_G_dollar_per_y]
+inits[:Govmnt_new_debt_G_dollar_per_y] = max(0, ( inits[:Max_govmnt_debt_G_dollar] - inits[:Govmnt_debt_G_dollar] ) / p[:Govmnt_drawdown_period_y]) + WorldDynamics.step(p[:Initial_time], p[:Govmnt_stimulus_from_2022_share_of_NI], 2022 ) * inits[:National_income_G_dollar_per_y]
 inits[:Potential_red_meat_from_grazing_land_Mt_red_meat_per_y] = inits[:Grazing_land_Mha] * inits[:Grazing_land_yield_kg_red_meat_per_ha_per_y] / 1000
 inits[:GDP_per_person_k_dollar_per_p_per_y] = inits[:GDP_G_dollar_per_y] / inits[:Population_Mp]
 inits[:Wage_share_1] = inits[:Wage_rate_dollar_per_ph] / inits[:Labour_productivity_dollar_per_ph]
@@ -965,8 +965,8 @@ inits[:WSO_effect_on_flow_to_capacity_addition_1] = 1 + p[:sWSOeoFRA_less_than_0
 inits[:Working_age_population_Mp] = inits[:Aged_20_pension_age_Mp]
 inits[:Extra_cost_of_reg_ag_dollar_per_ha_per_y] = p[:Extra_cost_of_reg_ag_in_2022_dollar_per_ha_per_y] * inits[:Cost_index_for_Regenerative_agriculture_1]
 inits[:CO2_from_non_fossil_industrial_processes_GtCO2_per_y] = ( inits[:Non_fossil_CO2_per_person_tCO2_per_p_per_y] / 1000 ) * inits[:Population_Mp] * ( 1 - inits[:Fraction_of_CO2_sources_with_CCS_1])
-inits[:Demand_for_fossil_fuel_for_non_el_use_before_NE_Mtoe_per_y] = ( inits[:Population_Mp] * inits[:Traditional_per_person_use_of_fossil_fuels_for_non_el_use_before_EE_toe_per_p_per_y]  * exp(-p[:Normal_increase_in_energy_efficiency_1_per_y] * ( p[:INITIAL_TIME] - 1980 ))) / inits[:Extra_energy_productivity_index_2022_equal_1]
-inits[:Demand_for_electricity_before_NE_TWh_per_y] = ( inits[:Population_Mp]  * inits[:Traditional_per_person_use_of_electricity_before_EE_MWh_per_p_per_y]  * exp(-p[:Normal_increase_in_energy_efficiency_1_per_y] * ( p[:INITIAL_TIME] - 1980))) / inits[:Extra_energy_productivity_index_2022_equal_1]
+inits[:Demand_for_fossil_fuel_for_non_el_use_before_NE_Mtoe_per_y] = ( inits[:Population_Mp] * inits[:Traditional_per_person_use_of_fossil_fuels_for_non_el_use_before_EE_toe_per_p_per_y]  * exp(-p[:Normal_increase_in_energy_efficiency_1_per_y] * ( p[:Initial_time] - 1980 ))) / inits[:Extra_energy_productivity_index_2022_equal_1]
+inits[:Demand_for_electricity_before_NE_TWh_per_y] = ( inits[:Population_Mp]  * inits[:Traditional_per_person_use_of_electricity_before_EE_MWh_per_p_per_y]  * exp(-p[:Normal_increase_in_energy_efficiency_1_per_y] * ( p[:Initial_time] - 1980))) / inits[:Extra_energy_productivity_index_2022_equal_1]
 inits[:Traditional_use_of_crops_Mt_per_y] = inits[:Traditional_use_of_crops_per_person_kg_crop_per_p_per_y] * inits[:Population_Mp] / 1000
 inits[:Demand_for_red_meat_per_person_kg_red_meat_per_p_per_y] = inits[:Traditional_use_of_red_meat_per_person_kg_red_meat_per_p_per_y]
 inits[:Available_workforce_Mp] = inits[:Working_age_population_Mp] * inits[:Labour_participation_rate_1]
@@ -1034,7 +1034,7 @@ inits[:Cost_of_TAs_G_dollar_per_y] = inits[:Cost_of_food_and_energy_TAs_G_dollar
 inits[:CO2_release_from_forest_cut_GtCO2_per_y] = (( inits[:Old_growth_removal_Mha_per_y] + inits[:Cropland_expansion_Mha_per_y] ) *  p[:CO2_release_per_ha_of_forest_cut_tCO2_per_ha]) / 1000
 inits[:Extra_cost_of_TAs_from_2022_G_dollar_per_y] = max(0, inits[:Cost_of_TAs_G_dollar_per_y] - p[:Cost_of_TAs_in_2022_G_dollar_per_y])
 inits[:CO2_emissions_from_LULUC_GtCO2_per_y] = inits[:CO2_release_from_forest_cut_GtCO2_per_y] - inits[:CO2_absorption_in_forestry_land_GtCO2_per_y] - inits[:Extra_CO2_absorption_in_reg_ag_GtCO2_per_y]
-inits[:Extra_taxes_for_TAs_from_2022_G_dollar_per_y] = IfElse.ifelse(p[:INITIAL_TIME] > 2022, inits[:Extra_cost_of_TAs_from_2022_G_dollar_per_y] * p[:Fraction_of_extra_TA_cost_paid_by_extra_taxes_1] , 0 )
+inits[:Extra_taxes_for_TAs_from_2022_G_dollar_per_y] = IfElse.ifelse(p[:Initial_time] > 2022, inits[:Extra_cost_of_TAs_from_2022_G_dollar_per_y] * p[:Fraction_of_extra_TA_cost_paid_by_extra_taxes_1] , 0 )
 inits[:CO2_emissions_GtCO2_per_y] = inits[:CO2_from_energy_and_industry_GtCO2_per_y] + inits[:CO2_emissions_from_LULUC_GtCO2_per_y] - inits[:Direct_air_capture_of_CO2_GtCO2_per_y]
 inits[:Goal_for_extra_taxes_from_2022_G_dollar_per_y] = inits[:Extra_general_tax_from_2022_G_dollar_per_y] + inits[:Extra_taxes_for_TAs_from_2022_G_dollar_per_y]
 inits[:Extra_taxes_from_2022_G_dollar_per_y] = inits[:Goal_for_extra_taxes_from_2022_G_dollar_per_y]
@@ -1396,7 +1396,7 @@ inits[:Fraction_of_available_capital_to_new_capacity_1] = p[:FRA_in_1980_1] * in
 @variables Fraction_new_electrification_1(t)
 @variables Productivity_of_public_purchases_1(t)
 @variables Demand_for_red_meat_Mt_red_meat_per_y(t)
-@variables AVERAGE_WELLBEING_INDEX_1(t)
+@variables Average_wellbeing_index_1(t)
 @variables Income_tax_workers_1(t)
 @variables Max_govmnt_debt_G_dollar(t)
 @variables Owner_consumptin_fraction_1(t)
@@ -1411,7 +1411,7 @@ inits[:Fraction_of_available_capital_to_new_capacity_1] = p[:FRA_in_1980_1] * in
 @variables Long_term_erosion_of_wso_1_per_y(t)
 @variables INV_in_1980_Gu(t)
 @variables Public_spending_as_share_of_GDP(t)
-@variables INEQUALITY_INDEX_1980_equal_1(t)
+@variables Inequality_index_1980_equal_1ITY_INDEX_1980_equal_1(t)
 @variables Inventory_Gu(t) = inits[:Inventory_Gu]
 @variables Life_of_extra_CO2_in_atm_y(t)
 @variables Capacity_under_construction_PUS_Gcu(t) = inits[:Capacity_under_construction_PUS_Gcu]
@@ -1707,7 +1707,7 @@ Average_hours_worked_in_1980_kh_per_y ~ Normal_hours_worked_in_1980_kh_per_ftj_p
 ROC_in_WSO_Table_1_per_y ~ interpolate(Perceived_unemployment_rate_1 / Acceptable_unemployment_rate_1, [(0.0,0.06),(0.5,0.02),(1.0,0.0),(1.5,-0.007),(2.0,-0.01)]),
 kg_N2O_emission_per_kg_fertiliser ~ kg_N2O_per_kg_fertilizer_in_1980 *   exp(-(Rate_of_decline_in_N2O_per_kg_fertiliser_1_per_y)  * ( t - 1980)) * IfElse.ifelse(t > 2022, exp(-(Extra_rate_of_decline_in_N2O_per_kg_fertilizer_from_2022_1_per_y)  * ( t - 2022)), 1),
 Extra_normal_LPR_from_2022_1 ~ ramp(t,Goal_for_extra_normal_LPR_1 / Introduction_period_for_policy_y, 2022, 2022 + Introduction_period_for_policy_y),
-D(Observed_rate_of_progress_1_per_y) ~ (( (( AVERAGE_WELLBEING_INDEX_1 - Past_AWI_1) / AVERAGE_WELLBEING_INDEX_1) / Average_wellbeing_perception_delay_y) - Observed_rate_of_progress_1_per_y) / Average_wellbeing_perception_delay_y,
+D(Observed_rate_of_progress_1_per_y) ~ (( (( Average_wellbeing_index_1 - Past_AWI_1) / Average_wellbeing_index_1) / Average_wellbeing_perception_delay_y) - Observed_rate_of_progress_1_per_y) / Average_wellbeing_perception_delay_y,
 D(Reduction_in_TFP_from_unprofitable_activity_1) ~ (Productivity_loss_from_unprofitable_activity_1 - Reduction_in_TFP_from_unprofitable_activity_1) / (Investment_planning_time_y + Construction_time_PIS_y),
 Govmnt_spending_G_dollar_per_y ~ Govmnt_purchases_G_dollar_per_y + Govmnt_investment_in_public_capacity_G_dollar_per_y,
 Social_tension_1 ~ 1 + sPPReoSTE_less_than_0 * ( Observed_rate_of_progress_1_per_y - Acceptable_progress_1_per_y ),
@@ -1972,7 +1972,7 @@ Change_in_wage_rate_dollar_per_ph_per_y ~ Wage_rate_dollar_per_ph * ROC_in_WSO_T
 Fraction_new_electrification_1 ~ Fraction_new_electrification_in_1980_1 + ramp(t,(Fraction_new_electrification_in_2022_1 - Fraction_new_electrification_in_1980_1 ) / 42, 1980, 2022) + ramp(t,( Goal_for_fraction_new_electrification_1 - Fraction_new_electrification_in_2022_1 ) / Introduction_period_for_policy_y , 2022, 2022 + Introduction_period_for_policy_y),
 Productivity_of_public_purchases_1 ~ max(0, 1 + sIPReoVPSS_greater_than_0 * log(Infrastructure_purchases_ratio_y/Infrastructure_purchases_ratio_in_1980_y)),
 Demand_for_red_meat_Mt_red_meat_per_y ~ ( ( Population_Mp * Demand_for_red_meat_per_person_kg_red_meat_per_p_per_y ) / 1000 ) * ( 1 - Fraction_new_red_meat_1 ),
-AVERAGE_WELLBEING_INDEX_1 ~ ( 0.5 * Average_wellbeing_from_disposable_income_1 + 0.5 * Average_wellbeing_from_public_spending_1) * Average_wellbeing_from_inequality_1 * Average_wellbeing_from_global_warming_1 * Average_wellbeing_from_progress_1,
+Average_wellbeing_index_1 ~ ( 0.5 * Average_wellbeing_from_disposable_income_1 + 0.5 * Average_wellbeing_from_public_spending_1) * Average_wellbeing_from_inequality_1 * Average_wellbeing_from_global_warming_1 * Average_wellbeing_from_progress_1,
 Income_tax_workers_1 ~ Basic_income_tax_rate_workers_1  * National_income_G_dollar_per_y * Worker_share_of_output_1,
 Max_govmnt_debt_G_dollar ~ National_income_G_dollar_per_y * Max_govmnt_debt_burden_y,
 Owner_consumptin_fraction_1 ~ 1 - Owner_savings_fraction_1,
@@ -1987,7 +1987,7 @@ Food_footprint ~ Cropland_Mha * Fertilizer_use_Mt_per_y,
 Long_term_erosion_of_wso_1_per_y ~ Worker_share_of_output_1 * Real_wage_erosion_rate_1_per_y,
 INV_in_1980_Gu ~ Optimal_output_in_1980_Gu_per_y * SWI_in_1980_1 * Desired_inventory_coverage_y,
 Public_spending_as_share_of_GDP ~ Public_spending_per_person_k_dollar_per_p_per_y / GDP_per_person_k_dollar_per_p_per_y,
-INEQUALITY_INDEX_1980_equal_1 ~ Inequality_1 / Inequality_in_1980_1,
+Inequality_index_1980_equal_1ITY_INDEX_1980_equal_1 ~ Inequality_1 / Inequality_in_1980_1,
 D(Inventory_Gu) ~ Output_Gu_per_y - Deliveries_Gu_per_y,
 Life_of_extra_CO2_in_atm_y ~ Life_of_extra_CO2_in_atm_in_1980_y * OWeoLoCO2,
 D(Capacity_under_construction_PUS_Gcu) ~ Capacity_initiation_PUS_Gcu_per_y-Capacity_addition_PUS_Gcu_per_y,
@@ -2015,7 +2015,7 @@ Change_in_DDI_1_per_y ~ ROC_in_DDI_1_per_y* Delivery_delay_index_1,
 TFP_including_effect_of_5TAs_1 ~ TFP_excluding_effect_of_5TAs_1 * ( 1 - Reduction_in_TFP_from_unprofitable_activity_1 ),
 Average_gross_income_per_worker_k_dollar_per_p_per_y ~ Wage_rate_dollar_per_ph * Average_hours_worked_kh_per_y,
 Normal_corporate_credit_risk_1_per_y ~ 0.02 * ( 1 + sGReoCR_less_than_0 * ( Output_growth_rate_1_per_y / 0.03 - 1 )),
-D(Past_AWI_1) ~ (AVERAGE_WELLBEING_INDEX_1 - Past_AWI_1) /  Average_wellbeing_perception_delay_y,
+D(Past_AWI_1) ~ (Average_wellbeing_index_1 - Past_AWI_1) /  Average_wellbeing_perception_delay_y,
 Owner_tax_rate_1 ~ Owner_taxes_G_dollar_per_y / Owner_income_G_dollar_per_y,
 Traditional_use_of_crops_Mt_per_y ~ Traditional_use_of_crops_per_person_kg_crop_per_p_per_y * Population_Mp / 1000,
 CO2_from_CH4_GtCO2_per_y ~ CH4_breakdown_GtCH4_per_y * tCO2_per_tCH4,
@@ -2109,7 +2109,7 @@ Owner_consumption_G_dollar_per_y ~ Permanent_owner_cash_inflow_G_dollar_per_y * 
 Fertilizer_use_Mt_per_y ~ Cropland_Mha * ( 1 - Fraction_regenerative_agriculture_1 ) * Fertilizer_use_in_conv_ag_kgN_per_ha_per_y/ 1000,
 Worker_cash_inflow_G_dollar_per_y ~ Worker_income_after_tax_G_dollar_per_y -  Cash_flow_from_workers_to_banks_G_dollar_per_y,
 Worker_consumption_demand_G_dollar_per_y ~ Permanent_worker_cash_inflow_G_dollar_per_y * Worker_consumption_fraction_1,
-Reduction_in_ROTA_from_inequality_1_per_y ~ min(1, 1 + sIIEeoROTA_less_than_0 * ( INEQUALITY_INDEX_1980_equal_1 / 1 - 1) ),
+Reduction_in_ROTA_from_inequality_1_per_y ~ min(1, 1 + sIIEeoROTA_less_than_0 * ( Inequality_index_1980_equal_1ITY_INDEX_1980_equal_1 / 1 - 1) ),
 Unemployment_perception_time_y ~ ten_yr_loop_delay_y / 3,
 Traditional_cost_of_electricity_G_dollar_per_y ~ ( Demand_for_electricity_before_NE_TWh_per_y * Traditional_cost_of_electricity_dollar_per_kWh / 1000 )  * Adjustment_factor_to_make_costs_match_1980_to_2022_1,
 Time_to_change_tooling_y ~ ten_yr_loop_delay_y/3,
