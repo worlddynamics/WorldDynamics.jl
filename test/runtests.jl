@@ -1,5 +1,9 @@
 using WorldDynamics, Test
 
+@testset verbose=true "Functions" begin
+    include("functions.jl")
+end
+
 @testset verbose=true "WorldDynamics.jl" begin
 
     @testset verbose=true "Scenarios" begin
