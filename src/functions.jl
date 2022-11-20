@@ -13,11 +13,11 @@ function interpolate(x, yvalues::Tuple{Vararg{Float64}}, xrange::Tuple{Float64, 
 
     # y gets the min y value if less than the min x range
     #   or the max y value if greater than the max x range
-    y = (x < xrange[1]) * yvalues[1] + (x > xrange[2]) * yvalues[end]
+    y = (x < xrange[1]) * yvalues[1] + (x ≥ xrange[2]) * yvalues[end]
 
     # in case x is inside the range, y gets the interpolated value
     for i ∈ 1:length(yvalues)-1
-        y += (x ≥ xvalues[i]) * (x ≤ xvalues[i+1]) * interpolate(x, xvalues[i], xvalues[i+1], yvalues[i], yvalues[i+1])
+        y += (x ≥ xvalues[i]) * (x < xvalues[i+1]) * interpolate(x, xvalues[i], xvalues[i+1], yvalues[i], yvalues[i+1])
     end
 
     return y
