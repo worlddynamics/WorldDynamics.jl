@@ -41,6 +41,15 @@ Order   = [:function]
 Pages   = ["solvesystems.jl"]
 ```
 
+## Reproducing World1 figures
+
+### World1 system
+
+```@autodocs
+Modules = [WorldDynamics.World1]
+Pages   = ["plots.jl"]
+```
+
 ## Reproducing World2 figures
 
 ### World2 system
@@ -105,5 +114,23 @@ Pages   = ["plots.jl"]
 
 ```@autodocs
 Modules = [WorldDynamics.World3]
+Pages   = ["plots.jl"]
+```
+
+## Reproducing World3-91 figures
+
+### World3-91 system
+
+```@autodocs
+Modules = [WorldDynamics.World3_91]
+Pages   = ["plots.jl"]
+```
+
+## Reproducing World3-03 figures
+
+### World3-03 system
+
+```@autodocs
+Modules = [WorldDynamics.World3_03]
 Pages   = ["plots.jl"]
 ```
