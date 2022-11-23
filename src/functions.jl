@@ -16,11 +16,11 @@ end
 function interpolate(x, yvalues::Vector{Float64}, xvalues::Vector{Float64})
    # y gets the min y value if less than the min x range
    #   or the max y value if greater than the max x range
-   y = (x < xvalues[1]) * yvalues[1] + (x > xvalues[end]) * yvalues[end]
+   y = (x < xvalues[1]) * yvalues[1] + (x ≥ xvalues[end]) * yvalues[end]
 
    # in case x is inside the range, y gets the interpolated value
    for i ∈ 1:length(yvalues)-1
-       y += (x ≥ xvalues[i]) * (x ≤ xvalues[i+1]) * interpolate(x, xvalues[i], xvalues[i+1], yvalues[i], yvalues[i+1])
+       y += (x ≥ xvalues[i]) * (x < xvalues[i+1]) * interpolate(x, xvalues[i], xvalues[i+1], yvalues[i], yvalues[i+1])
    end
 
    return y
