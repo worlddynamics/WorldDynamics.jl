@@ -1770,7 +1770,7 @@ D(Perceived_inflation_CB_1_per_y) ~ (Inflation_rate_1_per_y - Perceived_inflatio
 Worker_taxes_G_dollar_per_y ~ Income_tax_workers_1 + Extra_taxes_from_2022_G_dollar_per_y * ( 1 - Fraction_of_extra_taxes_paid_by_owners_1 ),
 D(Reform_delay_y) ~ (Indicated_reform_delay_y - Reform_delay_y) / Time_to_change_reform_delay_y,
 Bank_cash_inflow_from_lending_G_dollar_per_y ~ Cash_flow_from_workers_to_banks_G_dollar_per_y + Cash_flow_from_govmnt_to_banks_G_dollar_per_y,
-D(Deaths_Mp_per_y1) ~ (Passing_60_Mp_per_y - Deaths_Mp_per_y1) / LE_at_60_y,
+D(Deaths_Mp_per_y1) ~ (Passing_60_Mp_per_y - Deaths_Mp_per_y1 / LE_at_60_y),
 D(Deaths_Mp_per_y2) ~ 10 * (Deaths_Mp_per_y1 - Deaths_Mp_per_y2) / LE_at_60_y,
 D(Deaths_Mp_per_y3) ~ 10 * (Deaths_Mp_per_y2 - Deaths_Mp_per_y3) / LE_at_60_y,
 D(Deaths_Mp_per_y4) ~ 10 * (Deaths_Mp_per_y3 - Deaths_Mp_per_y4) / LE_at_60_y,
