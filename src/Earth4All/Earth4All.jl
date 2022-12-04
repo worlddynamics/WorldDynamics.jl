@@ -729,7 +729,6 @@ inits = Dict{Symbol, Float64}(
     :CO2_in_atmosphere_GtCO2 => p[:CO2_in_atm_in_1980_GtCO2],
     :Cropland_Mha => p[:Cropland_in_1980_Mha],
     :CUC_PIS_in_1980_Gcu => ( p[:CAP_PIS_in_1980_Gcu] / p[:Life_of_capacity_PIS_in_1980_y] ) * p[:Construction_time_PIS_y] * p[:Extra_mult_on_CUC_comma_to_avoid_initial_transient_in_Investment_share_of_GDP],
-    :Deaths_Mp_per_y => p[:Dying_in_1980_Mp_per_y],
     :Delivery_delay_index_1 => 1,
     :Effective_GDP_per_person_k_dollar_per_p_per_y => p[:GDP_per_person_in_1980_k_dollar_per_p_per_y],
     :Embedded_CLR_k_dollar_per_j => p[:CLR_in_1980_k_dollar_per_j],
@@ -755,36 +754,36 @@ inits = Dict{Symbol, Float64}(
     :Old_growth_forest_area_Mha_1 => p[:Old_growth_forest_in_1980_Mha],
     :Optimal_output_in_1980_Gu_per_y => p[:CAP_PIS_in_1980_Gcu] / p[:PCOR_PIS_cu_per_u_per_y] + p[:CAP_PUS_in_1980_Gcu] / p[:PCOR_PUS_cu_per_u_per_y],
     :Output_growth_rate_1_per_y => p[:Output_growth_in_1980_1_per_y_to_avoid_transient],
-    :Passing_20_Mp_per_y => p[:Passing_20_in_1980_Mp_per_y],
-    :Passing_20_Mp_per_y1 => p[:Passing_20_in_1980_Mp_per_y],
-    :Passing_20_Mp_per_y2 => p[:Passing_20_in_1980_Mp_per_y],
-    :Passing_20_Mp_per_y3 => p[:Passing_20_in_1980_Mp_per_y],
-    :Passing_20_Mp_per_y4 => p[:Passing_20_in_1980_Mp_per_y],
-    :Passing_20_Mp_per_y5 => p[:Passing_20_in_1980_Mp_per_y],
-    :Passing_20_Mp_per_y6 => p[:Passing_20_in_1980_Mp_per_y],
-    :Passing_20_Mp_per_y7 => p[:Passing_20_in_1980_Mp_per_y],
-    :Passing_20_Mp_per_y8 => p[:Passing_20_in_1980_Mp_per_y],
-    :Passing_20_Mp_per_y9 => p[:Passing_20_in_1980_Mp_per_y],
-    :Passing_40_Mp_per_y => p[:Passing_40_in_1980_Mp_per_y],
-    :Passing_40_Mp_per_y1 => p[:Passing_40_in_1980_Mp_per_y],
-    :Passing_40_Mp_per_y2 => p[:Passing_40_in_1980_Mp_per_y],
-    :Passing_40_Mp_per_y3 => p[:Passing_40_in_1980_Mp_per_y],
-    :Passing_40_Mp_per_y4 => p[:Passing_40_in_1980_Mp_per_y],
-    :Passing_40_Mp_per_y5 => p[:Passing_40_in_1980_Mp_per_y],
-    :Passing_40_Mp_per_y6 => p[:Passing_40_in_1980_Mp_per_y],
-    :Passing_40_Mp_per_y7 => p[:Passing_40_in_1980_Mp_per_y],
-    :Passing_40_Mp_per_y8 => p[:Passing_40_in_1980_Mp_per_y],
-    :Passing_40_Mp_per_y9 => p[:Passing_40_in_1980_Mp_per_y],
-    :Passing_60_Mp_per_y => p[:Passing_60_in_1980_Mp_per_y],
-    :Passing_60_Mp_per_y1 => p[:Passing_60_in_1980_Mp_per_y],
-    :Passing_60_Mp_per_y2 => p[:Passing_60_in_1980_Mp_per_y],
-    :Passing_60_Mp_per_y3 => p[:Passing_60_in_1980_Mp_per_y],
-    :Passing_60_Mp_per_y4 => p[:Passing_60_in_1980_Mp_per_y],
-    :Passing_60_Mp_per_y5 => p[:Passing_60_in_1980_Mp_per_y],
-    :Passing_60_Mp_per_y6 => p[:Passing_60_in_1980_Mp_per_y],
-    :Passing_60_Mp_per_y7 => p[:Passing_60_in_1980_Mp_per_y],
-    :Passing_60_Mp_per_y8 => p[:Passing_60_in_1980_Mp_per_y],
-    :Passing_60_Mp_per_y9 => p[:Passing_60_in_1980_Mp_per_y],
+    :Passing_20_Mp_per_y1 => p[:Passing_20_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_20_Mp_per_y2 => p[:Passing_20_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_20_Mp_per_y3 => p[:Passing_20_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_20_Mp_per_y4 => p[:Passing_20_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_20_Mp_per_y5 => p[:Passing_20_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_20_Mp_per_y6 => p[:Passing_20_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_20_Mp_per_y7 => p[:Passing_20_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_20_Mp_per_y8 => p[:Passing_20_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_20_Mp_per_y9 => p[:Passing_20_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_20_Mp_per_y10 => p[:Passing_20_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_40_Mp_per_y1 => p[:Passing_40_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_40_Mp_per_y2 => p[:Passing_40_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_40_Mp_per_y3 => p[:Passing_40_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_40_Mp_per_y4 => p[:Passing_40_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_40_Mp_per_y5 => p[:Passing_40_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_40_Mp_per_y6 => p[:Passing_40_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_40_Mp_per_y7 => p[:Passing_40_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_40_Mp_per_y8 => p[:Passing_40_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_40_Mp_per_y9 => p[:Passing_40_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_40_Mp_per_y10 => p[:Passing_40_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_60_Mp_per_y1 => p[:Passing_60_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_60_Mp_per_y2 => p[:Passing_60_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_60_Mp_per_y3 => p[:Passing_60_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_60_Mp_per_y4 => p[:Passing_60_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_60_Mp_per_y5 => p[:Passing_60_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_60_Mp_per_y6 => p[:Passing_60_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_60_Mp_per_y7 => p[:Passing_60_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_60_Mp_per_y8 => p[:Passing_60_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_60_Mp_per_y9 => p[:Passing_60_in_1980_Mp_per_y] * 20 / 10,
+    :Passing_60_Mp_per_y10 => p[:Passing_60_in_1980_Mp_per_y] * 20 / 10,
     :Past_AWI_1 => p[:AWI_in_1980_1],
     :Past_GDP_per_person_k_dollar_per_y => p[:GDP_per_person_in_1980_k_dollar_per_p_per_y] * p[:Factor_to_avoid_transient_in_growth_rate_1],
     :Perceived_excess_demand_1 => 1,
@@ -890,7 +889,7 @@ inits[:Life_of_extra_CO2_in_atm_y] = p[:Life_of_extra_CO2_in_atm_in_1980_y] * in
 inits[:Old_growth_removal_rate_1_per_y] = p[:OGRR_in_1980_1_per_y] * inits[:FFLReoOGRR]
 inits[:Life_expectancy_y] = ( ( p[:LEmax] - (p[:LEmax] - p[:LE_in_1980]) * exp(- p[:LEgamma] * (inits[:Effective_GDP_per_person_k_dollar_per_p_per_y] - p[:GDP_per_person_in_1980_k_dollar_per_p_per_y])) ) * ( 1 + p[:LEalfa] * ( inits[:Effective_GDP_per_person_k_dollar_per_p_per_y] - p[:GDP_per_person_in_1980_k_dollar_per_p_per_y] )) ) * inits[:Warming_effect_on_life_expectancy_1] * inits[:Life_expectancy_multipler_1]
 inits[:LE_at_60_y] =  inits[:Life_expectancy_y] - 60
-inits[:Deaths_Mp_per_y1] = 10 * p[:Dying_in_1980_Mp_per_y] / inits[:LE_at_60_y]
+inits[:Deaths_Mp_per_y1] = p[:Dying_in_1980_Mp_per_y] * inits[:LE_at_60_y] / 10
 inits[:Deaths_Mp_per_y2] = inits[:Deaths_Mp_per_y1]
 inits[:Deaths_Mp_per_y3] = inits[:Deaths_Mp_per_y1]
 inits[:Deaths_Mp_per_y4] = inits[:Deaths_Mp_per_y1]
@@ -899,6 +898,7 @@ inits[:Deaths_Mp_per_y6] = inits[:Deaths_Mp_per_y1]
 inits[:Deaths_Mp_per_y7] = inits[:Deaths_Mp_per_y1]
 inits[:Deaths_Mp_per_y8] = inits[:Deaths_Mp_per_y1]
 inits[:Deaths_Mp_per_y9] = inits[:Deaths_Mp_per_y1]
+inits[:Deaths_Mp_per_y10] = inits[:Deaths_Mp_per_y1]
 inits[:Perceived_relative_inventory_1] = inits[:Inventory_coverage_y] / p[:Desired_inventory_coverage_y]
 inits[:Reform_delay_y] = inits[:Indicated_reform_delay_y]
 inits[:Deliveries_Gu_per_y] = ( ( inits[:Effective_purchasing_power_G_dollar_per_y] / inits[:Price_per_unit_dollar_per_u] ) / ( inits[:Delivery_delay_index_1] / p[:DDI_in_1980_y] ) ) * IfElse.ifelse(p[:Initial_time] > 1984, inits[:Pink_noise_in_sales_1], 1)
@@ -1049,7 +1049,7 @@ inits[:Perceived_unemployment_CB_1] = inits[:Unemployment_rate_1]
 inits[:Fraction_of_available_capital_to_new_capacity_1] = p[:FRA_in_1980_1] * inits[:FRACA_mult_from_GDPpp_Line_1] * ( inits[:WSO_effect_on_flow_to_capacity_addition_1]  +  inits[:CBC_effect_on_flow_to_capacity_addion_1]  +  inits[:ED_effect_on_flow_to_capacity_addition_1]  ) / 3
 
 @variables Effective_purchasing_power_G_dollar_per_y(t) = inits[:Effective_purchasing_power_G_dollar_per_y]
-@variables Passing_40_Mp_per_y(t) = inits[:Passing_40_Mp_per_y]
+@variables Passing_40_Mp_per_y(t)
 @variables Embedded_CLR_kcu_per_ftj(t) = inits[:Embedded_CLR_kcu_per_ftj]
 @variables Extra_cost_of_Food_Turnaround_G_dollar_per_y(t)
 @variables Total_savings_G_dollar_per_y(t)
@@ -1108,7 +1108,7 @@ inits[:Fraction_of_available_capital_to_new_capacity_1] = p[:FRA_in_1980_1] * in
 @variables Labour_productivity_in_1980_dollar_per_ph(t)
 @variables Hours_worked_mult_from_GDPpp_1(t)
 @variables Extra_warming_from_forcing_ZJ_per_y(t)
-@variables Passing_60_Mp_per_y(t) = inits[:Passing_60_Mp_per_y]
+@variables Passing_60_Mp_per_y(t)
 @variables Permanent_owner_cash_inflow_G_dollar_per_y(t) = inits[:Permanent_owner_cash_inflow_G_dollar_per_y]
 @variables Permanent_govmnt_cash_inflow_G_dollar_per_y(t) = inits[:Permanent_govmnt_cash_inflow_G_dollar_per_y]
 @variables Deliveries_Gu_per_y(t)
@@ -1165,7 +1165,7 @@ inits[:Fraction_of_available_capital_to_new_capacity_1] = p[:FRA_in_1980_1] * in
 @variables Govmnt_share_of_GDP_1(t)
 @variables Perceived_unemployment_rate_1(t) = inits[:Perceived_unemployment_rate_1]
 @variables OWeoTFP(t)
-@variables Passing_20_Mp_per_y(t) = inits[:Passing_20_Mp_per_y]
+@variables Passing_20_Mp_per_y(t)
 @variables Population_below_15_k_dollar_per_p_per_y_Mp(t)
 @variables Births_Mp_per_y(t)
 @variables IIASA_Fossil_energy_production_EJ_per_yr(t)
@@ -1203,7 +1203,7 @@ inits[:Fraction_of_available_capital_to_new_capacity_1] = p[:FRA_in_1980_1] * in
 @variables Worker_taxes_G_dollar_per_y(t)
 @variables Reform_delay_y(t) = inits[:Reform_delay_y]
 @variables Bank_cash_inflow_from_lending_G_dollar_per_y(t)
-@variables Deaths_Mp_per_y(t) = inits[:Deaths_Mp_per_y]
+@variables Deaths_Mp_per_y(t)
 @variables Demand_pulse_2020_to_25_1(t)
 @variables Change_in_workforce_Mp_per_y(t)
 @variables Old_growth_forest_area_Mha_1(t) = inits[:Old_growth_forest_area_Mha_1]
@@ -1560,6 +1560,7 @@ inits[:Fraction_of_available_capital_to_new_capacity_1] = p[:FRA_in_1980_1] * in
 @variables Passing_40_Mp_per_y7(t) = inits[:Passing_40_Mp_per_y7]
 @variables Passing_40_Mp_per_y8(t) = inits[:Passing_40_Mp_per_y8]
 @variables Passing_40_Mp_per_y9(t) = inits[:Passing_40_Mp_per_y9]
+@variables Passing_40_Mp_per_y10(t) = inits[:Passing_40_Mp_per_y10]
 @variables Passing_60_Mp_per_y1(t) = inits[:Passing_60_Mp_per_y1]
 @variables Passing_60_Mp_per_y2(t) = inits[:Passing_60_Mp_per_y2]
 @variables Passing_60_Mp_per_y3(t) = inits[:Passing_60_Mp_per_y3]
@@ -1569,6 +1570,7 @@ inits[:Fraction_of_available_capital_to_new_capacity_1] = p[:FRA_in_1980_1] * in
 @variables Passing_60_Mp_per_y7(t) = inits[:Passing_60_Mp_per_y7]
 @variables Passing_60_Mp_per_y8(t) = inits[:Passing_60_Mp_per_y8]
 @variables Passing_60_Mp_per_y9(t) = inits[:Passing_60_Mp_per_y9]
+@variables Passing_60_Mp_per_y10(t) = inits[:Passing_60_Mp_per_y10]
 @variables Passing_20_Mp_per_y1(t) = inits[:Passing_20_Mp_per_y1]
 @variables Passing_20_Mp_per_y2(t) = inits[:Passing_20_Mp_per_y2]
 @variables Passing_20_Mp_per_y3(t) = inits[:Passing_20_Mp_per_y3]
@@ -1578,6 +1580,7 @@ inits[:Fraction_of_available_capital_to_new_capacity_1] = p[:FRA_in_1980_1] * in
 @variables Passing_20_Mp_per_y7(t) = inits[:Passing_20_Mp_per_y7]
 @variables Passing_20_Mp_per_y8(t) = inits[:Passing_20_Mp_per_y8]
 @variables Passing_20_Mp_per_y9(t) = inits[:Passing_20_Mp_per_y9]
+@variables Passing_20_Mp_per_y10(t) = inits[:Passing_20_Mp_per_y10]
 @variables Deaths_Mp_per_y1(t) = inits[:Deaths_Mp_per_y1]
 @variables Deaths_Mp_per_y2(t) = inits[:Deaths_Mp_per_y2]
 @variables Deaths_Mp_per_y3(t) = inits[:Deaths_Mp_per_y3]
@@ -1587,10 +1590,11 @@ inits[:Fraction_of_available_capital_to_new_capacity_1] = p[:FRA_in_1980_1] * in
 @variables Deaths_Mp_per_y7(t) = inits[:Deaths_Mp_per_y7]
 @variables Deaths_Mp_per_y8(t) = inits[:Deaths_Mp_per_y8]
 @variables Deaths_Mp_per_y9(t) = inits[:Deaths_Mp_per_y9]
+@variables Deaths_Mp_per_y10(t) = inits[:Deaths_Mp_per_y10]
 
 eqs = [
 D(Effective_purchasing_power_G_dollar_per_y) ~ ((Total_purchasing_power_G_dollar_per_y - Effective_purchasing_power_G_dollar_per_y) /  Demand_adjustment_time_y) *  (1 +  Demand_pulse_2020_to_25_1),
-D(Passing_40_Mp_per_y1) ~ 10 * (Passing_20_Mp_per_y - Passing_40_Mp_per_y1) / 20,
+D(Passing_40_Mp_per_y1) ~ Passing_20_Mp_per_y - (10 * Passing_40_Mp_per_y1 / 20),
 D(Passing_40_Mp_per_y2) ~ 10 * (Passing_40_Mp_per_y1 - Passing_40_Mp_per_y2) / 20,
 D(Passing_40_Mp_per_y3) ~ 10 * (Passing_40_Mp_per_y2 - Passing_40_Mp_per_y3) / 20,
 D(Passing_40_Mp_per_y4) ~ 10 * (Passing_40_Mp_per_y3 - Passing_40_Mp_per_y4) / 20,
@@ -1599,7 +1603,8 @@ D(Passing_40_Mp_per_y6) ~ 10 * (Passing_40_Mp_per_y5 - Passing_40_Mp_per_y6) / 2
 D(Passing_40_Mp_per_y7) ~ 10 * (Passing_40_Mp_per_y6 - Passing_40_Mp_per_y7) / 20,
 D(Passing_40_Mp_per_y8) ~ 10 * (Passing_40_Mp_per_y7 - Passing_40_Mp_per_y8) / 20,
 D(Passing_40_Mp_per_y9) ~ 10 * (Passing_40_Mp_per_y8 - Passing_40_Mp_per_y9) / 20,
-D(Passing_40_Mp_per_y) ~ 10 * (Passing_40_Mp_per_y9 - Passing_40_Mp_per_y) / 20,
+D(Passing_40_Mp_per_y10) ~ (10 * Passing_40_Mp_per_y9 / 20) - Passing_40_Mp_per_y,
+Passing_40_Mp_per_y ~ 10 * Passing_40_Mp_per_y10 / 20,
 D(Embedded_CLR_kcu_per_ftj) ~ Change_in_embedded_CLR_kcu_per_ftj_per_y,
 Extra_cost_of_Food_Turnaround_G_dollar_per_y ~ Cost_of_regenerative_agriculture_G_dollar_per_y - Fertilizer_cost_reduction_G_dollar_per_y,
 Total_savings_G_dollar_per_y ~ Owner_savings_G_dollar_per_y + Worker_savings_G_dollar_per_y,
@@ -1658,7 +1663,7 @@ Total_forest_area_Mha ~ Old_growth_forest_area_Mha_1 + Forestry_land_Mha,
 Labour_productivity_in_1980_dollar_per_ph ~ ( Optimal_output_in_1980_Gu_per_y * Cost_per_unit_in_1980_dollar_per_u ) / Labour_use_in_1980_Gph_per_y,
 Hours_worked_mult_from_GDPpp_1 ~ 1 + sTIeoNHW_less_than_0 * ( GDP_per_person_k_dollar_per_p_per_y / GDP_per_person_in_1980 - 1 ),
 Extra_warming_from_forcing_ZJ_per_y ~ ( Total_man_made_forcing_W_per_m2 * Global_surface_Mkm2)    * 31.5 / 1000,
-D(Passing_60_Mp_per_y1) ~ 10 * (Passing_40_Mp_per_y - Passing_60_Mp_per_y1) / 20,
+D(Passing_60_Mp_per_y1) ~ Passing_40_Mp_per_y - (10 * Passing_60_Mp_per_y1 / 20),
 D(Passing_60_Mp_per_y2) ~ 10 * (Passing_60_Mp_per_y1 - Passing_60_Mp_per_y2) / 20,
 D(Passing_60_Mp_per_y3) ~ 10 * (Passing_60_Mp_per_y2 - Passing_60_Mp_per_y3) / 20,
 D(Passing_60_Mp_per_y4) ~ 10 * (Passing_60_Mp_per_y3 - Passing_60_Mp_per_y4) / 20,
@@ -1667,7 +1672,8 @@ D(Passing_60_Mp_per_y6) ~ 10 * (Passing_60_Mp_per_y5 - Passing_60_Mp_per_y6) / 2
 D(Passing_60_Mp_per_y7) ~ 10 * (Passing_60_Mp_per_y6 - Passing_60_Mp_per_y7) / 20,
 D(Passing_60_Mp_per_y8) ~ 10 * (Passing_60_Mp_per_y7 - Passing_60_Mp_per_y8) / 20,
 D(Passing_60_Mp_per_y9) ~ 10 * (Passing_60_Mp_per_y8 - Passing_60_Mp_per_y9) / 20,
-D(Passing_60_Mp_per_y) ~ 10 * (Passing_60_Mp_per_y9 - Passing_60_Mp_per_y) / 20,
+D(Passing_60_Mp_per_y10) ~ (10 * Passing_60_Mp_per_y9 / 20) - Passing_60_Mp_per_y,
+Passing_60_Mp_per_y ~ 10 * Passing_60_Mp_per_y10 / 20,
 D(Permanent_owner_cash_inflow_G_dollar_per_y) ~ (Owner_cash_inflow_G_dollar_per_y - Permanent_owner_cash_inflow_G_dollar_per_y) / Time_to_adjust_owner_consumption_y,
 D(Permanent_govmnt_cash_inflow_G_dollar_per_y) ~ (Govmnt_cash_inflow_G_dollar_per_y - Permanent_govmnt_cash_inflow_G_dollar_per_y) / Time_to_adjust_budget_y,
 Deliveries_Gu_per_y ~ ( ( Effective_purchasing_power_G_dollar_per_y / Price_per_unit_dollar_per_u ) / ( Delivery_delay_index_1 / DDI_in_1980_y ) ) * IfElse.ifelse(t > 1984, Pink_noise_in_sales_1, 1),
@@ -1724,7 +1730,7 @@ Energy_use_Mtoe_per_y ~ Demand_for_fossil_fuel_for_non_el_use_Mtoe_per_y + Elect
 Govmnt_share_of_GDP_1 ~ Govmnt_spending_G_dollar_per_y / National_income_G_dollar_per_y,
 D(Perceived_unemployment_rate_1) ~ (Unemployment_rate_1 - Perceived_unemployment_rate_1) / Unemployment_perception_time_y,
 OWeoTFP ~ IfElse.ifelse(t > 2022, 1 + sOWeoTFP_less_than_0 * ( Observed_warming_deg_C / Observed_warming_in_2022_deg_C - 1 ), 1),
-D(Passing_20_Mp_per_y1) ~ 10 * (Births_Mp_per_y - Passing_20_Mp_per_y1) / 20,
+D(Passing_20_Mp_per_y1) ~ Births_Mp_per_y - (10 * Passing_20_Mp_per_y1 / 20),
 D(Passing_20_Mp_per_y2) ~ 10 * (Passing_20_Mp_per_y1 - Passing_20_Mp_per_y2) / 20,
 D(Passing_20_Mp_per_y3) ~ 10 * (Passing_20_Mp_per_y2 - Passing_20_Mp_per_y3) / 20,
 D(Passing_20_Mp_per_y4) ~ 10 * (Passing_20_Mp_per_y3 - Passing_20_Mp_per_y4) / 20,
@@ -1733,7 +1739,8 @@ D(Passing_20_Mp_per_y6) ~ 10 * (Passing_20_Mp_per_y5 - Passing_20_Mp_per_y6) / 2
 D(Passing_20_Mp_per_y7) ~ 10 * (Passing_20_Mp_per_y6 - Passing_20_Mp_per_y7) / 20,
 D(Passing_20_Mp_per_y8) ~ 10 * (Passing_20_Mp_per_y7 - Passing_20_Mp_per_y8) / 20,
 D(Passing_20_Mp_per_y9) ~ 10 * (Passing_20_Mp_per_y8 - Passing_20_Mp_per_y9) / 20,
-D(Passing_20_Mp_per_y) ~ 10 * (Passing_20_Mp_per_y9 - Passing_20_Mp_per_y) / 20,
+D(Passing_20_Mp_per_y10) ~ (10 * Passing_20_Mp_per_y9 / 20) - Passing_20_Mp_per_y,
+Passing_20_Mp_per_y ~ 10 * Passing_20_Mp_per_y10 / 20,
 Population_below_15_k_dollar_per_p_per_y_Mp ~ Population_Mp * Fraction_below_15_k_dollar_per_p_per_y_1,
 Births_Mp_per_y ~ Aged_20_to_40_years_Mp * Fraction_women_1 * ( Observed_fertility_1 / Fertile_period_y ),
 IIASA_Fossil_energy_production_EJ_per_yr ~ Use_of_fossil_fuels_Mtoe_per_y / Mtoe_per_EJ_calorific_equivalent,
@@ -1770,7 +1777,7 @@ D(Perceived_inflation_CB_1_per_y) ~ (Inflation_rate_1_per_y - Perceived_inflatio
 Worker_taxes_G_dollar_per_y ~ Income_tax_workers_1 + Extra_taxes_from_2022_G_dollar_per_y * ( 1 - Fraction_of_extra_taxes_paid_by_owners_1 ),
 D(Reform_delay_y) ~ (Indicated_reform_delay_y - Reform_delay_y) / Time_to_change_reform_delay_y,
 Bank_cash_inflow_from_lending_G_dollar_per_y ~ Cash_flow_from_workers_to_banks_G_dollar_per_y + Cash_flow_from_govmnt_to_banks_G_dollar_per_y,
-D(Deaths_Mp_per_y1) ~ (Passing_60_Mp_per_y - Deaths_Mp_per_y1 / LE_at_60_y),
+D(Deaths_Mp_per_y1) ~ Passing_60_Mp_per_y - (10 * Deaths_Mp_per_y1 / LE_at_60_y),
 D(Deaths_Mp_per_y2) ~ 10 * (Deaths_Mp_per_y1 - Deaths_Mp_per_y2) / LE_at_60_y,
 D(Deaths_Mp_per_y3) ~ 10 * (Deaths_Mp_per_y2 - Deaths_Mp_per_y3) / LE_at_60_y,
 D(Deaths_Mp_per_y4) ~ 10 * (Deaths_Mp_per_y3 - Deaths_Mp_per_y4) / LE_at_60_y,
@@ -1779,129 +1786,8 @@ D(Deaths_Mp_per_y6) ~ 10 * (Deaths_Mp_per_y5 - Deaths_Mp_per_y6) / LE_at_60_y,
 D(Deaths_Mp_per_y7) ~ 10 * (Deaths_Mp_per_y6 - Deaths_Mp_per_y7) / LE_at_60_y,
 D(Deaths_Mp_per_y8) ~ 10 * (Deaths_Mp_per_y7 - Deaths_Mp_per_y8) / LE_at_60_y,
 D(Deaths_Mp_per_y9) ~ 10 * (Deaths_Mp_per_y8 - Deaths_Mp_per_y9) / LE_at_60_y,
-#D(Deaths_Mp_per_y) ~ 10 * (Deaths_Mp_per_y9 - Deaths_Mp_per_y) / LE_at_60_y,
-Deaths_Mp_per_y ~ 10 * Deaths_Mp_per_y9 / LE_at_60_y,
-#Deaths_Mp_per_y ~ interpolate(t, [(1980.0,30.0),
-#(1981.0,29.9575),
-#(1982.0,29.7488),
-#(1983.0,29.4581),
-#(1984.0,29.1482),
-#(1985.0,28.9775),
-#(1986.0,29.1423),
-#(1987.0,29.5638),
-#(1988.0,29.9298),
-#(1989.0,30.0987),
-#(1990.0,30.1285),
-#(1991.0,29.9975),
-#(1992.0,29.6761),
-#(1993.0,29.2875),
-#(1994.0,28.9239),
-#(1995.0,28.5669),
-#(1996.0,28.2818),
-#(1997.0,28.2036),
-#(1998.0,28.3387),
-#(1999.0,28.5726),
-#(2000.0,28.8441),
-#(2001.0,29.1975),
-#(2002.0,29.6413),
-#(2003.0,30.1078),
-#(2004.0,30.5886),
-#(2005.0,31.1428),
-#(2006.0,31.7843),
-#(2007.0,32.5116),
-#(2008.0,33.371),
-#(2009.0,34.3638),
-#(2010.0,35.3714),
-#(2011.0,36.3092),
-#(2012.0,37.2419),
-#(2013.0,38.1954),
-#(2014.0,39.0688),
-#(2015.0,39.8539),
-#(2016.0,40.6653),
-#(2017.0,41.5287),
-#(2018.0,42.4141),
-#(2019.0,43.3797),
-#(2020.0,44.4556),
-#(2021.0,45.5151),
-#(2022.0,46.4717),
-#(2023.0,47.181),
-#(2024.0,47.9572),
-#(2025.0,48.6294),
-#(2026.0,49.235),
-#(2027.0,49.9159),
-#(2028.0,50.657),
-#(2029.0,51.4251),
-#(2030.0,52.3039),
-#(2031.0,53.3008),
-#(2032.0,54.2562),
-#(2033.0,55.1159),
-#(2034.0,56.0102),
-#(2035.0,56.9416),
-#(2036.0,57.7685),
-#(2037.0,58.5226),
-#(2038.0,59.3378),
-#(2039.0,60.1803),
-#(2040.0,60.9882),
-#(2041.0,61.8536),
-#(2042.0,62.8283),
-#(2043.0,63.7828),
-#(2044.0,64.6301),
-#(2045.0,65.4723),
-#(2046.0,66.351),
-#(2047.0,67.1542),
-#(2048.0,67.8797),
-#(2049.0,68.6542),
-#(2050.0,69.4827),
-#(2051.0,70.2887),
-#(2052.0,71.1008),
-#(2053.0,71.9637),
-#(2054.0,72.7992),
-#(2055.0,73.5472),
-#(2056.0,74.2892),
-#(2057.0,75.0688),
-#(2058.0,75.8132),
-#(2059.0,76.5244),
-#(2060.0,77.2955),
-#(2061.0,78.1285),
-#(2062.0,78.9362),
-#(2063.0,79.7008),
-#(2064.0,80.4754),
-#(2065.0,81.2484),
-#(2066.0,81.9672),
-#(2067.0,82.6611),
-#(2068.0,83.3865),
-#(2069.0,84.1222),
-#(2070.0,84.8391),
-#(2071.0,85.5661),
-#(2072.0,86.3074),
-#(2073.0,86.9981),
-#(2074.0,87.6192),
-#(2075.0,88.2314),
-#(2076.0,88.8415),
-#(2077.0,89.3938),
-#(2078.0,89.9066),
-#(2079.0,90.4462),
-#(2080.0,90.9967),
-#(2081.0,91.4865),
-#(2082.0,91.9123),
-#(2083.0,92.3203),
-#(2084.0,92.6928),
-#(2085.0,92.983),
-#(2086.0,93.2233),
-#(2087.0,93.4654),
-#(2088.0,93.6861),
-#(2089.0,93.8559),
-#(2090.0,94.0054),
-#(2091.0,94.143),
-#(2092.0,94.2064),
-#(2093.0,94.178),
-#(2094.0,94.1246),
-#(2095.0,94.0585),
-#(2096.0,93.9193),
-#(2097.0,93.7229),
-#(2098.0,93.5479),
-#(2099.0,93.3826),
-#(2100.0,93.1396)]),
+D(Deaths_Mp_per_y10) ~ (10 * Deaths_Mp_per_y9 / LE_at_60_y) - Deaths_Mp_per_y,
+Deaths_Mp_per_y ~ 10 * Deaths_Mp_per_y10 / LE_at_60_y,
 Demand_pulse_2020_to_25_1 ~ 0 + Pulse_height_1* pulse(t, 2020, 5),
 Change_in_workforce_Mp_per_y ~ ( Optimal_workforce_Mp - Workforce_Mp ) / Hiring_per_firing_delay_y,
 D(Old_growth_forest_area_Mha_1) ~ -New_forestry_land_Mha_per_y-New_grazing_land_Mha_per_y,
