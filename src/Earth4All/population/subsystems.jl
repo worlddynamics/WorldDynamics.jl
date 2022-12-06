@@ -38,18 +38,18 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
     @variables Aged_40_60_years_Mp(t) = params[:Aged_40_60_in_1980_Mp]
     @variables Aged_60_plus_years_Mp(t) = params[:Aged_60_plus_in_1980_Mp]
     @variables Births_Mp_per_y(t)
-    @variables Deaths_Mp_per_y(t) = params[:Dying_in_1980_Mp_per_y]
-    @variables Deaths_Mp_per_y1(t) = params[:Dying_in_1980_Mp_per_y]
-    @variables Deaths_Mp_per_y1(t) = params[:Dying_in_1980_Mp_per_y]
-    @variables Deaths_Mp_per_y2(t) = params[:Dying_in_1980_Mp_per_y]
-    @variables Deaths_Mp_per_y3(t) = params[:Dying_in_1980_Mp_per_y]
-    @variables Deaths_Mp_per_y4(t) = params[:Dying_in_1980_Mp_per_y]
-    @variables Deaths_Mp_per_y5(t) = params[:Dying_in_1980_Mp_per_y]
-    @variables Deaths_Mp_per_y6(t) = params[:Dying_in_1980_Mp_per_y]
-    @variables Deaths_Mp_per_y7(t) = params[:Dying_in_1980_Mp_per_y]
-    @variables Deaths_Mp_per_y8(t) = params[:Dying_in_1980_Mp_per_y]
-    @variables Deaths_Mp_per_y9(t) = params[:Dying_in_1980_Mp_per_y]
-    # @variables Deaths_Mp_per_y10(t) = params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y1(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y1(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y2(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y3(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y4(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y5(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y6(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y7(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y8(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y9(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
+    @variables Deaths_Mp_per_y10(t) = (7 / 10) * params[:Dying_in_1980_Mp_per_y]
     @variables Desired_no_of_children(t)
     @variables Effective_GDP_per_person_kdollar_per_p_per_y(t) = params[:GDP_per_person_in_1980_kdollar_per_p_per_y]
     @variables Extra_fertility_reduction(t)
@@ -142,39 +142,29 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
         D(Passing_60_Mp_per_y8) ~ 10 * (Passing_60_Mp_per_y7 - Passing_60_Mp_per_y8) / 20,
         D(Passing_60_Mp_per_y9) ~ 10 * (Passing_60_Mp_per_y8 - Passing_60_Mp_per_y9) / 20,
         D(Passing_60_Mp_per_y) ~ 10 * (Passing_60_Mp_per_y9 - Passing_60_Mp_per_y) / 20,
-        # D(Deaths_Mp_per_y1) ~ 10 * (Passing_60_Mp_per_y - Deaths_Mp_per_y1) / LE_at_60_y,
-        # D(Deaths_Mp_per_y2) ~ 10 * (Deaths_Mp_per_y1 - Deaths_Mp_per_y2) / LE_at_60_y,
-        # D(Deaths_Mp_per_y3) ~ 10 * (Deaths_Mp_per_y2 - Deaths_Mp_per_y3) / LE_at_60_y,
-        # D(Deaths_Mp_per_y4) ~ 10 * (Deaths_Mp_per_y3 - Deaths_Mp_per_y4) / LE_at_60_y,
-        # D(Deaths_Mp_per_y5) ~ 10 * (Deaths_Mp_per_y4 - Deaths_Mp_per_y5) / LE_at_60_y,
-        # D(Deaths_Mp_per_y6) ~ 10 * (Deaths_Mp_per_y5 - Deaths_Mp_per_y6) / LE_at_60_y,
-        # D(Deaths_Mp_per_y7) ~ 10 * (Deaths_Mp_per_y6 - Deaths_Mp_per_y7) / LE_at_60_y,
-        # D(Deaths_Mp_per_y8) ~ 10 * (Deaths_Mp_per_y7 - Deaths_Mp_per_y8) / LE_at_60_y,
-        # D(Deaths_Mp_per_y9) ~ 10 * (Deaths_Mp_per_y8 - Deaths_Mp_per_y9) / LE_at_60_y,
-        # D(Deaths_Mp_per_y) ~ 10 * (Deaths_Mp_per_y9 - Deaths_Mp_per_y) / LE_at_60_y,
         #
-        D(Deaths_Mp_per_y1) ~ (10 / LE_at_60_y) * ((Passing_60_Mp_per_y - Deaths_Mp_per_y1) - Deaths_Mp_per_y1 * D(LE_at_60_y) / 10),
-        D(Deaths_Mp_per_y2) ~ (10 / LE_at_60_y) * ((Deaths_Mp_per_y1 - Deaths_Mp_per_y2) - Deaths_Mp_per_y2 * D(LE_at_60_y) / 10),
-        D(Deaths_Mp_per_y3) ~ (10 / LE_at_60_y) * ((Deaths_Mp_per_y2 - Deaths_Mp_per_y3) - Deaths_Mp_per_y3 * D(LE_at_60_y) / 10),
-        D(Deaths_Mp_per_y4) ~ (10 / LE_at_60_y) * ((Deaths_Mp_per_y3 - Deaths_Mp_per_y4) - Deaths_Mp_per_y4 * D(LE_at_60_y) / 10),
-        D(Deaths_Mp_per_y5) ~ (10 / LE_at_60_y) * ((Deaths_Mp_per_y4 - Deaths_Mp_per_y5) - Deaths_Mp_per_y5 * D(LE_at_60_y) / 10),
-        D(Deaths_Mp_per_y6) ~ (10 / LE_at_60_y) * ((Deaths_Mp_per_y5 - Deaths_Mp_per_y6) - Deaths_Mp_per_y6 * D(LE_at_60_y) / 10),
-        D(Deaths_Mp_per_y7) ~ (10 / LE_at_60_y) * ((Deaths_Mp_per_y6 - Deaths_Mp_per_y7) - Deaths_Mp_per_y7 * D(LE_at_60_y) / 10),
-        D(Deaths_Mp_per_y8) ~ (10 / LE_at_60_y) * ((Deaths_Mp_per_y7 - Deaths_Mp_per_y8) - Deaths_Mp_per_y8 * D(LE_at_60_y) / 10),
-        D(Deaths_Mp_per_y9) ~ (10 / LE_at_60_y) * ((Deaths_Mp_per_y8 - Deaths_Mp_per_y9) - Deaths_Mp_per_y9 * D(LE_at_60_y) / 10),
-        D(Deaths_Mp_per_y) ~ (10 / LE_at_60_y) * ((Deaths_Mp_per_y9 - Deaths_Mp_per_y) - Deaths_Mp_per_y * D(LE_at_60_y) / 10),
+        # D(Deaths_Mp_per_y) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y9 - Deaths_Mp_per_y * (1 + D(LE_at_60_y) / 10)),
+        # D(Deaths_Mp_per_y9) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y8 - Deaths_Mp_per_y9 * (1 + D(LE_at_60_y) / 10)),
+        # D(Deaths_Mp_per_y8) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y7 - Deaths_Mp_per_y8 * (1 + D(LE_at_60_y) / 10)),
+        # D(Deaths_Mp_per_y7) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y6 - Deaths_Mp_per_y7 * (1 + D(LE_at_60_y) / 10)),
+        # D(Deaths_Mp_per_y6) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y5 - Deaths_Mp_per_y6 * (1 + D(LE_at_60_y) / 10)),
+        # D(Deaths_Mp_per_y5) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y4 - Deaths_Mp_per_y5 * (1 + D(LE_at_60_y) / 10)),
+        # D(Deaths_Mp_per_y4) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y3 - Deaths_Mp_per_y4 * (1 + D(LE_at_60_y) / 10)),
+        # D(Deaths_Mp_per_y3) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y2 - Deaths_Mp_per_y3 * (1 + D(LE_at_60_y) / 10)),
+        # D(Deaths_Mp_per_y2) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y1 - Deaths_Mp_per_y2 * (1 + D(LE_at_60_y) / 10)),
+        # D(Deaths_Mp_per_y1) ~ (10 / LE_at_60_y) * (Passing_60_Mp_per_y - Deaths_Mp_per_y1 * (1 + D(LE_at_60_y) / 10)),
         #
-        # D(Deaths_Mp_per_y1) ~ Passing_60_Mp_per_y - (10 * Deaths_Mp_per_y1 / LE_at_60_y),
-        # D(Deaths_Mp_per_y2) ~ 10 * (Deaths_Mp_per_y1 - Deaths_Mp_per_y2) / LE_at_60_y,
-        # D(Deaths_Mp_per_y3) ~ 10 * (Deaths_Mp_per_y2 - Deaths_Mp_per_y3) / LE_at_60_y,
-        # D(Deaths_Mp_per_y4) ~ 10 * (Deaths_Mp_per_y3 - Deaths_Mp_per_y4) / LE_at_60_y,
-        # D(Deaths_Mp_per_y5) ~ 10 * (Deaths_Mp_per_y4 - Deaths_Mp_per_y5) / LE_at_60_y,
-        # D(Deaths_Mp_per_y6) ~ 10 * (Deaths_Mp_per_y5 - Deaths_Mp_per_y6) / LE_at_60_y,
-        # D(Deaths_Mp_per_y7) ~ 10 * (Deaths_Mp_per_y6 - Deaths_Mp_per_y7) / LE_at_60_y,
-        # D(Deaths_Mp_per_y8) ~ 10 * (Deaths_Mp_per_y7 - Deaths_Mp_per_y8) / LE_at_60_y,
-        # D(Deaths_Mp_per_y9) ~ 10 * (Deaths_Mp_per_y8 - Deaths_Mp_per_y9) / LE_at_60_y,
-        # D(Deaths_Mp_per_y10) ~ (10 * Deaths_Mp_per_y9 / LE_at_60_y) - Deaths_Mp_per_y,
-        # Deaths_Mp_per_y ~ 10 * Deaths_Mp_per_y10 / LE_at_60_y,
+        Deaths_Mp_per_y ~ (10 / LE_at_60_y) * Deaths_Mp_per_y10,
+        D(Deaths_Mp_per_y10) ~ (10 / LE_at_60_y) * Deaths_Mp_per_y9 - Deaths_Mp_per_y,
+        D(Deaths_Mp_per_y9) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y8 - Deaths_Mp_per_y9),
+        D(Deaths_Mp_per_y8) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y7 - Deaths_Mp_per_y8),
+        D(Deaths_Mp_per_y7) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y6 - Deaths_Mp_per_y7),
+        D(Deaths_Mp_per_y6) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y5 - Deaths_Mp_per_y6),
+        D(Deaths_Mp_per_y5) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y4 - Deaths_Mp_per_y5),
+        D(Deaths_Mp_per_y4) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y3 - Deaths_Mp_per_y4),
+        D(Deaths_Mp_per_y3) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y2 - Deaths_Mp_per_y3),
+        D(Deaths_Mp_per_y2) ~ (10 / LE_at_60_y) * (Deaths_Mp_per_y1 - Deaths_Mp_per_y2),
+        D(Deaths_Mp_per_y1) ~ Passing_60_Mp_per_y - (10 / LE_at_60_y) * Deaths_Mp_per_y1,
         #   
         Population_Mp ~ Aged_0_20_years_Mp + Aged_20_40_years_Mp + Aged_40_60_years_Mp + Aged_60_plus_years_Mp,
         Introduction_period_for_policy_y ~ interpolate(t, tables[:Introduction_period_for_policy_y], ranges[:Introduction_period_for_policy_y]),
