@@ -1,6 +1,5 @@
 using IfElse
 
-
 interpolate(x, x₁, xₙ, y₁, yₙ) = y₁ + (x - x₁) * ((yₙ - y₁) / (xₙ - x₁))
 
 """

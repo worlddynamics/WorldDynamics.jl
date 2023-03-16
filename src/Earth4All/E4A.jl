@@ -3,9 +3,11 @@ module E4A
 using ModelingToolkit
 using WorldDynamics
 
-include("Population.jl")
-
-include("e4a/scenarios.jl")
-include("e4a/plots.jl")
+include("population/tables.jl")
+include("population/parameters.jl")
+include("population/initialisations.jl")
+include("population/subsystems.jl")
+include("population/scenarios.jl")
+include("population/plots.jl")
 
 end

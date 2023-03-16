@@ -25,6 +25,7 @@ export World3
 export World3_91
 export World3_03
 export E4A
+export Duggan
 
 include("World1/World1.jl")
 include("World1A/World1A.jl")
@@ -34,5 +35,6 @@ include("World3/World3.jl")
 include("World3_91/World3_91.jl")
 include("World3_03/World3_03.jl")
 include("Earth4All/E4A.jl")
+include("Duggan/Duggan.jl")
 
 end
