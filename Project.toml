@@ -12,4 +12,10 @@ ModelingToolkit = "961ee093-0014-501f-94e3-6117800e7a78"
 PlotlyJS = "f0f68f2c-4968-5e81-91da-67840de0976a"
 
 [compat]
-julia = "1.9"
+ColorSchemes = "3.0 - 3.20"
+ColorTypes = "0.7 - 0.11.4"
+DifferentialEquations = "7.1 - 7.7"
+IfElse = "0.1.1"
+ModelingToolkit = "8.26 - 8.48.1"
+PlotlyJS = "0.13 - 0.18.10"
+julia = "1.6 - 1.9"
