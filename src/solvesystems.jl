@@ -10,7 +10,7 @@ function variable_connections(systems::Vector{ODESystem})
     @variables t
     @named _model = ODESystem([], t)
     @named model = ModelingToolkit.compose(_model, systems)
-    connection_eqs::Vector{Equation} = []
+    connection_eqs::Set{Equation} = Set{Equation}()
     var2sys::Dict{String,String} = Dict{String,String}()
     var2fullvar = Dict()
     g = variable_dependencies(model)
@@ -32,7 +32,7 @@ function variable_connections(systems::Vector{ODESystem})
             end
         end
     end
-    return connection_eqs
+    return collect(connection_eqs)
 end
 
 """
