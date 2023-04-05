@@ -43,6 +43,7 @@ function historicalrun(;
     @named nr = NonRenewable.non_renewable(; params=nonrenewable_params, inits=nonrenewable_inits, tables=nonrenewable_tables, ranges=nonrenewable_ranges)
 
     @named pp = Pollution.persistent_pollution(; params=pollution_params, inits=pollution_inits, tables=pollution_tables, ranges=pollution_ranges)
+    @named ppd = Pollution.persistent_pollution_dummy(; params=pollution_params, inits=pollution_inits, tables=pollution_tables, ranges=pollution_ranges)
 
     @named se = SupplementaryEquations.supplementary_equations()
 
@@ -52,7 +53,7 @@ function historicalrun(;
         is, ss, js,
         ld, ai, iad, leuiu, dlm, lfr, lfd,
         nr,
-        pp,
+        pp, ppd,
         se,
     ]
 
@@ -183,6 +184,7 @@ function historicalrun_var_con_test(;
     @named nr = NonRenewable.non_renewable(; params=nonrenewable_params, inits=nonrenewable_inits, tables=nonrenewable_tables, ranges=nonrenewable_ranges)
 
     @named pp = Pollution.persistent_pollution(; params=pollution_params, inits=pollution_inits, tables=pollution_tables, ranges=pollution_ranges)
+    @named ppd = Pollution.persistent_pollution_dummy(; params=pollution_params, inits=pollution_inits, tables=pollution_tables, ranges=pollution_ranges)
 
     @named se = SupplementaryEquations.supplementary_equations()
 
@@ -192,7 +194,7 @@ function historicalrun_var_con_test(;
         is, ss, js,
         ld, ai, iad, leuiu, dlm, lfr, lfd,
         nr,
-        pp,
+        pp, ppd,
         se,
     ]
 
