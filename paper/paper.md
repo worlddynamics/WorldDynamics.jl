@@ -62,6 +62,6 @@ Besides the official implementations on Vensim and Stella, which are two of the 
 The current version of the package could be enhanced in various ways. The package will be extended in order to include other more recent IAMs, such as the Earth4All model [@Dixson2022]. Moreover, a wide range of tools available in the Julia ecosystem could be used to improve the quality of the models, such as the addition of global sensitivity analysis algorithms [@Dixit2022], the use of data-driven differential equations to automatically discover the models [@Martensen2021], and optimizing parameter values for some aspects of the models using the optimization package JuMP.jl [@Lubin2023].
 
 # Acknowledgments
-This work has been supported by the French government, through the UCAJEDI and UCA DS4H Investments in the Future projects managed by the National Research Agency (ANR) with the reference number ANR-15-IDEX-0001 and ANR-17-EURE-0004. 
-
+This work has been supported by the French government through the UCAJEDI and UCA DS4H "Investments in the Future" projects managed by the National Research Agency (ANR) with reference numbers ANR-15-IDEX-0001 and ANR-17-EURE-0004. 
+This project has also been funded by the AAP2-2022 of the Laboratoire d'Informatique, Signaux et Systèmes de Sophia Antipolis (I3S) of the Université Côte d'Azur (UCA) and the authors are grateful to the OPAL infrastructure from Université Côte d'Azur for providing resources and support.
 # References
