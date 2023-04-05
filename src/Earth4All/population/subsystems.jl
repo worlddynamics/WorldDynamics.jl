@@ -1,14 +1,12 @@
 @variables t
 D = Differential(t)
 
-function delay_n(eqs::Vector{Equation}, inits, x, rt, lv, delay, order, v0)
+function delay_n(eqs::Vector{Equation}, x, rt, lv, delay, order)
     append!(eqs, [rt[1] ~ lv[1] / (delay / order)])
     append!(eqs, [D(lv[1]) ~ x - rt[1]])
-    # inits[lv[order]] = v0
     for d in 2:order
         append!(eqs, [rt[d] ~ lv[d] / (delay / order)])
         append!(eqs, [D(lv[d]) ~ rt[d-1] - rt[d]])
-        # inits[lv[order-d+1]] = v0
     end
 end
 
@@ -23,12 +21,12 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
     @variables A20_40(t) = params[:A20_40_1980]
     @variables A40_60(t) = params[:A40_60_1980]
     @variables A60_PL(t) = params[:A60_PL_1980]
-    @variables (RT_PASS20(t))[1:10] (LV_PASS20(t))[1:10] = fill(inits[:LV_PASS20], 10)
-    # @variables (RT_PASS20(t))[1:10]
-    @variables (RT_PASS40(t))[1:10] (LV_PASS40(t))[1:10] = fill(inits[:LV_PASS40], 10)
-    # @variables (RT_PASS40(t))[1:10]
-    @variables (RT_PASS60(t))[1:10] (LV_PASS60(t))[1:10] = fill(inits[:LV_PASS60], 10)
-    # @variables (RT_PASS60(t))[1:10]
+    @variables (LV_PASS20(t))[1:10] = fill(inits[:LV_PASS20], 10)
+    @variables (RT_PASS20(t))[1:10] = fill(inits[:LV_PASS20] / (7 / 10), 10)
+    @variables (LV_PASS40(t))[1:10] = fill(inits[:LV_PASS40], 10)
+    @variables (RT_PASS40(t))[1:10] = fill(inits[:LV_PASS40] / (7 / 10), 10)
+    @variables (RT_PASS60(t))[1:10] = fill(inits[:LV_PASS60] / (7 / 10), 10)
+    @variables (LV_PASS60(t))[1:10] = fill(inits[:LV_PASS60], 10)
     @variables POP(t)
 
     # Exogenous variables
@@ -45,9 +43,9 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
         DEATHS ~ interpolate(t, tables[:DEATHS], ranges[:DEATHS])
     ]
 
-    delay_n(eqs, inits, BIRTHS, LV_PASS20, RT_PASS20, 20, 10, 2 * 94.6)
-    delay_n(eqs, inits, RT_PASS20[10], LV_PASS40, RT_PASS40, 20, 10, 2 * params[:PASS20_1980])
-    delay_n(eqs, inits, RT_PASS40[10], LV_PASS60, RT_PASS60, 20, 10, 2 * params[:PASS40_1980])
+    delay_n(eqs, BIRTHS, LV_PASS20, RT_PASS20, 20, 10)
+    delay_n(eqs, RT_PASS20[10], LV_PASS40, RT_PASS40, 20, 10)
+    delay_n(eqs, RT_PASS40[10], LV_PASS60, RT_PASS60, 20, 10)
 
     ODESystem(eqs; name)
 end
