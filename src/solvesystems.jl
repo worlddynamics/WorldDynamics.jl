@@ -16,8 +16,8 @@ function variable_connections(systems::Vector{ODESystem})
     g = variable_dependencies(model)
     al = g.fadjlist
     for u in 1:lastindex(al)
-        if (length(al[u]) > 0)
-            s, v = split(string(states(model)[u]), "₊")
+        if (length(al[u]) == 1)
+            s, v = split(string(states(model)[u]), "    ")
             var2sys[v] = s
             var2fullvar[v] = states(model)[u]
         end
