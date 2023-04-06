@@ -16,14 +16,15 @@ function variable_connections(systems::Vector{ODESystem})
     g = variable_dependencies(model)
     al = g.fadjlist
     for u in 1:lastindex(al)
-        if (length(al[u]) == 1)
+        @assert length(al[u]) <= 1 "Error in the variable dependencies binary graph: one node has more than one neighbor"
+        if (length(al[u]) > 0)
             s, v = split(string(states(model)[u]), "₊")
             var2sys[v] = s
             var2fullvar[v] = states(model)[u]
         end
     end
     ed = equation_dependencies(model)
-    for u in 1:lastindex(ed)
+    for u in eachindex(ed)
         vl = ed[u]
         for v in 1:lastindex(vl)
             subs, var = split(string(vl[v]), "₊")
