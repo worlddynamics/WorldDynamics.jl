@@ -20,8 +20,8 @@ using Test, ModelingToolkit, DifferentialEquations
     @named sys3 = ODESystem(eqs3, t)
     @named sys4 = ODESystem(eqs4, t)
 
-    @test WorldDynamics.variable_connections([sys1, sys2]) == [sys1.z ~ sys2.z]
-    @test WorldDynamics.variable_connections([sys1, sys2, sys4]) == [sys4.z ~ sys2.z, sys1.z ~ sys2.z, sys4.x ~ sys1.x, ]
+    @test isempty(symdiff(WorldDynamics.variable_connections([sys1, sys2]), [sys1.z ~ sys2.z]))
+    @test isempty(symdiff(WorldDynamics.variable_connections([sys1, sys2, sys4]), [sys4.z ~ sys2.z, sys1.z ~ sys2.z, sys4.x ~ sys1.x]))
     output = WorldDynamics.variable_connections([sys2, sys3])
     @test isempty(output)
 end
