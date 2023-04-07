@@ -26,4 +26,7 @@ end
         include("world3_03/figures.jl")
     end
 
+    @testset verbose=true "solve_systems" begin
+        include("solvesystems.jl")
+    end
 end
