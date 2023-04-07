@@ -252,7 +252,7 @@ using DifferentialEquations
 
 function nrs_run_solution()
     isdefined(@__MODULE__, :_solution_nrs_run) && return _solution_nrs_run
-    global _solution_nrs_run = solve(nrs_run(), (0, 200), solver=Tsit5(), dt=0.015625, dtmax=0.015625)
+    global _solution_nrs_run = WorldDynamics.solve(nrs_run(), (0, 200), solver=Tsit5(), dt=0.015625, dtmax=0.015625)
     return _solution_nrs_run
 end
 function _variables_nrs()
