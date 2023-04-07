@@ -296,14 +296,20 @@ include("nonrenewablestock/scenarios.jl")
 include("nonrenewablestock/plots.jl")
 end
 ```
-
-### Solving the model and producing the figure
-
-We assume that we execute the Julia REPL from the directory containing the folder `Duggan`. We can solve the model and produce the desired figure by simply executing the following two instructions.
+Finally, we add the following lines to the file `src/WorldDynamics.jl
 
 ```
 include("Duggan/Duggan.jl")
-Main.Duggan.NonRenewableStock.fig_3_9()
+export Duggan
+```
+
+### Solving the model and producing the figure
+
+From the Julia REPL, we can solve the model and produce the desired figure by simply executing the following two instructions.
+
+```
+using WorldDynamics
+Duggan.NonRenewableStock.fig_3_9()
 ```
 If everything worked well, the following picture should be shown.
 
