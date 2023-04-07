@@ -296,7 +296,7 @@ include("nonrenewablestock/scenarios.jl")
 include("nonrenewablestock/plots.jl")
 end
 ```
-Finally, we add the following lines to the file `src/WorldDynamics.jl
+Finally, we add the following lines to the file `src/WorldDynamics.jl`
 
 ```
 include("Duggan/Duggan.jl")
