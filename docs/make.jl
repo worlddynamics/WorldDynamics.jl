@@ -12,5 +12,5 @@ makedocs(sitename="WorldDynamics.jl",
 )
 
 deploydocs(
-    repo = "github.com/natema/WorldDynamics.jl.git",
+    repo = "github.com/worlddynamics/WorldDynamics.jl.git",
 )
