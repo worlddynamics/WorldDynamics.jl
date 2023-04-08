@@ -4,9 +4,7 @@ function standard_run(; kwargs...)
 
     systems = [w1, w1a]
 
-    connection_eqs = [
-        w1a.msl ~ w1.msl
-    ]
+    connection_eqs = WorldDynamics.variable_connections(systems)
 
     system = WorldDynamics.compose(systems, connection_eqs)
 
