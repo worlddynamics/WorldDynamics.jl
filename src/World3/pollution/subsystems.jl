@@ -33,6 +33,16 @@ function agriculture(; name, params=_params, inits=_inits, tables=_tables, range
     ODESystem(eqs; name)
 end
 
+function persistent_pollution_dummy(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
+    @variables ppgf22(t) 
+
+    eqs = [
+        ppgf22 ~ 1.0
+    ]
+
+    ODESystem(eqs; name)
+end
+
 function persistent_pollution(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
     @parameters pyear = params[:pyear]
     @parameters ppgf1 = params[:ppgf1]
