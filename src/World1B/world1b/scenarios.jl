@@ -5,10 +5,7 @@ function standard_run(; kwargs...)
 
     systems = [w1, w1a, w1b]
 
-    connection_eqs = [
-        w1b.qlm ~ w1.qlm
-        w1b.qlf ~ w1.qlf
-    ]
+    connection_eqs = WorldDynamics.variable_connections(systems)
 
     system = WorldDynamics.compose(systems, connection_eqs)
 
