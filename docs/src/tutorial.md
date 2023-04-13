@@ -142,7 +142,7 @@ Finally, we can compare the model updated with new data against the one with out
 
 ## Implementing a new model
 
-In this final section of the tutorial, we show how we can integrate a new model into the `WorldDynamics` framework. To this aim we refer to the third chapter of the book *System Dynamics Modeling with R* (2016), by Jim Duggan. In this chapter, whose title is *Modeling Limits to Growth*, the author introduces the reader to system dynamics models of limits to growth through three models of increasing complexity. Here, we will integrate in `WorldDynamics` the third model, in which a growing stock consumes its carrying capacity (this dynamic leads to growth followed by rapid decline). In this case we have only one system, called `NonRenewableStock`, which contains only one subsystem (that is, one ODE system). The coding of this system consists of four Julia source files, that is, `subsystems.jl`, `initialisations.jl`, `parameters.jl`, and `tables.jl` (we assume that these files will be included in the directory `nonrenewablestock` contained in the directory `Duggan`). The first source file will contain the variable and parameter declarations, and the function specifying the ODE system corresponding to the subsystem. The second and third source files will contain the initial values of the variables and the values of the parameters, respectively. Finally, the fourth source file will contain the tables and the ranges used to interpolate a non-linear function through a collection of linear segments.
+In this final section of the tutorial, we show how we can implement a new model using the `WorldDynamics` framework. To this aim we refer to the third chapter of the book *System Dynamics Modeling with R* (2016), by Jim Duggan. In this chapter, whose title is *Modeling Limits to Growth*, the author introduces the reader to system dynamics models of limits to growth through three models of increasing complexity. Here, we will implement the third model, in which a growing stock consumes its carrying capacity (this dynamic leads to growth followed by rapid decline). In this case we have only one system, called `NonRenewableStock`, which contains only one subsystem (that is, one ODE system). The coding of this system consists of four Julia source files, that is, `subsystems.jl`, `initialisations.jl`, `parameters.jl`, and `tables.jl` (we assume that these files will be included in the directory `nonrenewablestock` contained in the directory `Duggan`). The first source file will contain the variable and parameter declarations, and the function specifying the ODE system corresponding to the subsystem. The second and third source files will contain the initial values of the variables and the values of the parameters, respectively. Finally, the fourth source file will contain the tables and the ranges used to interpolate a non-linear function through a collection of linear segments.
 
 ### Coding the parameters
 
@@ -271,9 +271,9 @@ fig_3_9(; kwargs...) = plotvariables(nrs_run_solution(), (t, 0, 200), _variables
 ```
 Note that, for performance reasons, the definition of the function `nrs_run_solution` starts by checking whether the solution of the model is already available: in this case, nothing is done.
 
-### Integrating the model into WorldDynamics
+### Creating the new model module
 
-In order to integrate the new model in the `WorldDynamics` framework, we can now define a Julia module `Duggan.jl` as follows (we assume that this source file is contained in the directory `Duggan`).
+We can now define a Julia module `Duggan.jl` as follows (we assume that this source file is contained in the directory `Duggan`).
 
 ```
 module Duggan
@@ -296,21 +296,16 @@ include("nonrenewablestock/scenarios.jl")
 include("nonrenewablestock/plots.jl")
 end
 ```
-Finally, we add the following lines to the file `src/WorldDynamics.jl`
-
-```
-include("Duggan/Duggan.jl")
-export Duggan
-```
 
 ### Solving the model and producing the figure
 
-From the Julia REPL, we can solve the model and produce the desired figure by simply executing the following two instructions.
+We assume that we execute the Julia REPL from the directory containing the folder `Duggan`. We can solve the model and produce the desired figure by simply executing the following two instructions.
 
 ```
 using WorldDynamics
 Duggan.NonRenewableStock.fig_3_9()
 ```
+
 If everything worked well, the following picture should be shown.
 
 ![The Figure 3.9 of the chapter on the limits to growth](img/duggan.png)
