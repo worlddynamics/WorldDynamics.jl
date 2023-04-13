@@ -10,7 +10,10 @@ function death_rate(; name, params=_params, inits=_inits, tables=_tables, ranges
     @variables dr(t) pop(t)
     @variables fpc(t) sopc(t) iopc(t) ppolx(t)
     @variables ehspc(t) = inits[:hsapc] # Line 22 Appendix A
-    @variables cdr(t) le(t) lmf(t) hsapc(t) lmhs(t) lmhs1(t) lmhs2(t) fpu(t) cmi(t) lmc(t) lmp(t)
+    @variables fpu(t) = inits[:fpu] 
+    @variables lmf(t) = inits[:lmf] 
+    @variables cmi(t) = inits[:cmi]
+    @variables cdr(t) le(t)  hsapc(t) lmhs(t) lmhs1(t) lmhs2(t)  lmc(t) lmp(t)
 
     eqs = [
         cdr ~ 1000.0 * dr / pop # Line 18 Appendix A

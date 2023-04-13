@@ -139,3 +139,173 @@ sol = WorldDynamics.solve(system, (1900, 2100))
 ```
 
 Finally, we can compare the model updated with new data against the one with outdated data by reproducing the figures from the book (as described within the [Replicating book runs](@ref Replicating-book-runs) section).
+
+## Implementing a new model
+
+In this final section of the tutorial, we show how we can implement a new model using the `WorldDynamics` framework. To this aim we refer to the third chapter of the book *System Dynamics Modeling with R* (2016), by Jim Duggan. In this chapter, whose title is *Modeling Limits to Growth*, the author introduces the reader to system dynamics models of limits to growth through three models of increasing complexity. Here, we will implement the third model, in which a growing stock consumes its carrying capacity (this dynamic leads to growth followed by rapid decline). In this case we have only one system, called `NonRenewableStock`, which contains only one subsystem (that is, one ODE system). The coding of this system consists of four Julia source files, that is, `subsystems.jl`, `initialisations.jl`, `parameters.jl`, and `tables.jl` (we assume that these files will be included in the directory `nonrenewablestock` contained in the directory `Duggan`). The first source file will contain the variable and parameter declarations, and the function specifying the ODE system corresponding to the subsystem. The second and third source files will contain the initial values of the variables and the values of the parameters, respectively. Finally, the fourth source file will contain the tables and the ranges used to interpolate a non-linear function through a collection of linear segments.
+
+### Coding the parameters
+
+The model uses five parameters whose values are specified in a dictionary declared in the file `parameters.jl` as follows.
+
+```
+_params = Dict{Symbol,Float64}(
+    :cost_per_investment => 2,
+    :depreciation_rate => 0.05,
+    :fraction_profits_reinvested => 0.12,
+    :revenue_per_unit_extracted => 3,
+    :desired_growth_fraction => 0.07,
+)
+getparameters() = copy(_params)
+```
+Note that the function `getparameters` is exactly the one that has been used above while modifying a parameter.
+
+### Coding the initial values of the variables
+
+The model uses 12 variables: two of them requires to specify their initial values. This is done in a dictionary declared in the file `initialisations.jl` as follows.
+
+```
+_inits = Dict{Symbol,Float64}(
+    :capital => 5,
+    :resource => 1000,
+)
+getinitialisations() = copy(_inits)
+```
+Note that the function `getinitialisations ` can be used to get a copy of the dictionary in order to change some initial values.
+
+### Coding the subsystem
+
+The file `subsystems.jl` starst with the decalaration of the variable `t`  with respect to which the derivatives have to be computed.
+
+```
+@variables t
+D = Differential(t)
+```
+
+The file `subsystems.jl` continues by declaring one function (corresponding to one subsystem, that is, one ODE system) in which all variables and parameters of the subsystem are declared and the ODE system is defined.
+
+```
+function non_renewable_stock(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
+    @parameters cost_per_investment = params[:cost_per_investment]
+    @parameters depreciation_rate = params[:depreciation_rate]
+    @parameters fraction_profits_reinvested = params[:fraction_profits_reinvested]
+    @parameters revenue_per_unit_extracted = params[:revenue_per_unit_extracted]
+    @parameters desired_growth_fraction = params[:desired_growth_fraction]
+    @variables capital(t) = inits[:capital]
+    @variables depreciation(t)
+    @variables desired_investment(t)
+    @variables resource(t) = inits[:resource]
+    @variables extraction(t)
+    @variables extraction_efficiency_per_unit_capital(t)
+    @variables total_revenue(t)
+    @variables capital_costs(t)
+    @variables profit(t)
+    @variables capital_funds(t)
+    @variables maximum_investment(t)
+    @variables investment(t)
+    eqs = [
+        D(capital) ~ investment - depreciation
+        depreciation ~ capital * depreciation_rate
+        desired_investment ~ desired_growth_fraction * capital
+        D(resource) ~ -extraction
+        extraction ~ capital * extraction_efficiency_per_unit_capital
+        extraction_efficiency_per_unit_capital ~ interpolate(resource, tables[:eepuc], ranges[:eepuc])
+        total_revenue ~ revenue_per_unit_extracted * extraction
+        capital_costs ~ capital * 0.10
+        profit ~ total_revenue - capital_costs
+        capital_funds ~ profit * fraction_profits_reinvested
+        maximum_investment ~ capital_funds / cost_per_investment
+        investment ~ min(desired_investment, maximum_investment)
+    ]
+    ODESystem(eqs; name)
+end
+```
+The arguments of the function are the dictionaries corresponding to the variable initial values and to the parameter values, and the dictionaries corresponding to the tables and the ranges used for the linear of non-linear functions. The first two dictionaries are used to assign a value to all the parameters and an initial value to two variables. The ODE system is a vector of differential and algebraic equations (as specified in the chapter of the above mentioned book). Note that the two differential equations correspond to the two variables whose initial value has been specified. The variable `extraction_efficiency_per_unit_capital` is defined as a linear interpolation of the variable `resource`, by using the table `tables[:eepuc]` together with the range `ranges[:eepuc]`. The table and the corresponding range are defined in the file `tables.jl`, which define two dictionaries as follows.
+
+```
+_tables = Dict{Symbol,Tuple{Vararg{Float64}}}(
+    :eepuc => (0.0, 0.25, 0.45, 0.63, 0.75, 0.85, 0.92, 0.96, 0.98, 0.99, 1.0),
+)
+_ranges = Dict{Symbol,Tuple{Float64,Float64}}(
+    :eepuc => (0.0, 1000.0),
+)
+gettables() = copy(_tables)
+getranges() = copy(_ranges)
+```
+Note that the function `gettables` is exactly the one that has been used above while updating a model with modern data.
+
+We can now define a scenario by simply invoking the function `non_renewable_stock` and by returning the ODE system returned by this function. This is done in the file `scenarios.jl` (we assume that also this file is contained in the directory `nonrenewablestock`) which contains the following code.
+
+```
+function nrs_run(; kwargs...)
+    @named nrs = non_renewable_stock(; kwargs...)
+    return nrs
+end
+```
+Observe that if the model contains multiple systems and/or multiple subsystems, then the ODE systems returned by all the subsystems have to be composed by using the function `compose` (which also asks for the connections between the variables declared and used in different subsystems). An example of a scenario using multiple systems and subsystems is defined in the file `scenarios.jl` included in the directory `world2` within the `World` model directory.
+
+Finally, the model can be solved and simulated by using the `solve` and the `plotvariables` functions that we already used above. In particular, the file `plots.jl` (we assume that also this file is contained in the directory `nonrenewablestock`) does it in order to reproduce Figure 3.9 of the chapter of the above mentioned book.
+
+```
+using ModelingToolkit
+using DifferentialEquations
+
+function nrs_run_solution()
+    isdefined(@__MODULE__, :_solution_nrs_run) && return _solution_nrs_run
+    global _solution_nrs_run = WorldDynamics.solve(nrs_run(), (0, 200), solver=Tsit5(), dt=0.015625, dtmax=0.015625)
+    return _solution_nrs_run
+end
+function _variables_nrs()
+    @named nrs = non_renewable_stock()
+    variables = [
+        (nrs.capital, 0, 30, "Capital"),
+        (nrs.extraction, 0, 15, "Extraction"),
+        (nrs.investment, 0, 2, "Investment"),
+        (nrs.depreciation, 0, 2, "Investment"),
+        (nrs.resource, 0, 1000, "Resource"),
+    ]
+    return variables
+end
+
+fig_3_9(; kwargs...) = plotvariables(nrs_run_solution(), (t, 0, 200), _variables_nrs(); title="Simulation output showing stocks and flows", showaxis=false, showlegend=true, kwargs...)
+```
+Note that, for performance reasons, the definition of the function `nrs_run_solution` starts by checking whether the solution of the model is already available: in this case, nothing is done.
+
+### Creating the new model module
+
+We can now define a Julia module `Duggan.jl` as follows (we assume that this source file is contained in the directory `Duggan`).
+
+```
+module Duggan
+using ModelingToolkit
+using WorldDynamics
+include("NonRenewableStock.jl")
+end
+```
+The file `NonRenewableStock.jl` (we assume that also this file is contained in the directory `Duggan`) simply includes all the Julia source files we have written above.
+
+```
+module NonRenewableStock
+using WorldDynamics
+using ModelingToolkit
+include("nonrenewablestock/tables.jl")
+include("nonrenewablestock/parameters.jl")
+include("nonrenewablestock/initialisations.jl")
+include("nonrenewablestock/subsystems.jl")
+include("nonrenewablestock/scenarios.jl")
+include("nonrenewablestock/plots.jl")
+end
+```
+
+### Solving the model and producing the figure
+
+We assume that we execute the Julia REPL from the directory containing the folder `Duggan`. We can solve the model and produce the desired figure by simply executing the following two instructions.
+
+```
+using WorldDynamics
+Duggan.NonRenewableStock.fig_3_9()
+```
+
+If everything worked well, the following picture should be shown.
+
+![The Figure 3.9 of the chapter on the limits to growth](img/duggan.png)

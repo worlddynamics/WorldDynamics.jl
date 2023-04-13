@@ -1,6 +1,7 @@
+using DifferentialEquations
 function historicalrunsolution()
     isdefined(@__MODULE__, :_solution_historicalrun) && return _solution_historicalrun
-    global _solution_historicalrun = solve(historicalrun(), (1900, 2100))
+    global _solution_historicalrun = WorldDynamics.solve(historicalrun(), (1900, 2100); solver =  Rodas5())
     return _solution_historicalrun
 end
 
@@ -98,7 +99,7 @@ function fig_87(; kwargs...)
     parameters_2_87[:lt2] = 1900
 
     system = historicalrun(params=parameters_2_87)
-    solution = solve(system, (1900, 2100))
+    solution = WorldDynamics.solve(system, (1900, 2100); solver =  Rodas5())
 
     return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.87c", kwargs...)
 end
@@ -117,7 +118,7 @@ function fig_88(; kwargs...)
     parameters_2_88[:cfood] = 2500
 
     system = historicalrun(params=parameters_2_88)
-    solution = solve(system, (1900, 2100))
+    solution = WorldDynamics.solve(system, (1900, 2100); solver =  Rodas5())
 
     return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.88c", kwargs...)
 end
@@ -132,7 +133,7 @@ function fig_89(; kwargs...)
     parameters_2_89[:lt2] = 1900
 
     system = historicalrun(params=parameters_2_89)
-    solution = solve(system, (1900, 2100))
+    solution = WorldDynamics.solve(system, (1900, 2100); solver =  Rodas5())
 
     return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.89c", kwargs...)
 end
@@ -170,7 +171,7 @@ function fig94solution()
     new_equations[96] = pop.extra ~ 0.1 * pop.p6 + 0.25 * pop.p7 + 0.3 * pop.p8 + 0.25 * pop.p9 + 0.1 * pop.p10
 
     @named new_system = ODESystem(new_equations)
-    global _solution_94 = solve(new_system, (1900, 2100))
+    global _solution_94 = WorldDynamics.solve(new_system, (1900, 2100); solver =  Rodas5())
 
     return _solution_94
 end
@@ -207,7 +208,7 @@ function fig_96(; kwargs...)
     parameters_2_96[:fcest] = 1975
 
     system = historicalrun(params=parameters_2_96)
-    solution = solve(system, (1900, 2100))
+    solution = WorldDynamics.solve(system, (1900, 2100); solver =  Rodas5())
 
     return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.96c", kwargs...)
 end
@@ -223,7 +224,7 @@ function fig_97(; kwargs...)
     parameters_2_97[:zpgt] = 1975
 
     system = historicalrun(params=parameters_2_97)
-    solution = solve(system, (1900, 2100))
+    solution = WorldDynamics.solve(system, (1900, 2100); solver =  Rodas5())
 
     return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.97c", kwargs...)
 end
@@ -238,7 +239,7 @@ function fig_98(; kwargs...)
     parameters_2_98[:lt] = 2000
 
     system = historicalrun(params=parameters_2_98)
-    solution = solve(system, (1900, 2100))
+    solution = WorldDynamics.solve(system, (1900, 2100); solver =  Rodas5())
 
     return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.98c", kwargs...)
 end
@@ -254,7 +255,7 @@ function fig_99(; kwargs...)
     parameters_2_99[:fcest] = 1975
 
     system = historicalrun(params=parameters_2_99)
-    solution = solve(system, (1900, 2100))
+    solution = WorldDynamics.solve(system, (1900, 2100); solver =  Rodas5())
 
     return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.99c", kwargs...)
 end
@@ -271,7 +272,7 @@ function fig_100(; kwargs...)
     parameters_2_100[:zpgt] = 1975
 
     system = historicalrun(params=parameters_2_100)
-    solution = solve(system, (1900, 2100))
+    solution = WorldDynamics.solve(system, (1900, 2100); solver =  Rodas5())
 
     return plotvariables(solution, (t, 1900, 2100), _variables_a(); title="Fig. 2.100c", kwargs...)
 end
