@@ -175,7 +175,7 @@ Note that the function `getinitialisations ` can be used to get a copy of the di
 
 ### Coding the subsystem
 
-The file `subsystems.jl` starst with the decalaration of the variable `t`  with respect to which the derivatives have to be computed.
+The file `subsystems.jl` starts with the decalaration of the variable `t`  with respect to which the derivatives have to be computed.
 
 ```
 @variables t
