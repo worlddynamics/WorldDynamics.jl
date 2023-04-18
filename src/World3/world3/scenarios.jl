@@ -1,24 +1,24 @@
 function historicalrun(;
-    pop_params = Pop4._params,
-    capital_params = Capital._params,
-    agriculture_params = Agriculture._params,
-    nonrenewable_params = NonRenewable._params,
-    pollution_params = Pollution._params,
-    pop_inits = Pop4._inits,
-    capital_inits = Capital._inits,
-    agriculture_inits = Agriculture._inits,
-    nonrenewable_inits = NonRenewable._inits,
-    pollution_inits = Pollution._inits,
-    pop_tables = Pop4._tables,
-    capital_tables = Capital._tables,
-    agriculture_tables = Agriculture._tables,
-    nonrenewable_tables = NonRenewable._tables,
-    pollution_tables = Pollution._tables,
-    pop_ranges = Pop4._ranges,
-    capital_ranges = Capital._ranges,
-    agriculture_ranges = Agriculture._ranges,
-    nonrenewable_ranges = NonRenewable._ranges,
-    pollution_ranges = Pollution._ranges,
+    pop_params=Pop4._params,
+    capital_params=Capital._params,
+    agriculture_params=Agriculture._params,
+    nonrenewable_params=NonRenewable._params,
+    pollution_params=Pollution._params,
+    pop_inits=Pop4._inits,
+    capital_inits=Capital._inits,
+    agriculture_inits=Agriculture._inits,
+    nonrenewable_inits=NonRenewable._inits,
+    pollution_inits=Pollution._inits,
+    pop_tables=Pop4._tables,
+    capital_tables=Capital._tables,
+    agriculture_tables=Agriculture._tables,
+    nonrenewable_tables=NonRenewable._tables,
+    pollution_tables=Pollution._tables,
+    pop_ranges=Pop4._ranges,
+    capital_ranges=Capital._ranges,
+    agriculture_ranges=Agriculture._ranges,
+    nonrenewable_ranges=NonRenewable._ranges,
+    pollution_ranges=Pollution._ranges
 )
     pop_inits[:iopc] = 6.65e10 / pop_inits[:pop]
 
@@ -59,5 +59,5 @@ function historicalrun(;
 
     connection_eqs = WorldDynamics.variable_connections(systems)
 
-    return WorldDynamics.compose(systems, connection_eqs)
+    return WorldDynamics.compose(systems, connection_eqs), connection_eqs
 end

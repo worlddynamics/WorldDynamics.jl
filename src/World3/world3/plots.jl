@@ -18,13 +18,13 @@ function _variables_7()
     @named dr = Pop4.death_rate()
 
     variables = [
-        (nr.nrfr,  0, 1,    "nrfr"),
-        (is.iopc,  0, 1000, "iopc"),
-        (ld.fpc,   0, 1000, "fpc"),
-        (pop.pop,  0, 16e9, "pop"),
-        (pp.ppolx, 0, 32,   "ppolx"),
-        (br.cbr,   0, 50,   "cbr"),
-        (dr.cdr,   0, 50,   "cdr"),
+        (nr.nrfr, 0, 1, "nrfr"),
+        (is.iopc, 0, 1000, "iopc"),
+        (ld.fpc, 0, 1000, "fpc"),
+        (pop.pop, 0, 16e9, "pop"),
+        (pp.ppolx, 0, 32, "ppolx"),
+        (br.cbr, 0, 50, "cbr"),
+        (dr.cdr, 0, 50, "cdr"),
     ]
 
     return variables
@@ -40,13 +40,13 @@ function _variables_20()
     @named dr = Pop4.death_rate()
 
     variables = [
-        (nr.nrfr,  0, 1,    "nrfr"),
-        (is.iopc,  0, 2000, "iopc"),
-        (ld.fpc,   0, 1000, "fpc"),
-        (pop.pop,  0, 16e9, "pop"),
-        (pp.ppolx, 0, 32,   "ppolx"),
-        (br.cbr,   0, 50,   "cbr"),
-        (dr.cdr,   0, 50,   "cdr"),
+        (nr.nrfr, 0, 1, "nrfr"),
+        (is.iopc, 0, 2000, "iopc"),
+        (ld.fpc, 0, 1000, "fpc"),
+        (pop.pop, 0, 16e9, "pop"),
+        (pp.ppolx, 0, 32, "ppolx"),
+        (br.cbr, 0, 50, "cbr"),
+        (dr.cdr, 0, 50, "cdr"),
     ]
 
     return variables
@@ -65,16 +65,16 @@ function fig_2(; kwargs...)
     @named dr = Pop4.death_rate()
 
     variables = [
-        (pop.pop, 0,    4e9,  "pop"),
-        (br.cbr,  0,    50,   "cbr"),
-        (dr.cdr,  0,    50,   "cdr"),
-        (dr.le,   0,    60,   "le"),
-        (dr.lmf,  0.75, 1.75, "lmf"),
-        (dr.lmp,  0.75, 1.75, "lmp"),
+        (pop.pop, 0, 4e9, "pop"),
+        (br.cbr, 0, 50, "cbr"),
+        (dr.cdr, 0, 50, "cdr"),
+        (dr.le, 0, 60, "le"),
+        (dr.lmf, 0.75, 1.75, "lmf"),
+        (dr.lmp, 0.75, 1.75, "lmp"),
         (dr.lmhs, 0.75, 1.75, "lmhs"),
-        (dr.lmc,  0.75, 1.75, "lmc"),
-        (br.tf,   0,    8,    "tf"),
-        (br.dtf,  0,    8,    "dtf"),
+        (dr.lmc, 0.75, 1.75, "lmc"),
+        (br.tf, 0, 8, "tf"),
+        (br.dtf, 0, 8, "dtf"),
     ]
 
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.2", kwargs...)
@@ -98,13 +98,13 @@ function fig_3(; kwargs...)
     @named se = SupplementaryEquations.supplementary_equations()
 
     variables = [
-        (is.ic,   0, 4e12, "ic"),
-        (is.io,   0, 4e12, "io"),
-        (is.iopc, 0, 400,  "iopc"),
-        (ss.sopc, 0, 400,  "sopc"),
-        (se.foa,  0, 1,    "foa"),
-        (se.foi,  0, 1,    "foi"),
-        (se.fos,  0, 1,    "fos"),
+        (is.ic, 0, 4e12, "ic"),
+        (is.io, 0, 4e12, "io"),
+        (is.iopc, 0, 400, "iopc"),
+        (ss.sopc, 0, 400, "sopc"),
+        (se.foa, 0, 1, "foa"),
+        (se.foi, 0, 1, "foi"),
+        (se.fos, 0, 1, "fos"),
     ]
 
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.3", kwargs...)
@@ -126,12 +126,12 @@ function fig_4(; kwargs...)
     @named lfd = Agriculture.land_fertility_degradation()
 
     variables = [
-        (ld.f,      0, 2e12,  "f"),
-        (ld.fpc,    0, 800,   "fpc"),
-        (ld.al,     0, 1.6e9, "al"),
-        (ai.ly,     0, 2000,  "ly"),
-        (ai.aiph,   0, 80,    "aiph"),
-        (lfd.lfert, 0, 800,   "lfert"),
+        (ld.f, 0, 2e12, "f"),
+        (ld.fpc, 0, 800, "fpc"),
+        (ld.al, 0, 1.6e9, "al"),
+        (ai.ly, 0, 2000, "ly"),
+        (ai.aiph, 0, 80, "aiph"),
+        (lfd.lfert, 0, 800, "lfert"),
     ]
 
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.4", kwargs...)
@@ -153,10 +153,10 @@ function fig_5(; kwargs...)
     @named nr = NonRenewable.non_renewable()
 
     variables = [
-        (nr.nrur,  0, 4e9, "nrur"),
-        (nr.nrfr,  0, 1,   "nrfr"),
-        (nr.fcaor, 0, 1,   "fcaor"),
-        (nr.pcrum, 0, 1,   "pcrum"),
+        (nr.nrur, 0, 4e9, "nrur"),
+        (nr.nrfr, 0, 1, "nrfr"),
+        (nr.fcaor, 0, 1, "fcaor"),
+        (nr.pcrum, 0, 1, "pcrum"),
     ]
 
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.5", kwargs...)
@@ -175,11 +175,11 @@ function fig_6(; kwargs...)
     variables = [
         (pp.ppgio, 0, 2e8, "ppgio"),
         (pp.ppgao, 0, 2e8, "ppgao"),
-        (pp.ppgr,  0, 2e8, "ppgr"),
+        (pp.ppgr, 0, 2e8, "ppgr"),
         (pp.ppapr, 0, 2e8, "ppapr"),
-        (pp.ppolx, 0, 1,   "ppolx"),
-        (pp.ahl,   0, 4,   "ahl"),
-        (dr.lmp,   0, 4,   "lmp"),
+        (pp.ppolx, 0, 1, "ppolx"),
+        (pp.ahl, 0, 4, "ahl"),
+        (dr.lmp, 0, 4, "lmp"),
     ]
 
     return plotvariables(historicalrunsolution(), (t, 1900, 1970), variables; title="Fig. 7.6", kwargs...)
@@ -218,11 +218,11 @@ function fig_8(; kwargs...)
     @named ai = Agriculture.agricultural_inputs()
 
     variables = [
-        (nr.fcaor, 0, 1,    "fcaor"),
-        (is.io,    0, 4e12, "io"),
-        (ld.tai,   0, 4e12, "tai"),
-        (ai.aiph,  0, 200,  "aiph"),
-        (ld.fioaa, 0, 0.2,  "fioaa"),
+        (nr.fcaor, 0, 1, "fcaor"),
+        (is.io, 0, 4e12, "io"),
+        (ld.tai, 0, 4e12, "tai"),
+        (ai.aiph, 0, 200, "aiph"),
+        (ld.fioaa, 0, 0.2, "fioaa"),
     ]
 
     return plotvariables(historicalrunsolution(), (t, 1900, 2100), variables; title="Fig. 7.8", kwargs...)
@@ -245,10 +245,10 @@ function fig_9(; kwargs...)
     @named pop = Pop4.population()
 
     variables = [
-        (ai.ly,   0, 4000, "ly"),
-        (ld.al,   0, 4e9,  "al"),
-        (ld.fpc,  0, 800,  "fpc"),
-        (dr.lmf,  0, 1.6,  "lmf"),
+        (ai.ly, 0, 4000, "ly"),
+        (ld.al, 0, 4e9, "al"),
+        (ld.fpc, 0, 800, "fpc"),
+        (dr.lmf, 0, 1.6, "lmf"),
         (pop.pop, 0, 16e9, "pop"),
     ]
 
@@ -394,7 +394,7 @@ function fig_18(; kwargs...)
     nr_tables_7_18 = NonRenewable.gettables()
     nr_tables_7_18[:fcaor2] = (1.0, 0.2, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05)
 
-    system = historicalrun(nonrenewable_params= nr_parameters_7_18, nonrenewable_tables=nr_tables_7_18)
+    system = historicalrun(nonrenewable_params=nr_parameters_7_18, nonrenewable_tables=nr_tables_7_18)
     solution = solve(system, (1900, 2100))
 
     return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.18", kwargs...)
@@ -424,7 +424,7 @@ function fig_19(; kwargs...)
     agr_tables_7_19 = Agriculture.gettables()
     agr_tables_7_19[:lymap2] = (1.0, 1.0, 0.98, 0.95)
 
-    system = historicalrun(nonrenewable_params= nr_parameters_7_19, nonrenewable_tables=nr_tables_7_19, agriculture_tables=agr_tables_7_19)
+    system = historicalrun(nonrenewable_params=nr_parameters_7_19, nonrenewable_tables=nr_tables_7_19, agriculture_tables=agr_tables_7_19)
     solution = solve(system, (1900, 2100))
 
     return plotvariables(solution, (t, 1900, 2100), _variables_7(); title="Fig. 7.19", kwargs...)
@@ -535,13 +535,13 @@ function fig_22(; kwargs...)
     @named dr = Pop4.death_rate()
 
     variables = [
-        (nr.nrfr,  0, 1,    "nrfr"),
-        (is.iopc,  0, 8000, "iopc"),
-        (ld.fpc,   0, 1000, "fpc"),
-        (pop.pop,  0, 16e9, "pop"),
-        (pp.ppolx, 0, 32,   "ppolx"),
-        (br.cbr,   0, 50,   "cbr"),
-        (dr.cdr,   0, 50,   "cdr"),
+        (nr.nrfr, 0, 1, "nrfr"),
+        (is.iopc, 0, 8000, "iopc"),
+        (ld.fpc, 0, 1000, "fpc"),
+        (pop.pop, 0, 16e9, "pop"),
+        (pp.ppolx, 0, 32, "ppolx"),
+        (br.cbr, 0, 50, "cbr"),
+        (dr.cdr, 0, 50, "cdr"),
     ]
 
     nr_parameters_7_22 = NonRenewable.getparameters()
@@ -640,7 +640,7 @@ function resource_control(; name,
     params=Dict([:dnrur => 2e9, :nruf1 => 1, :pyear => 1975]),
     inits=Dict([:nruf2 => 1.0]),
     tables=Dict([:nrcm => (-0.05, 0.0)]),
-    ranges=Dict([:nrcm => (-1.0, 0.0)]),
+    ranges=Dict([:nrcm => (-1.0, 0.0)])
 )
     @parameters dnrur = params[:dnrur]
     @parameters nruf1 = params[:nruf1]
@@ -665,7 +665,7 @@ function yield_control(; name,
     params=Dict([:drf => 3, :pyear => 1975]),
     inits=Dict([:lyf2 => 1.0]),
     tables=Dict([:lycm => (0.0, 0.05)]),
-    ranges=Dict([:lycm => (0.0, 1.0)]),
+    ranges=Dict([:lycm => (0.0, 1.0)])
 )
     @parameters drf = params[:drf]
     @parameters pyear = params[:pyear]
@@ -689,7 +689,7 @@ function pollution_control(; name,
     params=Dict([:dpolx => 3, :pyear => 1975]),
     inits=Dict([:ppgf2 => 1]),
     tables=Dict([:polgfm => (-0.05, 0.0)]),
-    ranges=Dict([:polgfm => (-1.0, 0.0)]),
+    ranges=Dict([:polgfm => (-1.0, 0.0)])
 )
     @parameters dpolx = params[:dpolx]
     @parameters pyear = params[:pyear]
@@ -778,7 +778,7 @@ function fig_26(; kwargs...)
     agr_tables[:llmy2] = (1.2, 1.0, 0.9, 0.8, 0.75, 0.7, 0.67, 0.64, 0.62, 0.6)
     agr_tables[:lymap2] = (1.0, 1.0, 0.98, 0.95)
 
-    system = historicalrun(nonrenewable_tables=nr_tables, agriculture_tables=agr_tables)
+    system, connection_eqs = historicalrun(nonrenewable_tables=nr_tables, agriculture_tables=agr_tables)
 
 
     rc_tables = Dict([:nrcm => (-0.02, 0.0)])
@@ -793,11 +793,9 @@ function fig_26(; kwargs...)
     @named yc = yield_control(; tables=yc_tables)
     @named pc = pollution_control(; tables=pc_tables)
 
-    connection_eqs = [
-        rc.nrur ~ nr.nrur
-        yc.fr ~ dlm.fr
-        pc.ppolx ~ pp.ppolx
-    ]
+    push!(connection_eqs, rc.nrur ~ nr.nrur)
+    push!(connection_eqs, yc.fr ~ dlm.fr)
+    push!(connection_eqs, pc.ppolx ~ pp.ppolx)
 
     new_equations = equations(system)
 
@@ -822,7 +820,7 @@ function technological_costs(; name,
         :copm => (2.0, 1.1, 1.05, 1.02, 1.01, 1.0),
         :coym => (1.0, 1.1, 1.25, 1.5, 2.0),
     ]),
-    ranges=Dict([:icor2 => (0.0, 1.0), :copm => (0.0, 1.0), :coym => (1.0, 9.0)]),
+    ranges=Dict([:icor2 => (0.0, 1.0), :copm => (0.0, 1.0), :coym => (1.0, 9.0)])
 )
     @parameters icor1 = params[:icor1]
     @parameters pyear = params[:pyear]
@@ -903,7 +901,7 @@ function delayed_resource_control(; name,
     params=Dict([:tdd => 10, :dnrur => 2e9, :pyear => 1975]),
     inits=Dict([:nrtd => 1.0]),
     tables=Dict([:nrcm => (-0.05, 0.0)]),
-    ranges=Dict([:nrcm => (-1.0, 0.0)]),
+    ranges=Dict([:nrcm => (-1.0, 0.0)])
 )
     @parameters tdd = params[:tdd]
     @parameters dnrur = params[:dnrur]
@@ -934,7 +932,7 @@ function delayed_yield_control(; name,
     params=Dict([:tdd => 10, :drf => 3, :pyear => 1975]),
     inits=Dict([:lytd => 1.0]),
     tables=Dict([:lycm => (0.0, 0.05)]),
-    ranges=Dict([:lycm => (0.0, 1.0)]),
+    ranges=Dict([:lycm => (0.0, 1.0)])
 )
     @parameters tdd = params[:tdd]
     @parameters drf = params[:drf]
@@ -965,7 +963,7 @@ function delayed_pollution_control(; name,
     params=Dict([:tdd => 10, :dpolx => 3, :pyear => 1975]),
     inits=Dict([:ptd => 1]),
     tables=Dict([:polgfm => (-0.05, 0.0)]),
-    ranges=Dict([:polgfm => (-1.0, 0.0)]),
+    ranges=Dict([:polgfm => (-1.0, 0.0)])
 )
     @parameters tdd = params[:tdd]
     @parameters dpolx = params[:dpolx]
@@ -1054,7 +1052,7 @@ function growth_bias(; name,
     params=Dict(),
     inits=Dict([:iopc => (6.65e10 / 1.61e9)]),
     tables=Dict([:icm => (0.0, 1.0)]),
-    ranges=Dict([:icm => (0.0, 0.05)]),
+    ranges=Dict([:icm => (0.0, 0.05)])
 )
     @variables iopc(t)
     @variables siopc(t) = inits[:iopc]
