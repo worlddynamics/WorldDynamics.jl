@@ -1,0 +1,27 @@
+_params = Dict{Symbol,Float64}(
+    :CMFR => 0.01,
+    :DNC80 => 4.3,
+    :DNCA => 0,
+    :DNCG => 0.14,
+    :DNCM => 1.2,
+    :EIP => 30,
+    :EIPF => 0,
+    :FP => 20,
+    :FW => 0.5,
+    :FADFS => 0.8,
+    :GEFR => 0.2,
+    :GEPA => 0,
+    :LEA => 0.001,
+    :LEEPA => 0.75,
+    :LEG => 0.15,
+    :LEMAX => 85,
+    :MFM => 1.6,
+    :MLEM => 1.1,
+    :ORDER => 10,
+    :OW2022 => 1.35,
+    :OWELE => -0.02,
+    :SSP2FA2022F => 1,
+    :TAHI => 10,
+)
+
+getparameters() = copy(_params)
