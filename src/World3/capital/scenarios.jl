@@ -8,25 +8,7 @@ function historicalrun(; kwargs...)
 
     systems = [pop, nr, ag, is, ss, js]
 
-    connection_eqs = [
-        is.pop ~ pop.pop
-        is.fcaor ~ nr.fcaor
-        is.cuf ~ js.cuf
-        is.fioaa ~ ag.fioaa
-        is.fioas ~ ss.fioas
-        ss.iopc ~ is.iopc
-        ss.io ~ is.io
-        ss.cuf ~ js.cuf
-        ss.pop ~ pop.pop
-        js.ic ~ is.ic
-        js.iopc ~ is.iopc
-        js.sc ~ ss.sc
-        js.sopc ~ ss.sopc
-        js.al ~ ag.al
-        js.aiph ~ ag.aiph
-        js.p2 ~ pop.p2
-        js.p3 ~ pop.p3
-    ]
+    connection_eqs = WorldDynamics.variable_connections(systems)
 
     return WorldDynamics.compose(systems, connection_eqs)
 end
