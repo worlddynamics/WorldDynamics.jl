@@ -40,7 +40,7 @@ function variable_connections(systems::Vector{ODESystem})
     @named _model = ODESystem([], t)
     @named model = ModelingToolkit.compose(_model, systems)
     connection_eqs::Set{Equation} = Set{Equation}()
-    var2sys::Dict{String,String} = Dict{String,String}()
+    var2sys = Dict{String,String}()
     var2fullvar = Dict()
     g = variable_dependencies(model)
     al = g.fadjlist
