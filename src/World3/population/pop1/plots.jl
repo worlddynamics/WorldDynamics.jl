@@ -62,30 +62,38 @@ end
 
 
 """
-    Reproduce Fig 2.84. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_84(; kwargs...)
 
-    Caption: Run 2-1: historical behavior, 1900-1975.
+Reproduce Fig 2.84. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-1: historical behavior, 1900-1975.
 """
 fig_84(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), _variables_a(); title="Fig. 2.84a", kwargs...)
 
 """
-    Reproduce Fig 2.85. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_85(; kwargs...)
 
-    Caption: Run 2—2: historical behavior, 1900—1975, mortality variables.
+Reproduce Fig 2.85. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2—2: historical behavior, 1900—1975, mortality variables.
 """
 fig_85(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), _variables_b(); title="Fig. 2.85a", kwargs...)
 
 """
-    Reproduce Fig 2.86. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_86(; kwargs...)
 
-    Caption: Run 2-3: historical behavior, 1900-1975, fertility variables.
+Reproduce Fig 2.86. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-3: historical behavior, 1900-1975, fertility variables.
 """
 fig_86(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 1970), _variables_c(); title="Fig. 2.86a", kwargs...)
 
 """
-    Reproduce Fig 2.87. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_87(; kwargs...)
 
-    Caption: Run 2-4: constant low income.
+Reproduce Fig 2.87. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-4: constant low income.
 """
 function fig_87(; kwargs...)
     parameters_2_87 = getparameters()
@@ -99,9 +107,11 @@ function fig_87(; kwargs...)
 end
 
 """
-    Reproduce Fig 2.88. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_88(; kwargs...)
 
-    Caption: Run 2-5: constant high income.
+Reproduce Fig 2.88. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-5: constant high income.
 """
 function fig_88(; kwargs...)
     parameters_2_88 = getparameters()
@@ -118,9 +128,11 @@ function fig_88(; kwargs...)
 end
 
 """
-    Reproduce Fig 2.89. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_89(; kwargs...)
 
-    Caption: Run 2-6: constant low income, improved health care.
+Reproduce Fig 2.89. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-6: constant low income, improved health care.
 """
 function fig_89(; kwargs...)
     parameters_2_89 = getparameters()
@@ -134,30 +146,38 @@ end
 
 
 """
-    Reproduce Fig 2.90. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_90(; kwargs...)
 
-    Caption: Run 2-7: exponential economic growth.
+Reproduce Fig 2.90. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-7: exponential economic growth.
 """
 fig_90(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_a(); title="Fig. 2.90a", kwargs...)
 
 """
-    Reproduce Fig 2.91. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_91(; kwargs...)
 
-    Caption: Run 2-8: exponential economic growth, mortality variables.
+Reproduce Fig 2.91. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-8: exponential economic growth, mortality variables.
 """
 fig_91(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_b(); title="Fig. 2.91a", kwargs...)
 
 """
-    Reproduce Fig 2.93. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_93(; kwargs...)
 
-    Caption: Run 2-9: exponential economic growth, fertility variables.
+Reproduce Fig 2.93. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-9: exponential economic growth, fertility variables.
 """
 fig_93(; kwargs...) = plotvariables(historicalrunsolution(), (t, 1900, 2100), _variables_c(); title="Fig. 2.93a", kwargs...)
 
 """
-    Reproduce Fig 2.96. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_96(; kwargs...)
 
-    Caption: Run 2-11: exponential economic growth, perfect fertility control.
+Reproduce Fig 2.96. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-11: exponential economic growth, perfect fertility control.
 """
 function fig_96(; kwargs...)
     parameters_2_96 = getparameters()
@@ -170,9 +190,11 @@ function fig_96(; kwargs...)
 end
 
 """
-    Reproduce Fig 2.97. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_97(; kwargs...)
 
-    Caption: Run 2-12: exponential economic growth, perfect fertility control, reduced desired family size.
+Reproduce Fig 2.97. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-12: exponential economic growth, perfect fertility control, reduced desired family size.
 """
 function fig_97(; kwargs...)
     parameters_2_97 = getparameters()
@@ -186,9 +208,11 @@ function fig_97(; kwargs...)
 end
 
 """
-    Reproduce Fig 2.98. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_98(; kwargs...)
 
-    Caption: Run 2-13: constant total output.
+Reproduce Fig 2.98. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-13: constant total output.
 """
 function fig_98(; kwargs...)
     parameters_2_98 = getparameters()
@@ -201,9 +225,11 @@ function fig_98(; kwargs...)
 end
 
 """
-    Reproduce Fig 2.99. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_99(; kwargs...)
 
-    Caption: Run 2-14: constant total output, perfect fertility control.
+Reproduce Fig 2.99. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-14: constant total output, perfect fertility control.
 """
 function fig_99(; kwargs...)
     parameters_2_99 = getparameters()
@@ -217,9 +243,11 @@ function fig_99(; kwargs...)
 end
 
 """
-    Reproduce Fig 2.100. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_100(; kwargs...)
 
-    Caption: Run 2- 15: constant total output, perfect fertility control, reduced desired family size.
+Reproduce Fig 2.100. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2- 15: constant total output, perfect fertility control, reduced desired family size.
 """
 function fig_100(; kwargs...)
     parameters_2_100 = getparameters()
@@ -250,22 +278,28 @@ end
 
 
 """
-    Reproduce Fig 2.103a. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_103a(; kwargs...)
 
-    Caption: Run 2-18: maximum life expectancy of 100 years.
+Reproduce Fig 2.103a. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-18: maximum life expectancy of 100 years.
 """
 fig_103a(; kwargs...) = plotvariables(fig103solution(), (t, 1900, 2100), _variables_a(); title="Fig. 2.103a", kwargs...)
 
 """
-    Reproduce Fig 2.103b. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_103b(; kwargs...)
 
-    Caption: Run 2-18: maximum life expectancy of 100 years.
+Reproduce Fig 2.103b. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-18: maximum life expectancy of 100 years.
 """
 fig_103b(; kwargs...) = plotvariables(fig103solution(), (t, 1900, 2100), _variables_b(); title="Fig. 2.103b", kwargs...)
 
 """
-    Reproduce Fig 2.103c. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+    fig_103c(; kwargs...)
 
-    Caption: Run 2-18: maximum life expectancy of 100 years.
+Reproduce Fig 2.103c. The original figure is presented in Chapter 2 of [DGFW](https://archive.org/details/dynamicsofgrowth0000unse).
+
+Caption: Run 2-18: maximum life expectancy of 100 years.
 """
 fig_103c(; kwargs...) = plotvariables(fig103solution(), (t, 1900, 2100), _variables_c(); title="Fig. 2.103c", kwargs...)
