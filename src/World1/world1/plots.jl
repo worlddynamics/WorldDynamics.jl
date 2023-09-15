@@ -215,12 +215,16 @@ end
 
 
 """
-    Reproduce Fig. WORLD1-STD. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_std(; kwargs...)
+
+Reproduce Fig. WORLD1-STD. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 fig_std(; kwargs...) = plotvariables(standardrunsolution(), (t, 1900, 2100), _variables_std(); title="WORLD1-STD", showaxis=false, showlegend=true, kwargs...)
 
 """
-    Reproduce Fig. W1-7/5-1. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_1(; kwargs...)
+    
+Reproduce Fig. W1-7/5-1. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_1(; kwargs...)
     new_params = copy(_params)
@@ -232,7 +236,9 @@ function fig_1(; kwargs...)
 end
 
 """
-    Reproduce Fig. W1-7/5-2. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_2(; kwargs...)
+    
+Reproduce Fig. W1-7/5-2. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_2(; kwargs...)
     new_params = copy(_params)
@@ -247,7 +253,9 @@ function fig_2(; kwargs...)
 end
 
 """
-    Reproduce Fig. W1-7/5-3. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_3(; kwargs...)
+
+Reproduce Fig. W1-7/5-3. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_3(; kwargs...)
     new_params = copy(_params)
@@ -262,7 +270,9 @@ function fig_3(; kwargs...)
 end
 
 """
-    Reproduce Fig. W1-7/5-4. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_4(; kwargs...)
+
+Reproduce Fig. W1-7/5-4. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_4(; kwargs...)
     new_params = copy(_params)
@@ -274,6 +284,8 @@ function fig_4(; kwargs...)
 end
 
 """
+    fig_5(; kwargs...)
+
     Reproduce Fig. W1-7/5-5. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_5(; kwargs...)
@@ -289,7 +301,9 @@ function fig_5(; kwargs...)
 end
 
 """
-    Reproduce Fig. W1-7/5-6. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_6(; kwargs...)
+
+Reproduce Fig. W1-7/5-6. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_6(; kwargs...)
     new_params = copy(_params)
@@ -304,7 +318,9 @@ function fig_6(; kwargs...)
 end
 
 """
-    Reproduce Fig. W1-7/5-7. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_7(; kwargs...)
+
+Reproduce Fig. W1-7/5-7. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_7(; kwargs...)
     new_params = copy(_params)
@@ -316,7 +332,9 @@ function fig_7(; kwargs...)
 end
 
 """
-    Reproduce Fig. W1-7/5-8. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_8(; kwargs...)
+
+Reproduce Fig. W1-7/5-8. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_8(; kwargs...)
     new_params = copy(_params)
@@ -328,7 +346,9 @@ function fig_8(; kwargs...)
 end
 
 """
-    Reproduce Fig. W1-7/5-9. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_9(; kwargs...)
+
+Reproduce Fig. W1-7/5-9. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_9(; kwargs...)
     new_params = copy(_params)
@@ -343,7 +363,9 @@ function fig_9(; kwargs...)
 end
 
 """
-    Reproduce Fig. W1-7/5-10. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_10(; kwargs...)
+
+Reproduce Fig. W1-7/5-10. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_10(; kwargs...)
     new_params = copy(_params)
@@ -359,7 +381,9 @@ function fig_10(; kwargs...)
 end
 
 """
-    Reproduce Fig. W1-7/5-11. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_11(; kwargs...)
+
+Reproduce Fig. W1-7/5-11. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_11(; kwargs...)
     new_params = copy(_params)
@@ -378,7 +402,9 @@ function fig_11(; kwargs...)
 end
 
 """
-    Reproduce Fig. W1-7/5-12. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
+    fig_12(; kwargs...)
+
+Reproduce Fig. W1-7/5-12. The original figure is presented in the MIT memorandum D-1348 of [World1](https://dome.mit.edu/handle/1721.3/189645).
 """
 function fig_12(; kwargs...)
     new_params = copy(_params)
