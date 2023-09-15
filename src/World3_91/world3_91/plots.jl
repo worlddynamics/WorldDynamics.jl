@@ -43,6 +43,8 @@ end
 @variables t
 
 """
+    fig_scenario1a(; kwargs...)
+
 Reproduce the first subfigure of _Scenario 1_ from Chapter 4, page 133, in [BTL](https://archive.org/details/beyondlimitsconf00mead).
 
 Caption: **The "Standard Run" from The Limits to Growth**  
@@ -54,6 +56,8 @@ As it falls, food and health services also fall, decreasing life expectancy and 
 fig_scenario1a(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_a(); title="Scenario 1 - State of the world", kwargs...)
 
 """
+    fig_scenario1b(; kwargs...)
+
 Reproduce the second subfigure of _Scenario 1_ from Chapter 4, page 133, in [BTL](https://archive.org/details/beyondlimitsconf00mead).
 
 Caption: **The "Standard Run" from The Limits to Growth**  
@@ -65,6 +69,8 @@ As it falls, food and health services also fall, decreasing life expectancy and 
 fig_scenario1b(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_b(); title="Scenario 1 - Material standard of living", kwargs...)
 
 """
+    fig_scenario2a(; kwargs...)
+
 Reproduce the first subfigure of _Scenario 2_ from Chapter 4, page 135, in [BTL](https://archive.org/details/beyondlimitsconf00mead).
 
 Caption: **Doubled Resources Are Added to Scenario 1**  
@@ -84,6 +90,8 @@ function fig_scenario2a(; kwargs...)
 end
 
 """
+    fig_scenario2b(; kwargs...)
+    
 Reproduce the second subfigure of _Scenario 2_ from Chapter 4, page 135, in [BTL](https://archive.org/details/beyondlimitsconf00mead).
 
 Caption: **Doubled Resources Are Added to Scenario 1**  
