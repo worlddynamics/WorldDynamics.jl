@@ -17,7 +17,8 @@ using WorldDynamics
 World3.fig_7()
 ```
 
-The docstrings of each figure function contain specific pointers to the corresponding original figure numbers and captions.
 
 Here is the output superposed to the original picture: 
 ![image](https://user-images.githubusercontent.com/2920162/194111344-8682a97f-f4de-4e2d-ba7e-980546e1bfaf.png)
+
+The docstrings of each figure function contain specific pointers to the corresponding original figure numbers and captions.
