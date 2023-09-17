@@ -33,6 +33,10 @@ For how to produce different figures (and much more), please see [the documentat
 - [Emanuele Natale](http://enatale.name)
 - [Paulo Bruno Serafim](https://paulobruno.github.io/about/)
 
+## Community guidelines
+
+We endhorse the [community standards of the Julia community](https://julialang.org/community/standards/).
+
 ### How to cite this work 
 
 ```
