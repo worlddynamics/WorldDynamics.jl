@@ -23,7 +23,7 @@ Here is the output superposed to the original picture:
 
 For how to produce different figures (and much more), please see [the documentation](https://worlddynamics.github.io/WorldDynamics.jl/stable/).
 
-### Contributions guidelines
+### Contribution guidelines
 
 Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
