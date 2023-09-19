@@ -4,12 +4,8 @@
 [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://worlddynamics.github.io/WorldDynamics.jl/dev/)
 [![DOI](https://zenodo.org/badge/425565525.svg)](https://zenodo.org/badge/latestdoi/425565525)
 
-
-An open-source framework written in Julia for world dynamics modeling and simulation.
-
-## The World Dynamics Project
-
-The World Dynamics project aims to provide a modern framework to investigate [integrated assessment models](https://en.wikipedia.org/wiki/Integrated_assessment_modelling) of sustainable development, based on current software engineering and scientific machine learning techniques. Our group is developing a Julia library to allow scientists to easily use and adapt different world models, from [Meadows et al.'s World3](https://en.wikipedia.org/wiki/World3) to recent proposals. By enabling an open, interdisciplinary, and consistent comparative approach to scientific model development, our goal is to inform global policy makers on environmental and economic issues.
+WorldDynamics.jl is an open-source framework written in Julia for world dynamics modeling and simulation. 
+Check out the [WorldDyanmics Organization](https://github.com/worlddynamics) for information on the World Dynamics project. 
 
 ### Getting started
 
@@ -26,12 +22,6 @@ Here is the output superposed to the original picture:
 ![image](https://user-images.githubusercontent.com/2920162/194111344-8682a97f-f4de-4e2d-ba7e-980546e1bfaf.png)
 
 For how to produce different figures (and much more), please see [the documentation](https://worlddynamics.github.io/WorldDynamics.jl/stable/).
-
-## Project leaders 
-
-- [Pierluigi Crescenzi](http://www.pilucrescenzi.it/)
-- [Emanuele Natale](http://enatale.name)
-- [Paulo Bruno Serafim](https://paulobruno.github.io/about/)
 
 ### How to cite this work 
 

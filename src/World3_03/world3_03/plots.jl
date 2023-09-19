@@ -55,6 +55,8 @@ end
 @variables t
 
 """
+    fig_scenario1a(; kwargs...)
+
 Reproduce the first subfigure of _Scenario 1_ from Chapter 4, page 169, in [LtG30y](https://web.archive.org/web/20220308214339/https://systemdynamics.org/product/affiliate-limits-to-growth-the-30-year-update/).
 
 Caption: **Scenario 1: A Reference Point**  
@@ -67,6 +69,8 @@ As they fall, food and health services are reduced, decreasing life expectancy a
 fig_scenario1a(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_a(); title="Scenario 1 - State of the World", kwargs...)
 
 """
+    fig_scenario1b(; kwargs...)
+
 Reproduce the second subfigure of _Scenario 1_ from Chapter 4, page 169, in [LtG30y](https://web.archive.org/web/20220308214339/https://systemdynamics.org/product/affiliate-limits-to-growth-the-30-year-update/).
 
 Caption: **Scenario 1: A Reference Point**  
@@ -79,6 +83,8 @@ As they fall, food and health services are reduced, decreasing life expectancy a
 fig_scenario1b(; kwargs...) = plotvariables(scenario1solution(), (t, 1900, 2100), _variables_b(); title="Scenario 1 - Material Standard of Living", kwargs...)
 
 """
+    fig_scenario1c(; kwargs...)
+    
 Reproduce the third subfigure of _Scenario 1_ from Chapter 4, page 169, in [LtG30y](https://web.archive.org/web/20220308214339/https://systemdynamics.org/product/affiliate-limits-to-growth-the-30-year-update/).
 
 Caption: **Scenario 1: A Reference Point**  
