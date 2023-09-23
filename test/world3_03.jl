@@ -2011,13 +2011,8 @@ population = [
 3.47998e+09
 3.46345e+09]
 
-
-
 function compare(a, b, pepsi)
     max_re = -1
-    max_re_a = 0
-    max_re_b = 0
-    max_re_i = 0
     for i in 1:lastindex(a)
        if (pepsi >= 0)
           re = abs(a[i] - b[i]) / (abs(b[i]) + pepsi)
@@ -2025,17 +2020,13 @@ function compare(a, b, pepsi)
           re = 0
           if (a[i] != 0 || b[i] != 0)
              re = (2 * abs(a[i] - b[i])) / (abs(a[i]) + abs(b[i]))
-             # re = abs(a[i] - b[i]) / max(abs(a[i]), abs(b[i]))
           end
        end
        if (re > max_re)
           max_re = max(max_re, re)
-          max_re_a = a[i]
-          max_re_b = b[i]
-          max_re_i = i
        end
     end
-    return max_re, max_re_a, max_re_b, max_re_i
+    return max_re
  end
  
 @testset "World3_03" begin
@@ -2054,9 +2045,9 @@ function compare(a, b, pepsi)
     @named pop = World3.Pop1.population()
     solpop = solution[pop.pop]
 
-    @test compare(food, solf, 1)[1] < 0.1
-    @test compare(industrial_output, solffioaa, 1)[1] < 0.1
-    @test compare(nonrenewable_resources, solnr, 1)[1] < 0.1
-    @test compare(persistent_pollution, solppolx, 1)[1] < 0.1
-    @test compare(population, solpop, 1)[1] < 0.1
+    @test compare(food, solf, 1) < 0.1
+    @test compare(industrial_output, solffioaa, 1) < 0.1
+    @test compare(nonrenewable_resources, solnr, 1) < 0.1
+    @test compare(persistent_pollution, solppolx, 1) < 0.1
+    @test compare(population, solpop, 1) < 0.1
 end
