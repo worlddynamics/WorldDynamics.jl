@@ -1,4 +1,7 @@
-using WorldDynamics, Test
+using WorldDynamics
+using ModelingToolkit
+using DifferentialEquations
+using Test
 
 @testset verbose=true "Functions" begin
     include("functions.jl")
