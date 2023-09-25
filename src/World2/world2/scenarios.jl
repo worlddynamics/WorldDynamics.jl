@@ -53,53 +53,7 @@ function natural_resource_depletion(;
         ql,
     ]
 
-
-    connection_eqs = [
-        # population
-        pop.br ~ br.br
-        pop.dr ~ dr.dr
-        br.p ~ pop.p
-        br.msl ~ ci.msl
-        br.cr ~ pop.cr
-        br.fr ~ ai.fr
-        br.polr ~ pol.polr
-        dr.p ~ pop.p
-        dr.msl ~ ci.msl
-        dr.cr ~ pop.cr
-        dr.fr ~ ai.fr
-        dr.polr ~ pol.polr
-        # natural resources
-        nr.nrur ~ nrur.nrur
-        nrur.p ~ pop.p
-        nrur.msl ~ ci.msl
-        # capital investment
-        ci.ciaf ~ ai.ciaf
-        ci.nrem ~ nr.nrem
-        ci.p ~ pop.p
-        ci.cig ~ cig.cig
-        ci.cid ~ cid.cid
-        cig.p ~ pop.p
-        cig.msl ~ ci.msl
-        cid.ci ~ ci.ci
-        # agricultural investment
-        ai.cr ~ pop.cr
-        ai.cira ~ ci.cira
-        ai.polr ~ pol.polr
-        ai.qlm ~ ql.qlm
-        ai.qlf ~ ql.qlf
-        # pollution
-        pol.polg ~ polg.polg
-        pol.pola ~ pola.pola
-        pola.pol ~ pol.pol
-        pola.polr ~ pol.polr
-        polg.p ~ pop.p
-        polg.cir ~ ci.cir
-        # quality life
-        ql.msl ~ ci.msl
-        ql.cr ~ pop.cr
-        ql.fr ~ ai.fr
-        ql.polr ~ pol.polr
-    ]
+    connection_eqs = WorldDynamics.variable_connections(systems)
 
     return WorldDynamics.compose(systems, connection_eqs)
 end

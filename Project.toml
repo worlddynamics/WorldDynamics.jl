@@ -1,7 +1,7 @@
 name = "WorldDynamics"
 uuid = "34572acc-64b2-43ec-bac8-7b2a4baad13f"
 authors = ["Emanuele Natale", "Pierluigi Crescenzi", "Paulo Bruno Serafim"]
-version = "0.4.2"
+version = "0.4.3"
 
 [deps]
 ColorSchemes = "35d6a980-a343-548e-a6ea-1d62b119f2f4"

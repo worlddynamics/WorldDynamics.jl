@@ -8,15 +8,7 @@ function historicalrun(; kwargs...)
 
     systems = [pop, nr, ag, pd, atcc, pp]
 
-    connection_eqs = [
-        pd.ppolx ~ pp.ppolx
-        atcc.lmp ~ pd.lmp
-        pp.ppgf22 ~ atcc.ppgf22
-        pp.pcrum ~ nr.pcrum
-        pp.pop ~ pop.pop
-        pp.aiph ~ ag.aiph
-        pp.al ~ ag.al
-    ]
+    connection_eqs = WorldDynamics.variable_connections(systems)
 
     return WorldDynamics.compose(systems, connection_eqs)
 end
