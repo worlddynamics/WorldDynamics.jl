@@ -30,17 +30,19 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for det
 ### How to cite this work 
 
 ```
-@software{pierluigi_crescenzi_2022_7093581,
-  author       = {Pierluigi Crescenzi and
+@software{paulo_bruno_2023_8377455,
+  author       = {Paulo Bruno and
                   Emanuele Natale and
-                  Paulo Bruno Serafim},
-  title        = {WorldDynamics.jl: v0.1.0},
+                  Pierluigi Crescenzi and
+                  Aurora Rossi and
+                  contributors},
+  title        = {worlddynamics/WorldDynamics.jl: v0.4.3},
   month        = sep,
-  year         = 2022,
+  year         = 2023,
   publisher    = {Zenodo},
-  version      = {v0.1.0},
-  doi          = {10.5281/zenodo.7093581},
-  url          = {https://doi.org/10.5281/zenodo.7093581}
+  version      = {v0.4.3},
+  doi          = {10.5281/zenodo.8377455},
+  url          = {https://doi.org/10.5281/zenodo.8377455}
 }
 ```
 
