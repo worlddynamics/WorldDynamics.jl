@@ -10,10 +10,10 @@ export interpolate, clip, switch
 
 using ModelingToolkit
 
-@register interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
-@register clip(f1, f2, va, th)
-@register switch(v1, v2, z)
-@register WorldDynamics.step(t, hght, sttm)
+@register_symbolic interpolate(x, y::Tuple{Vararg{Float64}}, xs::Tuple{Float64, Float64})
+@register_symbolic clip(f1, f2, va, th)
+@register_symbolic switch(v1, v2, z)
+@register_symbolic WorldDynamics.step(t, hght, sttm)
 
 export World1
 export World1A
