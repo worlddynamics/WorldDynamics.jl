@@ -3,6 +3,7 @@
 [![](https://img.shields.io/badge/docs-stable-blue.svg)](https://worlddynamics.github.io/WorldDynamics.jl/stable/)
 [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://worlddynamics.github.io/WorldDynamics.jl/dev/)
 [![DOI](https://zenodo.org/badge/425565525.svg)](https://zenodo.org/badge/latestdoi/425565525)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.05772/status.svg)](https://doi.org/10.21105/joss.05772)
 
 WorldDynamics.jl is an open-source framework written in Julia for world dynamics modeling and simulation. 
 Check out the [WorldDyanmics Organization](https://github.com/worlddynamics) for information on the World Dynamics project. 
@@ -45,6 +46,9 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for det
   url          = {https://doi.org/10.5281/zenodo.8377455}
 }
 ```
+
+### Publications
+Pierluigi Crescenzi, Emanuele Natale, Aurora Rossi, Paulo Serafim. *WorldDynamics.jl: A Julia Package for Developing and Simulating Integrated Assessment Models.* Journal of Open Source Software, 9(95), 5772. 2024. [![DOI](https://joss.theoj.org/papers/10.21105/joss.05772/status.svg)](https://doi.org/10.21105/joss.05772)
 
 ### Acknowledgments 
 
