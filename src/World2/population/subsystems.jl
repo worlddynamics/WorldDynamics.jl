@@ -16,7 +16,7 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
         cr ~ p / (la * pdn)
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function birth_rate(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -44,7 +44,7 @@ function birth_rate(; name, params=_params, inits=_inits, tables=_tables, ranges
         brpm ~ interpolate(polr, tables[:brpm], ranges[:brpm])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function death_rate(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -72,5 +72,5 @@ function death_rate(; name, params=_params, inits=_inits, tables=_tables, ranges
         drpm ~ interpolate(polr, tables[:drpm], ranges[:drpm])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end

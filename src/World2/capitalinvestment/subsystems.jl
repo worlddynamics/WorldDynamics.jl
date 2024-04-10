@@ -25,7 +25,7 @@ function capital_investment(; name, params=_params, inits=_inits, tables=_tables
         D(ci) ~ cig - cid
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function capital_investment_generation(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -44,7 +44,7 @@ function capital_investment_generation(; name, params=_params, inits=_inits, tab
         cim ~ interpolate(msl, tables[:cim], ranges[:cim])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function capital_investment_discard(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -60,5 +60,5 @@ function capital_investment_discard(; name, params=_params, inits=_inits, tables
         cid ~ ci * clip(cidn, cidn1, swt5, t)
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end

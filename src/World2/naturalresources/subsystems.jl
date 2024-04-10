@@ -14,7 +14,7 @@ function natural_resources(; name, params=_params, inits=_inits, tables=_tables,
         D(nr) ~ -nrur
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function natural_resources_usage_rate(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -33,5 +33,5 @@ function natural_resources_usage_rate(; name, params=_params, inits=_inits, tabl
         nrmm ~ interpolate(msl, tables[:nrmm], ranges[:nrmm])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end

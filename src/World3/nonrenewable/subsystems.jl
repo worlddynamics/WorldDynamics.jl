@@ -14,7 +14,7 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
         pop1 ~ popi * exp(gc * (t - 1900))
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function industrial_output(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -28,7 +28,7 @@ function industrial_output(; name, params=_params, inits=_inits, tables=_tables,
         iopc ~ io / pop
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function industrial_capital(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -47,7 +47,7 @@ function industrial_capital(; name, params=_params, inits=_inits, tables=_tables
         icdr ~ ic / alic
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function non_renewable(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -71,5 +71,5 @@ function non_renewable(; name, params=_params, inits=_inits, tables=_tables, ran
         fcaor2 ~ interpolate(nrfr, tables[:fcaor2], ranges[:fcaor2]) # Line 136 Appendix A
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end

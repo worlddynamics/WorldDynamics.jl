@@ -217,7 +217,7 @@ function non_renewable_stock(; name, params=_params, inits=_inits, tables=_table
         maximum_investment ~ capital_funds / cost_per_investment
         investment ~ min(desired_investment, maximum_investment)
     ]
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 ```
 The arguments of the function are the dictionaries corresponding to the variable initial values and to the parameter values, and the dictionaries corresponding to the tables and the ranges used for the linear of non-linear functions. The first two dictionaries are used to assign a value to all the parameters and an initial value to two variables. The ODE system is a vector of differential and algebraic equations (as specified in the chapter of the above mentioned book). Note that the two differential equations correspond to the two variables whose initial value has been specified. The variable `extraction_efficiency_per_unit_capital` is defined as a linear interpolation of the variable `resource`, by using the table `tables[:eepuc]` together with the range `ranges[:eepuc]`. The table and the corresponding range are defined in the file `tables.jl`, which define two dictionaries as follows.

@@ -36,7 +36,7 @@ function human_welfare_index(; name,
         gdppc ~ interpolate(iopc / gdpu, tables[:gdppc], ranges[:gdppc])
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 function human_ecological_footprint(; name,
@@ -61,7 +61,7 @@ function human_ecological_footprint(; name,
         ulgha ~ uil / hgha
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 

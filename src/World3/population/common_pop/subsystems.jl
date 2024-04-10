@@ -10,8 +10,8 @@ function death_rate(; name, params=_params, inits=_inits, tables=_tables, ranges
     @variables dr(t) pop(t)
     @variables fpc(t) sopc(t) iopc(t) ppolx(t)
     @variables ehspc(t) = inits[:hsapc] # Line 22 Appendix A
-    @variables fpu(t) = inits[:fpu] 
-    @variables lmf(t) = inits[:lmf] 
+    @variables fpu(t) = inits[:fpu]
+    @variables lmf(t) = inits[:lmf]
     @variables cmi(t) = inits[:cmi]
     @variables cdr(t) le(t)  hsapc(t) lmhs(t) lmhs1(t) lmhs2(t)  lmc(t) lmp(t)
 
@@ -30,7 +30,7 @@ function death_rate(; name, params=_params, inits=_inits, tables=_tables, ranges
         lmp ~ interpolate(ppolx, tables[:lmp], ranges[:lmp]) # Line 29 Appendix A
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function birth_rate(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -87,7 +87,7 @@ function birth_rate(; name, params=_params, inits=_inits, tables=_tables, ranges
         fsafc ~ interpolate(nfc, tables[:fsafc], ranges[:fsafc]) # Line 48 Appendix A
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function industrial_output(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -107,7 +107,7 @@ function industrial_output(; name, params=_params, inits=_inits, tables=_tables,
         iopc ~ io / pop
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function service_output(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -127,7 +127,7 @@ function service_output(; name, params=_params, inits=_inits, tables=_tables, ra
         sopc ~ so / pop
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function persistent_pollution(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -140,7 +140,7 @@ function persistent_pollution(; name, params=_params, inits=_inits, tables=_tabl
         D(ppolx) ~ WorldDynamics.step(t, ps, pt)
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function food(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -160,5 +160,5 @@ function food(; name, params=_params, inits=_inits, tables=_tables, ranges=_rang
         fpc ~ f / pop
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end

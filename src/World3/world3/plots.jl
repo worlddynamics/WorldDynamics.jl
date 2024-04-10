@@ -621,7 +621,7 @@ function exponentially_growing_technologies(; name)
         expon ~ clip(alpha * (t - pyear), 0, t, pyear)
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 """
@@ -697,7 +697,7 @@ function resource_control(; name,
         nrcm ~ interpolate(1.0 - (nrur / dnrur), tables[:nrcm], ranges[:nrcm])
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 function yield_control(; name,
@@ -721,7 +721,7 @@ function yield_control(; name,
         lycm ~ interpolate(drf - fr, tables[:lycm], ranges[:lycm])
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 function pollution_control(; name,
@@ -745,7 +745,7 @@ function pollution_control(; name,
         polgfm ~ interpolate(1.0 - (ppolx / dpolx), tables[:polgfm], ranges[:polgfm])
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 """
@@ -793,7 +793,7 @@ function fig_24(; kwargs...)
     new_equations[177] = ai.lyf ~ clip(yc.lyf2, ai.lyf1, t, ai.pyear)
     new_equations[215] = pp.ppgf ~ clip(pc.ppgf2, pp.ppgf1, t, pp.pyear)
 
-    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs), t)
     @named new_system = ModelingToolkit.compose(_new_system, rc, yc, pc)
 
     solution = solve(new_system, (1900, 2100))
@@ -848,7 +848,7 @@ function fig_26(; kwargs...)
     new_equations[177] = ai.lyf ~ clip(yc.lyf2, ai.lyf1, t, ai.pyear)
     new_equations[215] = pp.ppgf ~ clip(pc.ppgf2, pp.ppgf1, t, pp.pyear)
 
-    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs), t)
     @named new_system = ModelingToolkit.compose(_new_system, rc, yc, pc)
 
     solution = solve(new_system, (1900, 2100))
@@ -881,7 +881,7 @@ function technological_costs(; name,
         coym ~ interpolate(lyf2, tables[:coym], ranges[:coym])
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 """
@@ -935,7 +935,7 @@ function fig_27(; kwargs...)
     new_equations[215] = pp.ppgf ~ clip(pc.ppgf2, pp.ppgf1, t, pp.pyear)
     new_equations[125] = is.icor ~ clip(tc.icor2, is.icor1, t, is.pyear)
 
-    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs), t)
     @named new_system = ModelingToolkit.compose(_new_system, rc, yc, pc, tc)
 
     solution = solve(new_system, (1900, 2100))
@@ -972,7 +972,7 @@ function delayed_resource_control(; name,
         nrcm ~ interpolate(1.0 - (nrur / dnrur), tables[:nrcm], ranges[:nrcm])
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 function delayed_yield_control(; name,
@@ -1003,7 +1003,7 @@ function delayed_yield_control(; name,
         lycm ~ interpolate(drf - fr, tables[:lycm], ranges[:lycm])
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 function delayed_pollution_control(; name,
@@ -1034,7 +1034,7 @@ function delayed_pollution_control(; name,
         polgfm ~ interpolate(1.0 - (ppolx / dpolx), tables[:polgfm], ranges[:polgfm])
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 """
@@ -1088,7 +1088,7 @@ function fig_30(; kwargs...)
     new_equations[215] = pp.ppgf ~ clip(dpc.ppgf2, pp.ppgf1, t, pp.pyear)
     new_equations[125] = is.icor ~ clip(tc.icor2, is.icor1, t, is.pyear)
 
-    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs), t)
     @named new_system = ModelingToolkit.compose(_new_system, drc, dyc, dpc, tc)
 
     solution = solve(new_system, (1900, 2100))
@@ -1114,7 +1114,7 @@ function growth_bias(; name,
         D(siopc) ~ (iopc - siopc) / 2
     ]
 
-    return ODESystem(eqs; name)
+    return ODESystem(eqs, t; name)
 end
 
 """
@@ -1172,7 +1172,7 @@ function fig_32(; kwargs...)
     new_equations[215] = pp.ppgf ~ clip(dpc.ppgf2, pp.ppgf1, t, pp.pyear)
     new_equations[125] = is.icor ~ clip(tc.icor2, is.icor1, t, is.pyear)
 
-    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs), t)
     @named new_system = ModelingToolkit.compose(_new_system, drc, dyc, dpc, tc, gb)
 
     growth_equations = equations(new_system)
@@ -1396,7 +1396,7 @@ function fig_39(; kwargs...)
     new_equations[215] = pp.ppgf ~ clip(dpc.ppgf2, pp.ppgf1, t, pp.pyear)
     new_equations[125] = is.icor ~ clip(tc.icor2, is.icor1, t, is.pyear)
 
-    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs), t)
     @named new_system = ModelingToolkit.compose(_new_system, drc, dyc, dpc, tc)
 
     solution = solve(new_system, (1900, 2100))
@@ -1477,7 +1477,7 @@ function fig_41(; kwargs...)
     new_equations[215] = pp.ppgf ~ clip(dpc.ppgf2, pp.ppgf1, t, pp.pyear)
     new_equations[125] = is.icor ~ clip(tc.icor2, is.icor1, t, is.pyear)
 
-    @named _new_system = ODESystem(vcat(new_equations, connection_eqs))
+    @named _new_system = ODESystem(vcat(new_equations, connection_eqs), t)
     @named new_system = ModelingToolkit.compose(_new_system, drc, dyc, dpc, tc)
 
     solution = solve(new_system, (1900, 2100))

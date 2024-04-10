@@ -20,7 +20,7 @@ function scenario1(; kwargs...)
         hef.uil ~ leuiu.uil
     ]
 
-    @named _new_system = ODESystem(vcat(equations(system), connection_eqs))
+    @named _new_system = ODESystem(vcat(equations(system), connection_eqs), t)
     @named new_system = ModelingToolkit.compose(_new_system, hwi, hef)
 
     return new_system

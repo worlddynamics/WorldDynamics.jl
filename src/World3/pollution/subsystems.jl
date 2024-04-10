@@ -8,7 +8,7 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
         pop ~ interpolate(t, tables[:pop], ranges[:pop]) * 1e8
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function non_renewable(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -18,7 +18,7 @@ function non_renewable(; name, params=_params, inits=_inits, tables=_tables, ran
         pcrum ~ interpolate(t, tables[:pcrum], ranges[:pcrum]) * 1e-2
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function agriculture(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -30,17 +30,17 @@ function agriculture(; name, params=_params, inits=_inits, tables=_tables, range
         al ~ interpolate(t, tables[:al], ranges[:al]) * 1e8
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function persistent_pollution_dummy(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
-    @variables ppgf22(t) 
+    @variables ppgf22(t)
 
     eqs = [
         ppgf22 ~ 1.0
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function persistent_pollution(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -90,7 +90,7 @@ function persistent_pollution(; name, params=_params, inits=_inits, tables=_tabl
         ahl ~ ahl70 * ahlm # Line 146 Appendix A
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function pollution_damage(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -111,7 +111,7 @@ function pollution_damage(; name, params=_params, inits=_inits, tables=_tables, 
         lfdr2 ~ interpolate(ppolx, tables[:lfdr2], ranges[:lfdr2])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function adaptive_technological_control_cards(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -143,5 +143,5 @@ function adaptive_technological_control_cards(; name, params=_params, inits=_ini
         D(plmp1) ~ 3 * (lmp - plmp1) / pd
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end

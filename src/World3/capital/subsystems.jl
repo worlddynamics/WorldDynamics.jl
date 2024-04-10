@@ -10,7 +10,7 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
         p3 ~ 0.25 * pop
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function agriculture(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -22,7 +22,7 @@ function agriculture(; name, params=_params, inits=_inits, tables=_tables, range
         fioaa ~ interpolate(t, tables[:fioaa], ranges[:fioaa])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function non_renewable(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -32,7 +32,7 @@ function non_renewable(; name, params=_params, inits=_inits, tables=_tables, ran
         fcaor ~ interpolate(t, tables[:fcaor], ranges[:fcaor])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function industrial_subsector(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -64,7 +64,7 @@ function industrial_subsector(; name, params=_params, inits=_inits, tables=_tabl
         fioacv ~ interpolate(iopc / iopcd, tables[:fioacv], ranges[:fioacv]) # Line 59 Appendix A
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function service_subsector(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -94,7 +94,7 @@ function service_subsector(; name, params=_params, inits=_inits, tables=_tables,
         scor ~ clip(scor2, scor1, t, pyear) # Line 72 Appendix A
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function job_subsector(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -120,5 +120,5 @@ function job_subsector(; name, params=_params, inits=_inits, tables=_tables, ran
         cuf ~ interpolate(lufd, tables[:cuf], ranges[:cuf]) # Line 83 Appendix A
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
