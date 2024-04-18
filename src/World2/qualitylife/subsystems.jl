@@ -23,5 +23,5 @@ function quality_life(; name, params=_params, inits=_inits, tables=_tables, rang
         qlp ~ interpolate(polr, tables[:qlp], ranges[:qlp])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end

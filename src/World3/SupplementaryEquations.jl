@@ -16,7 +16,7 @@ function supplementary_equations(; name)
         fos ~ so / (0.22 * f + so + io) # Line 149 Appendix A
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 

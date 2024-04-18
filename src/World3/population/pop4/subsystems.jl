@@ -42,5 +42,5 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
         br ~ clip(dr, tf * p2 * 0.5 / rlt, t, pet) # Line 30 Appendix A
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end

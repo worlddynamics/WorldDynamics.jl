@@ -47,9 +47,9 @@ function variable_connections(systems::Vector{ODESystem})
     for u in eachindex(al)
         @assert length(al[u]) <= 1 "Error in the variable dependencies binary graph: one node has more than one neighbor"
         if (length(al[u]) > 0)
-            s, v = split(string(states(model)[u]), "₊")
+            s, v = split(string(unknowns(model)[u]), "₊")
             var2sys[v] = s
-            var2fullvar[v] = states(model)[u]
+            var2fullvar[v] = unknowns(model)[u]
         end
     end
     ed = equation_dependencies(model)

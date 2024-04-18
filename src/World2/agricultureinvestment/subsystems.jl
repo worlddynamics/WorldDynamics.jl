@@ -32,5 +32,5 @@ function agriculture_investment(; name, params=_params, inits=_inits, tables=_ta
         ciqr ~ interpolate(qlm / qlf, tables[:ciqr], ranges[:ciqr])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end

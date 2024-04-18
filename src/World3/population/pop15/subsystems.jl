@@ -133,5 +133,5 @@ function population(; name, params=_params, inits=_inits, tables=_tables, ranges
         br ~ clip(dr, (tf / 10.0) * extra, t, pet)
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end

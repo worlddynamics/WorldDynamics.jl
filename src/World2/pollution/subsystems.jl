@@ -15,7 +15,7 @@ function pollution(; name, params=_params, inits=_inits, tables=_tables, ranges=
         D(pol) ~ polg - pola
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function pollution_absorption(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -30,7 +30,7 @@ function pollution_absorption(; name, params=_params, inits=_inits, tables=_tabl
         polat ~ interpolate(polr, tables[:polat], ranges[:polat])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
 
 function pollution_generation(; name, params=_params, inits=_inits, tables=_tables, ranges=_ranges)
@@ -49,5 +49,5 @@ function pollution_generation(; name, params=_params, inits=_inits, tables=_tabl
         polcm ~ interpolate(cir, tables[:polcm], ranges[:polcm])
     ]
 
-    ODESystem(eqs; name)
+    ODESystem(eqs, t; name)
 end
