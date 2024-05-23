@@ -231,6 +231,25 @@ function var_dependencies(sa, sn, si)
 end
 
 """
+   `write_html)index()`
+
+Write the index HTML page with the links to the systems HTML pages.
+"""
+function write_html_index(sn)
+   mkpath("output/html/")
+   open("output/html/index.html", "w") do f
+      write(f, "<html>\n")
+      write(f, "</body>\n</html>")
+      write(f, "<body>\n\n\t<h1 style=\"text-align:center\">The list of sectors</h1>\n")
+      write(f, "\n<ul>\n")
+      for s in 1:lastindex(sn)
+         write(f, "    <li><a href=\"" * sn[s] * ".html\">" * uppercase(sn[s]) * "</a></li>\n")
+      end
+      write(f, "</ul>\n</body>\n</html>")
+   end
+end
+
+"""
    `write_html()`
 
 Write two HTML tables with all the variables and the parameters of all the ODE systems of the Earth4All model.
@@ -242,6 +261,7 @@ function write_html()
       println(sn[s])
       write_html(sa, sn, s)
    end
+   write_html_index(sn)
 end
 
 """
