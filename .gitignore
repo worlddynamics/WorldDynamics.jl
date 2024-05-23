@@ -1,17 +1,5 @@
 # Julia
 Manifest.toml
 
-# Docs
-docs/build/
-docs/site/
-
-# Latex
-*.fdb_latexmk
-*.fls
-*.log
-*.aux
-.vscode/settings.json
-
 # Mac
 .DS_Store
-docs/.DS_Store

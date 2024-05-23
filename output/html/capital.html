@@ -1,0 +1,150 @@
+<html>
+<head>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+      table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          padding: 10px;
+      }
+      tr:nth-child(even) {
+          background-color: #D6EEEE;
+      }
+      th {
+          background-color: #D6EEEE;
+      }
+  </style>
+</head>
+
+<body style="text-align:center">
+
+	<h1>The CAPITAL sector</h1>
+	<h2 style="text-align:left">The variables</h2>
+<table border: 1px solid black;>
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Name</th>
+			<th>Used variables</th>
+			<th>Used parameters</th>
+			<th>Variables using it</th>
+			<th>Initial value</th>
+			<th>Equation</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr id="CACO">
+		<td>The CApital COsts are deducted from the revenue to generate a value for profits.</td>
+		<td><code>CACO</code></td>
+		<td><a href=#CAPI><code>CAPI</code></a> </td>
+		<td></td>
+		<td><a href=#PROF><code>PROF</code></a> </td>
+		<td></td>
+		<td>\(\mathtt{CACO}\left(t\right)=0.1\cdot\mathtt{CAPI}\left(t\right)\)</td>
+	</tr>
+	<tr id="CAFU">
+		<td>A fixed percentage of profits are available as CApital FUnds.</td>
+		<td><code>CAFU</code></td>
+		<td><a href=#PROF><code>PROF</code></a> </td>
+		<td><a href=#FPR><code>FPR</code></a> </td>
+		<td><a href=#MAIN><code>MAIN</code></a> </td>
+		<td></td>
+		<td>\(\mathtt{CAFU}\left(t\right)=\mathtt{FPR}\cdot\mathtt{PROF}\left(t\right)\)</td>
+	</tr>
+	<tr id="CAPI">
+		<td>The CAPItal stock provides the capability to extract the resource.</td>
+		<td><code>CAPI</code></td>
+		<td><a href=#DEPR><code>DEPR</code></a> <a href=#INVE><code>INVE</code></a> </td>
+		<td></td>
+		<td><a href=#DEPR><code>DEPR</code></a> <a href=#DEIN><code>DEIN</code></a> <a href=#CACO><code>CACO</code></a> <a href="resource.html#EXTR"><code>EXTR</code></a> </td>
+		<td>5.0</td>
+		<td>\(\frac{\mathrm{d}\mathtt{CAPI}\left(t\right)}{\mathrm{d}t}=-\mathtt{DEPR}\left(t\right)+\mathtt{INVE}\left(t\right)\)</td>
+	</tr>
+	<tr id="DEIN">
+		<td>DEsired INvestment represents the target investment rate for capital, in order to stimulate growth.</td>
+		<td><code>DEIN</code></td>
+		<td><a href=#CAPI><code>CAPI</code></a> </td>
+		<td><a href=#DGF><code>DGF</code></a> </td>
+		<td><a href=#INVE><code>INVE</code></a> </td>
+		<td></td>
+		<td>\(\mathtt{DEIN}\left(t\right)=\mathtt{DGF}\cdot\mathtt{CAPI}\left(t\right)\)</td>
+	</tr>
+	<tr id="DEPR">
+		<td>The DEPReciation effect on capital.</td>
+		<td><code>DEPR</code></td>
+		<td><a href=#CAPI><code>CAPI</code></a> </td>
+		<td><a href=#DERA><code>DERA</code></a> </td>
+		<td><a href=#CAPI><code>CAPI</code></a> </td>
+		<td></td>
+		<td>\(\mathtt{DEPR}\left(t\right)=\mathtt{DERA}\cdot\mathtt{CAPI}\left(t\right)\)</td>
+	</tr>
+	<tr id="INVE">
+		<td>The INVEstment of the company cannot be more than the company's target and cannot be more than the maximum value.</td>
+		<td><code>INVE</code></td>
+		<td><a href=#MAIN><code>MAIN</code></a> <a href=#DEIN><code>DEIN</code></a> </td>
+		<td></td>
+		<td><a href=#CAPI><code>CAPI</code></a> </td>
+		<td></td>
+		<td>\(\mathtt{INVE}\left(t\right)=\mathtt{min}\left(\mathtt{DEIN}\left(t\right),\mathtt{MAIN}\left(t\right)\right)\)</td>
+	</tr>
+	<tr id="MAIN">
+		<td>The cost per unit of investment determines the MAximum INvestment in capital possible.</td>
+		<td><code>MAIN</code></td>
+		<td><a href=#CAFU><code>CAFU</code></a> </td>
+		<td><a href=#CPI><code>CPI</code></a> </td>
+		<td><a href=#INVE><code>INVE</code></a> </td>
+		<td></td>
+		<td>\(\mathtt{MAIN}\left(t\right)=\frac{\mathtt{CAFU}\left(t\right)}{\mathtt{CPI}}\)</td>
+	</tr>
+	<tr id="PROF">
+		<td>The PROFit is the total revenue minus the capital costs.</td>
+		<td><code>PROF</code></td>
+		<td><a href=#CACO><code>CACO</code></a> <a href="resource.html#TORE"><code>TORE</code></a> </td>
+		<td></td>
+		<td><a href=#CAFU><code>CAFU</code></a> </td>
+		<td></td>
+		<td>\(\mathtt{PROF}\left(t\right)=-\mathtt{CACO}\left(t\right)+\mathtt{TORE}\left(t\right)\)</td>
+	</tr>
+	</tbody>
+</table>
+
+	<h2 style="text-align:left">The parameters</h2>
+<table class="styled-table">
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Name</th>
+			<th>Is used by</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr id="CPI">
+		<td>The Cost Per unit of Investment.</td>
+		<td><code>CPI</code></td>
+		<td><a href=#MAIN><code>MAIN</code></a> </td>
+		<td>2.0</td>
+	</tr>
+	<tr id="DERA">
+		<td>The DEpreciation RAte.</td>
+		<td><code>DERA</code></td>
+		<td><a href=#DEPR><code>DEPR</code></a> </td>
+		<td>0.05</td>
+	</tr>
+	<tr id="DGF">
+		<td>The Desired Growth Fraction is the initial target investment rate for capital, in order to stimulate growth.</td>
+		<td><code>DGF</code></td>
+		<td><a href=#DEIN><code>DEIN</code></a> </td>
+		<td>0.07</td>
+	</tr>
+	<tr id="FPR">
+		<td>A fixed Fraction of Profits are Reinvested and available as capital funds.</td>
+		<td><code>FPR</code></td>
+		<td><a href=#CAFU><code>CAFU</code></a> </td>
+		<td>0.12</td>
+	</tr>
+	</tbody>
+</table>
+</body>
+</html>

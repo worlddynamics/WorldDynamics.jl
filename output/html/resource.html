@@ -1,0 +1,96 @@
+<html>
+<head>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+      table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          padding: 10px;
+      }
+      tr:nth-child(even) {
+          background-color: #D6EEEE;
+      }
+      th {
+          background-color: #D6EEEE;
+      }
+  </style>
+</head>
+
+<body style="text-align:center">
+
+	<h1>The RESOURCE sector</h1>
+	<h2 style="text-align:left">The variables</h2>
+<table border: 1px solid black;>
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Name</th>
+			<th>Used variables</th>
+			<th>Used parameters</th>
+			<th>Variables using it</th>
+			<th>Initial value</th>
+			<th>Equation</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr id="EEPUC">
+		<td>The Extraction Efficiency Per Unit Cost is related to the resource level.</td>
+		<td><code>EEPUC</code></td>
+		<td><a href=#RESO><code>RESO</code></a> </td>
+		<td></td>
+		<td><a href=#EXTR><code>EXTR</code></a> </td>
+		<td></td>
+		<td>\(\mathtt{EEPUC}(t) = \mathtt{interpolate}(\mathtt{RESO}, (0.0, 0.25, 0.45, 0.63, 0.75, 0.85, 0.92, 0.96, 0.98, 0.99, 1.0), (0.0, 1000.0))\)</td>
+	</tr>
+	<tr id="EXTR">
+		<td>The EXTRaction rate depends on the amount of available capital, which is multiplied by the extraction efficiency per unit of capital.</td>
+		<td><code>EXTR</code></td>
+		<td><a href=#EEPUC><code>EEPUC</code></a> <a href="capital.html#CAPI"><code>CAPI</code></a> </td>
+		<td></td>
+		<td><a href=#RESO><code>RESO</code></a> <a href=#TORE><code>TORE</code></a> </td>
+		<td></td>
+		<td>\(\mathtt{EXTR}\left(t\right)=\mathtt{EEPUC}\left(t\right)\cdot\mathtt{CAPI}\left(t\right)\)</td>
+	</tr>
+	<tr id="RESO">
+		<td>The RESOurce stock which is non-renewable, as it can only be consumed.</td>
+		<td><code>RESO</code></td>
+		<td><a href=#EXTR><code>EXTR</code></a> </td>
+		<td></td>
+		<td><a href=#EEPUC><code>EEPUC</code></a> </td>
+		<td>1000.0</td>
+		<td>\(\frac{\mathrm{d}\mathtt{RESO}\left(t\right)}{\mathrm{d}t}=-\mathtt{EXTR}\left(t\right)\)</td>
+	</tr>
+	<tr id="TORE">
+		<td>The TOtal REvenue is the amount extracted times revenue per unit extracted.</td>
+		<td><code>TORE</code></td>
+		<td><a href=#EXTR><code>EXTR</code></a> </td>
+		<td><a href=#RPUE><code>RPUE</code></a> </td>
+		<td><a href="capital.html#PROF"><code>PROF</code></a> </td>
+		<td></td>
+		<td>\(\mathtt{TORE}\left(t\right)=\mathtt{RPUE}\cdot\mathtt{EXTR}\left(t\right)\)</td>
+	</tr>
+	</tbody>
+</table>
+
+	<h2 style="text-align:left">The parameters</h2>
+<table class="styled-table">
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Name</th>
+			<th>Is used by</th>
+			<th>Value</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr id="RPUE">
+		<td>The Revenue Per Unit Extraction</td>
+		<td><code>RPUE</code></td>
+		<td><a href=#TORE><code>TORE</code></a> </td>
+		<td>3.0</td>
+	</tr>
+	</tbody>
+</table>
+</body>
+</html>
