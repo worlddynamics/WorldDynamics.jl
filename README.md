@@ -252,4 +252,4 @@ include("src/Duggan.jl")
 Duggan.write_html();
 ```
 
-The HTML pages are generated in the folder `html` within the folder `output`.
+The [HTML pages](https://www.pilucrescenzi.it/worlddynamics/) are generated in the folder `html` within the folder `output`. Note that only the variables and the parameters with a non-empty description are included in the tables.
